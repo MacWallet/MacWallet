@@ -1,0 +1,3 @@
+[submodule "BitcoinJKit"]
+	path = BitcoinJKit
+	url = git@github.com:jonasschnelli/BitcoinJKit.git
