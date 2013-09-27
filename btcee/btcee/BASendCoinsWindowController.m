@@ -35,12 +35,19 @@
 
 - (IBAction)sendClicked:(id)sender
 {
-    [self.delegate sendCoinsFromWindowController:self receiver:[self.btcAddressTextField stringValue] amount:[self.amountTextField intValue]*100000000 txfee:[self.txFeeTextField intValue]*100000000];
+    [self.delegate sendCoinsFromWindowController:self receiver:[self.btcAddressTextField stringValue] amount:[self.amountTextField doubleValue]*100000000 txfee:[self.txFeeTextField doubleValue]*100000000];
 }
 
 - (void)windowWillClose:(id)sender
 {
     [self.delegate sendCoinsWindowControllerWillClose:self];
+}
+
+#pragma mark - helper
+
+- (NSString *)formatBTC:(NSString *)string
+{
+    NSNumberFormatter *formater;
 }
 
 @end

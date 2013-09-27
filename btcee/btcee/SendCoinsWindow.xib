@@ -18,14 +18,14 @@
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" wantsToBeColor="NO" animationBehavior="default" id="1">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="999" y="665" width="480" height="196"/>
+            <rect key="contentRect" x="999" y="665" width="480" height="120"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
             <view key="contentView" autoresizesSubviews="NO" focusRingType="exterior" id="2">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="196"/>
+                <rect key="frame" x="0.0" y="0.0" width="480" height="120"/>
                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <textField verticalHuggingPriority="750" id="wEq-IJ-6nR">
-                        <rect key="frame" x="153" y="154" width="307" height="22"/>
+                        <rect key="frame" x="153" y="78" width="275" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="rbT-wC-JnH">
                             <font key="font" metaFont="system"/>
@@ -34,7 +34,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Ymu-wy-TQF">
-                        <rect key="frame" x="17" y="157" width="131" height="17"/>
+                        <rect key="frame" x="17" y="81" width="131" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Receiver Address" id="ZuD-vS-JQI">
                             <font key="font" metaFont="system"/>
@@ -43,22 +43,25 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="8P3-Ak-Bk1">
-                        <rect key="frame" x="17" y="114" width="131" height="17"/>
+                        <rect key="frame" x="17" y="52" width="131" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Amount BTC" id="mPo-BQ-yoH">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Amount" id="mPo-BQ-yoH">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" id="XSz-7E-KOO">
-                        <rect key="frame" x="153" y="111" width="101" height="22"/>
+                        <rect key="frame" x="153" y="49" width="101" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="scc-ew-vWQ">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
+                        <connections>
+                            <outlet property="delegate" destination="-2" id="l0h-ZP-nDL"/>
+                        </connections>
                     </textField>
                     <button verticalHuggingPriority="750" id="t7c-Ky-N9x">
                         <rect key="frame" x="356" y="13" width="110" height="32"/>
@@ -72,7 +75,7 @@
                         </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="wRE-Eo-4BD">
-                        <rect key="frame" x="17" y="73" width="131" height="17"/>
+                        <rect key="frame" x="17" y="24" width="131" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Fee" id="fnv-qS-9Qc">
                             <font key="font" metaFont="system"/>
@@ -81,16 +84,55 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" id="69W-fN-PJ6">
-                        <rect key="frame" x="153" y="70" width="101" height="22"/>
+                        <rect key="frame" x="153" y="21" width="101" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="xqf-e5-0yj">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="0.0005" drawsBackground="YES" id="xqf-e5-0yj">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                        <connections>
+                            <outlet property="delegate" destination="-2" id="emh-cS-UxI"/>
+                        </connections>
+                    </textField>
+                    <button verticalHuggingPriority="750" id="maT-rR-KEI">
+                        <rect key="frame" x="432" y="78" width="28" height="22"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSEveryone" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="LUI-ew-OMr">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="LVx-lJ-V6e">
+                        <rect key="frame" x="259" y="52" width="57" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="BTC" id="hdt-cG-Tu0">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="c5I-Mt-NS3">
+                        <rect key="frame" x="259" y="24" width="57" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="BTC" id="gVQ-Yo-3UP">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                 </subviews>
             </view>
         </window>
+        <numberFormatter formatterBehavior="custom10_4" positiveFormat="#,#######0.0000000" negativeFormat="-#,#######0.0000000" groupingSize="8" minimumIntegerDigits="1" maximumIntegerDigits="309" minimumFractionDigits="7" maximumFractionDigits="7" groupingSeparator="'" id="uox-W0-IZB">
+            <real key="roundingIncrement" value="0.0"/>
+            <metadata>
+                <bool key="localizesFormat" value="YES"/>
+                <real key="inspectorSampleValue" value="12"/>
+            </metadata>
+        </numberFormatter>
     </objects>
+    <resources>
+        <image name="NSEveryone" width="32" height="32"/>
+    </resources>
 </document>

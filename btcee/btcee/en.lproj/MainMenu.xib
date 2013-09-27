@@ -650,6 +650,7 @@
         <customObject id="494" customClass="BAAppDelegate">
             <connections>
                 <outlet property="addressesMenu" destination="g0r-yI-eav" id="lB3-5i-FUD"/>
+                <outlet property="balanceUnconfirmedMenuItem" destination="N22-f7-qb5" id="ZRz-oe-2yV"/>
                 <outlet property="networkStatusBlockHeight" destination="OkV-tT-Eh2" id="n7t-hb-h8t"/>
                 <outlet property="networkStatusMenuItem" destination="l8g-ak-bBL" id="GYW-kZ-jJg"/>
                 <outlet property="networkStatusNetSwitch" destination="hdy-1H-Pjp" id="vy5-UQ-KhS"/>
@@ -661,6 +662,9 @@
         <customObject id="420" customClass="NSFontManager"/>
         <menu id="536">
             <items>
+                <menuItem title="Balance" id="N22-f7-qb5">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
                 <menuItem title="My Addresses" id="537">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="My Addresses" id="g0r-yI-eav">
