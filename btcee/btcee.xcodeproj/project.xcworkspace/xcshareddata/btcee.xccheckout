@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>B1EA234C-93E3-4422-96B4-FD039957A2B5</string>
+	<key>IDESourceControlProjectName</key>
+	<string>btcee</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>080CC2A7-E3E8-41AC-97E0-277814B46970</key>
+		<string>ssh://github.com/jonasschnelli/BTCEEApp.git</string>
+		<key>74D7113B-0262-444F-895D-A7A4AD6415DB</key>
+		<string>ssh://github.com/jonasschnelli/BitcoinJKit.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>btcee/btcee.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>080CC2A7-E3E8-41AC-97E0-277814B46970</key>
+		<string>../../..</string>
+		<key>74D7113B-0262-444F-895D-A7A4AD6415DB</key>
+		<string>../../../BitcoinJKit</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/jonasschnelli/BTCEEApp.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>080CC2A7-E3E8-41AC-97E0-277814B46970</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>74D7113B-0262-444F-895D-A7A4AD6415DB</string>
+			<key>IDESourceControlWCCName</key>
+			<string>BitcoinJKit</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>080CC2A7-E3E8-41AC-97E0-277814B46970</string>
+			<key>IDESourceControlWCCName</key>
+			<string>btceeApp</string>
+		</dict>
+	</array>
+</dict>
+</plist>
