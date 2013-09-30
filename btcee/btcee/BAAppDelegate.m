@@ -22,7 +22,9 @@
 
 @property (assign) IBOutlet NSMenuItem *balanceUnconfirmedMenuItem;
 
-@property (strong) IBOutlet BASendCoinsWindowController *sendCoinsWindowController;
+@property (strong) BASendCoinsWindowController *sendCoinsWindowController;
+
+@property (strong) BATransactionsWindowController *txWindowController;
 
 @end
 
@@ -283,7 +285,7 @@
     // add a separator as well as a "show all transaction" menu item
     [self.transactionsMenu addItem:[NSMenuItem separatorItem]];
     
-    [self.transactionsMenu addItemWithTitle:NSLocalizedString(@"showAllTransaction", @"Show All Transaction Menu Item") action:@selector(addWalletAddress:) keyEquivalent:@""];
+    [self.transactionsMenu addItemWithTitle:NSLocalizedString(@"showAllTransaction", @"Show All Transaction Menu Item") action:@selector(showTransactionWindow:) keyEquivalent:@""];
 }
     
 - (void)transactionClicked:(id)sender
@@ -291,6 +293,16 @@
     [self updateStatusMenu];
 }
 
+- (IBAction)showTransactionWindow:(id)sender
+{
+    self.txWindowController = [[BATransactionsWindowController alloc] initWithWindowNibName:@"BATransactionsWindowController"];
+    
+    // activate the app so that the window popps to front
+    [NSApp activateIgnoringOtherApps:YES];
+    
+    [self.txWindowController showWindow:nil];
+    [self.txWindowController.window orderFrontRegardless];
+}
 
 #pragma mark - send coins stack
 - (IBAction)openSendCoins:(id)sender

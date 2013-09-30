@@ -8,6 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface BATransactionsWindowController : NSWindowController
+@interface BATransactionsWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate>
 
 @end

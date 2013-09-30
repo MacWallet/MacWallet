@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "BASendCoinsWindowController.h"
+#import "BATransactionsWindowController.h"
 
 @interface BAAppDelegate : NSObject <NSApplicationDelegate, BASendCoinsWindowControllerDelegate>
 

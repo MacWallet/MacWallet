@@ -15,6 +15,8 @@
 		E50310E617E9986600C2F226 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = E50310E417E9986600C2F226 /* MainMenu.xib */; };
 		E534F3E017F2CD8800A95F20 /* SendCoinsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = E534F3DF17F2CD8800A95F20 /* SendCoinsWindow.xib */; };
 		E534F3E617F2D05300A95F20 /* BASendCoinsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = E534F3E517F2D05300A95F20 /* BASendCoinsWindowController.m */; };
+		E5B838F817F9CBF4004FBBB5 /* BATransactionsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B838F617F9CBF4004FBBB5 /* BATransactionsWindowController.m */; };
+		E5B838F917F9CBF4004FBBB5 /* BATransactionsWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5B838F717F9CBF4004FBBB5 /* BATransactionsWindowController.xib */; };
 		E5C359D417F1DFC200BA394E /* TrustedCheckmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C359D217F1DFC200BA394E /* TrustedCheckmark@2x.png */; };
 		E5C359D617F1DFDE00BA394E /* TrustedCheckmark.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C359D517F1DFDE00BA394E /* TrustedCheckmark.png */; };
 		E5D2F47917F447E200A214F4 /* BitcoinJKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5D2F47817F447DB00A214F4 /* BitcoinJKit.framework */; };
@@ -62,6 +64,9 @@
 		E534F3E417F2D05300A95F20 /* BASendCoinsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BASendCoinsWindowController.h; sourceTree = "<group>"; };
 		E534F3E517F2D05300A95F20 /* BASendCoinsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BASendCoinsWindowController.m; sourceTree = "<group>"; };
 		E534F3E717F2D12800A95F20 /* BASendCoinsWindowControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BASendCoinsWindowControllerDelegate.h; sourceTree = "<group>"; };
+		E5B838F517F9CBF4004FBBB5 /* BATransactionsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BATransactionsWindowController.h; sourceTree = "<group>"; };
+		E5B838F617F9CBF4004FBBB5 /* BATransactionsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BATransactionsWindowController.m; sourceTree = "<group>"; };
+		E5B838F717F9CBF4004FBBB5 /* BATransactionsWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BATransactionsWindowController.xib; sourceTree = "<group>"; };
 		E5C359D217F1DFC200BA394E /* TrustedCheckmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TrustedCheckmark@2x.png"; sourceTree = "<group>"; };
 		E5C359D517F1DFDE00BA394E /* TrustedCheckmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrustedCheckmark.png; sourceTree = "<group>"; };
 		E5D2F47317F447DB00A214F4 /* BitcoinJKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BitcoinJKit.xcodeproj; path = ../BitcoinJKit/BitcoinJKit.xcodeproj; sourceTree = "<group>"; };
@@ -127,6 +132,9 @@
 				E534F3E717F2D12800A95F20 /* BASendCoinsWindowControllerDelegate.h */,
 				E50310E417E9986600C2F226 /* MainMenu.xib */,
 				E534F3DF17F2CD8800A95F20 /* SendCoinsWindow.xib */,
+				E5B838F517F9CBF4004FBBB5 /* BATransactionsWindowController.h */,
+				E5B838F617F9CBF4004FBBB5 /* BATransactionsWindowController.m */,
+				E5B838F717F9CBF4004FBBB5 /* BATransactionsWindowController.xib */,
 				E5C359D017F1DFC200BA394E /* res */,
 				E50310D617E9986500C2F226 /* Supporting Files */,
 			);
@@ -235,6 +243,7 @@
 				E5C359D417F1DFC200BA394E /* TrustedCheckmark@2x.png in Resources */,
 				E534F3E017F2CD8800A95F20 /* SendCoinsWindow.xib in Resources */,
 				E50310E017E9986600C2F226 /* Credits.rtf in Resources */,
+				E5B838F917F9CBF4004FBBB5 /* BATransactionsWindowController.xib in Resources */,
 				E5C359D617F1DFDE00BA394E /* TrustedCheckmark.png in Resources */,
 				E50310E617E9986600C2F226 /* MainMenu.xib in Resources */,
 			);
@@ -249,6 +258,7 @@
 			files = (
 				E534F3E617F2D05300A95F20 /* BASendCoinsWindowController.m in Sources */,
 				E50310DC17E9986500C2F226 /* main.m in Sources */,
+				E5B838F817F9CBF4004FBBB5 /* BATransactionsWindowController.m in Sources */,
 				E50310E317E9986600C2F226 /* BAAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
