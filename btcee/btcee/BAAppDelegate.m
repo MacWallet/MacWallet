@@ -19,6 +19,7 @@
 @property (assign) IBOutlet NSMenuItem *networkStatusMenuItem;
 @property (assign) IBOutlet NSMenuItem *networkStatusPeersMenuItem;
 @property (assign) IBOutlet NSMenuItem *networkStatusBlockHeight;
+@property (assign) IBOutlet NSMenuItem *networkStatusLastBlockTime;
 @property (assign) IBOutlet NSMenuItem *networkStatusNetSwitch;
 
 @property (assign) IBOutlet NSMenuItem *balanceUnconfirmedMenuItem;
@@ -67,6 +68,10 @@
     
     [[HIBitcoinManager defaultManager] start];
     
+    NSTimer *timer = [NSTimer timerWithTimeInterval:5 target:self selector:@selector(minuteUpdater) userInfo:nil repeats:YES];
+    
+    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+    
     [self updateNetworkMenuItem];
 }
 
@@ -103,8 +108,6 @@
                 NSString *base64 = [HIBitcoinManager defaultManager].walletFileBase64String;
                 [self updateMyAddresses:[HIBitcoinManager defaultManager].allWalletAddresses];
                 
-                NSDate *date = [HIBitcoinManager defaultManager].lastBlockCreationTime;
-                
                 [self updateStatusMenu];
             }
         }
@@ -119,7 +122,6 @@
                 self.networkStatusMenuItem.title = NSLocalizedString(@"Network: synced", @"Network Menu Item Synced");
                 
                 [self updateStatusMenu];
-                
                 [self saveWallet];
             }
             
@@ -132,6 +134,15 @@
         {
             self.networkStatusPeersMenuItem.title = [NSString stringWithFormat:@"Connected Peers: %lu", (unsigned long)[HIBitcoinManager defaultManager].peerCount];
         }
+    }
+}
+
+- (void)minuteUpdater
+{
+    NSDate *date = [HIBitcoinManager defaultManager].lastBlockCreationTime;
+    if(date)
+    {
+        self.networkStatusLastBlockTime.title =[NSString stringWithFormat:@"Last Block age: %.1f min", -[date timeIntervalSinceNow]/60];
     }
 }
 
