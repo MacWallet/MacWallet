@@ -8,13 +8,18 @@
         <customObject id="-2" userLabel="File's Owner" customClass="BASendCoinsWindowController">
             <connections>
                 <outlet property="amountTextField" destination="XSz-7E-KOO" id="Cmd-G2-VJS"/>
+                <outlet property="amoutLabel" destination="8P3-Ak-Bk1" id="Dzc-h3-ysV"/>
                 <outlet property="btcAddressTextField" destination="wEq-IJ-6nR" id="MaC-nB-nhc"/>
                 <outlet property="closeButton" destination="wEb-Gc-8Ri" id="QZT-mG-3dc"/>
                 <outlet property="commitButton" destination="fr9-rV-VAW" id="65T-bq-42w"/>
                 <outlet property="commitedTxHash" destination="tMC-g0-YWe" id="Joi-8W-v4e"/>
+                <outlet property="feeLabel" destination="wz8-Rj-8WJ" id="EQw-Zn-gM8"/>
                 <outlet property="invalidTransactionTextField" destination="a4W-vy-bnT" id="ar6-D1-zYH"/>
                 <outlet property="prepareButton" destination="t7c-Ky-N9x" id="NAj-LF-pSe"/>
+                <outlet property="receiverAddressLabel" destination="Ymu-wy-TQF" id="Ojg-DT-Tuv"/>
                 <outlet property="successAfterCommitTextField" destination="jbm-mr-iwG" id="fxB-d4-uoU"/>
+                <outlet property="totalAmountLabel" destination="DhS-x0-PNL" id="wm7-Tt-Xt6"/>
+                <outlet property="transactionIdLabel" destination="fGz-Ro-KoS" id="si0-HO-3ZN"/>
                 <outlet property="txFeeTextField" destination="IXo-u9-RYD" id="H9d-By-1db"/>
                 <outlet property="txTotalAmountTextField" destination="7Xi-Z8-mna" id="9mR-Uu-PC4"/>
                 <outlet property="window" destination="1" id="WKk-g0-5sN"/>
@@ -41,6 +46,9 @@
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
+                        <connections>
+                            <outlet property="delegate" destination="-2" id="H2m-gP-BNk"/>
+                        </connections>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ymu-wy-TQF">
                         <rect key="frame" x="17" y="230" width="131" height="17"/>
@@ -76,11 +84,8 @@
                         </connections>
                     </textField>
                     <button verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t7c-Ky-N9x">
-                        <rect key="frame" x="343" y="190" width="123" height="32"/>
+                        <rect key="frame" x="297" y="190" width="169" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="98" id="7D5-IW-mxq"/>
-                        </constraints>
                         <buttonCell key="cell" type="push" title="Prepare Send" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ALp-JR-dZo">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -160,7 +165,7 @@
                         </textFieldCell>
                     </textField>
                     <button verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fr9-rV-VAW">
-                        <rect key="frame" x="324" y="95" width="142" height="32"/>
+                        <rect key="frame" x="297" y="95" width="169" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Send Coins Now" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Iks-Al-B5M">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -236,7 +241,6 @@
                     <constraint firstItem="IXo-u9-RYD" firstAttribute="trailing" secondItem="a4W-vy-bnT" secondAttribute="trailing" id="OZn-bB-v7B"/>
                     <constraint firstItem="a4W-vy-bnT" firstAttribute="leading" secondItem="XSz-7E-KOO" secondAttribute="leading" id="P1Y-a3-hK7"/>
                     <constraint firstItem="wEq-IJ-6nR" firstAttribute="leading" secondItem="Ymu-wy-TQF" secondAttribute="trailing" constant="8" symbolic="YES" id="PQP-av-kUk"/>
-                    <constraint firstItem="t7c-Ky-N9x" firstAttribute="leading" secondItem="LVx-lJ-V6e" secondAttribute="trailing" constant="36" id="Q6h-nQ-tl8"/>
                     <constraint firstItem="IXo-u9-RYD" firstAttribute="trailing" secondItem="7Xi-Z8-mna" secondAttribute="trailing" id="UVu-f5-maY"/>
                     <constraint firstItem="IXo-u9-RYD" firstAttribute="leading" secondItem="7Xi-Z8-mna" secondAttribute="leading" id="Vau-I3-z65"/>
                     <constraint firstItem="XSz-7E-KOO" firstAttribute="leading" secondItem="8P3-Ak-Bk1" secondAttribute="trailing" constant="8" symbolic="YES" id="XwL-CW-eXB"/>
@@ -252,7 +256,6 @@
                     <constraint firstItem="DhS-x0-PNL" firstAttribute="top" secondItem="wz8-Rj-8WJ" secondAttribute="bottom" constant="8" symbolic="YES" id="i8O-BB-ZpM"/>
                     <constraint firstItem="IXo-u9-RYD" firstAttribute="leading" secondItem="wz8-Rj-8WJ" secondAttribute="trailing" constant="8" symbolic="YES" id="m3j-Bn-Hb7"/>
                     <constraint firstItem="Tq4-x1-ETc" firstAttribute="trailing" secondItem="fr9-rV-VAW" secondAttribute="trailing" id="mLz-vT-4su"/>
-                    <constraint firstItem="t7c-Ky-N9x" firstAttribute="trailing" secondItem="Tq4-x1-ETc" secondAttribute="trailing" id="mwY-6B-92d"/>
                     <constraint firstItem="LVx-lJ-V6e" firstAttribute="leading" secondItem="XSz-7E-KOO" secondAttribute="trailing" constant="8" symbolic="YES" id="ntN-zu-PAS"/>
                     <constraint firstItem="Tq4-x1-ETc" firstAttribute="leading" secondItem="8P3-Ak-Bk1" secondAttribute="leading" id="t7z-Ji-6fp"/>
                     <constraint firstItem="wz8-Rj-8WJ" firstAttribute="baseline" secondItem="IXo-u9-RYD" secondAttribute="baseline" id="w6a-QL-Ixh"/>

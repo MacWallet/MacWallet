@@ -15,7 +15,12 @@
 @property (strong) NSStatusItem * statusItem;
 @property (assign) IBOutlet NSMenu *statusMenu;
 @property (assign) IBOutlet NSMenu *addressesMenu;
+@property (assign) IBOutlet NSMenuItem *addressesMenuItem;
 @property (assign) IBOutlet NSMenu *transactionsMenu;
+@property (assign) IBOutlet NSMenuItem *transactionsMenuItem;
+@property (assign) IBOutlet NSMenuItem *sendCoinsMenuItem;
+@property (assign) IBOutlet NSMenuItem *aboutMenuItem;
+@property (assign) IBOutlet NSMenuItem *quitMenuItem;
 @property (assign) IBOutlet NSMenuItem *networkStatusMenuItem;
 @property (assign) IBOutlet NSMenuItem *networkStatusPeersMenuItem;
 @property (assign) IBOutlet NSMenuItem *networkStatusBlockHeight;
@@ -34,6 +39,14 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    // do some localization
+    self.sendCoinsMenuItem.title    = NSLocalizedString(@"sendCoins", @"sendCoinsMenuItem");
+    self.addressesMenuItem.title        = NSLocalizedString(@"myAddresses", @"My Address Menu Item");
+    self.transactionsMenuItem.title     = NSLocalizedString(@"myTransactions", @"My Transaction Menu Item");
+    self.aboutMenuItem.title        = NSLocalizedString(@"about", @"About Menu Item");
+    self.quitMenuItem.title         = NSLocalizedString(@"quit", @"Quit Menu Item");
+    self.networkStatusLastBlockTime.title =[NSString stringWithFormat:@"%@ ?", NSLocalizedString(@"lastBlockAge", @"Last Block Age Menu Item")];
+    
     // Insert code here to initialize your application
     
     CGFloat menuWidth = 90.0;
@@ -64,11 +77,9 @@
     }
     
     [HIBitcoinManager defaultManager].appSupportDirectoryIdentifier = @"Btcee";
-
-    
     [[HIBitcoinManager defaultManager] start];
     
-    NSTimer *timer = [NSTimer timerWithTimeInterval:5 target:self selector:@selector(minuteUpdater) userInfo:nil repeats:YES];
+    NSTimer *timer = [NSTimer timerWithTimeInterval:60 target:self selector:@selector(minuteUpdater) userInfo:nil repeats:YES];
     
     [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
     
@@ -115,24 +126,25 @@
         {
             if ([HIBitcoinManager defaultManager].syncProgress < 1.0)
             {
-                self.networkStatusMenuItem.title =[NSString stringWithFormat:@"Syncing: %d%%",(int)round((double)[HIBitcoinManager defaultManager].syncProgress*100)];
+                self.networkStatusMenuItem.title =[NSString stringWithFormat:@"%@ %d%%",NSLocalizedString(@"syncing", @"Syncing Menu Item"), (int)round((double)[HIBitcoinManager defaultManager].syncProgress*100)];
             }
             else {
                 // sync okay
                 self.networkStatusMenuItem.title = NSLocalizedString(@"Network: synced", @"Network Menu Item Synced");
                 
+                [self minuteUpdater];
                 [self updateStatusMenu];
                 [self saveWallet];
             }
             
             NSLog(@"==========> total1: %ld", (long)[HIBitcoinManager defaultManager].totalBlocks);
             
-            self.networkStatusBlockHeight.title = [NSString stringWithFormat:@"Blocks: %ld/%ld",[HIBitcoinManager defaultManager].currentBlockCount, [HIBitcoinManager defaultManager].totalBlocks];
+            self.networkStatusBlockHeight.title = [NSString stringWithFormat:@"%@%ld/%ld",NSLocalizedString(@"blocksMenuItem", @"Block Menu Item"),[HIBitcoinManager defaultManager].currentBlockCount, [HIBitcoinManager defaultManager].totalBlocks];
             
         }
         else if ([keyPath compare:@"peerCount"] == NSOrderedSame)
         {
-            self.networkStatusPeersMenuItem.title = [NSString stringWithFormat:@"Connected Peers: %lu", (unsigned long)[HIBitcoinManager defaultManager].peerCount];
+            self.networkStatusPeersMenuItem.title = [NSString stringWithFormat:@"%@%lu", NSLocalizedString(@"connectedPeersMenuItem", @"connectedPeersMenuItem"), (unsigned long)[HIBitcoinManager defaultManager].peerCount];
         }
     }
 }
@@ -142,8 +154,10 @@
     NSDate *date = [HIBitcoinManager defaultManager].lastBlockCreationTime;
     if(date)
     {
-        self.networkStatusLastBlockTime.title =[NSString stringWithFormat:@"Last Block age: %.1f min", -[date timeIntervalSinceNow]/60];
+        self.networkStatusLastBlockTime.title =[NSString stringWithFormat:@"%@%.1f min", NSLocalizedString(@"lastBlockAge", @"Last Block Age Menu Item"), -[date timeIntervalSinceNow]/60];
     }
+    
+    [self rebuildTransactionsMenu];
 }
 
 - (void)updateStatusMenu
@@ -182,11 +196,11 @@
     BOOL testnetOn = [[NSUserDefaults standardUserDefaults] boolForKey:kTESTNET_SWITCH_KEY];
     
     NSAlert *alert = [[NSAlert alloc] init];
-    [alert addButtonWithTitle:@"OK"];
-    [alert addButtonWithTitle:@"Cancel"];
+    [alert addButtonWithTitle:NSLocalizedString(@"OK", @"OK Button")];
+    [alert addButtonWithTitle:NSLocalizedString(@"Cancel", @"OK Button")];
     if(!testnetOn)
     {
-        [alert setMessageText:NSLocalizedString(@"Would you like to switch to Testnet?", @"switch to testnet alert")];
+        [alert setMessageText:NSLocalizedString(@"switchToTestnet", @"switch to testnet alert")];
     }
     else
     {
@@ -288,8 +302,23 @@
     {
         
         long long amount = [[transactionDict objectForKey:@"amount"] longLongValue];
+        NSDate *time = [transactionDict objectForKey:@"time"];
+        NSTimeInterval ageInSeconds = -[time timeIntervalSinceNow];
+        NSString *age = nil;
         
-        NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"%@", [self formatBTC:amount]] action:@selector(transactionClicked:) keyEquivalent:@""];
+        if(ageInSeconds > 60*60*24)
+        {
+            age = [NSString stringWithFormat:@"%.1f d", ageInSeconds/60/60/24];
+        }
+        else if(ageInSeconds > 60*60)
+        {
+            age = [NSString stringWithFormat:@"%.1f h", ageInSeconds/60/60];
+        }
+        else {
+            age = [NSString stringWithFormat:@"%.1f min", ageInSeconds/60];
+        }
+        
+        NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"%@ (%@ ago)", [self formatBTC:amount], age ] action:@selector(transactionClicked:) keyEquivalent:@""];
         if([[transactionDict objectForKey:@"confidence"] isEqualToString:@"building"])
         {
             [menuItem setImage:[NSImage imageNamed:@"TrustedCheckmark"]];
@@ -318,7 +347,7 @@
     }
     else if(hiddenTransactions > 0)
     {
-        [self.transactionsMenu addItemWithTitle:[NSString stringWithFormat:NSLocalizedString(@"%d more...", @"more transaction menu item"), hiddenTransactions] action:nil keyEquivalent:@""];
+        [self.transactionsMenu addItemWithTitle:[NSString stringWithFormat:NSLocalizedString(@"moreTx", @"more transaction menu item"), hiddenTransactions] action:nil keyEquivalent:@""];
     }
     // add a separator as well as a "show all transaction" menu item
     [self.transactionsMenu addItem:[NSMenuItem separatorItem]];

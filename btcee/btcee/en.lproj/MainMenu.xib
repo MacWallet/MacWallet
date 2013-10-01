@@ -649,15 +649,20 @@
         </menu>
         <customObject id="494" customClass="BAAppDelegate">
             <connections>
+                <outlet property="aboutMenuItem" destination="2dK-1f-nim" id="3eV-QM-PIb"/>
                 <outlet property="addressesMenu" destination="g0r-yI-eav" id="lB3-5i-FUD"/>
+                <outlet property="addressesMenuItem" destination="537" id="QFd-HD-k2O"/>
                 <outlet property="balanceUnconfirmedMenuItem" destination="N22-f7-qb5" id="ZRz-oe-2yV"/>
                 <outlet property="networkStatusBlockHeight" destination="OkV-tT-Eh2" id="n7t-hb-h8t"/>
                 <outlet property="networkStatusLastBlockTime" destination="ZXM-No-7ma" id="kof-ht-NZw"/>
                 <outlet property="networkStatusMenuItem" destination="l8g-ak-bBL" id="GYW-kZ-jJg"/>
                 <outlet property="networkStatusNetSwitch" destination="hdy-1H-Pjp" id="vy5-UQ-KhS"/>
                 <outlet property="networkStatusPeersMenuItem" destination="zhr-lm-E9Y" id="S5B-Dw-Rk0"/>
+                <outlet property="quitMenuItem" destination="539" id="XPF-bb-a0b"/>
+                <outlet property="sendCoinsMenuItem" destination="538" id="wZd-x0-fG0"/>
                 <outlet property="statusMenu" destination="536" id="540"/>
                 <outlet property="transactionsMenu" destination="Em6-Yl-mUX" id="pxM-vS-56a"/>
+                <outlet property="transactionsMenuItem" destination="1Eh-U2-Eka" id="0b6-eC-GyJ"/>
             </connections>
         </customObject>
         <customObject id="420" customClass="NSFontManager"/>
@@ -666,9 +671,9 @@
                 <menuItem title="Balance" id="N22-f7-qb5">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
-                <menuItem title="My Addresses" id="537">
+                <menuItem title="My Addresses1" id="537">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="My Addresses" id="g0r-yI-eav">
+                    <menu key="submenu" title="My Addresses1" id="g0r-yI-eav">
                         <items>
                             <menuItem title="Item 1" id="1Ik-vf-uk4">
                                 <modifierMask key="keyEquivalentModifierMask"/>
@@ -714,7 +719,7 @@
                         </items>
                     </menu>
                 </menuItem>
-                <menuItem title="Send Coins" id="538">
+                <menuItem title="Send Coins..." id="538">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="openSendCoins:" target="494" id="C4K-gr-Vfc"/>

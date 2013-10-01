@@ -13,6 +13,7 @@
 		E50310E017E9986600C2F226 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E50310DE17E9986600C2F226 /* Credits.rtf */; };
 		E50310E317E9986600C2F226 /* BAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E50310E217E9986600C2F226 /* BAAppDelegate.m */; };
 		E50310E617E9986600C2F226 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = E50310E417E9986600C2F226 /* MainMenu.xib */; };
+		E508D65817FB26A700CC3CF9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E508D65A17FB26A700CC3CF9 /* Localizable.strings */; };
 		E528E91017FAB7B800BF4BAD /* Questionmark.png in Resources */ = {isa = PBXBuildFile; fileRef = E528E90E17FAB7B800BF4BAD /* Questionmark.png */; };
 		E528E91117FAB7B800BF4BAD /* Questionmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E528E90F17FAB7B800BF4BAD /* Questionmark@2x.png */; };
 		E534F3E017F2CD8800A95F20 /* SendCoinsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = E534F3DF17F2CD8800A95F20 /* SendCoinsWindow.xib */; };
@@ -64,6 +65,7 @@
 		E50310E117E9986600C2F226 /* BAAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BAAppDelegate.h; sourceTree = "<group>"; };
 		E50310E217E9986600C2F226 /* BAAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BAAppDelegate.m; sourceTree = "<group>"; };
 		E50310E517E9986600C2F226 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		E508D65917FB26A700CC3CF9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E528E90E17FAB7B800BF4BAD /* Questionmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Questionmark.png; sourceTree = "<group>"; };
 		E528E90F17FAB7B800BF4BAD /* Questionmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Questionmark@2x.png"; sourceTree = "<group>"; };
 		E534F3DF17F2CD8800A95F20 /* SendCoinsWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SendCoinsWindow.xib; sourceTree = "<group>"; };
@@ -137,13 +139,13 @@
 		E50310D517E9986500C2F226 /* btcee */ = {
 			isa = PBXGroup;
 			children = (
+				E50310E417E9986600C2F226 /* MainMenu.xib */,
 				E50310E117E9986600C2F226 /* BAAppDelegate.h */,
 				E50310E217E9986600C2F226 /* BAAppDelegate.m */,
 				E534F3E417F2D05300A95F20 /* BASendCoinsWindowController.h */,
 				E534F3E517F2D05300A95F20 /* BASendCoinsWindowController.m */,
 				E534F3E717F2D12800A95F20 /* BASendCoinsWindowControllerDelegate.h */,
 				E534F3DF17F2CD8800A95F20 /* SendCoinsWindow.xib */,
-				E50310E417E9986600C2F226 /* MainMenu.xib */,
 				E5B838F517F9CBF4004FBBB5 /* BATransactionsWindowController.h */,
 				E5B838F617F9CBF4004FBBB5 /* BATransactionsWindowController.m */,
 				E5B838F717F9CBF4004FBBB5 /* BATransactionsWindowController.xib */,
@@ -161,6 +163,7 @@
 				E50310DB17E9986500C2F226 /* main.m */,
 				E50310DD17E9986600C2F226 /* btcee-Prefix.pch */,
 				E50310DE17E9986600C2F226 /* Credits.rtf */,
+				E508D65A17FB26A700CC3CF9 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 				E534F3E017F2CD8800A95F20 /* SendCoinsWindow.xib in Resources */,
 				E50310E017E9986600C2F226 /* Credits.rtf in Resources */,
 				E5B838F917F9CBF4004FBBB5 /* BATransactionsWindowController.xib in Resources */,
+				E508D65817FB26A700CC3CF9 /* Localizable.strings in Resources */,
 				E5C359D617F1DFDE00BA394E /* TrustedCheckmark.png in Resources */,
 				E528E91117FAB7B800BF4BAD /* Questionmark@2x.png in Resources */,
 				E528E91017FAB7B800BF4BAD /* Questionmark.png in Resources */,
@@ -314,6 +318,14 @@
 				E50310E517E9986600C2F226 /* en */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		E508D65A17FB26A700CC3CF9 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E508D65917FB26A700CC3CF9 /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

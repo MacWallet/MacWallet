@@ -12,6 +12,11 @@
 @interface BATransactionsWindowController ()
 @property (strong) NSArray *cachedTransactions;
 @property (assign) IBOutlet NSTableView *tableView;
+@property (assign) IBOutlet NSTableColumn *statusColumn;
+@property (assign) IBOutlet NSTableColumn *amountColumn;
+@property (assign) IBOutlet NSTableColumn *dateColumn;
+@property (assign) IBOutlet NSTableColumn *addressColumn;
+@property (assign) IBOutlet NSToolbarItem *getInfoToolbar;
 @property (strong) NSDateFormatter *dateFormatter;
 @end
 
@@ -26,12 +31,48 @@
     return self;
 }
 
+- (void)awakeFromNib
+{
+  // do some localization stuff
+    
+    NSCell *cell = self.statusColumn.headerCell;
+    cell.stringValue = NSLocalizedString(@"status", @"status column title");
+    
+    cell = self.amountColumn.headerCell;
+    cell.stringValue = NSLocalizedString(@"amount", @"amount column title");
+    
+    cell = self.dateColumn.headerCell;
+    cell.stringValue = NSLocalizedString(@"date", @"date column title");
+    
+    cell = self.addressColumn.headerCell;
+    cell.stringValue = NSLocalizedString(@"receiverAddressLabel", @"receiverAddressLabel");
+    
+    self.getInfoToolbar.label = NSLocalizedString(@"getTxInfo", @"get transaction info label");
+    self.window.title = NSLocalizedString(@"transactionsWindowTitle", @"transactionsWindowTitle");
+    
+    
+    // set the double click action
+    [self.tableView setDoubleAction:@selector(doubleClick:)];
+}
+
+- (void)showInfoForTxId:(NSString *)txHash
+{
+    NSDictionary *dict = [[HIBitcoinManager defaultManager] transactionForHash:txHash];
+}
+
 - (IBAction)showInfo:(id)sender
 {
-    
     NSDictionary *txDist = [self.cachedTransactions objectAtIndex:[self.tableView.selectedRowIndexes firstIndex]];
     NSString *txHash = [txDist objectForKey:@"txid"];
-    NSDictionary *dict = [[HIBitcoinManager defaultManager] transactionForHash:txHash];
+
+    [self showInfoForTxId:txHash];
+}
+
+- (void)doubleClick:(id)object {
+    NSInteger rowNumber = [self.tableView clickedRow];
+    NSDictionary *txDist = [self.cachedTransactions objectAtIndex:rowNumber];
+    NSString *txHash = [txDist objectForKey:@"txid"];
+    [self showInfoForTxId:txHash];
 }
 
 - (void)windowDidLoad

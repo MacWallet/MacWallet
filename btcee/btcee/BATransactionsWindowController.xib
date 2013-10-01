@@ -7,6 +7,11 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="BATransactionsWindowController">
             <connections>
+                <outlet property="addressColumn" destination="DwH-mL-SFZ" id="y4N-Xe-a9r"/>
+                <outlet property="amountColumn" destination="TTK-hL-nI6" id="lxc-Me-wsP"/>
+                <outlet property="dateColumn" destination="cyh-iN-8ZL" id="iwn-lh-j2j"/>
+                <outlet property="getInfoToolbar" destination="Zt2-w6-Nrk" id="EiP-nt-UaU"/>
+                <outlet property="statusColumn" destination="5VT-uR-1Or" id="SeK-5I-Dvr"/>
                 <outlet property="tableView" destination="q0m-Wp-ave" id="AjA-3E-nmR"/>
                 <outlet property="window" destination="1" id="3"/>
             </connections>
@@ -22,15 +27,15 @@
                 <rect key="frame" x="0.0" y="0.0" width="570" height="270"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" scrollerKnobStyle="light" findBarPosition="belowContent" translatesAutoresizingMaskIntoConstraints="NO" id="JKe-ao-WQ7">
-                        <rect key="frame" x="-1" y="-1" width="572" height="272"/>
+                    <scrollView misplaced="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="26" horizontalPageScroll="10" verticalLineScroll="26" verticalPageScroll="10" usesPredominantAxisScrolling="NO" scrollerKnobStyle="light" findBarPosition="belowContent" translatesAutoresizingMaskIntoConstraints="NO" id="JKe-ao-WQ7">
+                        <rect key="frame" x="-1" y="-1" width="571" height="272"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <clipView key="contentView" id="msG-6o-yL5">
-                            <rect key="frame" x="0.0" y="17" width="572" height="255"/>
+                        <clipView key="contentView" misplaced="YES" id="msG-6o-yL5">
+                            <rect key="frame" x="0.0" y="17" width="571" height="255"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="4uW-AY-1bJ" id="q0m-Wp-ave">
-                                    <rect key="frame" x="0.0" y="0.0" width="572" height="255"/>
+                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="24" rowSizeStyle="systemDefault" headerView="4uW-AY-1bJ" id="q0m-Wp-ave">
+                                    <rect key="frame" x="0.0" y="0.0" width="571" height="255"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -71,7 +76,7 @@
                                             </textFieldCell>
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         </tableColumn>
-                                        <tableColumn identifier="recaddr" editable="NO" width="254" minWidth="40" maxWidth="1000" id="DwH-mL-SFZ">
+                                        <tableColumn identifier="recaddr" editable="NO" width="253" minWidth="40" maxWidth="1000" id="DwH-mL-SFZ">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Receive Address">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -102,7 +107,7 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <tableHeaderView key="headerView" id="4uW-AY-1bJ">
-                            <rect key="frame" x="0.0" y="0.0" width="572" height="17"/>
+                            <rect key="frame" x="0.0" y="0.0" width="571" height="17"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </tableHeaderView>
                     </scrollView>

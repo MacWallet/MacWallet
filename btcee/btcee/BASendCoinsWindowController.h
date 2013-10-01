@@ -9,9 +9,15 @@
 #import <Cocoa/Cocoa.h>
 #include "BASendCoinsWindowControllerDelegate.h"
 
+typedef enum BASendCoinsWindowControllerState {
+    BASendCoinsWindowControllerBasic,
+    BASendCoinsWindowControllerWaitingCommit,
+    BASendCoinsWindowControllerShowTXID
+    } BASendCoinsWindowControllerState;
+
 @class BAAppDelegate;
 
-@interface BASendCoinsWindowController : NSWindowController
+@interface BASendCoinsWindowController : NSWindowController <NSTextFieldDelegate>
 @property (strong) NSObject<BASendCoinsWindowControllerDelegate> *delegate;
 
 - (void)txIsCommited:(NSString *)txHash;

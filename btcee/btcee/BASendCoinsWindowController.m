@@ -19,12 +19,20 @@
 @property (assign) IBOutlet NSTextField *txTotalAmountTextField;
 @property (assign) IBOutlet NSTextField *commitedTxHash;
 
+@property (assign) IBOutlet NSTextField *receiverAddressLabel;
+@property (assign) IBOutlet NSTextField *amoutLabel;
+@property (assign) IBOutlet NSTextField *feeLabel;
+@property (assign) IBOutlet NSTextField *totalAmountLabel;
+@property (assign) IBOutlet NSTextField *transactionIdLabel;
+
 @property (assign) IBOutlet NSButton *prepareButton;
 @property (assign) IBOutlet NSButton *commitButton;
 @property (assign) IBOutlet NSButton *closeButton;
 
 @property (assign) IBOutlet NSTextField *invalidTransactionTextField;
 @property (assign) IBOutlet NSTextField *successAfterCommitTextField;
+
+@property (assign) BASendCoinsWindowControllerState currentState;
 
 @end
 
@@ -41,11 +49,26 @@
 
 - (void)awakeFromNib
 {
+    // keep track of the state
+    self.currentState = BASendCoinsWindowControllerBasic;
+    
+    // set to normal height
     NSRect frame = self.window.frame;
-    
     frame.size.height = kBA_COINS_WINDOW_HEIGHT_NORMAL;
-    
     [self.window setFrame:frame display:YES animate:NO];
+    
+    // do some localization stuff
+    self.receiverAddressLabel.stringValue   = NSLocalizedString(@"receiverAddressLabel", @"receiverAddressLabel");
+    self.amoutLabel.stringValue             = NSLocalizedString(@"amoutLabel", @"amoutLabel");
+    self.feeLabel.stringValue               = NSLocalizedString(@"feeLabel", @"feeLabel");
+    self.totalAmountLabel.stringValue       = NSLocalizedString(@"totalAmountLabel", @"totalAmountLabel");
+    self.transactionIdLabel.stringValue     = NSLocalizedString(@"transactionIdLabel", @"transactionIdLabel");
+    
+    self.prepareButton.title                = NSLocalizedString(@"prepareTx", @"prepareTx");
+    self.commitButton.title                 = NSLocalizedString(@"commitTx", @"prepareTx");
+    self.closeButton.title                  = NSLocalizedString(@"closeButton", @"prepareTx");
+    
+    self.window.title = NSLocalizedString(@"sendCoinsWindowTitle", @"sendCoinsWindowTitle");
 }
 
 - (void)windowWillLoad
@@ -64,11 +87,12 @@
 
 - (IBAction)prepareClicked:(id)sender
 {
-    
     NSInteger fee = [self.delegate prepareSendCoinsFromWindowController:self receiver:[self.btcAddressTextField stringValue] amount:[self.amountTextField doubleValue]*100000000 txfee:[self.txFeeTextField doubleValue]*100000000];
     
     if(fee != kHI_PREPARE_SEND_COINS_DID_FAIL)
     {
+        self.currentState = BASendCoinsWindowControllerWaitingCommit;
+        
         NSRect frame = self.window.frame;
         
         CGFloat heightShift = kBA_COINS_WINDOW_HEIGHT_SEND - frame.size.height;
@@ -83,8 +107,6 @@
         self.txTotalAmountTextField.stringValue = [[HIBitcoinManager defaultManager] formatNanobtc:[self.amountTextField doubleValue]*100000000+fee];
         
         [self.invalidTransactionTextField setHidden:YES];
-        
-        [self.prepareButton setEnabled:NO];
     }
     else
     {
@@ -98,6 +120,8 @@
     
     if(txHash)
     {
+        self.currentState = BASendCoinsWindowControllerShowTXID;
+        
         NSRect frame = self.window.frame;
         
         CGFloat heightShift = kBA_COINS_WINDOW_HEIGHT_COMMITTED - frame.size.height;
@@ -109,6 +133,10 @@
         
         self.commitedTxHash.stringValue = txHash;
         
+        [self.btcAddressTextField setEditable:NO];
+        [self.amountTextField setEditable:NO];
+        
+        [self.prepareButton setEnabled:NO];
         [self.commitButton setEnabled:NO];
     }
 }
@@ -118,27 +146,30 @@
     [self close];
 }
 
-#pragma mark - prepare/send call ins
-- (void)txIsCommited:(NSString *)txHash
-{
-    if(!txHash)
-    {
-        
-    }
-}
-
-- (void)txCommitFailed:(NSString *)txHash
-{
-    if(!txHash)
-    {
-        
-    }
-}
-
 - (void)windowWillClose:(id)sender
 {
     [self.delegate sendCoinsWindowControllerWillClose:self];
 }
+
+#pragma mark - NSTextField delegate stack
+
+- (void)controlTextDidChange:(NSNotification *)notification
+{
+    NSTextField *tf = (NSTextField *)notification.object;
+    
+    if(self.currentState == BASendCoinsWindowControllerWaitingCommit)
+    {
+        NSRect frame = self.window.frame;
+        CGFloat heightShift = kBA_COINS_WINDOW_HEIGHT_NORMAL - frame.size.height;
+        frame.origin.y -= heightShift;
+        frame.size.height = kBA_COINS_WINDOW_HEIGHT_NORMAL;
+        [self.window setFrame:frame display:YES animate:YES];
+        
+        self.txFeeTextField.stringValue             = @"";
+        self.txTotalAmountTextField.stringValue     = @"";
+    }
+}
+
 
 #pragma mark - helper
 
