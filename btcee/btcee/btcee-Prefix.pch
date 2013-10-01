@@ -9,3 +9,4 @@
 
 #define kTESTNET_SWITCH_KEY @"testnetSwitchKey"
 #define kDEFAULT_MAX_TRANSACTION_COUNT_MENU 5
+#define kKEYCHAIN_SERVICE_NAME @"BTCEE"

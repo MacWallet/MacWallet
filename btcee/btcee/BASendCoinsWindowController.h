@@ -13,4 +13,7 @@
 
 @interface BASendCoinsWindowController : NSWindowController
 @property (strong) NSObject<BASendCoinsWindowControllerDelegate> *delegate;
+
+- (void)txIsCommited:(NSString *)txHash;
+
 @end

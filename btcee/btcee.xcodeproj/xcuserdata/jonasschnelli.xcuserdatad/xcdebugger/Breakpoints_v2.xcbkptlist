@@ -19,5 +19,97 @@
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../BitcoinJKit/BitcoinJKit/HIBitcoinManager.m"
+            timestampString = "402326665.160209"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "796"
+            endingLineNumber = "796"
+            landmarkName = "-onTransactionSucceeded:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[HIBitcoinManager onTransactionSucceeded:]"
+                  moduleName = "BitcoinJKit"
+                  urlString = "file://localhost/Users/jonasschnelli/Documents/bitcoin/btceeApp/BitcoinJKit/BitcoinJKit/HIBitcoinManager.m"
+                  timestampString = "402326734.056921"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "796"
+                  endingLineNumber = "796"
+                  offsetFromSymbolStart = "52">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__43-[HIBitcoinManager onTransactionSucceeded:]_block_invoke"
+                  moduleName = "BitcoinJKit"
+                  urlString = "file://localhost/Users/jonasschnelli/Documents/bitcoin/btceeApp/BitcoinJKit/BitcoinJKit/HIBitcoinManager.m"
+                  timestampString = "402326734.057403"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "796"
+                  endingLineNumber = "796"
+                  offsetFromSymbolStart = "12">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../BitcoinJKit/BitcoinJKit/HIBitcoinManager.m"
+            timestampString = "402326665.160209"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "809"
+            endingLineNumber = "809"
+            landmarkName = "-onTransactionFailed"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[HIBitcoinManager onTransactionFailed]"
+                  moduleName = "BitcoinJKit"
+                  urlString = "file://localhost/Users/jonasschnelli/Documents/bitcoin/btceeApp/BitcoinJKit/BitcoinJKit/HIBitcoinManager.m"
+                  timestampString = "402326734.057829"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "809"
+                  endingLineNumber = "809"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__39-[HIBitcoinManager onTransactionFailed]_block_invoke"
+                  moduleName = "BitcoinJKit"
+                  urlString = "file://localhost/Users/jonasschnelli/Documents/bitcoin/btceeApp/BitcoinJKit/BitcoinJKit/HIBitcoinManager.m"
+                  timestampString = "402326734.058276"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "809"
+                  endingLineNumber = "809"
+                  offsetFromSymbolStart = "12">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

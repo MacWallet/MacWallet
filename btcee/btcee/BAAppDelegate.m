@@ -8,6 +8,7 @@
 
 #import "BAAppDelegate.h"
 #import <BitcoinJKit/BitcoinJKit.h>
+#import "RHKeychain.h"
 
 @interface BAAppDelegate ()
 
@@ -89,6 +90,7 @@
                 [self rebuildTransactionsMenu];
             }
             
+            [self saveWallet];
             
         }
         else if ([keyPath compare:@"isRunning"] == NSOrderedSame)
@@ -115,6 +117,8 @@
                 self.networkStatusMenuItem.title = NSLocalizedString(@"Network: synced", @"Network Menu Item Synced");
                 
                 [self updateStatusMenu];
+                
+                [self saveWallet];
             }
             
             NSLog(@"==========> total1: %ld", (long)[HIBitcoinManager defaultManager].totalBlocks);
@@ -163,9 +167,29 @@
 - (IBAction)testnetSwitchChecked:(NSMenuItem *)sender
 {
     BOOL testnetOn = [[NSUserDefaults standardUserDefaults] boolForKey:kTESTNET_SWITCH_KEY];
-    [[NSUserDefaults standardUserDefaults] setBool:!testnetOn forKey:kTESTNET_SWITCH_KEY];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    [self updateNetworkMenuItem];
+    
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert addButtonWithTitle:@"OK"];
+    [alert addButtonWithTitle:@"Cancel"];
+    if(!testnetOn)
+    {
+        [alert setMessageText:NSLocalizedString(@"Would you like to switch to Testnet?", @"switch to testnet alert")];
+    }
+    else
+    {
+        [alert setMessageText:NSLocalizedString(@"Would you like to switch to the Standard Bitcoin Network?", @"switch to prodnet alert")];
+    }
+    [alert setInformativeText:@""];
+    [alert setAlertStyle:NSWarningAlertStyle];
+    NSInteger alertResult = [alert runModal];
+    if(alertResult == NSAlertFirstButtonReturn) {
+        [[NSUserDefaults standardUserDefaults] setBool:!testnetOn forKey:kTESTNET_SWITCH_KEY];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        [self updateNetworkMenuItem];
+    }
+    else {
+        
+    }
 }
 
 - (void)updateNetworkMenuItem
@@ -219,6 +243,7 @@
 - (void)addWalletAddress:(id)sender
 {
     [[HIBitcoinManager defaultManager] addKey];
+    [self saveWallet];
     
     [self updateMyAddresses:[HIBitcoinManager defaultManager].allWalletAddresses];
 }
@@ -258,7 +283,7 @@
         }
         else
         {
-            [menuItem setImage:nil];
+            [menuItem setImage:[NSImage imageNamed:@"Questionmark"]];
         }
         
         NSMutableAttributedString * string = [[NSMutableAttributedString alloc] initWithString:menuItem.title attributes:attrsDictionary];
@@ -311,8 +336,8 @@
     if(!self.sendCoinsWindowController)
     {
         self.sendCoinsWindowController = [[BASendCoinsWindowController alloc] initWithWindowNibName:@"SendCoinsWindow"];
-        self.sendCoinsWindowController.delegate = self;
     }
+    self.sendCoinsWindowController.delegate = self;
     
     // activate the app so that the window popps to front
     [NSApp activateIgnoringOtherApps:YES];
@@ -322,9 +347,11 @@
 }
 
 #pragma BASendCoinsWindowController Delegate
-- (void)sendCoinsFromWindowController:(BASendCoinsWindowController *)windowController receiver:(NSString *)btcAddress amount:(NSInteger)amountInSatoshis txfee:(NSInteger)txFeeInSatoshis
+- (NSInteger)prepareSendCoinsFromWindowController:(BASendCoinsWindowController *)windowController receiver:(NSString *)btcAddress amount:(NSInteger)amountInSatoshis txfee:(NSInteger)txFeeInSatoshis
 {
-    [[HIBitcoinManager defaultManager] sendCoins:amountInSatoshis toReceipent:btcAddress comment:@"" completion:nil];
+    NSInteger fee = [[HIBitcoinManager defaultManager] prepareSendCoins:amountInSatoshis toReceipent:btcAddress comment:@""];
+    
+    return fee;
 }
 - (void)sendCoinsWindowControllerWillClose:(BASendCoinsWindowController *)windowController
 {
@@ -332,6 +359,18 @@
     self.sendCoinsWindowController = nil;
 }
 
+#pragma mark - wallet stack
+
+- (void)saveWallet
+{
+    if(!RHKeychainDoesGenericEntryExist(NULL, kKEYCHAIN_SERVICE_NAME))
+    {
+        RHKeychainAddGenericEntry(NULL, kKEYCHAIN_SERVICE_NAME);
+            RHKeychainSetGenericComment(NULL, kKEYCHAIN_SERVICE_NAME, @"bitcoinj wallet as base64 string");
+    }
+    
+    RHKeychainSetGenericPassword(NULL, kKEYCHAIN_SERVICE_NAME, [HIBitcoinManager defaultManager].walletFileBase64String);
+}
 
 #pragma mark - helpers
 
