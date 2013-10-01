@@ -103,6 +103,8 @@
                 NSString *base64 = [HIBitcoinManager defaultManager].walletFileBase64String;
                 [self updateMyAddresses:[HIBitcoinManager defaultManager].allWalletAddresses];
                 
+                NSDate *date = [HIBitcoinManager defaultManager].lastBlockCreationTime;
+                
                 [self updateStatusMenu];
             }
         }
