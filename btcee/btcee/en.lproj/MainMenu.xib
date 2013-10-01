@@ -697,6 +697,22 @@
                         </items>
                     </menu>
                 </menuItem>
+                <menuItem title="Wallet" id="Zvc-n6-PIh">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Wallet" id="HMj-0I-xke">
+                        <items>
+                            <menuItem title="Export" id="FZf-Be-eng">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                            <menuItem title="Import" id="pAa-w5-WVo">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                            <menuItem title="Dump to Text" id="cJ7-c3-OaT">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
                 <menuItem title="Send Coins" id="538">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
