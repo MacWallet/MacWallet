@@ -170,12 +170,4 @@
     }
 }
 
-
-#pragma mark - helper
-
-- (NSString *)formatBTC:(NSString *)string
-{
-    NSNumberFormatter *formater;
-}
-
 @end
