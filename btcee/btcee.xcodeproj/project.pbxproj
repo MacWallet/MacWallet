@@ -25,6 +25,11 @@
 		E5C359D617F1DFDE00BA394E /* TrustedCheckmark.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C359D517F1DFDE00BA394E /* TrustedCheckmark.png */; };
 		E5D2F47917F447E200A214F4 /* BitcoinJKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5D2F47817F447DB00A214F4 /* BitcoinJKit.framework */; };
 		E5D2F47A17F447E400A214F4 /* BitcoinJKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E5D2F47817F447DB00A214F4 /* BitcoinJKit.framework */; };
+		E5E2CCC617FC98B3003EBA11 /* I7SPreferenceGeneralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5E2CCBF17FC98B3003EBA11 /* I7SPreferenceGeneralViewController.m */; };
+		E5E2CCC717FC98B3003EBA11 /* I7SPreferenceGeneralViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5E2CCC017FC98B3003EBA11 /* I7SPreferenceGeneralViewController.xib */; };
+		E5E2CCC917FC98B3003EBA11 /* RHPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5E2CCC417FC98B3003EBA11 /* RHPreferencesWindowController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E5E2CCCA17FC98B3003EBA11 /* RHPreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5E2CCC517FC98B3003EBA11 /* RHPreferencesWindow.xib */; };
+		E5E2CCCD17FC9A7D003EBA11 /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5E2CCCC17FC9A7D003EBA11 /* LaunchAtLoginController.m */; };
 		E5FBD34317F9FFB400E678FE /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5FBD34217F9FFB400E678FE /* Security.framework */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +85,15 @@
 		E5C359D217F1DFC200BA394E /* TrustedCheckmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TrustedCheckmark@2x.png"; sourceTree = "<group>"; };
 		E5C359D517F1DFDE00BA394E /* TrustedCheckmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrustedCheckmark.png; sourceTree = "<group>"; };
 		E5D2F47317F447DB00A214F4 /* BitcoinJKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BitcoinJKit.xcodeproj; path = ../BitcoinJKit/BitcoinJKit.xcodeproj; sourceTree = "<group>"; };
+		E5E2CCBE17FC98B3003EBA11 /* I7SPreferenceGeneralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = I7SPreferenceGeneralViewController.h; sourceTree = "<group>"; };
+		E5E2CCBF17FC98B3003EBA11 /* I7SPreferenceGeneralViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = I7SPreferenceGeneralViewController.m; sourceTree = "<group>"; };
+		E5E2CCC017FC98B3003EBA11 /* I7SPreferenceGeneralViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = I7SPreferenceGeneralViewController.xib; sourceTree = "<group>"; };
+		E5E2CCC217FC98B3003EBA11 /* RHPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RHPreferences.h; sourceTree = "<group>"; };
+		E5E2CCC317FC98B3003EBA11 /* RHPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RHPreferencesWindowController.h; sourceTree = "<group>"; };
+		E5E2CCC417FC98B3003EBA11 /* RHPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RHPreferencesWindowController.m; sourceTree = "<group>"; };
+		E5E2CCC517FC98B3003EBA11 /* RHPreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RHPreferencesWindow.xib; sourceTree = "<group>"; };
+		E5E2CCCB17FC9A7D003EBA11 /* LaunchAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LaunchAtLoginController.h; path = ../vendor/LaunchAtLoginController/LaunchAtLoginController.h; sourceTree = "<group>"; };
+		E5E2CCCC17FC9A7D003EBA11 /* LaunchAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LaunchAtLoginController.m; path = ../vendor/LaunchAtLoginController/LaunchAtLoginController.m; sourceTree = "<group>"; };
 		E5FBD34217F9FFB400E678FE /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -139,6 +153,7 @@
 		E50310D517E9986500C2F226 /* btcee */ = {
 			isa = PBXGroup;
 			children = (
+				E5E2CCBC17FC98A9003EBA11 /* Preferences */,
 				E50310E417E9986600C2F226 /* MainMenu.xib */,
 				E50310E117E9986600C2F226 /* BAAppDelegate.h */,
 				E50310E217E9986600C2F226 /* BAAppDelegate.m */,
@@ -171,6 +186,8 @@
 		E5B838FE17F9FEE5004FBBB5 /* vendor */ = {
 			isa = PBXGroup;
 			children = (
+				E5E2CCCB17FC9A7D003EBA11 /* LaunchAtLoginController.h */,
+				E5E2CCCC17FC9A7D003EBA11 /* LaunchAtLoginController.m */,
 				E5B838FF17F9FEED004FBBB5 /* RHKeychain.h */,
 				E5B8390017F9FEED004FBBB5 /* RHKeychain.m */,
 			);
@@ -194,6 +211,20 @@
 				E5D2F47817F447DB00A214F4 /* BitcoinJKit.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		E5E2CCBC17FC98A9003EBA11 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				E5E2CCBE17FC98B3003EBA11 /* I7SPreferenceGeneralViewController.h */,
+				E5E2CCBF17FC98B3003EBA11 /* I7SPreferenceGeneralViewController.m */,
+				E5E2CCC017FC98B3003EBA11 /* I7SPreferenceGeneralViewController.xib */,
+				E5E2CCC217FC98B3003EBA11 /* RHPreferences.h */,
+				E5E2CCC317FC98B3003EBA11 /* RHPreferencesWindowController.h */,
+				E5E2CCC417FC98B3003EBA11 /* RHPreferencesWindowController.m */,
+				E5E2CCC517FC98B3003EBA11 /* RHPreferencesWindow.xib */,
+			);
+			path = Preferences;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,8 +304,10 @@
 				E508D65817FB26A700CC3CF9 /* Localizable.strings in Resources */,
 				E5C359D617F1DFDE00BA394E /* TrustedCheckmark.png in Resources */,
 				E528E91117FAB7B800BF4BAD /* Questionmark@2x.png in Resources */,
+				E5E2CCCA17FC98B3003EBA11 /* RHPreferencesWindow.xib in Resources */,
 				E528E91017FAB7B800BF4BAD /* Questionmark.png in Resources */,
 				E50310E617E9986600C2F226 /* MainMenu.xib in Resources */,
+				E5E2CCC717FC98B3003EBA11 /* I7SPreferenceGeneralViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,10 +318,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5E2CCC617FC98B3003EBA11 /* I7SPreferenceGeneralViewController.m in Sources */,
+				E5E2CCCD17FC9A7D003EBA11 /* LaunchAtLoginController.m in Sources */,
 				E534F3E617F2D05300A95F20 /* BASendCoinsWindowController.m in Sources */,
 				E5B8390117F9FEED004FBBB5 /* RHKeychain.m in Sources */,
 				E50310DC17E9986500C2F226 /* main.m in Sources */,
 				E5B838F817F9CBF4004FBBB5 /* BATransactionsWindowController.m in Sources */,
+				E5E2CCC917FC98B3003EBA11 /* RHPreferencesWindowController.m in Sources */,
 				E50310E317E9986600C2F226 /* BAAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
