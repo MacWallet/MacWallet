@@ -658,6 +658,7 @@
                 <outlet property="networkStatusMenuItem" destination="l8g-ak-bBL" id="GYW-kZ-jJg"/>
                 <outlet property="networkStatusNetSwitch" destination="hdy-1H-Pjp" id="vy5-UQ-KhS"/>
                 <outlet property="networkStatusPeersMenuItem" destination="zhr-lm-E9Y" id="S5B-Dw-Rk0"/>
+                <outlet property="preferencesMenuItem" destination="hpb-8l-QWa" id="J6I-ol-qkd"/>
                 <outlet property="quitMenuItem" destination="539" id="XPF-bb-a0b"/>
                 <outlet property="sendCoinsMenuItem" destination="538" id="wZd-x0-fG0"/>
                 <outlet property="statusMenu" destination="536" id="540"/>
@@ -749,6 +750,12 @@
                     </menu>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="Hxk-Je-xwF"/>
+                <menuItem title="_Preferences" id="hpb-8l-QWa">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="showPreferences:" target="494" id="9BK-S1-zdO"/>
+                    </connections>
+                </menuItem>
                 <menuItem title="About" id="2dK-1f-nim">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>

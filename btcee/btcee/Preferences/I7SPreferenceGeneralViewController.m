@@ -31,14 +31,25 @@
 
 #pragma mark - custom stuff
 
+- (BOOL)useKeychain
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:kUSE_KEYCHAIN_KEY];
+}
 
-- (BOOL)launchAtStartup {
+- (void)setUseKeychain:(BOOL)aState
+{
+    [[NSUserDefaults standardUserDefaults] setBool:aState forKey:kUSE_KEYCHAIN_KEY];
+}
+
+- (BOOL)launchAtStartup
+{
     BAAppDelegate *dele = (BAAppDelegate *)[NSApplication sharedApplication].delegate;
     return dele.launchAtStartup;
     return YES;
 }
 
-- (void)setLaunchAtStartup:(BOOL)aState {
+- (void)setLaunchAtStartup:(BOOL)aState
+{
     BAAppDelegate *dele = (BAAppDelegate *)[NSApplication sharedApplication].delegate;
     dele.launchAtStartup = aState;
 }

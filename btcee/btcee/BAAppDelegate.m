@@ -10,6 +10,8 @@
 #import <BitcoinJKit/BitcoinJKit.h>
 #import "RHKeychain.h"
 #import "LaunchAtLoginController.h"
+#import "RHPreferencesWindowController.h"
+#import "I7SPreferenceGeneralViewController.h"
 
 @interface BAAppDelegate ()
 
@@ -20,6 +22,7 @@
 @property (assign) IBOutlet NSMenu *transactionsMenu;
 @property (assign) IBOutlet NSMenuItem *transactionsMenuItem;
 @property (assign) IBOutlet NSMenuItem *sendCoinsMenuItem;
+@property (assign) IBOutlet NSMenuItem *preferencesMenuItem;
 @property (assign) IBOutlet NSMenuItem *aboutMenuItem;
 @property (assign) IBOutlet NSMenuItem *quitMenuItem;
 @property (assign) IBOutlet NSMenuItem *networkStatusMenuItem;
@@ -35,6 +38,8 @@
 @property (strong) BASendCoinsWindowController *sendCoinsWindowController;
 @property (strong) BATransactionsWindowController *txWindowController;
 
+@property (strong) RHPreferencesWindowController * preferencesWindowController;
+
 @end
 
 @implementation BAAppDelegate
@@ -45,8 +50,9 @@
 {
     // do some localization
     self.sendCoinsMenuItem.title    = NSLocalizedString(@"sendCoins", @"sendCoinsMenuItem");
-    self.addressesMenuItem.title        = NSLocalizedString(@"myAddresses", @"My Address Menu Item");
-    self.transactionsMenuItem.title     = NSLocalizedString(@"myTransactions", @"My Transaction Menu Item");
+    self.addressesMenuItem.title    = NSLocalizedString(@"myAddresses", @"My Address Menu Item");
+    self.transactionsMenuItem.title = NSLocalizedString(@"myTransactions", @"My Transaction Menu Item");
+    self.preferencesMenuItem.title  = NSLocalizedString(@"preferences", @"Preferences Menu Item");
     self.aboutMenuItem.title        = NSLocalizedString(@"about", @"About Menu Item");
     self.quitMenuItem.title         = NSLocalizedString(@"quit", @"Quit Menu Item");
     self.networkStatusLastBlockTime.title =[NSString stringWithFormat:@"%@ ?", NSLocalizedString(@"lastBlockAge", @"Last Block Age Menu Item")];
@@ -81,7 +87,7 @@
     [HIBitcoinManager defaultManager].appSupportDirectoryIdentifier = @"Btcee";
     
     // check if user likes to store/retrive the wallet from keychain
-    self.useKeychain = [[NSUserDefaults standardUserDefaults] boolForKey:kTESTNET_SWITCH_KEY];
+    self.useKeychain = [[NSUserDefaults standardUserDefaults] boolForKey:kUSE_KEYCHAIN_KEY];
     
     // start underlaying bitcoin system
     NSString *walletBase64String = nil;
@@ -464,6 +470,22 @@
         }
     }
 }
+
+#pragma mark - Preferences stack
+
+- (IBAction)showPreferences:(id)sender {
+    NSString *nibName = @"I7SPreferenceGeneralViewController";
+    
+    I7SPreferenceGeneralViewController *general = [[I7SPreferenceGeneralViewController alloc] initWithNibName:nibName bundle:nil];
+    
+    NSArray *controllers = [NSArray arrayWithObjects:general,
+                            nil];
+    
+    self.preferencesWindowController = [[RHPreferencesWindowController alloc] initWithViewControllers:controllers andTitle:NSLocalizedString(@"Preferences", @"Preferences Window Title")];
+    [self.preferencesWindowController showWindow:self];
+    [self.preferencesWindowController.window orderFrontRegardless];
+}
+
 
 #pragma mark - auto launch controlling stack
 
