@@ -12,8 +12,6 @@
 
 @interface BAAppDelegate : NSObject <NSApplicationDelegate, BASendCoinsWindowControllerDelegate>
 
-@property (assign) IBOutlet NSWindow *window;
-
-- (void)sendCoins:(NSString *)btcAddress amount:(NSInteger)satoshis txfee:(NSInteger)satoshis;
+@property (assign) BOOL launchAtStartup;
 
 @end

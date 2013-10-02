@@ -8,5 +8,15 @@
 
 
 #define kTESTNET_SWITCH_KEY @"testnetSwitchKey"
+#define kUSE_KEYCHAIN_KEY @"useKeychainKey"
+
 #define kDEFAULT_MAX_TRANSACTION_COUNT_MENU 10
 #define kKEYCHAIN_SERVICE_NAME @"BTCEE"
+#define kKEYCHAIN_SERVICE_NAME_TESTNET @"BTCEE_TESTNET"
+
+#define kSAVE_WALLET_TO_KEYCHAIN 1
+
+#define BSUserDefaultsCurrencyKey               @"BSCurrency"
+#define BSUserDefaultsUpdateIntervalKey         @"BSUpdateInterval"
+#define BSShouldReloadFromRemoteNotification    @"BSShouldReloadFromRemoteNotification"
+#define BSShouldResetTimerNotification          @"BSShouldResetTimerNotification"

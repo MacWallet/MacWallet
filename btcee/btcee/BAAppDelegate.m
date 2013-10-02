@@ -9,6 +9,7 @@
 #import "BAAppDelegate.h"
 #import <BitcoinJKit/BitcoinJKit.h>
 #import "RHKeychain.h"
+#import "LaunchAtLoginController.h"
 
 @interface BAAppDelegate ()
 
@@ -29,14 +30,17 @@
 
 @property (assign) IBOutlet NSMenuItem *balanceUnconfirmedMenuItem;
 
-@property (strong) BASendCoinsWindowController *sendCoinsWindowController;
+@property (assign) BOOL useKeychain;
 
+@property (strong) BASendCoinsWindowController *sendCoinsWindowController;
 @property (strong) BATransactionsWindowController *txWindowController;
 
 @end
 
 @implementation BAAppDelegate
 
+
+// main entry point
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // do some localization
@@ -47,26 +51,24 @@
     self.quitMenuItem.title         = NSLocalizedString(@"quit", @"Quit Menu Item");
     self.networkStatusLastBlockTime.title =[NSString stringWithFormat:@"%@ ?", NSLocalizedString(@"lastBlockAge", @"Last Block Age Menu Item")];
     
-    // Insert code here to initialize your application
-    
-    CGFloat menuWidth = 90.0;
-    
     // make a global menu (extra menu) item
     self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     [self.statusItem setMenu:self.statusMenu];
     [self.statusItem setTitle:@"BTCEE"];
     [self.statusItem setHighlightMode:YES];
     
+    // add observers
     [[HIBitcoinManager defaultManager] addObserver:self forKeyPath:@"connections" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:NULL];
     [[HIBitcoinManager defaultManager] addObserver:self forKeyPath:@"balance" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:NULL];
     [[HIBitcoinManager defaultManager] addObserver:self forKeyPath:@"syncProgress" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:NULL];
     [[HIBitcoinManager defaultManager] addObserver:self forKeyPath:@"isRunning" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:NULL];
     [[HIBitcoinManager defaultManager] addObserver:self forKeyPath:@"peerCount" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:NULL];
     
+    // check for testnet
     BOOL testnet = [[NSUserDefaults standardUserDefaults] boolForKey:kTESTNET_SWITCH_KEY];
-    
     [HIBitcoinManager defaultManager].testingNetwork = testnet;
-
+    
+    // define app name and support directory name
     if(testnet)
     {
         [HIBitcoinManager defaultManager].appName = @"btcee_testnet";
@@ -77,27 +79,44 @@
     }
     
     [HIBitcoinManager defaultManager].appSupportDirectoryIdentifier = @"Btcee";
-    [[HIBitcoinManager defaultManager] start];
     
+    // check if user likes to store/retrive the wallet from keychain
+    self.useKeychain = [[NSUserDefaults standardUserDefaults] boolForKey:kTESTNET_SWITCH_KEY];
+    
+    // start underlaying bitcoin system
+    NSString *walletBase64String = nil;
+    if(self.useKeychain)
+    {
+        walletBase64String = [self loadWallet];
+        if(walletBase64String == nil)
+        {
+            walletBase64String = @"";
+        }
+    }
+    [[HIBitcoinManager defaultManager] start:walletBase64String];
+    
+    // add time for periodical menu updates
     NSTimer *timer = [NSTimer timerWithTimeInterval:60 target:self selector:@selector(minuteUpdater) userInfo:nil repeats:YES];
-    
     [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
     
+    // update menu with inital stuff
     [self updateNetworkMenuItem];
 }
 
+- (void)applicationWillTerminate:(NSNotification *)notification
+{
+    // perform a wallet save during termination
+    [self saveWallet];
+}
 
+// observe the bitcoin framework
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if (object == [HIBitcoinManager defaultManager])
     {
-        if ([keyPath compare:@"connections"] == NSOrderedSame)
+        if ([keyPath compare:@"balance"] == NSOrderedSame)
         {
-            NSLog(@"conn: %@", [NSString stringWithFormat:@"%lu", [HIBitcoinManager defaultManager].connections]);
-        }
-        else if ([keyPath compare:@"balance"] == NSOrderedSame)
-        {
-            
+            // balance has changed
             [self updateStatusMenu];
             
             
@@ -107,43 +126,41 @@
             }
             
             [self saveWallet];
-            
         }
         else if ([keyPath compare:@"isRunning"] == NSOrderedSame)
         {
             if ([HIBitcoinManager defaultManager].isRunning)
             {
-                NSLog(@"status: isrunning, syncing");
-                NSLog(@"status: my address: %@", [HIBitcoinManager defaultManager].walletAddress);
-                
-                NSString *base64 = [HIBitcoinManager defaultManager].walletFileBase64String;
                 [self updateMyAddresses:[HIBitcoinManager defaultManager].allWalletAddresses];
-                
                 [self updateStatusMenu];
+            }
+            else {
+                //TODO switch off something
             }
         }
         else if ([keyPath compare:@"syncProgress"] == NSOrderedSame)
         {
             if ([HIBitcoinManager defaultManager].syncProgress < 1.0)
             {
+                // we are syncing
                 self.networkStatusMenuItem.title =[NSString stringWithFormat:@"%@ %d%%",NSLocalizedString(@"syncing", @"Syncing Menu Item"), (int)round((double)[HIBitcoinManager defaultManager].syncProgress*100)];
             }
             else {
-                // sync okay
+                // sync finished
                 self.networkStatusMenuItem.title = NSLocalizedString(@"Network: synced", @"Network Menu Item Synced");
                 
                 [self minuteUpdater];
                 [self updateStatusMenu];
                 [self saveWallet];
             }
-            
-            NSLog(@"==========> total1: %ld", (long)[HIBitcoinManager defaultManager].totalBlocks);
-            
+
+            // always update the block info
             self.networkStatusBlockHeight.title = [NSString stringWithFormat:@"%@%ld/%ld",NSLocalizedString(@"blocksMenuItem", @"Block Menu Item"),[HIBitcoinManager defaultManager].currentBlockCount, [HIBitcoinManager defaultManager].totalBlocks];
             
         }
         else if ([keyPath compare:@"peerCount"] == NSOrderedSame)
         {
+            // peer connected/disconnected
             self.networkStatusPeersMenuItem.title = [NSString stringWithFormat:@"%@%lu", NSLocalizedString(@"connectedPeersMenuItem", @"connectedPeersMenuItem"), (unsigned long)[HIBitcoinManager defaultManager].peerCount];
         }
     }
@@ -156,9 +173,12 @@
     {
         self.networkStatusLastBlockTime.title =[NSString stringWithFormat:@"%@%.1f min", NSLocalizedString(@"lastBlockAge", @"Last Block Age Menu Item"), -[date timeIntervalSinceNow]/60];
     }
-    
     [self rebuildTransactionsMenu];
 }
+
+
+
+#pragma mark - menu actions / menu stack
 
 - (void)updateStatusMenu
 {
@@ -175,22 +195,16 @@
     }
     
     NSFont *font = [NSFont systemFontOfSize:10];
-    NSDictionary *attrsDictionary =
-    [NSDictionary dictionaryWithObject:font
-                                forKey:NSFontAttributeName];
+    NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:font forKey:NSFontAttributeName];
     
-    NSMutableAttributedString * string = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:NSLocalizedString(@"Funds on the way:\n%@",@"Funds on the way menu item"), [self formatBTC:fundsOnTheWay]] attributes:attrsDictionary];
-    
+    NSMutableAttributedString * string = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:NSLocalizedString(@"Funds on the way:\n%@",@"Funds on the way menu item"), [[HIBitcoinManager defaultManager] formatNanobtc:fundsOnTheWay]] attributes:attrsDictionary];
     
     self.balanceUnconfirmedMenuItem.attributedTitle = string;
-    
-    self.statusItem.title = [self formatBTC:balance];
-    
+    self.statusItem.title = [[HIBitcoinManager defaultManager] formatNanobtc:balance];
     [self rebuildTransactionsMenu];
 }
 
-#pragma mark - menu actions
-
+// switch the network
 - (IBAction)testnetSwitchChecked:(NSMenuItem *)sender
 {
     BOOL testnetOn = [[NSUserDefaults standardUserDefaults] boolForKey:kTESTNET_SWITCH_KEY];
@@ -213,6 +227,8 @@
         [[NSUserDefaults standardUserDefaults] setBool:!testnetOn forKey:kTESTNET_SWITCH_KEY];
         [[NSUserDefaults standardUserDefaults] synchronize];
         [self updateNetworkMenuItem];
+        
+        //TODO: restart app or bitcoin subsystem
     }
     else {
         
@@ -318,7 +334,7 @@
             age = [NSString stringWithFormat:@"%.1f min", ageInSeconds/60];
         }
         
-        NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"%@ (%@ ago)", [self formatBTC:amount], age ] action:@selector(transactionClicked:) keyEquivalent:@""];
+        NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"%@ (%@ ago)", [[HIBitcoinManager defaultManager] formatNanobtc:amount], age ] action:@selector(transactionClicked:) keyEquivalent:@""];
         if([[transactionDict objectForKey:@"confidence"] isEqualToString:@"building"])
         {
             [menuItem setImage:[NSImage imageNamed:@"TrustedCheckmark"]];
@@ -403,24 +419,68 @@
 
 #pragma mark - wallet stack
 
+/*
+ * saves the wallet to the osx keychain
+ *
+ */
 - (void)saveWallet
 {
-    if(!RHKeychainDoesGenericEntryExist(NULL, kKEYCHAIN_SERVICE_NAME))
+    if(kSAVE_WALLET_TO_KEYCHAIN)
     {
-        RHKeychainAddGenericEntry(NULL, kKEYCHAIN_SERVICE_NAME);
-            RHKeychainSetGenericComment(NULL, kKEYCHAIN_SERVICE_NAME, @"bitcoinj wallet as base64 string");
-    }
+        
+        BOOL testnet = [[NSUserDefaults standardUserDefaults] boolForKey:kTESTNET_SWITCH_KEY];
+        NSString *keychainServiceName = (testnet) ? kKEYCHAIN_SERVICE_NAME_TESTNET : kKEYCHAIN_SERVICE_NAME;
+        
+        NSString *base64str = [HIBitcoinManager defaultManager].walletFileBase64String;
+        if(!base64str || base64str.length == 0)
+        {
+            return;
+        }
+        
+        if(!RHKeychainDoesGenericEntryExist(NULL, keychainServiceName))
+        {
+            RHKeychainAddGenericEntry(NULL, keychainServiceName);
+                RHKeychainSetGenericComment(NULL, keychainServiceName, @"bitcoinj wallet as base64 string");
+        }
     
-    RHKeychainSetGenericPassword(NULL, kKEYCHAIN_SERVICE_NAME, [HIBitcoinManager defaultManager].walletFileBase64String);
+        RHKeychainSetGenericPassword(NULL, keychainServiceName, base64str);
+    }
+}
+
+- (NSString *)loadWallet
+{
+    BOOL testnet = [[NSUserDefaults standardUserDefaults] boolForKey:kTESTNET_SWITCH_KEY];
+    NSString *keychainServiceName = (testnet) ? kKEYCHAIN_SERVICE_NAME_TESTNET : kKEYCHAIN_SERVICE_NAME;
+    
+    if(kSAVE_WALLET_TO_KEYCHAIN)
+    {
+        if(RHKeychainDoesGenericEntryExist(NULL, keychainServiceName))
+        {
+            return RHKeychainGetGenericPassword(NULL, keychainServiceName);
+        }
+        else
+        {
+            return nil;
+        }
+    }
+}
+
+#pragma mark - auto launch controlling stack
+
+- (BOOL)launchAtStartup {
+    LaunchAtLoginController *launchController = [[LaunchAtLoginController alloc] init];
+    BOOL state = [launchController launchAtLogin];
+    launchController = nil;
+    return state;
+}
+
+- (void)setLaunchAtStartup:(BOOL)aState {
+    LaunchAtLoginController *launchController = [[LaunchAtLoginController alloc] init];
+    [launchController setLaunchAtLogin:aState];
+    launchController = nil;
 }
 
 #pragma mark - helpers
-
-- (NSString *)formatBTC:(NSInteger)btc
-{
-    //TODO: nice and configurable
-    return [NSString stringWithFormat:@"%.4f ฿", (double)btc/100000000];
-}
 
 
 @end
