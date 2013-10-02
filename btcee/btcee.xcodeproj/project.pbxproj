@@ -23,6 +23,8 @@
 		E5B8390117F9FEED004FBBB5 /* RHKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B8390017F9FEED004FBBB5 /* RHKeychain.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E5C359D417F1DFC200BA394E /* TrustedCheckmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C359D217F1DFC200BA394E /* TrustedCheckmark@2x.png */; };
 		E5C359D617F1DFDE00BA394E /* TrustedCheckmark.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C359D517F1DFDE00BA394E /* TrustedCheckmark.png */; };
+		E5CDA96017FC9F2A0037A01E /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5CDA95F17FC9F2A0037A01E /* Sparkle.framework */; };
+		E5CDA96217FC9F4F0037A01E /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E5CDA95F17FC9F2A0037A01E /* Sparkle.framework */; };
 		E5D2F47917F447E200A214F4 /* BitcoinJKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5D2F47817F447DB00A214F4 /* BitcoinJKit.framework */; };
 		E5D2F47A17F447E400A214F4 /* BitcoinJKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E5D2F47817F447DB00A214F4 /* BitcoinJKit.framework */; };
 		E5E2CCC617FC98B3003EBA11 /* I7SPreferenceGeneralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5E2CCBF17FC98B3003EBA11 /* I7SPreferenceGeneralViewController.m */; };
@@ -51,6 +53,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				E5D2F47A17F447E400A214F4 /* BitcoinJKit.framework in CopyFiles */,
+				E5CDA96217FC9F4F0037A01E /* Sparkle.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +87,7 @@
 		E5B8390017F9FEED004FBBB5 /* RHKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RHKeychain.m; path = ../vendor/RHKeychain/RHKeychain/RHKeychain.m; sourceTree = "<group>"; };
 		E5C359D217F1DFC200BA394E /* TrustedCheckmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TrustedCheckmark@2x.png"; sourceTree = "<group>"; };
 		E5C359D517F1DFDE00BA394E /* TrustedCheckmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrustedCheckmark.png; sourceTree = "<group>"; };
+		E5CDA95F17FC9F2A0037A01E /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = ../vendor/Sparkle.framework; sourceTree = "<group>"; };
 		E5D2F47317F447DB00A214F4 /* BitcoinJKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BitcoinJKit.xcodeproj; path = ../BitcoinJKit/BitcoinJKit.xcodeproj; sourceTree = "<group>"; };
 		E5E2CCBE17FC98B3003EBA11 /* I7SPreferenceGeneralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = I7SPreferenceGeneralViewController.h; sourceTree = "<group>"; };
 		E5E2CCBF17FC98B3003EBA11 /* I7SPreferenceGeneralViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = I7SPreferenceGeneralViewController.m; sourceTree = "<group>"; };
@@ -105,6 +109,7 @@
 				E5FBD34317F9FFB400E678FE /* Security.framework in Frameworks */,
 				E50310D017E9986500C2F226 /* Cocoa.framework in Frameworks */,
 				E5D2F47917F447E200A214F4 /* BitcoinJKit.framework in Frameworks */,
+				E5CDA96017FC9F2A0037A01E /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,6 +137,7 @@
 		E50310CE17E9986500C2F226 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E5CDA95F17FC9F2A0037A01E /* Sparkle.framework */,
 				E5FBD34217F9FFB400E678FE /* Security.framework */,
 				E5D2F47317F447DB00A214F4 /* BitcoinJKit.xcodeproj */,
 				E50310CF17E9986500C2F226 /* Cocoa.framework */,
@@ -433,6 +439,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/btcee-dsjrqxckheaiglfxhvpljehfzkdf/Build/Products/Debug",
+					/Users/jonasschnelli/Documents/bitcoin/btceeApp/vendor,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "btcee/btcee-Prefix.pch";
@@ -449,6 +456,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/btcee-dsjrqxckheaiglfxhvpljehfzkdf/Build/Products/Debug",
+					/Users/jonasschnelli/Documents/bitcoin/btceeApp/vendor,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "btcee/btcee-Prefix.pch";
