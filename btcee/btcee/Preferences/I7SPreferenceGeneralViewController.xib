@@ -9,9 +9,8 @@
             <connections>
                 <outlet property="autostartSystem" destination="564" id="614"/>
                 <outlet property="checkUpdatesAtStartup" destination="560" id="615"/>
-                <outlet property="currencyLabel" destination="609" id="616"/>
                 <outlet property="currencySelector" destination="595" id="613"/>
-                <outlet property="updateIntervalBox" destination="620" id="676"/>
+                <outlet property="tickerLabel" destination="609" id="58c-FR-wuf"/>
                 <outlet property="view" destination="1" id="2"/>
             </connections>
         </customObject>
@@ -19,11 +18,11 @@
         <customObject id="-3" userLabel="Application"/>
         <customObject id="679" customClass="SUUpdater"/>
         <customView id="1">
-            <rect key="frame" x="0.0" y="0.0" width="564" height="250"/>
+            <rect key="frame" x="0.0" y="0.0" width="430" height="140"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="560">
-                    <rect key="frame" x="18" y="214" width="203" height="18"/>
+                    <rect key="frame" x="18" y="104" width="203" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Check for updates at startup" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="561">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -34,7 +33,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="564">
-                    <rect key="frame" x="18" y="175" width="263" height="18"/>
+                    <rect key="frame" x="18" y="81" width="263" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Automatically launch BTCEE at startup" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="565">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -45,7 +44,7 @@
                     </connections>
                 </button>
                 <comboBox verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="595">
-                    <rect key="frame" x="127" y="40" width="145" height="26"/>
+                    <rect key="frame" x="90" y="18" width="213" height="26"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="142" id="600"/>
@@ -56,55 +55,20 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </comboBoxCell>
                 </comboBox>
-                <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="609">
-                    <rect key="frame" x="18" y="46" width="104" height="17"/>
+                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="609">
+                    <rect key="frame" x="17" y="24" width="74" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="98" id="618"/>
+                        <constraint firstAttribute="width" constant="68" id="618"/>
                     </constraints>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Currency" id="610">
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Ticker" id="610">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <comboBox verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="620">
-                    <rect key="frame" x="402" y="40" width="145" height="26"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="142" id="624"/>
-                    </constraints>
-                    <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="625">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </comboBoxCell>
-                </comboBox>
-                <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="621">
-                    <rect key="frame" x="274" y="46" width="123" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="117" id="675"/>
-                    </constraints>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Update Interval" id="623">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="W16-Ql-cgb">
-                    <rect key="frame" x="18" y="138" width="298" height="18"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Use Keychain as Wallet Store (experimental)" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="JnZ-PJ-Ckf">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <binding destination="-2" name="value" keyPath="useKeychain" id="5Gv-cB-RGd"/>
-                    </connections>
-                </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="DYW-uf-b3X">
-                    <rect key="frame" x="18" y="100" width="232" height="18"/>
+                    <rect key="frame" x="18" y="58" width="232" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Show time-ago in transaction list" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="wkr-dy-8wf">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -114,21 +78,15 @@
             </subviews>
             <constraints>
                 <constraint firstItem="560" firstAttribute="top" secondItem="1" secondAttribute="top" constant="20" symbolic="YES" id="562"/>
-                <constraint firstItem="560" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" symbolic="YES" id="563"/>
-                <constraint firstItem="564" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" symbolic="YES" id="566"/>
-                <constraint firstAttribute="bottom" secondItem="595" secondAttribute="bottom" constant="20" symbolic="YES" id="602"/>
-                <constraint firstItem="609" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="23" id="612"/>
-                <constraint firstItem="595" firstAttribute="leading" secondItem="609" secondAttribute="trailing" constant="8" symbolic="YES" id="617"/>
-                <constraint firstItem="620" firstAttribute="leading" secondItem="621" secondAttribute="trailing" constant="8" symbolic="YES" id="626"/>
-                <constraint firstAttribute="bottom" secondItem="620" secondAttribute="bottom" constant="20" symbolic="YES" id="642"/>
-                <constraint firstItem="621" firstAttribute="baseline" secondItem="609" secondAttribute="baseline" id="643"/>
+                <constraint firstAttribute="bottom" secondItem="595" secondAttribute="bottom" constant="22" id="602"/>
+                <constraint firstItem="609" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" id="612"/>
+                <constraint firstItem="595" firstAttribute="leading" secondItem="609" secondAttribute="trailing" constant="2" id="617"/>
                 <constraint firstItem="595" firstAttribute="centerY" secondItem="609" secondAttribute="centerY" id="673"/>
-                <constraint firstItem="621" firstAttribute="leading" secondItem="595" secondAttribute="trailing" constant="8" symbolic="YES" id="674"/>
-                <constraint firstItem="564" firstAttribute="top" secondItem="560" secondAttribute="bottom" constant="25" id="4o6-Nb-qZe"/>
-                <constraint firstItem="W16-Ql-cgb" firstAttribute="top" secondItem="564" secondAttribute="bottom" constant="23" id="XVB-ZN-zed"/>
-                <constraint firstItem="W16-Ql-cgb" firstAttribute="leading" secondItem="564" secondAttribute="leading" id="aNz-hJ-yoV"/>
-                <constraint firstItem="DYW-uf-b3X" firstAttribute="top" secondItem="W16-Ql-cgb" secondAttribute="bottom" constant="24" id="fMd-6a-psu"/>
-                <constraint firstItem="DYW-uf-b3X" firstAttribute="leading" secondItem="W16-Ql-cgb" secondAttribute="leading" id="xKk-Se-YDS"/>
+                <constraint firstItem="564" firstAttribute="top" secondItem="560" secondAttribute="bottom" constant="9" id="4o6-Nb-qZe"/>
+                <constraint firstItem="DYW-uf-b3X" firstAttribute="leading" secondItem="564" secondAttribute="leading" id="D6W-T5-p9R"/>
+                <constraint firstItem="DYW-uf-b3X" firstAttribute="top" secondItem="564" secondAttribute="bottom" constant="9" id="Djm-gQ-Wow"/>
+                <constraint firstItem="560" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" id="pVQ-sW-N0L"/>
+                <constraint firstItem="564" firstAttribute="leading" secondItem="560" secondAttribute="leading" id="s16-EM-fd5"/>
             </constraints>
         </customView>
         <userDefaultsController representsSharedInstance="YES" id="574"/>

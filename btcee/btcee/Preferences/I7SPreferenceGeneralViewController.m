@@ -12,7 +12,7 @@
 @interface I7SPreferenceGeneralViewController ()
 @property (assign) IBOutlet NSButton *checkUpdatesAtStartup;
 @property (assign) IBOutlet NSButton *autostartSystem;
-@property (assign) IBOutlet NSTextField *currencyLabel;
+@property (assign) IBOutlet NSTextField *tickerLabel;
 @property (assign) IBOutlet NSComboBox *currencySelector;
 @property (assign) IBOutlet NSComboBox *updateIntervalBox;
 @end
@@ -30,16 +30,6 @@
 }
 
 #pragma mark - custom stuff
-
-- (BOOL)useKeychain
-{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:kUSE_KEYCHAIN_KEY];
-}
-
-- (void)setUseKeychain:(BOOL)aState
-{
-    [[NSUserDefaults standardUserDefaults] setBool:aState forKey:kUSE_KEYCHAIN_KEY];
-}
 
 - (BOOL)launchAtStartup
 {
@@ -102,9 +92,9 @@
     }
     self.updateIntervalBox.delegate = self;
     
-    self.checkUpdatesAtStartup.title = NSLocalizedString(@"Check for updates at startup", @"check for update preference button text");
-    self.autostartSystem.title = NSLocalizedString(@"Automatically launch BitcoinStatus at startup", @"auto check updates preference button text");
-    self.currencyLabel.stringValue = NSLocalizedString(@"Currency", @"currency preference combo box");
+    self.checkUpdatesAtStartup.title = NSLocalizedString(@"checkForUpdatesAtStartupLabel", @"check for update preference button text");
+    self.autostartSystem.title = NSLocalizedString(@"autostartPrefsLabel", @"auto check updates preference button text");
+    self.tickerLabel.stringValue = NSLocalizedString(@"tickerLabel", @"currency preference combo box");
 }
 
 - (void)comboBoxSelectionDidChange:(NSNotification *)notification {
@@ -166,7 +156,7 @@
     return NSStringFromClass(self.class);
 }
 -(NSImage*)toolbarItemImage{
-    return [NSImage imageNamed:NSImageNamePreferencesGeneral];
+    return [NSImage imageNamed:@"settings"];
 }
 -(NSString*)toolbarItemLabel{
     

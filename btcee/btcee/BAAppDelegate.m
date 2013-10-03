@@ -12,6 +12,7 @@
 #import "LaunchAtLoginController.h"
 #import "RHPreferencesWindowController.h"
 #import "I7SPreferenceGeneralViewController.h"
+#import "BAPreferenceWalletViewController.h"
 
 @interface BAAppDelegate ()
 
@@ -474,11 +475,10 @@
 #pragma mark - Preferences stack
 
 - (IBAction)showPreferences:(id)sender {
-    NSString *nibName = @"I7SPreferenceGeneralViewController";
+    I7SPreferenceGeneralViewController *generalPrefs = [[I7SPreferenceGeneralViewController alloc] initWithNibName:@"I7SPreferenceGeneralViewController" bundle:nil];
+    BAPreferenceWalletViewController *walletPrefs = [[BAPreferenceWalletViewController alloc] initWithNibName:@"BAPreferenceWalletViewController" bundle:nil];
     
-    I7SPreferenceGeneralViewController *general = [[I7SPreferenceGeneralViewController alloc] initWithNibName:nibName bundle:nil];
-    
-    NSArray *controllers = [NSArray arrayWithObjects:general,
+    NSArray *controllers = [NSArray arrayWithObjects:generalPrefs,walletPrefs,
                             nil];
     
     self.preferencesWindowController = [[RHPreferencesWindowController alloc] initWithViewControllers:controllers andTitle:NSLocalizedString(@"Preferences", @"Preferences Window Title")];
