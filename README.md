@@ -1,6 +1,7 @@
-BTCEEApp
+MacWalletApp
 ===================
+(attention: early development stage)
 
-BTCEEApp should be a very fast and integrated SPV Bitcoin wallet app for mac
-
-BTCEEApp uses bitcoinj as underlying framework.
+- MacWallet should be a very fast and integrated SPV Bitcoin wallet app for mac
+- MacWallet uses bitcoinj as underlying framework.
+- MacWallet can use OSX Keychain as Wallet Store
