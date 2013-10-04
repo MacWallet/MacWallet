@@ -155,8 +155,6 @@
 
 - (void)controlTextDidChange:(NSNotification *)notification
 {
-    NSTextField *tf = (NSTextField *)notification.object;
-    
     if(self.currentState == BASendCoinsWindowControllerWaitingCommit)
     {
         NSRect frame = self.window.frame;

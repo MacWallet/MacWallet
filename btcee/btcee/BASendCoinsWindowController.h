@@ -20,6 +20,4 @@ typedef enum BASendCoinsWindowControllerState {
 @interface BASendCoinsWindowController : NSWindowController <NSTextFieldDelegate>
 @property (strong) NSObject<BASendCoinsWindowControllerDelegate> *delegate;
 
-- (void)txIsCommited:(NSString *)txHash;
-
 @end

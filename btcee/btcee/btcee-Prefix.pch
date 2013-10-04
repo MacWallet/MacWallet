@@ -9,6 +9,8 @@
 
 #define kTESTNET_SWITCH_KEY @"testnetSwitchKey"
 #define kUSE_KEYCHAIN_KEY @"useKeychainKey"
+#define kTICKER_NAME_KEY @"tickerNameKey"
+#define kDEFAULT_TICKER_NAME @"BITSTAMP USD"
 
 #define kDEFAULT_MAX_TRANSACTION_COUNT_MENU 10
 #define kKEYCHAIN_SERVICE_NAME @"BTCEE"

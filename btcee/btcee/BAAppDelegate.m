@@ -6,13 +6,15 @@
 //  Copyright (c) 2013 include7 AG. All rights reserved.
 //
 
-#import "BAAppDelegate.h"
 #import <BitcoinJKit/BitcoinJKit.h>
-#import "RHKeychain.h"
-#import "LaunchAtLoginController.h"
-#import "RHPreferencesWindowController.h"
-#import "I7SPreferenceGeneralViewController.h"
-#import "BAPreferenceWalletViewController.h"
+
+#include "BAAppDelegate.h"
+#include "RHKeychain.h"
+#include "LaunchAtLoginController.h"
+#include "RHPreferencesWindowController.h"
+#include "I7SPreferenceGeneralViewController.h"
+#include "BAPreferenceWalletViewController.h"
+#include "BATickerController.h"
 
 @interface BAAppDelegate ()
 
@@ -41,6 +43,8 @@
 
 @property (strong) RHPreferencesWindowController * preferencesWindowController;
 
+@property (strong) NSString *ticketValue;
+
 @end
 
 @implementation BAAppDelegate
@@ -49,6 +53,10 @@
 // main entry point
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    
+    // init the ticker
+    [BATickerController defaultController].tickerFilePath = [[NSBundle mainBundle] pathForResource:@"tickers" ofType:@"plist"];
+    
     // do some localization
     self.sendCoinsMenuItem.title    = NSLocalizedString(@"sendCoins", @"sendCoinsMenuItem");
     self.addressesMenuItem.title    = NSLocalizedString(@"myAddresses", @"My Address Menu Item");
@@ -108,6 +116,11 @@
     
     // update menu with inital stuff
     [self updateNetworkMenuItem];
+    
+    NSTimer *tickerTimer = [NSTimer timerWithTimeInterval:5 target:self selector:@selector(updateTicker) userInfo:nil repeats:YES];
+    [tickerTimer fire];
+    
+    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)notification
@@ -208,6 +221,9 @@
     
     self.balanceUnconfirmedMenuItem.attributedTitle = string;
     self.statusItem.title = [[HIBitcoinManager defaultManager] formatNanobtc:balance];
+    
+    self.statusItem.title = self.ticketValue;
+    
     [self rebuildTransactionsMenu];
 }
 
@@ -502,7 +518,22 @@
     launchController = nil;
 }
 
-#pragma mark - helpers
+#pragma mark - ticker stack
+
+- (void)updateTicker
+{
+    NSString *tickerName = [[NSUserDefaults standardUserDefaults] objectForKey:kTICKER_NAME_KEY];
+    if(!tickerName || tickerName.length == 0)
+    {
+        tickerName = kDEFAULT_TICKER_NAME;
+    }
+    [[BATickerController defaultController] loadTicketWithName:tickerName completionHandler:^(NSString *valueString, NSError *error){
+        dispatch_async(dispatch_get_main_queue(), ^{
+        self.ticketValue = valueString;
+        [self updateStatusMenu];
+        });
+    }];
+}
 
 
 @end
