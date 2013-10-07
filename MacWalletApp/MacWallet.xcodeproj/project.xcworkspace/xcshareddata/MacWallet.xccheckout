@@ -5,7 +5,7 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>F8453301-A93E-4022-A9B8-923033537F12</string>
+	<string>24EDAA19-54B0-4802-BE5B-BC8435019560</string>
 	<key>IDESourceControlProjectName</key>
 	<string>MacWallet</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
@@ -14,8 +14,8 @@
 		<string>https://github.com/heardrwt/RHKeychain</string>
 		<key>F6F431B4-ED4F-4C4E-A3AE-A53D211ADF70</key>
 		<string>ssh://github.com/jonasschnelli/BitcoinJKit.git</string>
-		<key>F932777A-E9BA-4B6B-9EF0-2B08DE8AB67A</key>
-		<string>ssh://github.com/jonasschnelli/BTCEEApp.git</string>
+		<key>FA7CB3DC-D81F-4046-ABA5-9CD7A8E6CC8E</key>
+		<string>https://github.com/jonasschnelli/MacWalletApp</string>
 		<key>FEE04236-F745-4D97-B050-DE55AEF182A0</key>
 		<string>https://github.com/jonasschnelli/LaunchAtLoginController</string>
 	</dict>
@@ -27,17 +27,17 @@
 		<string>../../../vendor/RHKeychain</string>
 		<key>F6F431B4-ED4F-4C4E-A3AE-A53D211ADF70</key>
 		<string>../../../BitcoinJKit</string>
-		<key>F932777A-E9BA-4B6B-9EF0-2B08DE8AB67A</key>
+		<key>FA7CB3DC-D81F-4046-ABA5-9CD7A8E6CC8E</key>
 		<string>../../..</string>
 		<key>FEE04236-F745-4D97-B050-DE55AEF182A0</key>
 		<string>../../../vendor/LaunchAtLoginController</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/jonasschnelli/BTCEEApp.git</string>
+	<string>https://github.com/jonasschnelli/MacWalletApp</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>F932777A-E9BA-4B6B-9EF0-2B08DE8AB67A</string>
+	<string>FA7CB3DC-D81F-4046-ABA5-9CD7A8E6CC8E</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
@@ -60,7 +60,7 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>F932777A-E9BA-4B6B-9EF0-2B08DE8AB67A</string>
+			<string>FA7CB3DC-D81F-4046-ABA5-9CD7A8E6CC8E</string>
 			<key>IDESourceControlWCCName</key>
 			<string>MacWalletApp</string>
 		</dict>

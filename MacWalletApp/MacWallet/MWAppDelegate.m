@@ -15,6 +15,8 @@
 #include "MWPreferenceGeneralViewController.h"
 #include "MWPreferenceWalletViewController.h"
 #include "MWTickerController.h"
+#include "MWTransactionDetailsWindowController.h"
+#include "MWTransactionMenuItem.h"
 
 @interface MWAppDelegate ()
 
@@ -33,17 +35,16 @@
 @property (assign) IBOutlet NSMenuItem *networkStatusBlockHeight;
 @property (assign) IBOutlet NSMenuItem *networkStatusLastBlockTime;
 @property (assign) IBOutlet NSMenuItem *networkStatusNetSwitch;
-
 @property (assign) IBOutlet NSMenuItem *balanceUnconfirmedMenuItem;
-
+@property (assign) IBOutlet NSMenuItem *secondRowItem;
 @property (assign) BOOL useKeychain;
-
 @property (strong) MWSendCoinsWindowController *sendCoinsWindowController;
 @property (strong) MWTransactionsWindowController *txWindowController;
-
+@property (strong) MWTransactionDetailsWindowController *txDetailWindowController;
 @property (strong) RHPreferencesWindowController * preferencesWindowController;
-
 @property (strong) NSString *ticketValue;
+@property (strong) NSTimer *tickerTimer;
+
 
 @end
 
@@ -69,7 +70,7 @@
     // make a global menu (extra menu) item
     self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     [self.statusItem setMenu:self.statusMenu];
-    [self.statusItem setTitle:@"MacWallet"];
+    [self.statusItem setTitle:@"loading..."];
     [self.statusItem setHighlightMode:YES];
     
     // add observers
@@ -117,10 +118,22 @@
     // update menu with inital stuff
     [self updateNetworkMenuItem];
     
-    NSTimer *tickerTimer = [NSTimer timerWithTimeInterval:5 target:self selector:@selector(updateTicker) userInfo:nil repeats:YES];
-    [tickerTimer fire];
+    self.tickerTimer = [NSTimer timerWithTimeInterval:kTICKET_UPDATE_INTERVAL_IN_SECONDS target:self selector:@selector(updateTicker) userInfo:nil repeats:YES];
+    [self.tickerTimer fire];
     
-    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+    [[NSRunLoop mainRunLoop] addTimer:self.tickerTimer forMode:NSDefaultRunLoopMode];
+    
+    // register for some notifications
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateAfterSettingsChanges)
+                                                 name:kSHOULD_UPDATE_AFTER_PREFS_CHANGE_NOTIFICATION
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showTransactionDetailWindow:)
+                                                 name:kSHOULD_SHOW_TRANSACTION_DETAILS_FOR_ID
+                                               object:nil];
+    
+    
 }
 
 - (void)applicationWillTerminate:(NSNotification *)notification
@@ -196,6 +209,13 @@
     [self rebuildTransactionsMenu];
 }
 
+- (void)updateAfterSettingsChanges
+{
+    [self updateStatusMenu];
+    [self rebuildTransactionsMenu];
+    [self.tickerTimer fire];
+}
+
 
 
 #pragma mark - menu actions / menu stack
@@ -219,10 +239,62 @@
     
     NSMutableAttributedString * string = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:NSLocalizedString(@"Funds on the way:\n%@",@"Funds on the way menu item"), [[HIBitcoinManager defaultManager] formatNanobtc:fundsOnTheWay]] attributes:attrsDictionary];
     
-    self.balanceUnconfirmedMenuItem.attributedTitle = string;
-    self.statusItem.title = [[HIBitcoinManager defaultManager] formatNanobtc:balance];
+    NSInteger statusItemStyle = [[NSUserDefaults standardUserDefaults] integerForKey:kSTATUS_ITEM_STYLE_KEY];
     
-    self.statusItem.title = self.ticketValue;
+    if(statusItemStyle == MWStatusItemStyleBoth)
+    {
+        // set a two line status item
+        [self.secondRowItem setHidden:YES];
+        
+        NSMutableParagraphStyle *paragraphStyle=[[NSMutableParagraphStyle alloc] init];
+        [paragraphStyle setAlignment:NSRightTextAlignment];
+        [paragraphStyle setMaximumLineHeight:10];
+        [paragraphStyle setLineSpacing:1.0];
+        
+        NSFont *font2 = [NSFont boldSystemFontOfSize:9];
+        NSDictionary *attrsDictionary2 = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:font2, [NSColor blackColor], paragraphStyle, nil]
+                                                                     forKeys:[NSArray arrayWithObjects:NSFontAttributeName, NSForegroundColorAttributeName, NSParagraphStyleAttributeName, nil] ];
+        NSMutableAttributedString* text = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\n%@",self.ticketValue, [[HIBitcoinManager defaultManager] formatNanobtc:balance]] attributes:attrsDictionary2];
+        
+        self.statusItem.attributedTitle = text;
+    }
+    else if(statusItemStyle == MWStatusItemStyleTicker)
+    {
+        self.statusItem.title = self.ticketValue;
+        [self.secondRowItem setHidden:NO];
+        
+        // 2nd row is the wallet balance
+        self.secondRowItem.title = [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"secondLineBalanceLabel", @""), [[HIBitcoinManager defaultManager] formatNanobtc:balance]];
+    }
+    else
+    {
+        
+        self.statusItem.title = [[HIBitcoinManager defaultManager] formatNanobtc:balance];
+        
+        // 2nd row is the ticker
+        if(self.ticketValue.length > 0)
+        {
+            [self.secondRowItem setHidden:NO];
+            
+            NSString *optimizedString = [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"secondLineTickerLabel", @""),self.ticketValue];
+            
+            NSString *tickerName = [[NSUserDefaults standardUserDefaults] objectForKey:kTICKER_NAME_KEY];
+            if(!tickerName || tickerName.length <= 0)
+            {
+                [self.secondRowItem setHidden:YES];
+            }
+            else
+            {
+                optimizedString = [optimizedString stringByReplacingOccurrencesOfString:@"@$1" withString:tickerName];
+                self.secondRowItem.title = optimizedString;
+            }
+        }
+        else {
+            [self.secondRowItem setHidden:YES];
+        }
+    }
+    
+    self.balanceUnconfirmedMenuItem.attributedTitle = string;
     
     [self rebuildTransactionsMenu];
 }
@@ -357,7 +429,15 @@
             age = [NSString stringWithFormat:@"%.1f min", ageInSeconds/60];
         }
         
-        NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"%@ (%@ ago)", [[HIBitcoinManager defaultManager] formatNanobtc:amount], age ] action:@selector(transactionClicked:) keyEquivalent:@""];
+        NSString *format = @"%@";
+        if([[NSUserDefaults standardUserDefaults] boolForKey:kSHOW_TIME_AGO_KEY] == YES)
+        {
+            format = [format stringByAppendingString:NSLocalizedString(@"timeAgoFormat", @"")];
+        }
+        
+        MWTransactionMenuItem *menuItem = [[MWTransactionMenuItem alloc] initWithTitle:[NSString stringWithFormat:format, [[HIBitcoinManager defaultManager] formatNanobtc:amount], age ] action:@selector(transactionClicked:) keyEquivalent:@""];
+        menuItem.txId = [transactionDict objectForKey:@"txid"];
+        
         if([[transactionDict objectForKey:@"confidence"] isEqualToString:@"building"])
         {
             [menuItem setImage:[NSImage imageNamed:@"TrustedCheckmark"]];
@@ -396,7 +476,11 @@
     
 - (void)transactionClicked:(id)sender
 {
-    [self updateStatusMenu];
+    
+    MWTransactionMenuItem *txMenuItem = (MWTransactionMenuItem *)sender;
+    NSString *txHash = txMenuItem.txId;
+    NSDictionary *dict = [[HIBitcoinManager defaultManager] transactionForHash:txHash];
+    [self showTransactionDetailWindow:dict];
 }
 
 - (IBAction)showTransactionWindow:(id)sender
@@ -408,6 +492,29 @@
     
     [self.txWindowController showWindow:nil];
     [self.txWindowController.window orderFrontRegardless];
+}
+
+- (IBAction)showTransactionDetailWindow:(NSDictionary *)txDict
+{
+    if([txDict isKindOfClass:[NSNotification class]])
+    {
+        // it's a notification
+        txDict = [(NSNotification *)txDict object];
+    }
+    if([txDict isKindOfClass:[NSString class]])
+    {
+        // get txdict if parameter 0 is only a string (txid)
+        txDict = [[HIBitcoinManager defaultManager] transactionForHash:(NSString *)txDict];
+    }
+    self.txDetailWindowController = [[MWTransactionDetailsWindowController alloc] initWithWindowNibName:@"MWTransactionDetailsWindowController"];
+    
+    self.txDetailWindowController.txDict = txDict;
+    
+    // activate the app so that the window popps to front
+    [NSApp activateIgnoringOtherApps:YES];
+    
+    [self.txDetailWindowController showWindow:nil];
+    [self.txDetailWindowController.window orderFrontRegardless];
 }
 
 #pragma mark - send coins stack
@@ -491,8 +598,8 @@
 #pragma mark - Preferences stack
 
 - (IBAction)showPreferences:(id)sender {
-    MWPreferenceGeneralViewController *generalPrefs = [[MWPreferenceGeneralViewController alloc] initWithNibName:@"I7SPreferenceGeneralViewController" bundle:nil];
-    MWPreferenceWalletViewController *walletPrefs = [[MWPreferenceWalletViewController alloc] initWithNibName:@"BAPreferenceWalletViewController" bundle:nil];
+    MWPreferenceGeneralViewController *generalPrefs = [[MWPreferenceGeneralViewController alloc] initWithNibName:@"MWPreferenceGeneralViewController" bundle:nil];
+    MWPreferenceWalletViewController *walletPrefs = [[MWPreferenceWalletViewController alloc] initWithNibName:@"MWPreferenceWalletViewController" bundle:nil];
     
     NSArray *controllers = [NSArray arrayWithObjects:generalPrefs,walletPrefs,
                             nil];

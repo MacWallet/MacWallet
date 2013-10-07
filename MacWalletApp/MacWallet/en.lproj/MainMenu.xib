@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1070" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4510"/>
@@ -657,6 +657,7 @@
                 <outlet property="networkStatusPeersMenuItem" destination="zhr-lm-E9Y" id="S5B-Dw-Rk0"/>
                 <outlet property="preferencesMenuItem" destination="hpb-8l-QWa" id="J6I-ol-qkd"/>
                 <outlet property="quitMenuItem" destination="539" id="XPF-bb-a0b"/>
+                <outlet property="secondRowItem" destination="Cfv-Xt-JRf" id="x26-7G-TOW"/>
                 <outlet property="sendCoinsMenuItem" destination="538" id="wZd-x0-fG0"/>
                 <outlet property="statusMenu" destination="536" id="540"/>
                 <outlet property="transactionsMenu" destination="Em6-Yl-mUX" id="pxM-vS-56a"/>
@@ -724,6 +725,9 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="nDJ-bF-PGY"/>
+                <menuItem title="var0" id="Cfv-Xt-JRf">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
                 <menuItem title="Network Status" id="l8g-ak-bBL">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Network Status" id="oLk-jt-WwU">

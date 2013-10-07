@@ -8,17 +8,25 @@
 
 #import "MWPreferenceGeneralViewController.h"
 #import "MWAppDelegate.h"
+#import "MWTickerController.h"
 
 @interface MWPreferenceGeneralViewController ()
 @property (assign) IBOutlet NSButton *checkUpdatesAtStartup;
 @property (assign) IBOutlet NSButton *autostartSystem;
+@property (assign) IBOutlet NSButton *showTimeAgoButton;
 @property (assign) IBOutlet NSTextField *tickerLabel;
-@property (assign) IBOutlet NSComboBox *currencySelector;
-@property (assign) IBOutlet NSComboBox *updateIntervalBox;
+@property (assign) IBOutlet NSComboBox *tickerSelector;
+
+@property (assign) IBOutlet NSTextField *whatToShowLabel;
+@property (assign) IBOutlet NSMatrix *radioButtonGroup;
+@property (assign) IBOutlet NSButtonCell *showBalanceButton;
+@property (assign) IBOutlet NSButtonCell *showTickerButton;
+@property (assign) IBOutlet NSButtonCell *showBothButton;
+@property (assign) BOOL showTimeAgo;
 @end
 
 @implementation MWPreferenceGeneralViewController
-@synthesize currencySelector=_currencySelector;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -44,126 +52,108 @@
     dele.launchAtStartup = aState;
 }
 
+- (BOOL)showTimeAgo
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:kSHOW_TIME_AGO_KEY];
+}
+
+- (void)setShowTimeAgo:(BOOL)aState
+{
+    [[NSUserDefaults standardUserDefaults] setBool:aState forKey:kSHOW_TIME_AGO_KEY];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSHOULD_UPDATE_AFTER_PREFS_CHANGE_NOTIFICATION object:self];
+}
+
+
 
 #pragma mark - View hide/show
 
 - (void)awakeFromNib {
-    [self.currencySelector addItemsWithObjectValues:[NSArray arrayWithObjects:NSLocalizedString(@"BSCurrencyUSD", @"usd currency string"), NSLocalizedString(@"BSCurrencyEUR", @"EUR currency string"), NSLocalizedString(@"BSCurrencyCHF", @"CHF currency string"), NSLocalizedString(@"BSCurrencyGBP", @"GBP currency string"), nil]];
-    [self.currencySelector selectItemAtIndex:0];
-    NSString *currency = [[NSUserDefaults standardUserDefaults] objectForKey:BSUserDefaultsCurrencyKey];
-    if(currency) {
-        if([currency isEqualToString:@"EUR"]) {
-            [self.currencySelector selectItemAtIndex:1];
-        }
-        if([currency isEqualToString:@"CHF"]) {
-            [self.currencySelector selectItemAtIndex:2];
-        }
-        if([currency isEqualToString:@"GBP"]) {
-            [self.currencySelector selectItemAtIndex:3];
+    
+    NSMutableArray *tickerLabels = [NSMutableArray array];
+    NSDictionary *tickerDatabase = [MWTickerController defaultController].tickerDatabase;
+    
+    for(NSString *tickerLabel in [tickerDatabase allKeys])
+    {
+        [tickerLabels addObject:tickerLabel];
+    }
+    
+    [self.tickerSelector addItemsWithObjectValues:tickerLabels];
+    [self.tickerSelector selectItemAtIndex:0];
+    NSString *selectedTicker = [[NSUserDefaults standardUserDefaults] objectForKey:kTICKER_NAME_KEY];
+
+    int i = 0;
+    for(i=0;i < self.tickerSelector.objectValues.count;i++)
+    {
+        if([[self.tickerSelector.objectValues objectAtIndex:i] isEqualToString:selectedTicker])
+        {
+            [self.tickerSelector selectItemAtIndex:i];
         }
     }
-    self.currencySelector.delegate = self;
     
-    [self.updateIntervalBox addItemsWithObjectValues:[NSArray arrayWithObjects:NSLocalizedString(@"10 sec", @"10 sec preference value"), NSLocalizedString(@"30 sec", @"30 sec preference value"), NSLocalizedString(@"1 min", @"1 min preference value"), NSLocalizedString(@"2 min", @"2 min preference value"), NSLocalizedString(@"5 min", @"5 min preference value"), NSLocalizedString(@"10 min", @"10 min preference value"), NSLocalizedString(@"30 min", @"30 min preference value"), NSLocalizedString(@"1 h", @"1 h preference value"),nil]];
-    [self.updateIntervalBox selectItemAtIndex:3];
-    NSNumber *updateIntervalNumber = [[NSUserDefaults standardUserDefaults] objectForKey:BSUserDefaultsUpdateIntervalKey];
-    if(updateIntervalNumber) {
-        if([updateIntervalNumber intValue] == 10) {
-            [self.updateIntervalBox selectItemAtIndex:0];
-        }
-        else if([updateIntervalNumber intValue] == 30) {
-            [self.updateIntervalBox selectItemAtIndex:1];
-        }
-        else if([updateIntervalNumber intValue] == 60) {
-            [self.updateIntervalBox selectItemAtIndex:2];
-        }
-        else if([updateIntervalNumber intValue] == 60*2) {
-            [self.updateIntervalBox selectItemAtIndex:3];
-        }
-        else if([updateIntervalNumber intValue] == 60*5) {
-            [self.updateIntervalBox selectItemAtIndex:4];
-        }
-        else if([updateIntervalNumber intValue] == 60*30) {
-            [self.updateIntervalBox selectItemAtIndex:5];
-        }
-        else if([updateIntervalNumber intValue] == 60*60) {
-            [self.updateIntervalBox selectItemAtIndex:6];
-        }
-    }
-    self.updateIntervalBox.delegate = self;
+    self.tickerSelector.delegate = self;
     
+
     self.checkUpdatesAtStartup.title = NSLocalizedString(@"checkForUpdatesAtStartupLabel", @"check for update preference button text");
-    self.autostartSystem.title = NSLocalizedString(@"autostartPrefsLabel", @"auto check updates preference button text");
-    self.tickerLabel.stringValue = NSLocalizedString(@"tickerLabel", @"currency preference combo box");
+    self.autostartSystem.title      = NSLocalizedString(@"autostartPrefsLabel", @"auto check updates preference button text");
+    self.tickerLabel.stringValue    = NSLocalizedString(@"tickerLabel", @"currency preference combo box");
+    
+    self.showBalanceButton.title    = NSLocalizedString(@"showBalanceButtonLabel", @"currency preference combo box");
+    self.showTickerButton.title     = NSLocalizedString(@"showTickerButton", @"currency preference combo box");
+    self.showBothButton.title       = NSLocalizedString(@"showBothButton", @"currency preference combo box");
+    self.whatToShowLabel.stringValue= NSLocalizedString(@"whatToShowLabel", @"currency preference combo box");
+    self.showTimeAgoButton.title     = NSLocalizedString(@"timeAgoLabel", @"timeAgoLabel label");
+    
+    
+    NSInteger statusItemStyle = [[NSUserDefaults standardUserDefaults] integerForKey:kSTATUS_ITEM_STYLE_KEY];
+    [self.radioButtonGroup selectCellWithTag:statusItemStyle];
 }
 
 - (void)comboBoxSelectionDidChange:(NSNotification *)notification {
-    if(notification.object == self.currencySelector) {
-        if(self.currencySelector.indexOfSelectedItem == 0) {
-            [[NSUserDefaults standardUserDefaults] setObject:@"USD" forKey:BSUserDefaultsCurrencyKey];
-        }
-        else if(self.currencySelector.indexOfSelectedItem == 1) {
-            [[NSUserDefaults standardUserDefaults] setObject:@"EUR" forKey:BSUserDefaultsCurrencyKey];
-        }
-        else if(self.currencySelector.indexOfSelectedItem == 2) {
-            [[NSUserDefaults standardUserDefaults] setObject:@"CHF" forKey:BSUserDefaultsCurrencyKey];
-        }
-        else if(self.currencySelector.indexOfSelectedItem == 3) {
-            [[NSUserDefaults standardUserDefaults] setObject:@"GBP" forKey:BSUserDefaultsCurrencyKey];
-        }
+    if(notification.object == self.tickerSelector)
+    {
+        [[NSUserDefaults standardUserDefaults] setObject:self.tickerSelector.objectValueOfSelectedItem forKey:kTICKER_NAME_KEY];
         
         [[NSUserDefaults standardUserDefaults] synchronize];
-        [[NSNotificationCenter defaultCenter] postNotificationName:BSShouldReloadFromRemoteNotification object:nil];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:kSHOULD_UPDATE_AFTER_PREFS_CHANGE_NOTIFICATION object:self];
     }
-    else if(notification.object == self.updateIntervalBox) {
-        if(self.updateIntervalBox.indexOfSelectedItem == 0) {
-            [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:10] forKey:BSUserDefaultsUpdateIntervalKey];
-        }
-        else if(self.updateIntervalBox.indexOfSelectedItem == 1) {
-            [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:30] forKey:BSUserDefaultsUpdateIntervalKey];
-        }
-        else if(self.updateIntervalBox.indexOfSelectedItem == 2) {
-            [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:60] forKey:BSUserDefaultsUpdateIntervalKey];
-        }
-        else if(self.updateIntervalBox.indexOfSelectedItem == 3) {
-            [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:60*2] forKey:BSUserDefaultsUpdateIntervalKey];
-        }
-        else if(self.updateIntervalBox.indexOfSelectedItem == 4) {
-            [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:60*5] forKey:BSUserDefaultsUpdateIntervalKey];
-        }
-        else if(self.updateIntervalBox.indexOfSelectedItem == 5) {
-            [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:60*30] forKey:BSUserDefaultsUpdateIntervalKey];
-        }
-        else if(self.updateIntervalBox.indexOfSelectedItem == 5) {
-            [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:60*60] forKey:BSUserDefaultsUpdateIntervalKey];
-        }
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        [[NSNotificationCenter defaultCenter] postNotificationName:BSShouldResetTimerNotification object:nil];
-    }
-
-    
 }
 
+- (IBAction)radioButtonMatrixDidChange:(id)sender
+{
+    NSMatrix *matrix = (NSMatrix *)sender;
+    NSCell *seletcedCell = [matrix selectedCell];
+    [[NSUserDefaults standardUserDefaults] setInteger:seletcedCell.tag forKey:kSTATUS_ITEM_STYLE_KEY];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSHOULD_UPDATE_AFTER_PREFS_CHANGE_NOTIFICATION object:self];
+}
 
-- (void)viewDidDisappear {
+- (void)viewDidDisappear
+{
     
     
 }
 
 #pragma mark - RHPreferencesViewControllerProtocol
 
--(NSString*)identifier{
+-(NSString*)identifier
+{
     return NSStringFromClass(self.class);
 }
--(NSImage*)toolbarItemImage{
+-(NSImage*)toolbarItemImage
+{
     return [NSImage imageNamed:@"settings"];
 }
--(NSString*)toolbarItemLabel{
-    
+-(NSString*)toolbarItemLabel
+{
     return NSLocalizedString(@"General", @"GeneralToolbarItemLabel");
 }
 
--(NSView*)initialKeyView{
+-(NSView*)initialKeyView
+{
     return nil;
 }
 

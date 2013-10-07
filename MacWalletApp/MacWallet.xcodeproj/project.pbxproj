@@ -19,13 +19,16 @@
 		E504D80017FDA0A300F94081 /* wallet.png in Resources */ = {isa = PBXBuildFile; fileRef = E504D7FF17FDA0A300F94081 /* wallet.png */; };
 		E504D80217FDA4B500F94081 /* tickers.plist in Resources */ = {isa = PBXBuildFile; fileRef = E504D80117FDA4B500F94081 /* tickers.plist */; };
 		E508D65817FB26A700CC3CF9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E508D65A17FB26A700CC3CF9 /* Localizable.strings */; };
-		E513129D17FF3978007924F2 /* MWTickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E513129C17FF3978007924F2 /* MWTickerController.m */; };
 		E528E91017FAB7B800BF4BAD /* Questionmark.png in Resources */ = {isa = PBXBuildFile; fileRef = E528E90E17FAB7B800BF4BAD /* Questionmark.png */; };
 		E528E91117FAB7B800BF4BAD /* Questionmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E528E90F17FAB7B800BF4BAD /* Questionmark@2x.png */; };
-		E534F3E017F2CD8800A95F20 /* SendCoinsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = E534F3DF17F2CD8800A95F20 /* SendCoinsWindow.xib */; };
-		E534F3E617F2D05300A95F20 /* MWSendCoinsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = E534F3E517F2D05300A95F20 /* MWSendCoinsWindowController.m */; };
-		E5B838F817F9CBF4004FBBB5 /* MWTransactionsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B838F617F9CBF4004FBBB5 /* MWTransactionsWindowController.m */; };
-		E5B838F917F9CBF4004FBBB5 /* MWTransactionsWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5B838F717F9CBF4004FBBB5 /* MWTransactionsWindowController.xib */; };
+		E548C6EE1802BFB400976CD7 /* MWTickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E548C6ED1802BFB400976CD7 /* MWTickerController.m */; };
+		E548C6F41802BFE600976CD7 /* MWSendCoinsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = E548C6F11802BFE600976CD7 /* MWSendCoinsWindowController.m */; };
+		E548C6F51802BFE600976CD7 /* SendCoinsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = E548C6F31802BFE600976CD7 /* SendCoinsWindow.xib */; };
+		E548C6FF1802BFFB00976CD7 /* MWTransactionDetailsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = E548C6F81802BFFB00976CD7 /* MWTransactionDetailsWindowController.m */; };
+		E548C7001802BFFB00976CD7 /* MWTransactionDetailsWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E548C6F91802BFFB00976CD7 /* MWTransactionDetailsWindowController.xib */; };
+		E548C7011802BFFB00976CD7 /* MWTransactionMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E548C6FB1802BFFB00976CD7 /* MWTransactionMenuItem.m */; };
+		E548C7021802BFFB00976CD7 /* MWTransactionsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = E548C6FD1802BFFB00976CD7 /* MWTransactionsWindowController.m */; };
+		E548C7031802BFFB00976CD7 /* MWTransactionsWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E548C6FE1802BFFB00976CD7 /* MWTransactionsWindowController.xib */; };
 		E5B8390117F9FEED004FBBB5 /* RHKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B8390017F9FEED004FBBB5 /* RHKeychain.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E5C359D417F1DFC200BA394E /* TrustedCheckmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C359D217F1DFC200BA394E /* TrustedCheckmark@2x.png */; };
 		E5C359D617F1DFDE00BA394E /* TrustedCheckmark.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C359D517F1DFDE00BA394E /* TrustedCheckmark.png */; };
@@ -86,17 +89,22 @@
 		E504D7FF17FDA0A300F94081 /* wallet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wallet.png; sourceTree = "<group>"; };
 		E504D80117FDA4B500F94081 /* tickers.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = tickers.plist; sourceTree = "<group>"; };
 		E508D65917FB26A700CC3CF9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		E513129B17FF3978007924F2 /* MWTickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWTickerController.h; sourceTree = "<group>"; };
-		E513129C17FF3978007924F2 /* MWTickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWTickerController.m; sourceTree = "<group>"; };
 		E528E90E17FAB7B800BF4BAD /* Questionmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Questionmark.png; sourceTree = "<group>"; };
 		E528E90F17FAB7B800BF4BAD /* Questionmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Questionmark@2x.png"; sourceTree = "<group>"; };
-		E534F3DF17F2CD8800A95F20 /* SendCoinsWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SendCoinsWindow.xib; sourceTree = "<group>"; };
-		E534F3E417F2D05300A95F20 /* MWSendCoinsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWSendCoinsWindowController.h; sourceTree = "<group>"; };
-		E534F3E517F2D05300A95F20 /* MWSendCoinsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWSendCoinsWindowController.m; sourceTree = "<group>"; };
-		E57FBF7017FF4BE900BBF75F /* MWSendCoinsWindowControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MWSendCoinsWindowControllerDelegate.h; sourceTree = "<group>"; };
-		E5B838F517F9CBF4004FBBB5 /* MWTransactionsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWTransactionsWindowController.h; sourceTree = "<group>"; };
-		E5B838F617F9CBF4004FBBB5 /* MWTransactionsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWTransactionsWindowController.m; sourceTree = "<group>"; };
-		E5B838F717F9CBF4004FBBB5 /* MWTransactionsWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MWTransactionsWindowController.xib; sourceTree = "<group>"; };
+		E548C6EC1802BFB400976CD7 /* MWTickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWTickerController.h; sourceTree = "<group>"; };
+		E548C6ED1802BFB400976CD7 /* MWTickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWTickerController.m; sourceTree = "<group>"; };
+		E548C6F01802BFE600976CD7 /* MWSendCoinsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWSendCoinsWindowController.h; sourceTree = "<group>"; };
+		E548C6F11802BFE600976CD7 /* MWSendCoinsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWSendCoinsWindowController.m; sourceTree = "<group>"; };
+		E548C6F21802BFE600976CD7 /* MWSendCoinsWindowControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWSendCoinsWindowControllerDelegate.h; sourceTree = "<group>"; };
+		E548C6F31802BFE600976CD7 /* SendCoinsWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SendCoinsWindow.xib; sourceTree = "<group>"; };
+		E548C6F71802BFFB00976CD7 /* MWTransactionDetailsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWTransactionDetailsWindowController.h; sourceTree = "<group>"; };
+		E548C6F81802BFFB00976CD7 /* MWTransactionDetailsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWTransactionDetailsWindowController.m; sourceTree = "<group>"; };
+		E548C6F91802BFFB00976CD7 /* MWTransactionDetailsWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MWTransactionDetailsWindowController.xib; sourceTree = "<group>"; };
+		E548C6FA1802BFFB00976CD7 /* MWTransactionMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWTransactionMenuItem.h; sourceTree = "<group>"; };
+		E548C6FB1802BFFB00976CD7 /* MWTransactionMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWTransactionMenuItem.m; sourceTree = "<group>"; };
+		E548C6FC1802BFFB00976CD7 /* MWTransactionsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWTransactionsWindowController.h; sourceTree = "<group>"; };
+		E548C6FD1802BFFB00976CD7 /* MWTransactionsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWTransactionsWindowController.m; sourceTree = "<group>"; };
+		E548C6FE1802BFFB00976CD7 /* MWTransactionsWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MWTransactionsWindowController.xib; sourceTree = "<group>"; };
 		E5B838FF17F9FEED004FBBB5 /* RHKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RHKeychain.h; path = ../vendor/RHKeychain/RHKeychain/RHKeychain.h; sourceTree = "<group>"; };
 		E5B8390017F9FEED004FBBB5 /* RHKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RHKeychain.m; path = ../vendor/RHKeychain/RHKeychain/RHKeychain.m; sourceTree = "<group>"; };
 		E5C359D217F1DFC200BA394E /* TrustedCheckmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TrustedCheckmark@2x.png"; sourceTree = "<group>"; };
@@ -173,19 +181,13 @@
 		E50310D517E9986500C2F226 /* MacWallet */ = {
 			isa = PBXGroup;
 			children = (
-				E513129B17FF3978007924F2 /* MWTickerController.h */,
-				E513129C17FF3978007924F2 /* MWTickerController.m */,
+				E548C6F61802BFFB00976CD7 /* Transaction */,
+				E548C6EF1802BFE600976CD7 /* SendCoins */,
+				E548C6EB1802BF9F00976CD7 /* Ticker */,
 				E5E2CCBC17FC98A9003EBA11 /* Preferences */,
 				E50310E417E9986600C2F226 /* MainMenu.xib */,
 				E50310E117E9986600C2F226 /* MWAppDelegate.h */,
 				E50310E217E9986600C2F226 /* MWAppDelegate.m */,
-				E534F3E417F2D05300A95F20 /* MWSendCoinsWindowController.h */,
-				E534F3E517F2D05300A95F20 /* MWSendCoinsWindowController.m */,
-				E57FBF7017FF4BE900BBF75F /* MWSendCoinsWindowControllerDelegate.h */,
-				E534F3DF17F2CD8800A95F20 /* SendCoinsWindow.xib */,
-				E5B838F517F9CBF4004FBBB5 /* MWTransactionsWindowController.h */,
-				E5B838F617F9CBF4004FBBB5 /* MWTransactionsWindowController.m */,
-				E5B838F717F9CBF4004FBBB5 /* MWTransactionsWindowController.xib */,
 				E5C359D017F1DFC200BA394E /* res */,
 				E50310D617E9986500C2F226 /* Supporting Files */,
 			);
@@ -204,6 +206,41 @@
 				E504D80117FDA4B500F94081 /* tickers.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E548C6EB1802BF9F00976CD7 /* Ticker */ = {
+			isa = PBXGroup;
+			children = (
+				E548C6EC1802BFB400976CD7 /* MWTickerController.h */,
+				E548C6ED1802BFB400976CD7 /* MWTickerController.m */,
+			);
+			path = Ticker;
+			sourceTree = "<group>";
+		};
+		E548C6EF1802BFE600976CD7 /* SendCoins */ = {
+			isa = PBXGroup;
+			children = (
+				E548C6F01802BFE600976CD7 /* MWSendCoinsWindowController.h */,
+				E548C6F11802BFE600976CD7 /* MWSendCoinsWindowController.m */,
+				E548C6F21802BFE600976CD7 /* MWSendCoinsWindowControllerDelegate.h */,
+				E548C6F31802BFE600976CD7 /* SendCoinsWindow.xib */,
+			);
+			path = SendCoins;
+			sourceTree = "<group>";
+		};
+		E548C6F61802BFFB00976CD7 /* Transaction */ = {
+			isa = PBXGroup;
+			children = (
+				E548C6F71802BFFB00976CD7 /* MWTransactionDetailsWindowController.h */,
+				E548C6F81802BFFB00976CD7 /* MWTransactionDetailsWindowController.m */,
+				E548C6F91802BFFB00976CD7 /* MWTransactionDetailsWindowController.xib */,
+				E548C6FA1802BFFB00976CD7 /* MWTransactionMenuItem.h */,
+				E548C6FB1802BFFB00976CD7 /* MWTransactionMenuItem.m */,
+				E548C6FC1802BFFB00976CD7 /* MWTransactionsWindowController.h */,
+				E548C6FD1802BFFB00976CD7 /* MWTransactionsWindowController.m */,
+				E548C6FE1802BFFB00976CD7 /* MWTransactionsWindowController.xib */,
+			);
+			path = Transaction;
 			sourceTree = "<group>";
 		};
 		E5B838FE17F9FEE5004FBBB5 /* vendor */ = {
@@ -326,10 +363,10 @@
 			files = (
 				E50310DA17E9986500C2F226 /* InfoPlist.strings in Resources */,
 				E5C359D417F1DFC200BA394E /* TrustedCheckmark@2x.png in Resources */,
-				E534F3E017F2CD8800A95F20 /* SendCoinsWindow.xib in Resources */,
+				E548C6F51802BFE600976CD7 /* SendCoinsWindow.xib in Resources */,
 				E50310E017E9986600C2F226 /* Credits.rtf in Resources */,
-				E5B838F917F9CBF4004FBBB5 /* MWTransactionsWindowController.xib in Resources */,
 				E504D80017FDA0A300F94081 /* wallet.png in Resources */,
+				E548C7001802BFFB00976CD7 /* MWTransactionDetailsWindowController.xib in Resources */,
 				E504D7F717FD843100F94081 /* MWPreferenceWalletViewController.xib in Resources */,
 				E508D65817FB26A700CC3CF9 /* Localizable.strings in Resources */,
 				E5C359D617F1DFDE00BA394E /* TrustedCheckmark.png in Resources */,
@@ -338,6 +375,7 @@
 				E528E91017FAB7B800BF4BAD /* Questionmark.png in Resources */,
 				E504D80217FDA4B500F94081 /* tickers.plist in Resources */,
 				E50310E617E9986600C2F226 /* MainMenu.xib in Resources */,
+				E548C7031802BFFB00976CD7 /* MWTransactionsWindowController.xib in Resources */,
 				E504D7FE17FDA09D00F94081 /* settings.png in Resources */,
 				E5E2CCC717FC98B3003EBA11 /* MWPreferenceGeneralViewController.xib in Resources */,
 			);
@@ -350,14 +388,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E513129D17FF3978007924F2 /* MWTickerController.m in Sources */,
+				E548C7021802BFFB00976CD7 /* MWTransactionsWindowController.m in Sources */,
 				E5E2CCC617FC98B3003EBA11 /* MWPreferenceGeneralViewController.m in Sources */,
 				E504D7F617FD843100F94081 /* MWPreferenceWalletViewController.m in Sources */,
 				E5E2CCCD17FC9A7D003EBA11 /* LaunchAtLoginController.m in Sources */,
-				E534F3E617F2D05300A95F20 /* MWSendCoinsWindowController.m in Sources */,
+				E548C6EE1802BFB400976CD7 /* MWTickerController.m in Sources */,
+				E548C6F41802BFE600976CD7 /* MWSendCoinsWindowController.m in Sources */,
 				E5B8390117F9FEED004FBBB5 /* RHKeychain.m in Sources */,
+				E548C7011802BFFB00976CD7 /* MWTransactionMenuItem.m in Sources */,
 				E50310DC17E9986500C2F226 /* main.m in Sources */,
-				E5B838F817F9CBF4004FBBB5 /* MWTransactionsWindowController.m in Sources */,
+				E548C6FF1802BFFB00976CD7 /* MWTransactionDetailsWindowController.m in Sources */,
 				E5E2CCC917FC98B3003EBA11 /* RHPreferencesWindowController.m in Sources */,
 				E50310E317E9986600C2F226 /* MWAppDelegate.m in Sources */,
 			);

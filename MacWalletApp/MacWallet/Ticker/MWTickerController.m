@@ -31,7 +31,7 @@ static MWTickerController *sharedInstance;
 - (void)setTickerFilePath:(NSString *)tickerFilePath
 {
     _tickerFilePath = tickerFilePath;
-    self.tickerDictionary = [NSDictionary dictionaryWithContentsOfFile:self.tickerFilePath];
+    [self loadTickerDatabase];
 }
 
 - (NSString *)tickerFilePath
@@ -39,6 +39,18 @@ static MWTickerController *sharedInstance;
     return _tickerFilePath;
 }
 
+#pragma mark - manage ticker database
+- (void)loadTickerDatabase
+{
+    self.tickerDictionary = [NSDictionary dictionaryWithContentsOfFile:self.tickerFilePath];
+}
+
+- (NSDictionary *)tickerDatabase
+{
+    return self.tickerDictionary;
+}
+
+#pragma mark - load ticker
 - (void)loadTicketWithName:(NSString *)name completionHandler:(void (^)(NSString*, NSError*))handler
 {
     NSDictionary *tickerObject = [self.tickerDictionary objectForKey:name];

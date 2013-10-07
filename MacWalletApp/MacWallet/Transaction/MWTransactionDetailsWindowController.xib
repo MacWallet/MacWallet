@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment defaultVersion="1070" identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4510"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="MWTransactionDetailsWindowController">
+            <connections>
+                <outlet property="amountTextField" destination="TcJ-u5-vnS" id="xSb-4U-8lx"/>
+                <outlet property="receiverAddressTextField" destination="c3p-21-rvr" id="I9s-VR-yAh"/>
+                <outlet property="transactionIdTextField" destination="rJc-v1-73g" id="kFE-Yr-ON0"/>
+                <outlet property="window" destination="1" id="3"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application"/>
+        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" wantsToBeColor="NO" animationBehavior="default" id="1">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="987" y="712" width="480" height="120"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
+            <view key="contentView" id="2">
+                <rect key="frame" x="0.0" y="0.0" width="480" height="120"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XSM-2M-pJg">
+                        <rect key="frame" x="-3" y="81" width="128" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="122" id="2JH-Vq-fof"/>
+                            <constraint firstAttribute="height" constant="17" id="VpY-uK-tbj"/>
+                        </constraints>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Transaction ID" id="wbO-ke-ueS">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rJc-v1-73g">
+                        <rect key="frame" x="135" y="78" width="325" height="22"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="gTb-Ol-duS">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="75l-J2-T7N">
+                        <rect key="frame" x="-3" y="52" width="128" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="122" id="R2V-LL-t0e"/>
+                            <constraint firstAttribute="height" constant="17" id="Yu9-Hx-b6E"/>
+                        </constraints>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Amount" id="zFK-Te-c33">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TcJ-u5-vnS">
+                        <rect key="frame" x="135" y="49" width="73" height="22"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="73" id="G6g-zW-246"/>
+                        </constraints>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="KXh-NP-m4t">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sJ1-Ch-8LC">
+                        <rect key="frame" x="-3" y="23" width="128" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="17" id="aCJ-3v-xbk"/>
+                            <constraint firstAttribute="width" constant="122" id="uJA-g6-ZkY"/>
+                        </constraints>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Receiver Address" id="3XW-qu-yiK">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="c3p-21-rvr">
+                        <rect key="frame" x="135" y="20" width="325" height="22"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="RAP-AO-0LH">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="75l-J2-T7N" firstAttribute="leading" secondItem="XSM-2M-pJg" secondAttribute="leading" id="5es-pD-A2a"/>
+                    <constraint firstItem="TcJ-u5-vnS" firstAttribute="leading" secondItem="rJc-v1-73g" secondAttribute="leading" id="IpM-aC-JBU"/>
+                    <constraint firstItem="sJ1-Ch-8LC" firstAttribute="centerY" secondItem="c3p-21-rvr" secondAttribute="centerY" id="N8D-hf-6Cx"/>
+                    <constraint firstItem="XSM-2M-pJg" firstAttribute="top" secondItem="2" secondAttribute="top" constant="22" id="TNz-sc-RJs"/>
+                    <constraint firstItem="XSM-2M-pJg" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="a9N-rw-sR1"/>
+                    <constraint firstAttribute="bottom" secondItem="c3p-21-rvr" secondAttribute="bottom" constant="20" symbolic="YES" id="bvm-Fd-49S"/>
+                    <constraint firstItem="75l-J2-T7N" firstAttribute="centerY" secondItem="2" secondAttribute="centerY" id="dXh-pM-qGe"/>
+                    <constraint firstItem="rJc-v1-73g" firstAttribute="leading" secondItem="XSM-2M-pJg" secondAttribute="trailing" constant="13" id="fEG-9h-scL"/>
+                    <constraint firstItem="c3p-21-rvr" firstAttribute="leading" secondItem="TcJ-u5-vnS" secondAttribute="leading" id="gTb-bM-usg"/>
+                    <constraint firstItem="XSM-2M-pJg" firstAttribute="centerY" secondItem="rJc-v1-73g" secondAttribute="centerY" id="jiu-wr-6OA"/>
+                    <constraint firstItem="sJ1-Ch-8LC" firstAttribute="leading" secondItem="75l-J2-T7N" secondAttribute="leading" id="pFi-s2-F1p"/>
+                    <constraint firstAttribute="trailing" secondItem="rJc-v1-73g" secondAttribute="trailing" constant="20" symbolic="YES" id="pg9-BP-VAk"/>
+                    <constraint firstItem="c3p-21-rvr" firstAttribute="trailing" secondItem="rJc-v1-73g" secondAttribute="trailing" id="q7v-bP-3YF"/>
+                    <constraint firstItem="rJc-v1-73g" firstAttribute="top" secondItem="2" secondAttribute="top" constant="20" symbolic="YES" id="slx-3W-qMg"/>
+                    <constraint firstItem="TcJ-u5-vnS" firstAttribute="centerY" secondItem="75l-J2-T7N" secondAttribute="centerY" id="v8a-Pe-k7d"/>
+                </constraints>
+            </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="4"/>
+            </connections>
+        </window>
+    </objects>
+</document>

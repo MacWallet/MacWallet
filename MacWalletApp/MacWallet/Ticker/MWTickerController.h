@@ -12,4 +12,5 @@
 @property (strong) NSString *tickerFilePath;
 + (MWTickerController *)defaultController;
 - (void)loadTicketWithName:(NSString *)name completionHandler:(void (^)(NSString*, NSError*))handler;
+@property (readonly) NSDictionary *tickerDatabase;
 @end

@@ -11,14 +11,20 @@
 #define kUSE_KEYCHAIN_KEY @"useKeychainKey"
 #define kTICKER_NAME_KEY @"tickerNameKey"
 #define kDEFAULT_TICKER_NAME @"BITSTAMP USD"
+#define kSTATUS_ITEM_STYLE_KEY @"statusItemStyleKey"
+#define kSHOW_TIME_AGO_KEY @"showTimeAgoKey"
+
+typedef enum MWStatusItemStyle {
+    MWStatusItemStyleBalance = 0,
+    MWStatusItemStyleTicker = 1,
+    MWStatusItemStyleBoth = 2
+} MWStatusItemStyle;
 
 #define kDEFAULT_MAX_TRANSACTION_COUNT_MENU 10
 #define kKEYCHAIN_SERVICE_NAME @"MacWallet"
 #define kKEYCHAIN_SERVICE_NAME_TESTNET @"MacWallet_Testnet"
-
 #define kSAVE_WALLET_TO_KEYCHAIN 1
 
-#define BSUserDefaultsCurrencyKey               @"BSCurrency"
-#define BSUserDefaultsUpdateIntervalKey         @"BSUpdateInterval"
-#define BSShouldReloadFromRemoteNotification    @"BSShouldReloadFromRemoteNotification"
-#define BSShouldResetTimerNotification          @"BSShouldResetTimerNotification"
+#define kSHOULD_UPDATE_AFTER_PREFS_CHANGE_NOTIFICATION @"shouldUpdateAfterPrefsChangeNotification"
+#define kTICKET_UPDATE_INTERVAL_IN_SECONDS 5
+#define kSHOULD_SHOW_TRANSACTION_DETAILS_FOR_ID @"shouldShowTransactionDetailsForId"

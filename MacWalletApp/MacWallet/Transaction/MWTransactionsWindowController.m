@@ -8,6 +8,7 @@
 
 #import "MWTransactionsWindowController.h"
 #import <BitcoinJKit/BitcoinJKit.h>
+#import "MWAppDelegate.h"
 
 @interface MWTransactionsWindowController ()
 @property (strong) NSArray *cachedTransactions;
@@ -57,7 +58,7 @@
 
 - (void)showInfoForTxId:(NSString *)txHash
 {
-    NSDictionary *dict = [[HIBitcoinManager defaultManager] transactionForHash:txHash];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSHOULD_SHOW_TRANSACTION_DETAILS_FOR_ID object:txHash];
 }
 
 - (IBAction)showInfo:(id)sender

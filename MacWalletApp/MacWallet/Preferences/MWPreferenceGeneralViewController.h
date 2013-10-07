@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "RHPreferences.h"
-@interface MWPreferenceGeneralViewController : NSViewController <RHPreferencesViewControllerProtocol, NSComboBoxDelegate>
+@interface MWPreferenceGeneralViewController : NSViewController <RHPreferencesViewControllerProtocol, NSComboBoxDelegate, NSMatrixDelegate>
 @property (assign) BOOL launchAtStartup;
 
 @end
