@@ -17,8 +17,9 @@ MacWallet is a very easy to use and integrated Bitcoin wallet for Mac OSX.
 Screenshots
 -------
 
-MacWallet is released under the terms of the MIT license. See `LICENSE` for more
-information or see http://opensource.org/licenses/MIT.
+![Screenshot 1](https://raw.github.com/MacWallet/MacWallet/master/Screenhots/shot1.png)
+
+[More Screenshots](https://github.com/MacWallet/MacWallet/blob/master/SCREENSHOTS.md)
 
 
 Requirements

@@ -1,0 +1,8 @@
+![Screenshot 1](https://raw.github.com/MacWallet/MacWallet/master/Screenhots/shot1.png)
+![Screenshot 2](https://raw.github.com/MacWallet/MacWallet/master/Screenhots/shot2.png)
+![Screenshot 3](https://raw.github.com/MacWallet/MacWallet/master/Screenhots/shot3.png)
+![Screenshot 4](https://raw.github.com/MacWallet/MacWallet/master/Screenhots/settings1.png)
+![Screenshot 5](https://raw.github.com/MacWallet/MacWallet/master/Screenhots/send1.png)
+![Screenshot 6](https://raw.github.com/MacWallet/MacWallet/master/Screenhots/send2.png)
+![Screenshot 7](https://raw.github.com/MacWallet/MacWallet/master/Screenhots/send3.png)
+![Screenshot 8](https://raw.github.com/MacWallet/MacWallet/master/Screenhots/txinfo1.png)
