@@ -279,6 +279,11 @@
             NSString *optimizedString = [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"secondLineTickerLabel", @""),self.ticketValue];
             
             NSString *tickerName = [[NSUserDefaults standardUserDefaults] objectForKey:kTICKER_NAME_KEY];
+            if(!tickerName || tickerName.length == 0)
+            {
+                tickerName = kDEFAULT_TICKER_NAME;
+            }
+            
             if(!tickerName || tickerName.length <= 0)
             {
                 [self.secondRowItem setHidden:YES];
@@ -323,7 +328,12 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
         [self updateNetworkMenuItem];
         
-        //TODO: restart app or bitcoin subsystem
+        
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:NSLocalizedString(@"OK", @"OK Button")];
+        [alert setMessageText:NSLocalizedString(@"restartAppText", @"alert text which requests a restart")];
+        [alert setAlertStyle:NSWarningAlertStyle];
+        [alert runModal];
     }
     else {
         

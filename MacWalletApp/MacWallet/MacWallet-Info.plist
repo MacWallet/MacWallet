@@ -9,7 +9,7 @@
 	<key>CFBundleIconFile</key>
 	<string>New icon</string>
 	<key>CFBundleIdentifier</key>
-	<string>ch.include7.ch.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>org.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -35,7 +35,7 @@
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>SUFeedURL</key>
-	<string>https://www.include7.ch/MacWalletApp/appcast_v1.0.0.xml</string>
+	<string>http://macwallet.github.io/appcast_v1.0.0.xml</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>sparkle_update_dsa_pub.pem</string>
 </dict>

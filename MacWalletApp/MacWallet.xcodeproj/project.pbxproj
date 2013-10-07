@@ -331,6 +331,11 @@
 				CLASSPREFIX = BA;
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "include7 AG";
+				TargetAttributes = {
+					E50310CB17E9986500C2F226 = {
+						DevelopmentTeam = 5XAKXZTWN4;
+					};
+				};
 			};
 			buildConfigurationList = E50310C717E9986500C2F226 /* Build configuration list for PBXProject "MacWallet" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -513,6 +518,9 @@
 		E50310EA17E9986600C2F226 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -522,6 +530,7 @@
 				GCC_PREFIX_HEADER = "MacWallet/MacWallet-Prefix.pch";
 				INFOPLIST_FILE = "MacWallet/MacWallet-Info.plist";
 				PRODUCT_NAME = MacWallet;
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -529,6 +538,9 @@
 		E50310EB17E9986600C2F226 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -538,6 +550,7 @@
 				GCC_PREFIX_HEADER = "MacWallet/MacWallet-Prefix.pch";
 				INFOPLIST_FILE = "MacWallet/MacWallet-Info.plist";
 				PRODUCT_NAME = MacWallet;
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

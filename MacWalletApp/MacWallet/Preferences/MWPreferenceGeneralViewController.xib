@@ -124,6 +124,17 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="78p-M0-vS7">
+                    <rect key="frame" x="283" y="192" width="133" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="push" title="Check for updates" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="c1a-6v-vwp">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" size="11" name="LucidaGrande"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="checkForUpdates:" target="679" id="l36-KN-tL2"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstItem="560" firstAttribute="top" secondItem="1" secondAttribute="top" constant="20" symbolic="YES" id="562"/>
