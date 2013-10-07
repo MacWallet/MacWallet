@@ -34,5 +34,9 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>SUFeedURL</key>
+	<string>https://macwallet.github.com/appcast.xml</string>
+	<key>SUPublicDSAKeyFile</key>
+	<string>sparkle_update_dsa_pub.pem</string>
 </dict>
 </plist>

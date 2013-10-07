@@ -53,4 +53,4 @@ secondLineBalanceLabel = "Balance: ";
 secondLineTickerLabel = "@$1: ";
 
 timeAgoFormat = " (%@ ago)";
-timeAgoLabel = "show time ago in transaction list";
+timeAgoLabel = "Show \"time ago\" in transaction list";

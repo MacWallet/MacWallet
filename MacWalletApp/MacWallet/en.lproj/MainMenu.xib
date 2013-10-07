@@ -702,7 +702,7 @@
                         </items>
                     </menu>
                 </menuItem>
-                <menuItem title="Wallet" id="Zvc-n6-PIh">
+                <menuItem title="Wallet" hidden="YES" id="Zvc-n6-PIh">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Wallet" id="HMj-0I-xke">
                         <items>
