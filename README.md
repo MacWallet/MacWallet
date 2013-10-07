@@ -14,6 +14,13 @@ MacWallet is a very easy to use and integrated Bitcoin wallet for Mac OSX.
 [BitcoinjKit](https://github.com/jonasschnelli/BitcoinJKit) is used as java/cocoa framework layer-
 
 
+Screenshots
+-------
+
+MacWallet is released under the terms of the MIT license. See `LICENSE` for more
+information or see http://opensource.org/licenses/MIT.
+
+
 Requirements
 -------
 
@@ -31,5 +38,5 @@ information or see http://opensource.org/licenses/MIT.
 Thanks to
 -------
 
-Mike Hearn (Father of bitcoinj) for support
-Hive Developers for creating BitcoinJFramrwork
+- Mike Hearn (Father of bitcoinj) for support
+- Hive Developers for creating BitcoinJFramrwork
