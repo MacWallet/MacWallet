@@ -30,6 +30,8 @@
 		E548C7021802BFFB00976CD7 /* MWTransactionsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = E548C6FD1802BFFB00976CD7 /* MWTransactionsWindowController.m */; };
 		E548C7031802BFFB00976CD7 /* MWTransactionsWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E548C6FE1802BFFB00976CD7 /* MWTransactionsWindowController.xib */; };
 		E579C0AC1802CD7C00D8B61D /* sparkle_update_dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = E579C0AB1802CD7C00D8B61D /* sparkle_update_dsa_pub.pem */; };
+		E579C0AF1802DAC800D8B61D /* New icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = E579C0AE1802DAC800D8B61D /* New icon.icns */; };
+		E579C0B11802DCE300D8B61D /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E579C0B01802DCE300D8B61D /* icon.png */; };
 		E5B8390117F9FEED004FBBB5 /* RHKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B8390017F9FEED004FBBB5 /* RHKeychain.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E5C359D417F1DFC200BA394E /* TrustedCheckmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C359D217F1DFC200BA394E /* TrustedCheckmark@2x.png */; };
 		E5C359D617F1DFDE00BA394E /* TrustedCheckmark.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C359D517F1DFDE00BA394E /* TrustedCheckmark.png */; };
@@ -107,6 +109,8 @@
 		E548C6FD1802BFFB00976CD7 /* MWTransactionsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWTransactionsWindowController.m; sourceTree = "<group>"; };
 		E548C6FE1802BFFB00976CD7 /* MWTransactionsWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MWTransactionsWindowController.xib; sourceTree = "<group>"; };
 		E579C0AB1802CD7C00D8B61D /* sparkle_update_dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sparkle_update_dsa_pub.pem; sourceTree = "<group>"; };
+		E579C0AE1802DAC800D8B61D /* New icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "New icon.icns"; sourceTree = "<group>"; };
+		E579C0B01802DCE300D8B61D /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		E5B838FF17F9FEED004FBBB5 /* RHKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RHKeychain.h; path = ../vendor/RHKeychain/RHKeychain/RHKeychain.h; sourceTree = "<group>"; };
 		E5B8390017F9FEED004FBBB5 /* RHKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RHKeychain.m; path = ../vendor/RHKeychain/RHKeychain/RHKeychain.m; sourceTree = "<group>"; };
 		E5C359D217F1DFC200BA394E /* TrustedCheckmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TrustedCheckmark@2x.png"; sourceTree = "<group>"; };
@@ -143,6 +147,8 @@
 		E50310C317E9986500C2F226 = {
 			isa = PBXGroup;
 			children = (
+				E579C0B01802DCE300D8B61D /* icon.png */,
+				E579C0AE1802DAC800D8B61D /* New icon.icns */,
 				E5B838FE17F9FEE5004FBBB5 /* vendor */,
 				E50310D517E9986500C2F226 /* MacWallet */,
 				E50310CE17E9986500C2F226 /* Frameworks */,
@@ -375,10 +381,12 @@
 				E508D65817FB26A700CC3CF9 /* Localizable.strings in Resources */,
 				E5C359D617F1DFDE00BA394E /* TrustedCheckmark.png in Resources */,
 				E528E91117FAB7B800BF4BAD /* Questionmark@2x.png in Resources */,
+				E579C0AF1802DAC800D8B61D /* New icon.icns in Resources */,
 				E5E2CCCA17FC98B3003EBA11 /* RHPreferencesWindow.xib in Resources */,
 				E528E91017FAB7B800BF4BAD /* Questionmark.png in Resources */,
 				E504D80217FDA4B500F94081 /* tickers.plist in Resources */,
 				E50310E617E9986600C2F226 /* MainMenu.xib in Resources */,
+				E579C0B11802DCE300D8B61D /* icon.png in Resources */,
 				E548C7031802BFFB00976CD7 /* MWTransactionsWindowController.xib in Resources */,
 				E504D7FE17FDA09D00F94081 /* settings.png in Resources */,
 				E5E2CCC717FC98B3003EBA11 /* MWPreferenceGeneralViewController.xib in Resources */,
