@@ -55,3 +55,4 @@ secondLineTickerLabel = "@$1: ";
 timeAgoFormat = " (%@ ago)";
 timeAgoLabel = "Show \"time ago\" in transaction list";
 restartAppText = "You need to restart MacWallet after chaning the network";
+addAddress = "Add Address";

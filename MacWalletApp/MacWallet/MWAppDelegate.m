@@ -283,7 +283,6 @@
             {
                 tickerName = kDEFAULT_TICKER_NAME;
             }
-            
             if(!tickerName || tickerName.length <= 0)
             {
                 [self.secondRowItem setHidden:YES];
