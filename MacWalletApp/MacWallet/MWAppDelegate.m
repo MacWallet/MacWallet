@@ -17,6 +17,7 @@
 #include "MWTickerController.h"
 #include "MWTransactionDetailsWindowController.h"
 #include "MWTransactionMenuItem.h"
+#import "PFMoveApplication.h"
 
 @interface MWAppDelegate ()
 
@@ -123,8 +124,53 @@
     
     [[NSRunLoop mainRunLoop] addTimer:self.tickerTimer forMode:NSDefaultRunLoopMode];
     
-    // register for some notifications
     
+    // if first start, check if user likes that the app will run after login
+    
+    // Get current version ("Bundle Version") from the default Info.plist file
+    NSString *currentVersion = (NSString*)[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+    NSArray *prevStartupVersions = [[NSUserDefaults standardUserDefaults] arrayForKey:kPREV_VERSIONS_STARTED_KEY];
+    if (prevStartupVersions == nil)
+    {
+        
+        // Save changes to disk
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:NSLocalizedString(@"OK", @"OK Button")];
+        [alert addButtonWithTitle:NSLocalizedString(@"No", @"No Button")];
+        [alert setMessageText:NSLocalizedString(@"launchAtStartupQuestion", @"launch at startup question")];
+        [alert setInformativeText:@""];
+        [alert setAlertStyle:NSWarningAlertStyle];
+        NSInteger alertResult = [alert runModal];
+        if(alertResult == NSAlertFirstButtonReturn) {
+            self.launchAtStartup = YES;
+        }
+        else {
+            self.launchAtStartup = NO;
+        }
+        
+        [[NSUserDefaults standardUserDefaults] setObject:[NSArray arrayWithObject:currentVersion] forKey:kPREV_VERSIONS_STARTED_KEY];
+    }
+    else
+    {
+        if (![prevStartupVersions containsObject:currentVersion])
+        {
+            // add the current version to the startup version array
+            NSMutableArray *updatedPrevStartVersions = [NSMutableArray arrayWithArray:prevStartupVersions];
+            [updatedPrevStartVersions addObject:currentVersion];
+            [[NSUserDefaults standardUserDefaults] setObject:updatedPrevStartVersions forKey:kPREV_VERSIONS_STARTED_KEY];
+        }
+    }
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    // copy the app if required to applications folder
+    
+    PFMoveToApplicationsFolderIfNecessary();
+    
+    
+    // register for some notifications
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateAfterSettingsChanges)
                                                  name:kSHOULD_UPDATE_AFTER_PREFS_CHANGE_NOTIFICATION
                                                object:nil];

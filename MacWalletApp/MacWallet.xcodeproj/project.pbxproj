@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		E50153C11804440600CFFA69 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = E50153C01804440600CFFA69 /* icon.icns */; };
 		E50153C3180447AD00CFFA69 /* checkpoints in Resources */ = {isa = PBXBuildFile; fileRef = E50153C2180447AA00CFFA69 /* checkpoints */; };
+		E50153C918044CB800CFFA69 /* NSString+SymlinksAndAliases.m in Sources */ = {isa = PBXBuildFile; fileRef = E50153C618044CB800CFFA69 /* NSString+SymlinksAndAliases.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E50153CA18044CB800CFFA69 /* PFMoveApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = E50153C818044CB800CFFA69 /* PFMoveApplication.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E50310D017E9986500C2F226 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E50310CF17E9986500C2F226 /* Cocoa.framework */; };
 		E50310DA17E9986500C2F226 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E50310D817E9986500C2F226 /* InfoPlist.strings */; };
 		E50310DC17E9986500C2F226 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E50310DB17E9986500C2F226 /* main.m */; };
@@ -74,6 +76,10 @@
 /* Begin PBXFileReference section */
 		E50153C01804440600CFFA69 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		E50153C2180447AA00CFFA69 /* checkpoints */ = {isa = PBXFileReference; lastKnownFileType = file; path = checkpoints; sourceTree = "<group>"; };
+		E50153C518044CB800CFFA69 /* NSString+SymlinksAndAliases.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SymlinksAndAliases.h"; sourceTree = "<group>"; };
+		E50153C618044CB800CFFA69 /* NSString+SymlinksAndAliases.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SymlinksAndAliases.m"; sourceTree = "<group>"; };
+		E50153C718044CB800CFFA69 /* PFMoveApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFMoveApplication.h; sourceTree = "<group>"; };
+		E50153C818044CB800CFFA69 /* PFMoveApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFMoveApplication.m; sourceTree = "<group>"; };
 		E50310CC17E9986500C2F226 /* MacWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E50310CF17E9986500C2F226 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		E50310D217E9986500C2F226 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -259,6 +265,10 @@
 				E5E2CCCC17FC9A7D003EBA11 /* LaunchAtLoginController.m */,
 				E5B838FF17F9FEED004FBBB5 /* RHKeychain.h */,
 				E5B8390017F9FEED004FBBB5 /* RHKeychain.m */,
+				E50153C518044CB800CFFA69 /* NSString+SymlinksAndAliases.h */,
+				E50153C618044CB800CFFA69 /* NSString+SymlinksAndAliases.m */,
+				E50153C718044CB800CFFA69 /* PFMoveApplication.h */,
+				E50153C818044CB800CFFA69 /* PFMoveApplication.m */,
 			);
 			name = vendor;
 			sourceTree = "<group>";
@@ -413,8 +423,10 @@
 				E548C6F41802BFE600976CD7 /* MWSendCoinsWindowController.m in Sources */,
 				E5B8390117F9FEED004FBBB5 /* RHKeychain.m in Sources */,
 				E548C7011802BFFB00976CD7 /* MWTransactionMenuItem.m in Sources */,
+				E50153C918044CB800CFFA69 /* NSString+SymlinksAndAliases.m in Sources */,
 				E50310DC17E9986500C2F226 /* main.m in Sources */,
 				E548C6FF1802BFFB00976CD7 /* MWTransactionDetailsWindowController.m in Sources */,
+				E50153CA18044CB800CFFA69 /* PFMoveApplication.m in Sources */,
 				E5E2CCC917FC98B3003EBA11 /* RHPreferencesWindowController.m in Sources */,
 				E50310E317E9986600C2F226 /* MWAppDelegate.m in Sources */,
 			);

@@ -13,6 +13,7 @@
 #define kDEFAULT_TICKER_NAME @"BITSTAMP USD"
 #define kSTATUS_ITEM_STYLE_KEY @"statusItemStyleKey"
 #define kSHOW_TIME_AGO_KEY @"showTimeAgoKey"
+#define kPREV_VERSIONS_STARTED_KEY @"prevStartupVersions"
 
 typedef enum MWStatusItemStyle {
     MWStatusItemStyleBalance = 0,

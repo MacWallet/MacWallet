@@ -34,6 +34,8 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>SUEnableAutomaticChecks</key>
+	<true/>
 	<key>SUFeedURL</key>
 	<string>http://macwallet.github.io/appcast_v1.0.0.xml</string>
 	<key>SUPublicDSAKeyFile</key>
