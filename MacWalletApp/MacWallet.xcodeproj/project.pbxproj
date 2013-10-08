@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E50153C11804440600CFFA69 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = E50153C01804440600CFFA69 /* icon.icns */; };
+		E50153C3180447AD00CFFA69 /* checkpoints in Resources */ = {isa = PBXBuildFile; fileRef = E50153C2180447AA00CFFA69 /* checkpoints */; };
 		E50310D017E9986500C2F226 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E50310CF17E9986500C2F226 /* Cocoa.framework */; };
 		E50310DA17E9986500C2F226 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E50310D817E9986500C2F226 /* InfoPlist.strings */; };
 		E50310DC17E9986500C2F226 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E50310DB17E9986500C2F226 /* main.m */; };
@@ -72,6 +73,7 @@
 
 /* Begin PBXFileReference section */
 		E50153C01804440600CFFA69 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
+		E50153C2180447AA00CFFA69 /* checkpoints */ = {isa = PBXFileReference; lastKnownFileType = file; path = checkpoints; sourceTree = "<group>"; };
 		E50310CC17E9986500C2F226 /* MacWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E50310CF17E9986500C2F226 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		E50310D217E9986500C2F226 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -202,6 +204,7 @@
 		E50310D617E9986500C2F226 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E50153C2180447AA00CFFA69 /* checkpoints */,
 				E579C0AB1802CD7C00D8B61D /* sparkle_update_dsa_pub.pem */,
 				E50310D717E9986500C2F226 /* MacWallet-Info.plist */,
 				E50310D817E9986500C2F226 /* InfoPlist.strings */,
@@ -380,6 +383,7 @@
 				E504D80017FDA0A300F94081 /* wallet.png in Resources */,
 				E548C7001802BFFB00976CD7 /* MWTransactionDetailsWindowController.xib in Resources */,
 				E504D7F717FD843100F94081 /* MWPreferenceWalletViewController.xib in Resources */,
+				E50153C3180447AD00CFFA69 /* checkpoints in Resources */,
 				E508D65817FB26A700CC3CF9 /* Localizable.strings in Resources */,
 				E5C359D617F1DFDE00BA394E /* TrustedCheckmark.png in Resources */,
 				E528E91117FAB7B800BF4BAD /* Questionmark@2x.png in Resources */,
