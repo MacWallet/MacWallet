@@ -12,7 +12,7 @@
 
 @protocol MWSendCoinsWindowControllerDelegate <NSObject>
 @required
-- (NSInteger)prepareSendCoinsFromWindowController:(MWSendCoinsWindowController *)windowController receiver:(NSString *)btcAddress amount:(NSInteger)amountInSatoshis txfee:(NSInteger)txFeeInSatoshis;
+- (NSInteger)prepareSendCoinsFromWindowController:(MWSendCoinsWindowController *)windowController receiver:(NSString *)btcAddress amount:(NSInteger)amountInSatoshis txfee:(NSInteger)txFeeInSatoshis password:(NSString *)password;
 
 @optional
 - (void)sendCoinsWindowControllerWillClose:(MWSendCoinsWindowController *)windowController;

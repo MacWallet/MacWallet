@@ -8,6 +8,7 @@
 
 #import "MWSendCoinsWindowController.h"
 #import <BitcoinJKit/BitcoinJKit.h>
+#import "MWAppDelegate.h"
 
 #define kBA_COINS_WINDOW_HEIGHT_NORMAL 128.0
 #define kBA_COINS_WINDOW_HEIGHT_SEND 220.0
@@ -33,6 +34,9 @@
 @property (assign) IBOutlet NSTextField *successAfterCommitTextField;
 
 @property (assign) MWSendCoinsWindowControllerState currentState;
+
+@property (strong) IBOutlet NSPanel *passwordPromt;
+@property (assign) IBOutlet NSTextField *passwordTextField;
 
 @end
 
@@ -69,6 +73,8 @@
     self.closeButton.title                  = NSLocalizedString(@"closeButton", @"prepareTx");
     
     self.window.title = NSLocalizedString(@"sendCoinsWindowTitle", @"sendCoinsWindowTitle");
+    
+    [self.passwordPromt setReleasedWhenClosed:NO];
 }
 
 - (void)windowWillLoad
@@ -87,7 +93,31 @@
 
 - (IBAction)prepareClicked:(id)sender
 {
-    NSInteger fee = [self.delegate prepareSendCoinsFromWindowController:self receiver:[self.btcAddressTextField stringValue] amount:[self.amountTextField doubleValue]*100000000 txfee:[self.txFeeTextField doubleValue]*100000000];
+    BOOL hasEncryptedWallet = [[NSUserDefaults standardUserDefaults] boolForKey:kHAS_ENCRYPTED_WALLET_KEY];
+    // check if wallet is encryped
+    if(hasEncryptedWallet)
+    {
+        [self showPasswordPrompt:sender];
+    }
+    else
+    {
+        MWAppDelegate *appDele = (MWAppDelegate *)[[NSApplication sharedApplication] delegate];
+        NSString *basicEncryptionPassphrase =appDele.walletBasicEncryptionPassphrase;
+        
+        // continue without password, but with the standard encryprion
+        [self prepareTransactionWithWalletPassword:basicEncryptionPassphrase];
+    }
+}
+
+- (void)prepareTransactionWithWalletPassword:(NSString *)password
+{
+    MWAppDelegate *appDele = (MWAppDelegate *)[[NSApplication sharedApplication] delegate];
+    NSString *basicEncryptionPassphrase = appDele.walletBasicEncryptionPassphrase;
+    
+    // TODO contact
+    NSString *finalPassword = basicEncryptionPassphrase;
+    
+    NSInteger fee = [self.delegate prepareSendCoinsFromWindowController:self receiver:[self.btcAddressTextField stringValue] amount:[self.amountTextField doubleValue]*100000000 txfee:[self.txFeeTextField doubleValue]*100000000 password:finalPassword];
     
     if(fee != kHI_PREPARE_SEND_COINS_DID_FAIL)
     {
@@ -101,7 +131,7 @@
         frame.size.height = kBA_COINS_WINDOW_HEIGHT_SEND;
         
         [self.window setFrame:frame display:YES animate:YES];
-    
+        
         
         self.txFeeTextField.stringValue = [[HIBitcoinManager defaultManager] formatNanobtc:fee];
         self.txTotalAmountTextField.stringValue = [[HIBitcoinManager defaultManager] formatNanobtc:[self.amountTextField doubleValue]*100000000+fee];
@@ -166,6 +196,34 @@
         self.txFeeTextField.stringValue             = @"";
         self.txTotalAmountTextField.stringValue     = @"";
     }
+}
+
+-(IBAction)showPasswordPrompt:(id)sender
+{
+    [[NSApplication sharedApplication] beginSheet:self.passwordPromt
+                                   modalForWindow:self.window
+                                    modalDelegate:self
+                                   didEndSelector:@selector(sheetDidEnd:returnCode:contextInfo:)
+                                      contextInfo:nil];
+
+}
+
+- (IBAction)closePasswordPrompt:(id)sender
+{
+    NSButton *clickedButton = (NSButton *)sender;
+    
+    [NSApp endSheet:self.passwordPromt returnCode:NSOKButton];
+    [self.passwordPromt orderOut:sender];
+    
+    if(clickedButton.tag == 1)
+    {
+        [self prepareTransactionWithWalletPassword:self.passwordTextField.stringValue];
+    }
+}
+
+- (void)sheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+{
+    
 }
 
 @end

@@ -58,3 +58,8 @@ restartAppText = "You need to restart MacWallet after chaning the network";
 addAddress = "Add Address";
 
 launchAtStartupQuestion = "Would you like to start MacWallet when your Computer starts?";
+
+passwordInacceptable = "to short";
+passwordWeak = "weak";
+passwordModerate = "medium";
+passwordStrong = "strong";

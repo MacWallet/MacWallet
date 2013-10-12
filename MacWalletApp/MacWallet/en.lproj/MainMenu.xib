@@ -650,6 +650,8 @@
                 <outlet property="addressesMenu" destination="g0r-yI-eav" id="lB3-5i-FUD"/>
                 <outlet property="addressesMenuItem" destination="537" id="QFd-HD-k2O"/>
                 <outlet property="balanceUnconfirmedMenuItem" destination="N22-f7-qb5" id="ZRz-oe-2yV"/>
+                <outlet property="choosePasswordPopover" destination="mlX-MK-QJD" id="WGJ-e1-beu"/>
+                <outlet property="containerView" destination="oIR-57-mYc" id="7VG-fM-hkd"/>
                 <outlet property="networkStatusBlockHeight" destination="OkV-tT-Eh2" id="n7t-hb-h8t"/>
                 <outlet property="networkStatusLastBlockTime" destination="ZXM-No-7ma" id="kof-ht-NZw"/>
                 <outlet property="networkStatusMenuItem" destination="l8g-ak-bBL" id="GYW-kZ-jJg"/>
@@ -657,11 +659,13 @@
                 <outlet property="networkStatusPeersMenuItem" destination="zhr-lm-E9Y" id="S5B-Dw-Rk0"/>
                 <outlet property="preferencesMenuItem" destination="hpb-8l-QWa" id="J6I-ol-qkd"/>
                 <outlet property="quitMenuItem" destination="539" id="XPF-bb-a0b"/>
+                <outlet property="scrollView" destination="xHw-ob-dfJ" id="wbm-sH-3Ph"/>
                 <outlet property="secondRowItem" destination="Cfv-Xt-JRf" id="x26-7G-TOW"/>
                 <outlet property="sendCoinsMenuItem" destination="538" id="wZd-x0-fG0"/>
                 <outlet property="statusMenu" destination="536" id="540"/>
                 <outlet property="transactionsMenu" destination="Em6-Yl-mUX" id="pxM-vS-56a"/>
                 <outlet property="transactionsMenuItem" destination="1Eh-U2-Eka" id="0b6-eC-GyJ"/>
+                <outlet property="walletMenuItem" destination="Zvc-n6-PIh" id="vcP-SC-u2E"/>
             </connections>
         </customObject>
         <customObject id="420" customClass="NSFontManager"/>
@@ -702,18 +706,15 @@
                         </items>
                     </menu>
                 </menuItem>
-                <menuItem title="Wallet" hidden="YES" id="Zvc-n6-PIh">
+                <menuItem title="Wallet" id="Zvc-n6-PIh">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Wallet" id="HMj-0I-xke">
                         <items>
-                            <menuItem title="Export" id="FZf-Be-eng">
+                            <menuItem title="Protect with password" id="FZf-Be-eng">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                            </menuItem>
-                            <menuItem title="Import" id="pAa-w5-WVo">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                            </menuItem>
-                            <menuItem title="Dump to Text" id="cJ7-c3-OaT">
-                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="encryptWallet:" target="494" id="moH-WP-gWM"/>
+                                </connections>
                             </menuItem>
                         </items>
                     </menu>
@@ -771,8 +772,199 @@
                 </menuItem>
             </items>
         </menu>
+        <viewController id="4nW-Cw-V6M" userLabel="Popover View Controller">
+            <connections>
+                <outlet property="view" destination="xHw-ob-dfJ" id="ace-kf-SRI"/>
+            </connections>
+        </viewController>
+        <popover id="mlX-MK-QJD" customClass="MWSetPasswordPopover">
+            <connections>
+                <outlet property="abortButton0" destination="BFe-bK-8wf" id="qAa-Xs-ZBM"/>
+                <outlet property="abortButton1" destination="QJ4-sA-I2w" id="888-kv-bN4"/>
+                <outlet property="containerView" destination="oIR-57-mYc" id="kGO-TV-W3b"/>
+                <outlet property="contentViewController" destination="4nW-Cw-V6M" id="Lyr-K2-upx"/>
+                <outlet property="delegate" destination="494" id="TQ2-Rn-kDn"/>
+                <outlet property="noMatchImageView" destination="P98-91-qQK" id="9gf-7G-mTg"/>
+                <outlet property="okButton0" destination="YZh-ag-eLK" id="zKE-CL-zZC"/>
+                <outlet property="okButton1" destination="BqF-PE-NNF" id="zqO-LU-zci"/>
+                <outlet property="password0" destination="Pte-Ep-qAK" id="9em-De-G6e"/>
+                <outlet property="password1" destination="JLA-bI-QVB" id="kkf-GN-gdv"/>
+                <outlet property="pwStrength" destination="ydT-Rp-mis" id="x0i-37-vWz"/>
+                <outlet property="pwStrengthLevel" destination="biW-1g-2na" id="he0-Y4-0ax"/>
+                <outlet property="scrollView" destination="xHw-ob-dfJ" id="elA-EU-oXY"/>
+            </connections>
+        </popover>
+        <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" id="xHw-ob-dfJ">
+            <rect key="frame" x="0.0" y="0.0" width="230" height="109"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="glI-zF-E3f">
+                <rect key="frame" x="0.0" y="0.0" width="230" height="109"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <view fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vqm-Kc-mPf">
+                        <rect key="frame" x="0.0" y="0.0" width="230" height="109"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            </clipView>
+            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" id="Nao-Mo-ASJ">
+                <rect key="frame" x="-100" y="-100" width="231" height="15"/>
+                <autoresizingMask key="autoresizingMask"/>
+            </scroller>
+            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" id="9Wh-ws-TgH">
+                <rect key="frame" x="-100" y="-100" width="15" height="94"/>
+                <autoresizingMask key="autoresizingMask"/>
+            </scroller>
+        </scrollView>
+        <customView id="oIR-57-mYc">
+            <rect key="frame" x="0.0" y="0.0" width="690" height="102"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YZh-ag-eLK">
+                    <rect key="frame" x="115" y="7" width="102" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="push" title="Continue " bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Eg2-ZO-9hZ">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="continuePage0:" target="mlX-MK-QJD" id="cTf-Jp-1Rc"/>
+                    </connections>
+                </button>
+                <secureTextField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pte-Ep-qAK">
+                    <rect key="frame" x="20" y="43" width="153" height="22"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Choose Password" drawsBackground="YES" usesSingleLineMode="YES" id="6yH-aZ-FUE">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        <allowedInputSourceLocales>
+                            <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                        </allowedInputSourceLocales>
+                    </secureTextFieldCell>
+                    <connections>
+                        <action selector="continuePage0:" target="mlX-MK-QJD" id="ic3-0g-WtH"/>
+                        <outlet property="delegate" destination="mlX-MK-QJD" id="ueG-WF-pRe"/>
+                    </connections>
+                </secureTextField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Asy-Uw-tyr">
+                    <rect key="frame" x="17" y="72" width="123" height="17"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Protect your Wallet" id="8cg-FD-EKE">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BqF-PE-NNF">
+                    <rect key="frame" x="358" y="7" width="88" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="push" title="Ok" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zP9-L9-zrO">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="continuePage1:" target="mlX-MK-QJD" id="DdI-uc-8ZY"/>
+                    </connections>
+                </button>
+                <secureTextField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JLA-bI-QVB">
+                    <rect key="frame" x="249" y="43" width="168" height="22"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Repeat Password" drawsBackground="YES" usesSingleLineMode="YES" id="3TL-Ix-xnX">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        <allowedInputSourceLocales>
+                            <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                        </allowedInputSourceLocales>
+                    </secureTextFieldCell>
+                    <connections>
+                        <action selector="continuePage1:" target="mlX-MK-QJD" id="TR9-c4-iki"/>
+                        <outlet property="delegate" destination="mlX-MK-QJD" id="uds-Px-UdB"/>
+                    </connections>
+                </secureTextField>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BFe-bK-8wf">
+                    <rect key="frame" x="14" y="7" width="76" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="push" title="Abort" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="EZX-5g-Diz">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="abort:" target="mlX-MK-QJD" id="Svw-wi-asa"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QJ4-sA-I2w">
+                    <rect key="frame" x="243" y="7" width="91" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="push" title="« Back" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="X1U-9g-uQg">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="abort:" target="mlX-MK-QJD" id="gEg-71-dr8"/>
+                    </connections>
+                </button>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D3H-Z9-Vdh">
+                    <rect key="frame" x="246" y="73" width="123" height="17"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Protect your Wallet" id="hsm-gJ-gkV">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P98-91-qQK">
+                    <rect key="frame" x="422" y="43" width="20" height="20"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="error" id="dmb-h4-Wwg"/>
+                </imageView>
+                <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ydT-Rp-mis">
+                    <rect key="frame" x="172" y="80" width="31" height="17"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Weak" id="4vg-zl-KNw">
+                        <font key="font" size="10" name="HelveticaNeue-Bold"/>
+                        <color key="textColor" red="0.75968070652173914" green="0.65350510059596834" blue="0.20824387799997873" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <levelIndicator hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="biW-1g-2na">
+                    <rect key="frame" x="181" y="44" width="30" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <levelIndicatorCell key="cell" controlSize="mini" alignment="left" doubleValue="2" maxValue="3" warningValue="2" criticalValue="1" id="c3V-xI-Vlk"/>
+                </levelIndicator>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yKy-aO-jDT">
+                    <rect key="frame" x="482" y="73" width="184" height="17"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Your Wallet is now Protected" id="Zns-lF-BPo">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2rA-9u-blj">
+                    <rect key="frame" x="564" y="43" width="20" height="20"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="secure" id="spj-Pz-Gbn"/>
+                </imageView>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vcA-JH-unE">
+                    <rect key="frame" x="588" y="7" width="88" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="push" title="Ok" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="CV6-LK-fqQ">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="closeSuccessful:" target="mlX-MK-QJD" id="Cik-1i-iLF"/>
+                    </connections>
+                </button>
+            </subviews>
+        </customView>
     </objects>
     <resources>
         <image name="NSStatusNone" width="16" height="16"/>
+        <image name="error" width="20" height="21"/>
+        <image name="secure" width="9" height="12"/>
     </resources>
 </document>

@@ -10,8 +10,9 @@
 #import "MWSendCoinsWindowController.h"
 #import "MWTransactionsWindowController.h"
 
-@interface MWAppDelegate : NSObject <NSApplicationDelegate, MWSendCoinsWindowControllerDelegate>
+@interface MWAppDelegate : NSObject <NSApplicationDelegate, MWSendCoinsWindowControllerDelegate, NSPopoverDelegate, NSMenuDelegate>
 
 @property (assign) BOOL launchAtStartup;
+@property (readonly) NSString* walletBasicEncryptionPassphrase;
 
 @end

@@ -15,6 +15,8 @@
                 <outlet property="commitedTxHash" destination="pvw-Xk-5k2" id="zN7-pT-hOo"/>
                 <outlet property="feeLabel" destination="wz8-Rj-8WJ" id="EQw-Zn-gM8"/>
                 <outlet property="invalidTransactionTextField" destination="a4W-vy-bnT" id="ar6-D1-zYH"/>
+                <outlet property="passwordPromt" destination="oqJ-8U-vMF" id="di1-uY-fZb"/>
+                <outlet property="passwordTextField" destination="hct-9b-hDr" id="0Wr-en-Nhv"/>
                 <outlet property="prepareButton" destination="t7c-Ky-N9x" id="NAj-LF-pSe"/>
                 <outlet property="receiverAddressLabel" destination="Ymu-wy-TQF" id="Ojg-DT-Tuv"/>
                 <outlet property="successAfterCommitTextField" destination="jbm-mr-iwG" id="fxB-d4-uoU"/>
@@ -295,5 +297,66 @@
                 <real key="inspectorSampleValue" value="12"/>
             </metadata>
         </numberFormatter>
+        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="oqJ-8U-vMF" customClass="NSPanel">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="1183" y="839" width="277" height="117"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
+            <view key="contentView" id="njQ-Mh-TqQ">
+                <rect key="frame" x="0.0" y="0.0" width="277" height="117"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <secureTextField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hct-9b-hDr">
+                        <rect key="frame" x="20" y="49" width="237" height="23"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="U0a-nG-VfT">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <allowedInputSourceLocales>
+                                <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                            </allowedInputSourceLocales>
+                        </secureTextFieldCell>
+                    </secureTextField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FeE-qF-8Jc">
+                        <rect key="frame" x="20" y="80" width="175" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Enter your Wallet Password" id="tLW-7E-nmf">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="bge-Zr-AbH">
+                        <rect key="frame" x="166" y="13" width="97" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Continue" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dxF-fJ-Kgf">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="closePasswordPrompt:" target="-2" id="LJ0-V5-9n3"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jaD-lx-Jca">
+                        <rect key="frame" x="84" y="13" width="82" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="YqM-e6-eb7">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="closePasswordPrompt:" target="-2" id="ieB-z7-y0l"/>
+                        </connections>
+                    </button>
+                </subviews>
+            </view>
+            <connections>
+                <outlet property="initialFirstResponder" destination="hct-9b-hDr" id="I9w-5B-z8f"/>
+            </connections>
+        </window>
     </objects>
 </document>

@@ -7,6 +7,8 @@
 //
 
 #import <BitcoinJKit/BitcoinJKit.h>
+#import <Security/Security.h>
+#import <Security/SecRandom.h>
 
 #include "MWAppDelegate.h"
 #include "RHKeychain.h"
@@ -17,7 +19,12 @@
 #include "MWTickerController.h"
 #include "MWTransactionDetailsWindowController.h"
 #include "MWTransactionMenuItem.h"
-#import "PFMoveApplication.h"
+#include "PFMoveApplication.h"
+#include "NSString+NSStringRandomPasswordAdditions.h"
+#import <QuartzCore/QuartzCore.h>
+#import "DuxScrollViewAnimation.h"
+#import "MWSetPasswordPopover.h"
+
 
 @interface MWAppDelegate ()
 
@@ -38,6 +45,8 @@
 @property (assign) IBOutlet NSMenuItem *networkStatusNetSwitch;
 @property (assign) IBOutlet NSMenuItem *balanceUnconfirmedMenuItem;
 @property (assign) IBOutlet NSMenuItem *secondRowItem;
+@property (assign) IBOutlet NSMenuItem *walletMenuItem;
+
 @property (assign) BOOL useKeychain;
 @property (strong) MWSendCoinsWindowController *sendCoinsWindowController;
 @property (strong) MWTransactionsWindowController *txWindowController;
@@ -46,6 +55,12 @@
 @property (strong) NSString *ticketValue;
 @property (strong) NSTimer *tickerTimer;
 
+@property (assign) uint64_t lastBalanceUnconfirmed;
+@property (assign) uint64_t lastBalance;
+
+@property (strong) IBOutlet MWSetPasswordPopover *choosePasswordPopover;
+
+@property (strong) NSColor *currentMenuColor;
 
 @end
 
@@ -55,6 +70,8 @@
 // main entry point
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    // set the default color for the attributed sting in the StatusMenuItem /HACK
+    self.currentMenuColor = [NSColor blackColor];
     
     // init the ticker
     [MWTickerController defaultController].tickerFilePath = [[NSBundle mainBundle] pathForResource:@"tickers" ofType:@"plist"];
@@ -71,8 +88,12 @@
     // make a global menu (extra menu) item
     self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     [self.statusItem setMenu:self.statusMenu];
-    [self.statusItem setTitle:@"loading..."];
+    self.statusMenu.delegate = self;
+    [self.statusItem setTitle:@""];
     [self.statusItem setHighlightMode:YES];
+    [self.statusItem setAction:@selector(statusItemClicked)];
+    
+    [self.statusItem setImage:[NSImage imageNamed:@"status_bar_icon"]];
     
     // add observers
     [[HIBitcoinManager defaultManager] addObserver:self forKeyPath:@"connections" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:NULL];
@@ -99,18 +120,7 @@
     
     // check if user likes to store/retrive the wallet from keychain
     self.useKeychain = [[NSUserDefaults standardUserDefaults] boolForKey:kUSE_KEYCHAIN_KEY];
-    
-    // start underlaying bitcoin system
-    NSString *walletBase64String = nil;
-    if(self.useKeychain)
-    {
-        walletBase64String = [self loadWallet];
-        if(walletBase64String == nil)
-        {
-            walletBase64String = @"";
-        }
-    }
-    [[HIBitcoinManager defaultManager] start:walletBase64String];
+    [[HIBitcoinManager defaultManager] start];
     
     // add time for periodical menu updates
     NSTimer *timer = [NSTimer timerWithTimeInterval:60 target:self selector:@selector(minuteUpdater) userInfo:nil repeats:YES];
@@ -166,9 +176,11 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     // copy the app if required to applications folder
-    
     PFMoveToApplicationsFolderIfNecessary();
     
+    
+    // update wallet icon (encrypted sign)
+    [self updateWalletMenuItem];
     
     // register for some notifications
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateAfterSettingsChanges)
@@ -184,9 +196,35 @@
 
 - (void)applicationWillTerminate:(NSNotification *)notification
 {
-    // perform a wallet save during termination
-    [self saveWallet];
+
 }
+
+#pragma mark - NSMenuDelegate
+
+- (void) menuWillOpen:(NSMenu *) aMenu {
+    self.currentMenuColor = [NSColor whiteColor];
+    [self changeAttributedStringColor];
+    
+    [self.statusItem setImage:[NSImage imageNamed:@"status_bar_icon_inverted"]];
+}
+
+
+- (void) menuDidClose:(NSMenu *) aMenu {
+    self.currentMenuColor = [NSColor blackColor];
+    [self changeAttributedStringColor];
+    
+    [self.statusItem setImage:[NSImage imageNamed:@"status_bar_icon"]];
+}
+
+- (void)changeAttributedStringColor
+{
+    NSMutableAttributedString *titleString = [self.statusItem.attributedTitle mutableCopy];
+    NSRange range= NSMakeRange(0,titleString.string.length);
+    [titleString addAttribute:NSForegroundColorAttributeName value:self.currentMenuColor range:range];
+    self.statusItem.attributedTitle = titleString;
+}
+
+#pragma mark - HI Observers
 
 // observe the bitcoin framework
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -203,8 +241,6 @@
             {
                 [self rebuildTransactionsMenu];
             }
-            
-            [self saveWallet];
         }
         else if ([keyPath compare:@"isRunning"] == NSOrderedSame)
         {
@@ -230,7 +266,6 @@
                 
                 [self minuteUpdater];
                 [self updateStatusMenu];
-                [self saveWallet];
             }
 
             // always update the block info
@@ -265,12 +300,20 @@
 
 
 #pragma mark - menu actions / menu stack
-
 - (void)updateStatusMenu
 {
-    uint64_t balance_unconfirmed = [HIBitcoinManager defaultManager].balanceUnconfirmed;
-    uint64_t balance = [HIBitcoinManager defaultManager].balance;
-    uint64_t fundsOnTheWay = balance_unconfirmed-balance;
+    [self updateStatusMenu:NO];
+}
+- (void)updateStatusMenu:(BOOL)tickerOnly
+{
+    
+    if(tickerOnly == NO)
+    {
+        self.lastBalanceUnconfirmed = [HIBitcoinManager defaultManager].balanceUnconfirmed;
+        self.lastBalance = [HIBitcoinManager defaultManager].balance;
+    }
+    
+    uint64_t fundsOnTheWay = self.lastBalanceUnconfirmed-self.lastBalance;
     
     if(fundsOnTheWay > 0)
     {
@@ -300,9 +343,10 @@
         NSFont *font2 = [NSFont boldSystemFontOfSize:9];
         NSDictionary *attrsDictionary2 = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:font2, [NSColor blackColor], paragraphStyle, nil]
                                                                      forKeys:[NSArray arrayWithObjects:NSFontAttributeName, NSForegroundColorAttributeName, NSParagraphStyleAttributeName, nil] ];
-        NSMutableAttributedString* text = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\n%@",self.ticketValue, [[HIBitcoinManager defaultManager] formatNanobtc:balance]] attributes:attrsDictionary2];
+        NSMutableAttributedString* text = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\n%@",self.ticketValue, [[HIBitcoinManager defaultManager] formatNanobtc:self.lastBalance]] attributes:attrsDictionary2];
         
         self.statusItem.attributedTitle = text;
+        [self changeAttributedStringColor];
     }
     else if(statusItemStyle == MWStatusItemStyleTicker)
     {
@@ -310,12 +354,12 @@
         [self.secondRowItem setHidden:NO];
         
         // 2nd row is the wallet balance
-        self.secondRowItem.title = [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"secondLineBalanceLabel", @""), [[HIBitcoinManager defaultManager] formatNanobtc:balance]];
+        self.secondRowItem.title = [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"secondLineBalanceLabel", @""), [[HIBitcoinManager defaultManager] formatNanobtc:self.lastBalance]];
     }
     else
     {
         
-        self.statusItem.title = [[HIBitcoinManager defaultManager] formatNanobtc:balance];
+        self.statusItem.title = [[HIBitcoinManager defaultManager] formatNanobtc:self.lastBalance];
         
         // 2nd row is the ticker
         if(self.ticketValue.length > 0)
@@ -346,7 +390,10 @@
     
     self.balanceUnconfirmedMenuItem.attributedTitle = string;
     
-    [self rebuildTransactionsMenu];
+    if(tickerOnly == NO)
+    {
+        [self rebuildTransactionsMenu];
+    }
 }
 
 // switch the network
@@ -401,6 +448,17 @@
 
 #pragma mark - wallet/address stack
 
+- (void)updateWalletMenuItem
+{
+    if([[HIBitcoinManager defaultManager] isWalletEncrypted])
+    {
+        [self.walletMenuItem setImage:[NSImage imageNamed:@"secure"]];
+    }
+    else {
+        [self.walletMenuItem setImage:[NSImage imageNamed:@"not-secure"]];
+    }
+}
+
 - (void)updateMyAddresses:(NSArray *)addresses
 {
     NSLog(@"%@", addresses);
@@ -436,11 +494,19 @@
 - (void)addWalletAddress:(id)sender
 {
     [[HIBitcoinManager defaultManager] addKey];
-    [self saveWallet];
-    
     [self updateMyAddresses:[HIBitcoinManager defaultManager].allWalletAddresses];
 }
+
+- (IBAction)encryptWallet:(id)sender {
+    [self.choosePasswordPopover showRelativeToRect:self.statusItem.view.frame ofView:self.statusItem.view preferredEdge:NSMinYEdge];
+}
+
+- (void)shouldPerformEncryption:(NSString *)passphrase
+{
+    [[HIBitcoinManager defaultManager] encryptWalletWith:passphrase];
     
+    [self updateWalletMenuItem];
+}
 
 #pragma mark - transactions stack
 
@@ -590,9 +656,9 @@
 }
 
 #pragma BASendCoinsWindowController Delegate
-- (NSInteger)prepareSendCoinsFromWindowController:(MWSendCoinsWindowController *)windowController receiver:(NSString *)btcAddress amount:(NSInteger)amountInSatoshis txfee:(NSInteger)txFeeInSatoshis
+- (NSInteger)prepareSendCoinsFromWindowController:(MWSendCoinsWindowController *)windowController receiver:(NSString *)btcAddress amount:(NSInteger)amountInSatoshis txfee:(NSInteger)txFeeInSatoshis password:(NSString *)password
 {
-    NSInteger fee = [[HIBitcoinManager defaultManager] prepareSendCoins:amountInSatoshis toReceipent:btcAddress comment:@""];
+    NSInteger fee = [[HIBitcoinManager defaultManager] prepareSendCoins:amountInSatoshis toReceipent:btcAddress comment:@"" password:password];
     
     return fee;
 }
@@ -605,48 +671,40 @@
 #pragma mark - wallet stack
 
 /*
- * saves the wallet to the osx keychain
+ * saves a passphrase to the osx keychain
  *
  */
-- (void)saveWallet
-{
-    if(kSAVE_WALLET_TO_KEYCHAIN)
-    {
-        
-        BOOL testnet = [[NSUserDefaults standardUserDefaults] boolForKey:kTESTNET_SWITCH_KEY];
-        NSString *keychainServiceName = (testnet) ? kKEYCHAIN_SERVICE_NAME_TESTNET : kKEYCHAIN_SERVICE_NAME;
-        
-        NSString *base64str = [HIBitcoinManager defaultManager].walletFileBase64String;
-        if(!base64str || base64str.length == 0)
-        {
-            return;
-        }
-        
-        if(!RHKeychainDoesGenericEntryExist(NULL, keychainServiceName))
-        {
-            RHKeychainAddGenericEntry(NULL, keychainServiceName);
-                RHKeychainSetGenericComment(NULL, keychainServiceName, @"bitcoinj wallet as base64 string");
-        }
-    
-        RHKeychainSetGenericPassword(NULL, keychainServiceName, base64str);
-    }
-}
-
-- (NSString *)loadWallet
+- (void)setWalletBasicEncryptionPassphrase:(NSString *)baseKey
 {
     BOOL testnet = [[NSUserDefaults standardUserDefaults] boolForKey:kTESTNET_SWITCH_KEY];
     NSString *keychainServiceName = (testnet) ? kKEYCHAIN_SERVICE_NAME_TESTNET : kKEYCHAIN_SERVICE_NAME;
     
-    if(kSAVE_WALLET_TO_KEYCHAIN)
+    if(!baseKey || baseKey.length == 0)
     {
-        if(RHKeychainDoesGenericEntryExist(NULL, keychainServiceName))
-        {
-            return RHKeychainGetGenericPassword(NULL, keychainServiceName);
-        }
-        else
-        {
-            return nil;
-        }
+        return;
+    }
+    
+    if(!RHKeychainDoesGenericEntryExist(NULL, keychainServiceName))
+    {
+        RHKeychainAddGenericEntry(NULL, keychainServiceName);
+        RHKeychainSetGenericComment(NULL, keychainServiceName, @"MacWallet wallet encryption passphrase");
+    }
+    
+    RHKeychainSetGenericPassword(NULL, keychainServiceName, baseKey);
+}
+
+- (NSString *)walletBasicEncryptionPassphrase
+{
+    BOOL testnet = [[NSUserDefaults standardUserDefaults] boolForKey:kTESTNET_SWITCH_KEY];
+    NSString *keychainServiceName = (testnet) ? kKEYCHAIN_SERVICE_NAME_TESTNET : kKEYCHAIN_SERVICE_NAME;
+    
+    if(RHKeychainDoesGenericEntryExist(NULL, keychainServiceName))
+    {
+        return RHKeychainGetGenericPassword(NULL, keychainServiceName);
+    }
+    else
+    {
+        return nil;
     }
 }
 
@@ -692,10 +750,9 @@
     [[MWTickerController defaultController] loadTicketWithName:tickerName completionHandler:^(NSString *valueString, NSError *error){
         dispatch_async(dispatch_get_main_queue(), ^{
         self.ticketValue = valueString;
-        [self updateStatusMenu];
+            [self updateStatusMenu:YES];
         });
     }];
 }
-
 
 @end

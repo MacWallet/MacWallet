@@ -10,5 +10,10 @@
 
 int main(int argc, char *argv[])
 {
+    // make sure only one instance is running
+    if ([[NSRunningApplication runningApplicationsWithBundleIdentifier:[[NSBundle mainBundle] bundleIdentifier]] count] > 0) {
+        [NSApp terminate:nil];
+    }
+    
     return NSApplicationMain(argc, (const char **)argv);
 }

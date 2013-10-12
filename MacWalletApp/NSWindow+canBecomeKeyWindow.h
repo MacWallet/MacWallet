@@ -1,0 +1,3 @@
+@interface NSWindow (canBecomeKeyWindow)
+
+@end

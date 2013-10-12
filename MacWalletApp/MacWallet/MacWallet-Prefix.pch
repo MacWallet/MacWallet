@@ -8,12 +8,14 @@
 
 
 #define kTESTNET_SWITCH_KEY @"testnetSwitchKey"
-#define kUSE_KEYCHAIN_KEY @"useKeychainKey"
+#define kUSE_KEYCHAIN_KEY @"useKeychainKey" // depracated
 #define kTICKER_NAME_KEY @"tickerNameKey"
 #define kDEFAULT_TICKER_NAME @"BITSTAMP USD"
 #define kSTATUS_ITEM_STYLE_KEY @"statusItemStyleKey"
 #define kSHOW_TIME_AGO_KEY @"showTimeAgoKey"
 #define kPREV_VERSIONS_STARTED_KEY @"prevStartupVersions"
+
+#define kHAS_ENCRYPTED_WALLET_KEY @"hasEncryptedWalletKey"
 
 typedef enum MWStatusItemStyle {
     MWStatusItemStyleBalance = 0,
@@ -22,9 +24,10 @@ typedef enum MWStatusItemStyle {
 } MWStatusItemStyle;
 
 #define kDEFAULT_MAX_TRANSACTION_COUNT_MENU 10
-#define kKEYCHAIN_SERVICE_NAME @"MacWallet"
-#define kKEYCHAIN_SERVICE_NAME_TESTNET @"MacWallet_Testnet"
-#define kSAVE_WALLET_TO_KEYCHAIN 1
+#define kKEYCHAIN_SERVICE_NAME @"MacWallet Passphrase"
+#define kKEYCHAIN_SERVICE_NAME_TESTNET @"MacWallet Passphrase Testnet"
+
+//#define kSAVE_WALLET_TO_KEYCHAIN 1
 
 #define kSHOULD_UPDATE_AFTER_PREFS_CHANGE_NOTIFICATION @"shouldUpdateAfterPrefsChangeNotification"
 #define kTICKET_UPDATE_INTERVAL_IN_SECONDS 5
