@@ -812,11 +812,15 @@
                 <outlet property="containerView" destination="oIR-57-mYc" id="kGO-TV-W3b"/>
                 <outlet property="contentViewController" destination="4nW-Cw-V6M" id="Lyr-K2-upx"/>
                 <outlet property="delegate" destination="494" id="TQ2-Rn-kDn"/>
+                <outlet property="lastOkayLabel" destination="yKy-aO-jDT" id="1vn-fn-zOC"/>
                 <outlet property="noMatchImageView" destination="P98-91-qQK" id="9gf-7G-mTg"/>
                 <outlet property="okButton0" destination="YZh-ag-eLK" id="zKE-CL-zZC"/>
                 <outlet property="okButton1" destination="BqF-PE-NNF" id="zqO-LU-zci"/>
+                <outlet property="okButton2" destination="vcA-JH-unE" id="A65-jC-OVG"/>
                 <outlet property="password0" destination="Pte-Ep-qAK" id="9em-De-G6e"/>
+                <outlet property="password0Label" destination="Asy-Uw-tyr" id="iWF-jy-wm9"/>
                 <outlet property="password1" destination="JLA-bI-QVB" id="kkf-GN-gdv"/>
+                <outlet property="password1Label" destination="D3H-Z9-Vdh" id="bKu-Jt-0fE"/>
                 <outlet property="pwStrength" destination="ydT-Rp-mis" id="x0i-37-vWz"/>
                 <outlet property="pwStrengthLevel" destination="biW-1g-2na" id="he0-Y4-0ax"/>
                 <outlet property="scrollView" destination="xHw-ob-dfJ" id="elA-EU-oXY"/>
@@ -872,12 +876,11 @@
                         </allowedInputSourceLocales>
                     </secureTextFieldCell>
                     <connections>
-                        <action selector="continuePage0:" target="mlX-MK-QJD" id="ic3-0g-WtH"/>
                         <outlet property="delegate" destination="mlX-MK-QJD" id="ueG-WF-pRe"/>
                     </connections>
                 </secureTextField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Asy-Uw-tyr">
-                    <rect key="frame" x="17" y="72" width="123" height="17"/>
+                    <rect key="frame" x="17" y="72" width="197" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Protect your Wallet" id="8cg-FD-EKE">
                         <font key="font" metaFont="system"/>
@@ -886,7 +889,7 @@
                     </textFieldCell>
                 </textField>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BqF-PE-NNF">
-                    <rect key="frame" x="358" y="7" width="88" height="32"/>
+                    <rect key="frame" x="347" y="7" width="99" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="push" title="Ok" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zP9-L9-zrO">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -908,12 +911,11 @@
                         </allowedInputSourceLocales>
                     </secureTextFieldCell>
                     <connections>
-                        <action selector="continuePage1:" target="mlX-MK-QJD" id="TR9-c4-iki"/>
                         <outlet property="delegate" destination="mlX-MK-QJD" id="uds-Px-UdB"/>
                     </connections>
                 </secureTextField>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BFe-bK-8wf">
-                    <rect key="frame" x="14" y="7" width="76" height="32"/>
+                    <rect key="frame" x="14" y="7" width="101" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="push" title="Abort" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="EZX-5g-Diz">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -924,7 +926,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QJ4-sA-I2w">
-                    <rect key="frame" x="243" y="7" width="91" height="32"/>
+                    <rect key="frame" x="243" y="7" width="99" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="push" title="« Back" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="X1U-9g-uQg">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -935,7 +937,7 @@
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D3H-Z9-Vdh">
-                    <rect key="frame" x="246" y="73" width="123" height="17"/>
+                    <rect key="frame" x="246" y="73" width="192" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Protect your Wallet" id="hsm-gJ-gkV">
                         <font key="font" metaFont="system"/>
@@ -963,21 +965,21 @@
                     <levelIndicatorCell key="cell" controlSize="mini" alignment="left" doubleValue="2" maxValue="3" warningValue="2" criticalValue="1" id="c3V-xI-Vlk"/>
                 </levelIndicator>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yKy-aO-jDT">
-                    <rect key="frame" x="482" y="73" width="184" height="17"/>
+                    <rect key="frame" x="482" y="43" width="184" height="47"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Your Wallet is now Protected" id="Zns-lF-BPo">
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Your Wallet is now Protected" id="Zns-lF-BPo">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2rA-9u-blj">
-                    <rect key="frame" x="564" y="43" width="20" height="20"/>
+                    <rect key="frame" x="550" y="14" width="20" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="secure" id="spj-Pz-Gbn"/>
                 </imageView>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vcA-JH-unE">
-                    <rect key="frame" x="588" y="7" width="88" height="32"/>
+                    <rect key="frame" x="573" y="7" width="103" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="push" title="Ok" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="CV6-LK-fqQ">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -996,11 +998,16 @@
         </viewController>
         <popover id="2MC-th-ugy" customClass="MWEnterPasswordPopover">
             <connections>
-                <outlet property="backButton" destination="p2D-em-W9c" id="3xN-uY-NfG"/>
+                <outlet property="backButton0" destination="A7R-pH-Gph" id="Hy4-0R-fQW"/>
+                <outlet property="backButton1" destination="p2D-em-W9c" id="nPj-hJ-Jtw"/>
                 <outlet property="containerView" destination="5pz-Ru-TYA" id="8o1-oe-0Rg"/>
                 <outlet property="contentViewController" destination="L3Y-ID-gC0" id="mTU-Zf-azE"/>
                 <outlet property="delegate" destination="494" id="00P-Ah-XW4"/>
+                <outlet property="enterPasswordLabel" destination="MB6-WK-sC2" id="YiW-Hm-dMj"/>
                 <outlet property="imageView" destination="UC4-D2-H8l" id="6aJ-SK-w7C"/>
+                <outlet property="lastMassageLabel" destination="yeM-8W-Crb" id="90A-vn-z3e"/>
+                <outlet property="okButton0" destination="LYQ-Ur-Qfa" id="Sq6-o6-vbe"/>
+                <outlet property="okButton1" destination="neM-YT-fuf" id="c2z-eg-lGC"/>
                 <outlet property="passwordTextField" destination="kmf-Ha-Mwd" id="nsn-KA-flD"/>
                 <outlet property="responseTextField" destination="yeM-8W-Crb" id="lbf-aB-LFz"/>
                 <outlet property="scrollView" destination="ZOD-Ja-bf1" id="rm9-uq-tc9"/>
@@ -1056,7 +1063,6 @@
                         </allowedInputSourceLocales>
                     </secureTextFieldCell>
                     <connections>
-                        <action selector="okPressed:" target="2MC-th-ugy" id="9ym-aB-64z"/>
                         <outlet property="delegate" destination="2MC-th-ugy" id="tHh-Iu-hrh"/>
                     </connections>
                 </secureTextField>

@@ -19,6 +19,7 @@
 
 @property (strong) IBOutlet NSButton *okButton0;
 @property (strong) IBOutlet NSButton *okButton1;
+@property (strong) IBOutlet NSButton *okButton2;
 
 @property (strong) IBOutlet NSButton *abortButton0;
 @property (strong) IBOutlet NSButton *abortButton1;
@@ -30,9 +31,46 @@
 @property (strong) IBOutlet NSImageView *noMatchImageView;
 @property (assign) BOOL processFinished;
 
+@property (strong) IBOutlet NSTextField *password0Label;
+@property (strong) IBOutlet NSTextField *password1Label;
+@property (strong) IBOutlet NSTextField *lastOkayLabel;
+
 @end
 
 @implementation MWSetPasswordPopover
+
+-(void)awakeFromNib
+{
+  // do some i18n
+    
+    
+    self.password0Label.stringValue         = NSLocalizedString(@"setPasswordPassword0Label", @"");
+    self.password1Label.stringValue         = NSLocalizedString(@"setPasswordPassword1Label", @"");
+    self.abortButton0.title                 = NSLocalizedString(@"setPasswordAbortButton0Text", @"");
+    self.abortButton1.title                 = NSLocalizedString(@"setPasswordAbortButton1Text", @"");
+    self.okButton0.title                    = NSLocalizedString(@"setPasswordOkButton0Text", @"");
+    self.okButton1.title                    = NSLocalizedString(@"setPasswordOkButton1Text", @"");
+    self.okButton2.title                    = NSLocalizedString(@"setPasswordOkButton2Text", @"");
+    self.lastOkayLabel.stringValue          = NSLocalizedString(@"setPasswordFinishMessage", @"");
+    
+    [(NSTextFieldCell *)self.password0.cell setPlaceholderString:NSLocalizedString(@"setPasswordPassword0PlaceholderText", @"")];
+    [(NSTextFieldCell *)self.password1.cell setPlaceholderString:NSLocalizedString(@"setPasswordPassword1PlaceholderText", @"")];
+}
+
+- (BOOL)control:(NSControl *)control textView:(NSTextView *)fieldEditor doCommandBySelector:(SEL)commandSelector
+{
+    BOOL retval = NO;
+    if (commandSelector == @selector(insertNewline:))
+    {
+        retval = YES; // causes Apple to NOT fire the default enter action
+        [self showPageWithNumber:1];
+        [self.password1 becomeFirstResponder];
+    }
+    
+    NSLog(@"Selector = %@", NSStringFromSelector( commandSelector ) );
+    
+    return retval;  
+}
 
 -(void)controlTextDidChange:(NSNotification *)notification {
     
@@ -142,6 +180,8 @@
     [self.password0 becomeFirstResponder];
     
     [self.scrollView setDocumentView:self.containerView];
+    
+    [self showPageWithNumber:0];
 }
 
 @end

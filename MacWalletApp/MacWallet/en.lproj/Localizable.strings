@@ -80,3 +80,24 @@ removePassword = "Remove password";
 setPassword = "Protect with password";
 
 checkForUpdatesMenuItem = "Check for updates...";
+
+setPasswordPassword0Label = "Enter a password";
+setPasswordPassword1Label = "Repeat password";
+setPasswordAbortButton0Text = "Cancel";
+setPasswordAbortButton1Text = "« Back";
+setPasswordOkButton0Text = "Continue";
+setPasswordOkButton1Text = "Ok";
+setPasswordOkButton2Text = "Ok";
+setPasswordFinishMessage = "Your Wallet is now Protected";
+
+setPasswordPassword0PlaceholderText = "Enter password";
+setPasswordPassword1PlaceholderText = "Repeat password";
+
+enterPasswordPassword0PlaceholderText = "Enter password";
+enterPasswordBackButton0Text = "Cancel";
+enterPasswordBackButton1Text = "« Back";
+enterPasswordOkButton0Text = "Ok";
+enterPasswordOkButton1Text = "Ok";
+enterPasswordLastMessage = "Your Wallet is no longer protected with a password";
+successDecryptingWallet = "Your wallet is now unprotected";
+errorDecryptingWallet = "There was a error decrypting your wallet";

@@ -13,19 +13,42 @@
 @property (strong) IBOutlet NSView  *containerView;
 @property (strong) IBOutlet NSSecureTextField *passwordTextField;
 @property (strong) IBOutlet NSImageView *imageView;
-@property (strong) IBOutlet NSButton *backButton;
+@property (strong) IBOutlet NSButton *backButton0;
+@property (strong) IBOutlet NSButton *backButton1;
 @property (strong) IBOutlet NSTextField *responseTextField;
+
+@property (strong) IBOutlet NSTextField *enterPasswordLabel;
+@property (strong) IBOutlet NSTextField *lastMassageLabel;
+
+@property (strong) IBOutlet NSButton *okButton0;
+@property (strong) IBOutlet NSButton *okButton1;
 
 @property (assign) BOOL processFinished;
 @end
 
 @implementation MWEnterPasswordPopover
 
+-(void)awakeFromNib
+{
+    // do some i18n
+    
+    
+    self.backButton0.title                 = NSLocalizedString(@"enterPasswordBackButton0Text", @"");
+    self.backButton1.title                 = NSLocalizedString(@"enterPasswordBackButton1Text", @"");
+    self.okButton0.title                    = NSLocalizedString(@"enterPasswordOkButton0Text", @"");
+    self.okButton1.title                    = NSLocalizedString(@"enterPasswordOkButton1Text", @"");
+    self.lastMassageLabel.stringValue          = NSLocalizedString(@"enterPasswordLastMessage", @"");
+    
+    [(NSTextFieldCell *)self.passwordTextField.cell setPlaceholderString:NSLocalizedString(@"enterPasswordPassword0PlaceholderText", @"")];
+
+}
+
 - (IBAction)backButtonPresses:(id)sender
 {
     self.passwordTextField.stringValue = @"";
     [self showPageWithNumber:0];
 }
+
 - (IBAction)okPressed:(id)sender
 {
     if(self.processFinished) {
@@ -51,14 +74,14 @@
         BOOL success = (BOOL)[self.delegate performSelector:@selector(shouldPerformRemoveEncryption:) withObject:self.passwordTextField.stringValue];
         if(!success)
         {
-            [self.backButton setHidden:NO];
+            [self.backButton1 setHidden:NO];
             [self.imageView setHidden:NO];
             
             self.responseTextField.stringValue = NSLocalizedString(@"errorDecryptingWallet", @"Error message in popup when trying to decyrpt wallet");
         }
         else
         {
-            [self.backButton setHidden:YES];
+            [self.backButton1 setHidden:YES];
             [self.imageView setHidden:YES];
             
             self.responseTextField.stringValue = NSLocalizedString(@"successDecryptingWallet", @"Success message in popup when trying to decyrpt wallet");
@@ -75,7 +98,7 @@
     // make password become active
     [self.passwordTextField becomeFirstResponder];
     
-    [self.backButton setHidden:YES];
+    [self.backButton1 setHidden:YES];
     [self.imageView setHidden:YES];
     [self.scrollView setDocumentView:self.containerView];
     
