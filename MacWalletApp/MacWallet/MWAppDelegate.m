@@ -24,7 +24,9 @@
 #import <QuartzCore/QuartzCore.h>
 #import "DuxScrollViewAnimation.h"
 #import "MWSetPasswordPopover.h"
+#import "MWEnterPasswordPopover.h"
 
+#import "MWSendCoinsViewController.h"
 
 @interface MWAppDelegate ()
 
@@ -46,9 +48,13 @@
 @property (assign) IBOutlet NSMenuItem *balanceUnconfirmedMenuItem;
 @property (assign) IBOutlet NSMenuItem *secondRowItem;
 @property (assign) IBOutlet NSMenuItem *walletMenuItem;
+@property (assign) IBOutlet NSMenuItem *walletSetPasswordMenuItem;
+@property (assign) IBOutlet NSMenuItem *walletRemovePasswordMenuItem;
+@property (assign) IBOutlet NSMenuItem *walletDumpMenuItem;
+@property (assign) IBOutlet NSMenuItem *checkForUpdatesMenuItem;
 
 @property (assign) BOOL useKeychain;
-@property (strong) MWSendCoinsWindowController *sendCoinsWindowController;
+@property (strong) MWSendCoinsViewController *sendCoinsWindowController;
 @property (strong) MWTransactionsWindowController *txWindowController;
 @property (strong) MWTransactionDetailsWindowController *txDetailWindowController;
 @property (strong) RHPreferencesWindowController * preferencesWindowController;
@@ -59,6 +65,9 @@
 @property (assign) uint64_t lastBalance;
 
 @property (strong) IBOutlet MWSetPasswordPopover *choosePasswordPopover;
+@property (strong) IBOutlet MWEnterPasswordPopover *enterPasswordPopover;
+
+@property (strong) IBOutlet NSPopover *sendCoinsPopover;
 
 @property (strong) NSColor *currentMenuColor;
 
@@ -83,6 +92,12 @@
     self.preferencesMenuItem.title  = NSLocalizedString(@"preferences", @"Preferences Menu Item");
     self.aboutMenuItem.title        = NSLocalizedString(@"about", @"About Menu Item");
     self.quitMenuItem.title         = NSLocalizedString(@"quit", @"Quit Menu Item");
+    
+    self.walletSetPasswordMenuItem.title = NSLocalizedString(@"setPassword", @"Set Password Menu Item");
+    self.walletRemovePasswordMenuItem.title         = NSLocalizedString(@"removePassword", @"Remove Password Menu Item");
+    self.walletDumpMenuItem.title         = NSLocalizedString(@"dumpWallet", @"Dump Wallet Menu Item");
+    self.checkForUpdatesMenuItem.title    = NSLocalizedString(@"checkForUpdatesMenuItem", @"Check For Updates Menu Item");
+    
     self.networkStatusLastBlockTime.title =[NSString stringWithFormat:@"%@ ?", NSLocalizedString(@"lastBlockAge", @"Last Block Age Menu Item")];
     
     // make a global menu (extra menu) item
@@ -191,12 +206,18 @@
                                                  name:kSHOULD_SHOW_TRANSACTION_DETAILS_FOR_ID
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coinsReceived:)
+                                                 name:kHIBitcoinManagerCoinsReceivedNotification
+                                               object:nil];
+    
+    
+    
     
 }
 
 - (void)applicationWillTerminate:(NSNotification *)notification
 {
-
+    [[HIBitcoinManager defaultManager] saveWallet];
 }
 
 #pragma mark - NSMenuDelegate
@@ -335,15 +356,32 @@
         // set a two line status item
         [self.secondRowItem setHidden:YES];
         
+        // make sure, ticker is not displaying "(null)"
+        NSString *tickerValue = self.ticketValue;
+        if(!tickerValue)
+        {
+            tickerValue = @"loading";
+        }
         NSMutableParagraphStyle *paragraphStyle=[[NSMutableParagraphStyle alloc] init];
         [paragraphStyle setAlignment:NSRightTextAlignment];
-        [paragraphStyle setMaximumLineHeight:10];
-        [paragraphStyle setLineSpacing:1.0];
+        [paragraphStyle setMaximumLineHeight:9];
+        [paragraphStyle setHeadIndent:0];
         
         NSFont *font2 = [NSFont boldSystemFontOfSize:9];
         NSDictionary *attrsDictionary2 = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:font2, [NSColor blackColor], paragraphStyle, nil]
                                                                      forKeys:[NSArray arrayWithObjects:NSFontAttributeName, NSForegroundColorAttributeName, NSParagraphStyleAttributeName, nil] ];
-        NSMutableAttributedString* text = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\n%@",self.ticketValue, [[HIBitcoinManager defaultManager] formatNanobtc:self.lastBalance]] attributes:attrsDictionary2];
+        NSMutableAttributedString* text = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"\n%@\n%@",tickerValue, [[HIBitcoinManager defaultManager] formatNanobtc:self.lastBalance]] attributes:attrsDictionary2];
+        
+        NSMutableParagraphStyle *paragraphStyle2 =[[NSMutableParagraphStyle alloc] init];
+        [paragraphStyle2 setAlignment:NSRightTextAlignment];
+        [paragraphStyle2 setMaximumLineHeight:1];
+        [paragraphStyle2 setHeadIndent:0];
+        
+        NSRange range = NSMakeRange(0,1);
+        
+        [text addAttribute:NSParagraphStyleAttributeName
+                                   value:paragraphStyle2
+                                   range:range];
         
         self.statusItem.attributedTitle = text;
         [self changeAttributedStringColor];
@@ -453,9 +491,15 @@
     if([[HIBitcoinManager defaultManager] isWalletEncrypted])
     {
         [self.walletMenuItem setImage:[NSImage imageNamed:@"secure"]];
+        
+        [self.walletSetPasswordMenuItem setEnabled:NO];
+        [self.walletRemovePasswordMenuItem setEnabled:YES];
     }
     else {
         [self.walletMenuItem setImage:[NSImage imageNamed:@"not-secure"]];
+        
+        [self.walletSetPasswordMenuItem setEnabled:YES];
+        [self.walletRemovePasswordMenuItem setEnabled:NO];
     }
 }
 
@@ -497,15 +541,132 @@
     [self updateMyAddresses:[HIBitcoinManager defaultManager].allWalletAddresses];
 }
 
-- (IBAction)encryptWallet:(id)sender {
-    [self.choosePasswordPopover showRelativeToRect:self.statusItem.view.frame ofView:self.statusItem.view preferredEdge:NSMinYEdge];
+- (IBAction)encryptWallet:(id)sender
+{
+    NSWindow *appWin = [self.statusItem valueForKey:@"window"];
+    NSRect frame = appWin.frame;
+    NSView *view = appWin.contentView;
+    
+    [self.choosePasswordPopover showRelativeToRect:CGRectMake(0,0,frame.size.width,frame.size.height) ofView:view preferredEdge:NSMinYEdge];
+}
+
+- (IBAction)removeWalletEncryption:(id)sender {
+    NSWindow *appWin = [self.statusItem valueForKey:@"window"];
+    NSRect frame = appWin.frame;
+    NSView *view = appWin.contentView;
+    
+    [self.enterPasswordPopover showRelativeToRect:CGRectMake(0,0,frame.size.width,frame.size.height) ofView:view preferredEdge:NSMinYEdge];
+}
+
+- (BOOL)shouldPerformRemoveEncryption:(NSString *)passphrase
+{
+    BOOL success = [[HIBitcoinManager defaultManager] removeEncryption:passphrase];
+    if(success)
+    {
+        [self updateWalletMenuItem];
+        return YES;
+    }
+    return NO;
 }
 
 - (void)shouldPerformEncryption:(NSString *)passphrase
 {
     [[HIBitcoinManager defaultManager] encryptWalletWith:passphrase];
-    
     [self updateWalletMenuItem];
+}
+
+- (IBAction)resyncBlockchain:(id)sender
+{
+    [[HIBitcoinManager defaultManager] resyncBlockchain];
+}
+
+- (void)coinsReceived:(NSNotification *)notification
+{
+    NSString *tx = notification.object;
+    NSLog(@"%@", tx);
+    
+    if([NSUserNotification class] && [NSUserNotificationCenter class])
+    {
+        NSDictionary *transactionDict = [[HIBitcoinManager defaultManager] transactionForHash:tx];
+        long long amount = [[transactionDict objectForKey:@"amount"] longLongValue];
+        NSString *funds = [[HIBitcoinManager defaultManager] formatNanobtc:amount];
+        
+        NSUserNotification *userNotification = [[NSUserNotification alloc] init];
+        [userNotification setTitle:NSLocalizedString(@"newFundsOnTheWayTitle", @"new funds on the way user notification title")];
+        [userNotification setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"newFundsOnTheWayText", @"new funds on the way user notification text"), funds]];
+        
+        [userNotification setDeliveryDate:[NSDate dateWithTimeInterval:0 sinceDate:[NSDate date]]];
+        [userNotification setSoundName:NSUserNotificationDefaultSoundName];
+        NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
+        [center scheduleNotification:userNotification];
+    }
+    
+//    NSTask *task = [[NSTask alloc] init];
+//    [task setLaunchPath:@"/path/to/script/sh"];
+//    [task setArguments:[NSArray arrayWithObjects:@"yourScript.sh", nil]];
+//    [task setStandardOutput:[NSPipe pipe]];
+//    [task setStandardInput:[NSPipe pipe]];
+//    
+//    [task launch];
+}
+
+- (IBAction)dumpWallet:(id)sender
+{
+    if([[HIBitcoinManager defaultManager] isWalletEncrypted])
+    {
+        NSWindow *appWin = [self.statusItem valueForKey:@"window"];
+        NSRect frame = appWin.frame;
+        NSView *view = appWin.contentView;
+        
+        [self.enterPasswordPopover showRelativeToRect:CGRectMake(0,0,frame.size.width,frame.size.height) ofView:view preferredEdge:NSMinYEdge];
+        
+        self.enterPasswordPopover.okaySelector = @selector(dumpWalletWithPassphrase:);
+        self.enterPasswordPopover.okayTarget = self;
+        
+    }
+    else
+    {
+        [self dumpWalletWithPassphrase:nil];
+    }
+
+}
+
+- (void)dumpWalletWithPassphrase:(NSString *)passphrase
+{
+    
+    self.enterPasswordPopover.okaySelector = nil;
+    self.enterPasswordPopover.okayTarget = nil;
+    
+    [self.enterPasswordPopover performClose:self];
+    
+    NSInteger result;
+    NSSavePanel *sPanel = [NSSavePanel savePanel];
+    sPanel.title = NSLocalizedString(@"dumpWalletToTitle", @"Dump Wallet Title for Save Panel");
+    [sPanel setNameFieldStringValue:NSLocalizedString(@"recommendedFilenameForWalletDump", @"Recommended Filename for a dumped wallet")];
+    
+    [sPanel setCanCreateDirectories:YES];
+    
+    
+    result = [sPanel runModal];
+    if (result == NSOKButton) {
+        BOOL success = [[HIBitcoinManager defaultManager] exportWalletWithPassphase:passphrase To:sPanel.URL];
+        
+        if(!success) {
+            NSAlert *alert = [[NSAlert alloc] init];
+            [alert addButtonWithTitle:@"OK"];
+            [alert setMessageText:NSLocalizedString(@"errorDumpWallet",@"Alert Message When Dump Was NOK")];
+            [alert setAlertStyle:NSWarningAlertStyle];
+            [alert runModal];
+        }
+        else
+        {
+            NSAlert *alert = [[NSAlert alloc] init];
+            [alert addButtonWithTitle:@"OK"];
+            [alert setMessageText:NSLocalizedString(@"successDumpWallet",@"Success Message When Dump Was Okay")];
+            [alert setAlertStyle:NSInformationalAlertStyle];
+            [alert runModal];
+        }
+    }
 }
 
 #pragma mark - transactions stack
@@ -641,28 +802,43 @@
 #pragma mark - send coins stack
 - (IBAction)openSendCoins:(id)sender
 {
-    // keep window when user only moved the window to the backgroubd
-    if(!self.sendCoinsWindowController)
-    {
-        self.sendCoinsWindowController = [[MWSendCoinsWindowController alloc] initWithWindowNibName:@"SendCoinsWindow"];
-    }
-    self.sendCoinsWindowController.delegate = self;
     
-    // activate the app so that the window popps to front
-    [NSApp activateIgnoringOtherApps:YES];
+    NSWindow *appWin = [self.statusItem valueForKey:@"window"];
+    NSRect frame = appWin.frame;
+    NSView *view = appWin.contentView;
     
-    [self.sendCoinsWindowController showWindow:nil];
-    [self.sendCoinsWindowController.window orderFrontRegardless];
+    NSPopover *popover = [[NSPopover alloc] init];
+    MWSendCoinsViewController *vc = [[MWSendCoinsViewController alloc] initWithNibName:@"SendCoinsWindow" bundle:nil];
+    vc.delegate = self;
+    vc.popover = popover;
+    popover.contentViewController = vc;
+    
+    [popover showRelativeToRect:CGRectMake(0,0,frame.size.width,frame.size.height) ofView:view preferredEdge:NSMinYEdge];
+    
+    return;
+//    
+//    // keep window when user only moved the window to the backgroubd
+//    if(!self.sendCoinsWindowController)
+//    {
+//        self.sendCoinsWindowController = [[MWSendCoinsWindowController alloc] initWithWindowNibName:@"SendCoinsWindow"];
+//    }
+//    self.sendCoinsWindowController.delegate = self;
+//    
+//    // activate the app so that the window popps to front
+//    [NSApp activateIgnoringOtherApps:YES];
+//    
+//    [self.sendCoinsWindowController showWindow:nil];
+//    [self.sendCoinsWindowController.window orderFrontRegardless];
 }
 
 #pragma BASendCoinsWindowController Delegate
-- (NSInteger)prepareSendCoinsFromWindowController:(MWSendCoinsWindowController *)windowController receiver:(NSString *)btcAddress amount:(NSInteger)amountInSatoshis txfee:(NSInteger)txFeeInSatoshis password:(NSString *)password
+- (NSInteger)prepareSendCoinsFromWindowController:(MWSendCoinsViewController *)windowController receiver:(NSString *)btcAddress amount:(NSInteger)amountInSatoshis txfee:(NSInteger)txFeeInSatoshis password:(NSString *)password
 {
     NSInteger fee = [[HIBitcoinManager defaultManager] prepareSendCoins:amountInSatoshis toReceipent:btcAddress comment:@"" password:password];
     
     return fee;
 }
-- (void)sendCoinsWindowControllerWillClose:(MWSendCoinsWindowController *)windowController
+- (void)sendCoinsWindowControllerWillClose:(MWSendCoinsViewController *)windowController
 {
     // remove send coins window when user presses close button
     self.sendCoinsWindowController = nil;

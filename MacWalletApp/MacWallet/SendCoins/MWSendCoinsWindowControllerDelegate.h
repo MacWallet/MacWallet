@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@class MWSendCoinsWindowController;
+@class MWSendCoinsViewController;
 
 @protocol MWSendCoinsWindowControllerDelegate <NSObject>
 @required
-- (NSInteger)prepareSendCoinsFromWindowController:(MWSendCoinsWindowController *)windowController receiver:(NSString *)btcAddress amount:(NSInteger)amountInSatoshis txfee:(NSInteger)txFeeInSatoshis password:(NSString *)password;
+- (NSInteger)prepareSendCoinsFromWindowController:(MWSendCoinsViewController *)windowController receiver:(NSString *)btcAddress amount:(NSInteger)amountInSatoshis txfee:(NSInteger)txFeeInSatoshis password:(NSString *)password;
 
 @optional
-- (void)sendCoinsWindowControllerWillClose:(MWSendCoinsWindowController *)windowController;
+- (void)sendCoinsWindowControllerWillClose:(MWSendCoinsViewController *)windowController;
 
 @end

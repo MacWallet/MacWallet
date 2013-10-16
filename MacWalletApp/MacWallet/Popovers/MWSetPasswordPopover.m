@@ -132,14 +132,15 @@
     }
 }
 
-
-- (void)showPageWithNumber:(int)page
-{
-    [DuxScrollViewAnimation animatedScrollToPoint:NSMakePoint(230*page,0) inScrollView:self.scrollView];
-}
-
 - (void)popoverWillShow:(NSNotification *)notification
 {
+    self.password0.stringValue = @"";
+    self.password1.stringValue = @"";
+    self.processFinished = NO;
+    
+    // make password become active
+    [self.password0 becomeFirstResponder];
+    
     [self.scrollView setDocumentView:self.containerView];
 }
 

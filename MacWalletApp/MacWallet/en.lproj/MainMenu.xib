@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1070" identifier="macosx"/>
+        <deployment defaultVersion="1080" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4510"/>
     </dependencies>
     <objects>
@@ -644,14 +644,16 @@
                 </menuItem>
             </items>
         </menu>
+        <customObject id="jPo-hh-bbv" customClass="SUUpdater"/>
         <customObject id="494" customClass="MWAppDelegate">
             <connections>
                 <outlet property="aboutMenuItem" destination="2dK-1f-nim" id="3eV-QM-PIb"/>
                 <outlet property="addressesMenu" destination="g0r-yI-eav" id="lB3-5i-FUD"/>
                 <outlet property="addressesMenuItem" destination="537" id="QFd-HD-k2O"/>
                 <outlet property="balanceUnconfirmedMenuItem" destination="N22-f7-qb5" id="ZRz-oe-2yV"/>
+                <outlet property="checkForUpdatesMenuItem" destination="4Ww-8C-lEj" id="OLR-Q2-v16"/>
                 <outlet property="choosePasswordPopover" destination="mlX-MK-QJD" id="WGJ-e1-beu"/>
-                <outlet property="containerView" destination="oIR-57-mYc" id="7VG-fM-hkd"/>
+                <outlet property="enterPasswordPopover" destination="2MC-th-ugy" id="Wul-cC-NVd"/>
                 <outlet property="networkStatusBlockHeight" destination="OkV-tT-Eh2" id="n7t-hb-h8t"/>
                 <outlet property="networkStatusLastBlockTime" destination="ZXM-No-7ma" id="kof-ht-NZw"/>
                 <outlet property="networkStatusMenuItem" destination="l8g-ak-bBL" id="GYW-kZ-jJg"/>
@@ -659,13 +661,15 @@
                 <outlet property="networkStatusPeersMenuItem" destination="zhr-lm-E9Y" id="S5B-Dw-Rk0"/>
                 <outlet property="preferencesMenuItem" destination="hpb-8l-QWa" id="J6I-ol-qkd"/>
                 <outlet property="quitMenuItem" destination="539" id="XPF-bb-a0b"/>
-                <outlet property="scrollView" destination="xHw-ob-dfJ" id="wbm-sH-3Ph"/>
                 <outlet property="secondRowItem" destination="Cfv-Xt-JRf" id="x26-7G-TOW"/>
                 <outlet property="sendCoinsMenuItem" destination="538" id="wZd-x0-fG0"/>
                 <outlet property="statusMenu" destination="536" id="540"/>
                 <outlet property="transactionsMenu" destination="Em6-Yl-mUX" id="pxM-vS-56a"/>
                 <outlet property="transactionsMenuItem" destination="1Eh-U2-Eka" id="0b6-eC-GyJ"/>
+                <outlet property="walletDumpMenuItem" destination="cIN-qG-0JE" id="G52-ZO-dXU"/>
                 <outlet property="walletMenuItem" destination="Zvc-n6-PIh" id="vcP-SC-u2E"/>
+                <outlet property="walletRemovePasswordMenuItem" destination="MJk-KN-xCl" id="cmd-wo-7ra"/>
+                <outlet property="walletSetPasswordMenuItem" destination="FZf-Be-eng" id="l79-FZ-cSD"/>
             </connections>
         </customObject>
         <customObject id="420" customClass="NSFontManager"/>
@@ -708,12 +712,24 @@
                 </menuItem>
                 <menuItem title="Wallet" id="Zvc-n6-PIh">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="Wallet" id="HMj-0I-xke">
+                    <menu key="submenu" title="Wallet" autoenablesItems="NO" id="HMj-0I-xke">
                         <items>
-                            <menuItem title="Protect with password" id="FZf-Be-eng">
+                            <menuItem title="Set Password" id="FZf-Be-eng">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="encryptWallet:" target="494" id="moH-WP-gWM"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Remove Password" id="MJk-KN-xCl">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="removeWalletEncryption:" target="494" id="LFO-VN-Zsh"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Dump Wallet..." id="cIN-qG-0JE">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="dumpWallet" target="494" id="aD6-s6-GKP"/>
                                 </connections>
                             </menuItem>
                         </items>
@@ -733,6 +749,12 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Network Status" id="oLk-jt-WwU">
                         <items>
+                            <menuItem title="Resync Blockchain" id="fhE-Lc-thd">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="resyncBlockchain:" target="494" id="DNS-tP-4PR"/>
+                                </connections>
+                            </menuItem>
                             <menuItem title="Peers" id="zhr-lm-E9Y">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                             </menuItem>
@@ -756,6 +778,12 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="showPreferences:" target="494" id="9BK-S1-zdO"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="checkForUpdates" id="4Ww-8C-lEj">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="checkForUpdates:" target="jPo-hh-bbv" id="RUd-cP-p0g"/>
                     </connections>
                 </menuItem>
                 <menuItem title="About" id="2dK-1f-nim">
@@ -794,7 +822,7 @@
                 <outlet property="scrollView" destination="xHw-ob-dfJ" id="elA-EU-oXY"/>
             </connections>
         </popover>
-        <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" id="xHw-ob-dfJ">
+        <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" id="xHw-ob-dfJ" customClass="MWBaseScrollView">
             <rect key="frame" x="0.0" y="0.0" width="230" height="109"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="glI-zF-E3f">
@@ -957,6 +985,135 @@
                     </buttonCell>
                     <connections>
                         <action selector="closeSuccessful:" target="mlX-MK-QJD" id="Cik-1i-iLF"/>
+                    </connections>
+                </button>
+            </subviews>
+        </customView>
+        <viewController id="L3Y-ID-gC0" userLabel="Popover View Controller">
+            <connections>
+                <outlet property="view" destination="ZOD-Ja-bf1" id="Q2W-hj-kQ3"/>
+            </connections>
+        </viewController>
+        <popover id="2MC-th-ugy" customClass="MWEnterPasswordPopover">
+            <connections>
+                <outlet property="backButton" destination="p2D-em-W9c" id="3xN-uY-NfG"/>
+                <outlet property="containerView" destination="5pz-Ru-TYA" id="8o1-oe-0Rg"/>
+                <outlet property="contentViewController" destination="L3Y-ID-gC0" id="mTU-Zf-azE"/>
+                <outlet property="delegate" destination="494" id="00P-Ah-XW4"/>
+                <outlet property="imageView" destination="UC4-D2-H8l" id="6aJ-SK-w7C"/>
+                <outlet property="passwordTextField" destination="kmf-Ha-Mwd" id="nsn-KA-flD"/>
+                <outlet property="responseTextField" destination="yeM-8W-Crb" id="lbf-aB-LFz"/>
+                <outlet property="scrollView" destination="ZOD-Ja-bf1" id="rm9-uq-tc9"/>
+            </connections>
+        </popover>
+        <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" id="ZOD-Ja-bf1" customClass="MWBaseScrollView">
+            <rect key="frame" x="0.0" y="0.0" width="230" height="109"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="GJA-z3-3aZ">
+                <rect key="frame" x="0.0" y="0.0" width="230" height="109"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <view fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Wj-oP-ODG">
+                        <rect key="frame" x="0.0" y="0.0" width="230" height="109"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            </clipView>
+            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" id="4rT-Yi-FVo">
+                <rect key="frame" x="-100" y="-100" width="231" height="15"/>
+                <autoresizingMask key="autoresizingMask"/>
+            </scroller>
+            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" id="RiM-Ud-rD2">
+                <rect key="frame" x="-100" y="-100" width="15" height="94"/>
+                <autoresizingMask key="autoresizingMask"/>
+            </scroller>
+        </scrollView>
+        <customView id="5pz-Ru-TYA">
+            <rect key="frame" x="0.0" y="0.0" width="460" height="102"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LYQ-Ur-Qfa">
+                    <rect key="frame" x="159" y="7" width="58" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="push" title="Ok" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="X16-EN-rcS">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="okPressed:" target="2MC-th-ugy" id="jjb-82-5zW"/>
+                    </connections>
+                </button>
+                <secureTextField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kmf-Ha-Mwd">
+                    <rect key="frame" x="20" y="43" width="191" height="22"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Password" drawsBackground="YES" usesSingleLineMode="YES" id="sat-7c-jDA">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        <allowedInputSourceLocales>
+                            <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                        </allowedInputSourceLocales>
+                    </secureTextFieldCell>
+                    <connections>
+                        <action selector="okPressed:" target="2MC-th-ugy" id="9ym-aB-64z"/>
+                        <outlet property="delegate" destination="2MC-th-ugy" id="tHh-Iu-hrh"/>
+                    </connections>
+                </secureTextField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MB6-WK-sC2">
+                    <rect key="frame" x="17" y="72" width="133" height="17"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Enter your Password" id="Qqt-Gg-ouM">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A7R-pH-Gph">
+                    <rect key="frame" x="14" y="7" width="76" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="push" title="Abort" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Wyb-VU-XRA">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="performClose:" target="2MC-th-ugy" id="AKa-zf-qhz"/>
+                    </connections>
+                </button>
+                <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UC4-D2-H8l">
+                    <rect key="frame" x="434" y="82" width="20" height="20"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="error" id="XAL-KH-W4E"/>
+                </imageView>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="neM-YT-fuf">
+                    <rect key="frame" x="358" y="6" width="88" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="push" title="Ok" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="t6v-B7-bEj">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="performClose:" target="2MC-th-ugy" id="kuN-3j-NZs"/>
+                    </connections>
+                </button>
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yeM-8W-Crb">
+                    <rect key="frame" x="255" y="50" width="198" height="39"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Your Wallet is no longer protected with a password" id="oty-1k-QgE">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p2D-em-W9c">
+                    <rect key="frame" x="252" y="6" width="91" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="push" title="« Back" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="gMm-ZX-LK0">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="backButtonPresses:" target="2MC-th-ugy" id="jrN-f6-m16"/>
                     </connections>
                 </button>
             </subviews>

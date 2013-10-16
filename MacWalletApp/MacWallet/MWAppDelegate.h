@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "MWSendCoinsWindowController.h"
+#import "MWSendCoinsViewController.h"
 #import "MWTransactionsWindowController.h"
 
 @interface MWAppDelegate : NSObject <NSApplicationDelegate, MWSendCoinsWindowControllerDelegate, NSPopoverDelegate, NSMenuDelegate>

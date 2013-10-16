@@ -29,15 +29,15 @@
 		E531C1FC18088445009E1B16 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E531C1FB18088445009E1B16 /* QuartzCore.framework */; };
 		E531C1FF18088CE7009E1B16 /* DuxScrollViewAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = E531C1FE18088CE7009E1B16 /* DuxScrollViewAnimation.m */; };
 		E53B97271806913700E8117B /* NSString+NSStringRandomPasswordAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E53B97261806913700E8117B /* NSString+NSStringRandomPasswordAdditions.m */; };
+		E5438CA0180C6B8A007EDFDC /* MWBaseScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5438C9F180C6B8A007EDFDC /* MWBaseScrollView.m */; };
 		E548C6EE1802BFB400976CD7 /* MWTickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E548C6ED1802BFB400976CD7 /* MWTickerController.m */; };
-		E548C6F41802BFE600976CD7 /* MWSendCoinsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = E548C6F11802BFE600976CD7 /* MWSendCoinsWindowController.m */; };
 		E548C6F51802BFE600976CD7 /* SendCoinsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = E548C6F31802BFE600976CD7 /* SendCoinsWindow.xib */; };
 		E548C6FF1802BFFB00976CD7 /* MWTransactionDetailsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = E548C6F81802BFFB00976CD7 /* MWTransactionDetailsWindowController.m */; };
 		E548C7001802BFFB00976CD7 /* MWTransactionDetailsWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E548C6F91802BFFB00976CD7 /* MWTransactionDetailsWindowController.xib */; };
 		E548C7011802BFFB00976CD7 /* MWTransactionMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E548C6FB1802BFFB00976CD7 /* MWTransactionMenuItem.m */; };
 		E548C7021802BFFB00976CD7 /* MWTransactionsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = E548C6FD1802BFFB00976CD7 /* MWTransactionsWindowController.m */; };
 		E548C7031802BFFB00976CD7 /* MWTransactionsWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E548C6FE1802BFFB00976CD7 /* MWTransactionsWindowController.xib */; };
-		E564523418088F49008ADC99 /* MWSetPasswordPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = E564523318088F49008ADC99 /* MWSetPasswordPopover.m */; };
+		E558210D180DCEFB0062777E /* closebox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E558210C180DCEFB0062777E /* closebox@2x.png */; };
 		E5645237180891EB008ADC99 /* PasswordChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = E5645236180891EB008ADC99 /* PasswordChecker.m */; };
 		E564523B180894EE008ADC99 /* NSWindow+canBecomeKeyWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = E5645239180894EE008ADC99 /* NSWindow+canBecomeKeyWindow.m */; };
 		E564524018089816008ADC99 /* warning_red.png in Resources */ = {isa = PBXBuildFile; fileRef = E564523C18089816008ADC99 /* warning_red.png */; };
@@ -67,6 +67,7 @@
 		E5B8390117F9FEED004FBBB5 /* RHKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B8390017F9FEED004FBBB5 /* RHKeychain.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E5C359D417F1DFC200BA394E /* TrustedCheckmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C359D217F1DFC200BA394E /* TrustedCheckmark@2x.png */; };
 		E5C359D617F1DFDE00BA394E /* TrustedCheckmark.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C359D517F1DFDE00BA394E /* TrustedCheckmark.png */; };
+		E5C61EE4180C58F900857193 /* MWSendCoinsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5C61EE3180C58F900857193 /* MWSendCoinsViewController.m */; };
 		E5CDA96017FC9F2A0037A01E /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5CDA95F17FC9F2A0037A01E /* Sparkle.framework */; };
 		E5CDA96217FC9F4F0037A01E /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E5CDA95F17FC9F2A0037A01E /* Sparkle.framework */; };
 		E5D2F47917F447E200A214F4 /* BitcoinJKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5D2F47817F447DB00A214F4 /* BitcoinJKit.framework */; };
@@ -76,6 +77,9 @@
 		E5E2CCC917FC98B3003EBA11 /* RHPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5E2CCC417FC98B3003EBA11 /* RHPreferencesWindowController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E5E2CCCA17FC98B3003EBA11 /* RHPreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5E2CCC517FC98B3003EBA11 /* RHPreferencesWindow.xib */; };
 		E5E2CCCD17FC9A7D003EBA11 /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5E2CCCC17FC9A7D003EBA11 /* LaunchAtLoginController.m */; };
+		E5ED01D1180C2461003C7E63 /* MWBasePopover.m in Sources */ = {isa = PBXBuildFile; fileRef = E5ED01CC180C2461003C7E63 /* MWBasePopover.m */; };
+		E5ED01D2180C2461003C7E63 /* MWEnterPasswordPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = E5ED01CE180C2461003C7E63 /* MWEnterPasswordPopover.m */; };
+		E5ED01D3180C2461003C7E63 /* MWSetPasswordPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = E5ED01D0180C2461003C7E63 /* MWSetPasswordPopover.m */; };
 		E5FBD34317F9FFB400E678FE /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5FBD34217F9FFB400E678FE /* Security.framework */; };
 /* End PBXBuildFile section */
 
@@ -139,10 +143,10 @@
 		E531C1FE18088CE7009E1B16 /* DuxScrollViewAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DuxScrollViewAnimation.m; sourceTree = "<group>"; };
 		E53B9724180690FA00E8117B /* NSString+NSStringRandomPasswordAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+NSStringRandomPasswordAdditions.h"; sourceTree = "<group>"; };
 		E53B97261806913700E8117B /* NSString+NSStringRandomPasswordAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NSStringRandomPasswordAdditions.m"; sourceTree = "<group>"; };
+		E5438C9E180C6B8A007EDFDC /* MWBaseScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWBaseScrollView.h; sourceTree = "<group>"; };
+		E5438C9F180C6B8A007EDFDC /* MWBaseScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWBaseScrollView.m; sourceTree = "<group>"; };
 		E548C6EC1802BFB400976CD7 /* MWTickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWTickerController.h; sourceTree = "<group>"; };
 		E548C6ED1802BFB400976CD7 /* MWTickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWTickerController.m; sourceTree = "<group>"; };
-		E548C6F01802BFE600976CD7 /* MWSendCoinsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWSendCoinsWindowController.h; sourceTree = "<group>"; };
-		E548C6F11802BFE600976CD7 /* MWSendCoinsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWSendCoinsWindowController.m; sourceTree = "<group>"; };
 		E548C6F21802BFE600976CD7 /* MWSendCoinsWindowControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWSendCoinsWindowControllerDelegate.h; sourceTree = "<group>"; };
 		E548C6F31802BFE600976CD7 /* SendCoinsWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SendCoinsWindow.xib; sourceTree = "<group>"; };
 		E548C6F71802BFFB00976CD7 /* MWTransactionDetailsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWTransactionDetailsWindowController.h; sourceTree = "<group>"; };
@@ -153,8 +157,7 @@
 		E548C6FC1802BFFB00976CD7 /* MWTransactionsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWTransactionsWindowController.h; sourceTree = "<group>"; };
 		E548C6FD1802BFFB00976CD7 /* MWTransactionsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWTransactionsWindowController.m; sourceTree = "<group>"; };
 		E548C6FE1802BFFB00976CD7 /* MWTransactionsWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MWTransactionsWindowController.xib; sourceTree = "<group>"; };
-		E564523218088F49008ADC99 /* MWSetPasswordPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWSetPasswordPopover.h; sourceTree = "<group>"; };
-		E564523318088F49008ADC99 /* MWSetPasswordPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWSetPasswordPopover.m; sourceTree = "<group>"; };
+		E558210C180DCEFB0062777E /* closebox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "closebox@2x.png"; sourceTree = "<group>"; };
 		E5645236180891EB008ADC99 /* PasswordChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordChecker.m; sourceTree = "<group>"; };
 		E564523818089214008ADC99 /* PasswordChecker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PasswordChecker.h; sourceTree = "<group>"; };
 		E5645239180894EE008ADC99 /* NSWindow+canBecomeKeyWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSWindow+canBecomeKeyWindow.m"; sourceTree = "<group>"; };
@@ -188,6 +191,8 @@
 		E5B8390017F9FEED004FBBB5 /* RHKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RHKeychain.m; path = ../vendor/RHKeychain/RHKeychain/RHKeychain.m; sourceTree = "<group>"; };
 		E5C359D217F1DFC200BA394E /* TrustedCheckmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TrustedCheckmark@2x.png"; sourceTree = "<group>"; };
 		E5C359D517F1DFDE00BA394E /* TrustedCheckmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrustedCheckmark.png; sourceTree = "<group>"; };
+		E5C61EE2180C58F900857193 /* MWSendCoinsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWSendCoinsViewController.h; sourceTree = "<group>"; };
+		E5C61EE3180C58F900857193 /* MWSendCoinsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWSendCoinsViewController.m; sourceTree = "<group>"; };
 		E5CDA95F17FC9F2A0037A01E /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = ../vendor/Sparkle.framework; sourceTree = "<group>"; };
 		E5D2F47317F447DB00A214F4 /* BitcoinJKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BitcoinJKit.xcodeproj; path = ../BitcoinJKit/BitcoinJKit.xcodeproj; sourceTree = "<group>"; };
 		E5E2CCBE17FC98B3003EBA11 /* MWPreferenceGeneralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWPreferenceGeneralViewController.h; sourceTree = "<group>"; };
@@ -199,6 +204,12 @@
 		E5E2CCC517FC98B3003EBA11 /* RHPreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RHPreferencesWindow.xib; sourceTree = "<group>"; };
 		E5E2CCCB17FC9A7D003EBA11 /* LaunchAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LaunchAtLoginController.h; path = ../vendor/LaunchAtLoginController/LaunchAtLoginController.h; sourceTree = "<group>"; };
 		E5E2CCCC17FC9A7D003EBA11 /* LaunchAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LaunchAtLoginController.m; path = ../vendor/LaunchAtLoginController/LaunchAtLoginController.m; sourceTree = "<group>"; };
+		E5ED01CB180C2461003C7E63 /* MWBasePopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWBasePopover.h; sourceTree = "<group>"; };
+		E5ED01CC180C2461003C7E63 /* MWBasePopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWBasePopover.m; sourceTree = "<group>"; };
+		E5ED01CD180C2461003C7E63 /* MWEnterPasswordPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWEnterPasswordPopover.h; sourceTree = "<group>"; };
+		E5ED01CE180C2461003C7E63 /* MWEnterPasswordPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWEnterPasswordPopover.m; sourceTree = "<group>"; };
+		E5ED01CF180C2461003C7E63 /* MWSetPasswordPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWSetPasswordPopover.h; sourceTree = "<group>"; };
+		E5ED01D0180C2461003C7E63 /* MWSetPasswordPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWSetPasswordPopover.m; sourceTree = "<group>"; };
 		E5FBD34217F9FFB400E678FE /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -266,10 +277,9 @@
 				E548C6F61802BFFB00976CD7 /* Transaction */,
 				E548C6EF1802BFE600976CD7 /* SendCoins */,
 				E548C6EB1802BF9F00976CD7 /* Ticker */,
+				E5ED01CA180C244A003C7E63 /* Popovers */,
 				E5E2CCBC17FC98A9003EBA11 /* Preferences */,
 				E50310E417E9986600C2F226 /* MainMenu.xib */,
-				E564523218088F49008ADC99 /* MWSetPasswordPopover.h */,
-				E564523318088F49008ADC99 /* MWSetPasswordPopover.m */,
 				E56905601809956D00A343E9 /* MWStatusItem.h */,
 				E56905611809956D00A343E9 /* MWStatusItem.m */,
 				E50310E117E9986600C2F226 /* MWAppDelegate.h */,
@@ -310,10 +320,12 @@
 		E548C6EF1802BFE600976CD7 /* SendCoins */ = {
 			isa = PBXGroup;
 			children = (
-				E548C6F01802BFE600976CD7 /* MWSendCoinsWindowController.h */,
-				E548C6F11802BFE600976CD7 /* MWSendCoinsWindowController.m */,
 				E548C6F21802BFE600976CD7 /* MWSendCoinsWindowControllerDelegate.h */,
 				E548C6F31802BFE600976CD7 /* SendCoinsWindow.xib */,
+				E5C61EE2180C58F900857193 /* MWSendCoinsViewController.h */,
+				E5C61EE3180C58F900857193 /* MWSendCoinsViewController.m */,
+				E5438C9E180C6B8A007EDFDC /* MWBaseScrollView.h */,
+				E5438C9F180C6B8A007EDFDC /* MWBaseScrollView.m */,
 			);
 			path = SendCoins;
 			sourceTree = "<group>";
@@ -359,6 +371,7 @@
 		E5C359D017F1DFC200BA394E /* res */ = {
 			isa = PBXGroup;
 			children = (
+				E558210C180DCEFB0062777E /* closebox@2x.png */,
 				E56905631809993100A343E9 /* status_bar_icon_inverted.png */,
 				E56905641809993100A343E9 /* status_bar_icon_inverted@2x.png */,
 				E569055C1809950F00A343E9 /* status_bar_icon.png */,
@@ -414,6 +427,19 @@
 				E5E2CCC517FC98B3003EBA11 /* RHPreferencesWindow.xib */,
 			);
 			path = Preferences;
+			sourceTree = "<group>";
+		};
+		E5ED01CA180C244A003C7E63 /* Popovers */ = {
+			isa = PBXGroup;
+			children = (
+				E5ED01CB180C2461003C7E63 /* MWBasePopover.h */,
+				E5ED01CC180C2461003C7E63 /* MWBasePopover.m */,
+				E5ED01CD180C2461003C7E63 /* MWEnterPasswordPopover.h */,
+				E5ED01CE180C2461003C7E63 /* MWEnterPasswordPopover.m */,
+				E5ED01CF180C2461003C7E63 /* MWSetPasswordPopover.h */,
+				E5ED01D0180C2461003C7E63 /* MWSetPasswordPopover.m */,
+			);
+			path = Popovers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -503,6 +529,7 @@
 				E56905661809993100A343E9 /* status_bar_icon_inverted@2x.png in Resources */,
 				E548C6F51802BFE600976CD7 /* SendCoinsWindow.xib in Resources */,
 				E564525018089A6C008ADC99 /* warning_red_small.png in Resources */,
+				E558210D180DCEFB0062777E /* closebox@2x.png in Resources */,
 				E56905651809993100A343E9 /* status_bar_icon_inverted.png in Resources */,
 				E564524218089816008ADC99 /* warning.png in Resources */,
 				E569054B18098AA100A343E9 /* error@2x.png in Resources */,
@@ -548,20 +575,23 @@
 				E504D7F617FD843100F94081 /* MWPreferenceWalletViewController.m in Sources */,
 				E5E2CCCD17FC9A7D003EBA11 /* LaunchAtLoginController.m in Sources */,
 				E548C6EE1802BFB400976CD7 /* MWTickerController.m in Sources */,
-				E548C6F41802BFE600976CD7 /* MWSendCoinsWindowController.m in Sources */,
+				E5ED01D3180C2461003C7E63 /* MWSetPasswordPopover.m in Sources */,
 				E5B8390117F9FEED004FBBB5 /* RHKeychain.m in Sources */,
 				E53B97271806913700E8117B /* NSString+NSStringRandomPasswordAdditions.m in Sources */,
 				E548C7011802BFFB00976CD7 /* MWTransactionMenuItem.m in Sources */,
 				E50153C918044CB800CFFA69 /* NSString+SymlinksAndAliases.m in Sources */,
+				E5ED01D2180C2461003C7E63 /* MWEnterPasswordPopover.m in Sources */,
+				E5ED01D1180C2461003C7E63 /* MWBasePopover.m in Sources */,
 				E5645237180891EB008ADC99 /* PasswordChecker.m in Sources */,
+				E5C61EE4180C58F900857193 /* MWSendCoinsViewController.m in Sources */,
 				E50310DC17E9986500C2F226 /* main.m in Sources */,
 				E548C6FF1802BFFB00976CD7 /* MWTransactionDetailsWindowController.m in Sources */,
 				E50153CA18044CB800CFFA69 /* PFMoveApplication.m in Sources */,
 				E564523B180894EE008ADC99 /* NSWindow+canBecomeKeyWindow.m in Sources */,
-				E564523418088F49008ADC99 /* MWSetPasswordPopover.m in Sources */,
 				E531C1FF18088CE7009E1B16 /* DuxScrollViewAnimation.m in Sources */,
 				E5E2CCC917FC98B3003EBA11 /* RHPreferencesWindowController.m in Sources */,
 				E531C1F0180876D0009E1B16 /* AXStatusItemPopup.m in Sources */,
+				E5438CA0180C6B8A007EDFDC /* MWBaseScrollView.m in Sources */,
 				E50310E317E9986600C2F226 /* MWAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -630,9 +660,9 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx10.7;
+				SDKROOT = macosx10.8;
 			};
 			name = Debug;
 		};
@@ -656,8 +686,8 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				SDKROOT = macosx10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx10.8;
 			};
 			name = Release;
 		};

@@ -63,3 +63,20 @@ passwordInacceptable = "to short";
 passwordWeak = "weak";
 passwordModerate = "medium";
 passwordStrong = "strong";
+
+insufficientFunds = "Insufficient Funds!";
+unknownSendCoinsError = "Invalid Transaction!";
+passwordWrong = "Password was wrong!";
+
+newFundsOnTheWayTitle = "Incomming Transaction";
+newFundsOnTheWayText = "New funds of %@ are on the way";
+
+dumpWallet = "Export to file...";
+recommendedFilenameForWalletDump = "wallet.txt";
+
+successDumpWallet = "Your wallet was successfully written to the selected file";
+errorDumpWallet = "There was a error while writing your wallet to the selected file";
+removePassword = "Remove password";
+setPassword = "Protect with password";
+
+checkForUpdatesMenuItem = "Check for updates...";

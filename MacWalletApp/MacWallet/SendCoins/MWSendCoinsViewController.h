@@ -1,9 +1,9 @@
 //
-//  BASendCoinsWindowController.h
+//  MWSendCoinsViewController.h
 //  MacWallet
 //
-//  Created by Jonas Schnelli on 25.09.13.
-//  Copyright (c) 2013 Jonas Schnelli. All rights reserved.
+//  Created by Jonas Schnelli on 14.10.13.
+//  Copyright (c) 2013 include7 AG. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
@@ -13,11 +13,11 @@ typedef enum MWSendCoinsWindowControllerState {
     MWSendCoinsWindowControllerBasic,
     MWSendCoinsWindowControllerWaitingCommit,
     MWSendCoinsWindowControllerShowTXID
-    } MWSendCoinsWindowControllerState;
+} MWSendCoinsWindowControllerState;
 
 @class MWAppDelegate;
 
-@interface MWSendCoinsWindowController : NSWindowController <NSTextFieldDelegate>
+@interface MWSendCoinsViewController : NSViewController
 @property (strong) NSObject<MWSendCoinsWindowControllerDelegate> *delegate;
-
+@property (strong) NSPopover *popover;
 @end

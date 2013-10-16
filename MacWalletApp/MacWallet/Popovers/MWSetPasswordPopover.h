@@ -7,7 +7,8 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "MWBasePopover.h"
 
-@interface MWSetPasswordPopover : NSPopover <NSPopoverDelegate, NSTextFieldDelegate>
+@interface MWSetPasswordPopover : MWBasePopover <NSPopoverDelegate, NSTextFieldDelegate>
 
 @end
