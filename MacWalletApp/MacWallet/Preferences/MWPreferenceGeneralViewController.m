@@ -108,6 +108,16 @@
     
     NSInteger statusItemStyle = [[NSUserDefaults standardUserDefaults] integerForKey:kSTATUS_ITEM_STYLE_KEY];
     [self.radioButtonGroup selectCellWithTag:statusItemStyle];
+    
+    NSString *tickerKey = [[NSUserDefaults standardUserDefaults] objectForKey:kTICKER_NAME_KEY];
+    if(tickerKey)
+    {
+        [self.tickerSelector selectItemWithObjectValue:tickerKey];
+    }
+    else {
+        [self.tickerSelector selectItemWithObjectValue:kDEFAULT_TICKER_NAME];
+    }
+    
 }
 
 - (void)comboBoxSelectionDidChange:(NSNotification *)notification {
@@ -123,18 +133,14 @@
 
 - (IBAction)radioButtonMatrixDidChange:(id)sender
 {
+    // save statusmenu text style
+    
     NSMatrix *matrix = (NSMatrix *)sender;
     NSCell *seletcedCell = [matrix selectedCell];
     [[NSUserDefaults standardUserDefaults] setInteger:seletcedCell.tag forKey:kSTATUS_ITEM_STYLE_KEY];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kSHOULD_UPDATE_AFTER_PREFS_CHANGE_NOTIFICATION object:self];
-}
-
-- (void)viewDidDisappear
-{
-    
-    
 }
 
 #pragma mark - RHPreferencesViewControllerProtocol
@@ -149,9 +155,8 @@
 }
 -(NSString*)toolbarItemLabel
 {
-    return NSLocalizedString(@"General", @"GeneralToolbarItemLabel");
+    return NSLocalizedString(@"preferencesGeneral", @"GeneralToolbarItemLabel");
 }
-
 -(NSView*)initialKeyView
 {
     return nil;

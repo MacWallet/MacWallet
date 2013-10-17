@@ -1,0 +1,105 @@
+/*
+ Localizable.strings
+ MacWallet
+ 
+ Created by Jonas Schnelli on 01.10.13.
+ Copyright (c) 2013 Jonas Schnelli. All rights reserved.
+ */
+about = "Über MacWallet...";
+quit = "Schließen";
+sendCoins = "Bitcoins senden";
+myAddresses = "Meine Adresse";
+myTransactions = "Letzte Transaktion";
+syncing = "Synchronisierung:";
+"Network: synced" = "Netzwerk: synchronisiert";
+blocksMenuItem = "Blöcke:";
+connectedPeersMenuItem = "Verbundene Peers:";
+lastBlockAge = "Letzter Block vor:";
+
+OK = "OK";
+Cancel = "Abbrechen";
+
+switchToTestnet = "Zum Testnet wechseln?";
+
+sendCoinsWindowTitle = "Bitcoins senden";
+receiverAddressLabel = "Empfänger";
+amoutLabel = "Betrag";
+feeLabel = "Gebühren";
+totalAmountLabel = "Gesamtbetrag";
+transactionIdLabel = "Transaktionsnummer";
+
+prepareTx = "Transaktion vorbereiten";
+commitTx = "Bitcoins senden!";
+closeButton = "Schließen";
+
+moreTx = "%d mehr";
+showAllTransaction = "Alle Transaktionen zeigen";
+noTransactionsFound = "Keine Transaktionen gefunden";
+transactionsWindowTitle = "Transaktionen";
+status = "Status";
+amount = "Betrag";
+date = "Datum";
+getTxInfo = "Infos";
+
+preferences = "Einstellungen...";
+autostartPrefsLabel = "Macwallet automatisch beim Systemstart öffnen";
+checkForUpdatesAtStartupLabel = "Beim Starten auf Updates prüfen";
+tickerLabel = "Ticker";
+whatToShowLabel = "Hauptmenü";
+showBothButton = "Ticker und Kontostand anzeigen";
+showTickerButton = "Ticker anzeigen";
+showBalanceButtonLabel = "Kontostand anzeigen";
+secondLineBalanceLabel = "Betrag:";
+secondLineTickerLabel = "@$1:";
+
+timeAgoFormat = "(vor %@)";
+timeAgoLabel = "Zeige \"vor ... Minuten\" in der Transaktionsliste";
+restartAppText = "Nach Änderung des Netzwerks muss MacWallet neu gestartet werden";
+addAddress = "Adresse hinzufügen";
+
+launchAtStartupQuestion = "Möchten sie MacWallet beim Systemstart starten?";
+
+passwordInacceptable = "zu kurz";
+passwordWeak = "unsicher";
+passwordModerate = "mittelmäßig";
+passwordStrong = "sicher";
+
+insufficientFunds = "Kontostand reicht nicht!";
+unknownSendCoinsError = "Ungültige Transaktion!";
+passwordWrong = "Falsches Passwort!";
+
+newFundsOnTheWayTitle = "Eingehende Transaktion";
+newFundsOnTheWayText = "Neue Einzahlung von %@ werden gerade gebucht";
+
+dumpWallet = "In Datei speichern...";
+recommendedFilenameForWalletDump = "wallet.txt";
+
+successDumpWallet = "Ihre Brieftasche wurde erfolgreich gespeichert";
+errorDumpWallet = "Fehler beim speichern in der ausgewählten Datei";
+removePassword = "Passwort löschen";
+setPassword = "Mit Passwort schützen";
+
+checkForUpdatesMenuItem = "Auf Updates prüfen...";
+
+setPasswordPassword0Label = "Passwort eingeben";
+setPasswordPassword1Label = "Passwort wiederholen";
+setPasswordAbortButton0Text = "Abbrechen";
+setPasswordAbortButton1Text = "« Zurück";
+setPasswordOkButton0Text = "Weiter";
+setPasswordOkButton1Text = "Ok";
+setPasswordOkButton2Text = "Ok";
+setPasswordFinishMessage = "Ihre Brieftasche ist jetzt verschlüsselt";
+
+setPasswordPassword0PlaceholderText = "Passwort eingeben";
+setPasswordPassword1PlaceholderText = "Passwort wiederholen";
+
+enterPasswordPassword0PlaceholderText = "Passwort eingeben";
+enterPasswordBackButton0Text = "Abbrechen";
+enterPasswordBackButton1Text = "« Zurück";
+enterPasswordOkButton0Text = "Ok";
+enterPasswordOkButton1Text = "Ok";
+enterPasswordLastMessage = "Ihre Brieftasche ist jetzt nicht mehr mit einem Passwort geschützt";
+successDecryptingWallet = "Ihre Brieftasche ist jetzt unverschlüsselt";
+errorDecryptingWallet = "Fehler beim entschlüsseln ihrer Brieftasche";
+
+walletMenuItem = "Brieftasche";

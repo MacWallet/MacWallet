@@ -64,6 +64,8 @@
 		E56905651809993100A343E9 /* status_bar_icon_inverted.png in Resources */ = {isa = PBXBuildFile; fileRef = E56905631809993100A343E9 /* status_bar_icon_inverted.png */; };
 		E56905661809993100A343E9 /* status_bar_icon_inverted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E56905641809993100A343E9 /* status_bar_icon_inverted@2x.png */; };
 		E579C0AC1802CD7C00D8B61D /* sparkle_update_dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = E579C0AB1802CD7C00D8B61D /* sparkle_update_dsa_pub.pem */; };
+		E58DF400180FFC98004877BC /* MWPreferenceIncommingPaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E58DF3FE180FFC98004877BC /* MWPreferenceIncommingPaymentViewController.m */; };
+		E58DF401180FFC98004877BC /* MWPreferenceIncommingPaymentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E58DF3FF180FFC98004877BC /* MWPreferenceIncommingPaymentViewController.xib */; };
 		E5B8390117F9FEED004FBBB5 /* RHKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B8390017F9FEED004FBBB5 /* RHKeychain.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E5C359D417F1DFC200BA394E /* TrustedCheckmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C359D217F1DFC200BA394E /* TrustedCheckmark@2x.png */; };
 		E5C359D617F1DFDE00BA394E /* TrustedCheckmark.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C359D517F1DFDE00BA394E /* TrustedCheckmark.png */; };
@@ -187,6 +189,12 @@
 		E56905631809993100A343E9 /* status_bar_icon_inverted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = status_bar_icon_inverted.png; sourceTree = "<group>"; };
 		E56905641809993100A343E9 /* status_bar_icon_inverted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "status_bar_icon_inverted@2x.png"; sourceTree = "<group>"; };
 		E579C0AB1802CD7C00D8B61D /* sparkle_update_dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sparkle_update_dsa_pub.pem; sourceTree = "<group>"; };
+		E58DF3FD180FFC98004877BC /* MWPreferenceIncommingPaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWPreferenceIncommingPaymentViewController.h; sourceTree = "<group>"; };
+		E58DF3FE180FFC98004877BC /* MWPreferenceIncommingPaymentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWPreferenceIncommingPaymentViewController.m; sourceTree = "<group>"; };
+		E58DF3FF180FFC98004877BC /* MWPreferenceIncommingPaymentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MWPreferenceIncommingPaymentViewController.xib; sourceTree = "<group>"; };
+		E58DF403181020A0004877BC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E58DF404181020A0004877BC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = de; path = de.lproj/Credits.rtf; sourceTree = "<group>"; };
+		E58DF405181020A0004877BC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E5B838FF17F9FEED004FBBB5 /* RHKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RHKeychain.h; path = ../vendor/RHKeychain/RHKeychain/RHKeychain.h; sourceTree = "<group>"; };
 		E5B8390017F9FEED004FBBB5 /* RHKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RHKeychain.m; path = ../vendor/RHKeychain/RHKeychain/RHKeychain.m; sourceTree = "<group>"; };
 		E5C359D217F1DFC200BA394E /* TrustedCheckmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TrustedCheckmark@2x.png"; sourceTree = "<group>"; };
@@ -425,6 +433,9 @@
 				E5E2CCC317FC98B3003EBA11 /* RHPreferencesWindowController.h */,
 				E5E2CCC417FC98B3003EBA11 /* RHPreferencesWindowController.m */,
 				E5E2CCC517FC98B3003EBA11 /* RHPreferencesWindow.xib */,
+				E58DF3FD180FFC98004877BC /* MWPreferenceIncommingPaymentViewController.h */,
+				E58DF3FE180FFC98004877BC /* MWPreferenceIncommingPaymentViewController.m */,
+				E58DF3FF180FFC98004877BC /* MWPreferenceIncommingPaymentViewController.xib */,
 			);
 			path = Preferences;
 			sourceTree = "<group>";
@@ -484,6 +495,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				de,
 			);
 			mainGroup = E50310C317E9986500C2F226;
 			productRefGroup = E50310CD17E9986500C2F226 /* Products */;
@@ -524,6 +536,7 @@
 				E56452471808989F008ADC99 /* ok@2x.png in Resources */,
 				E569055E1809950F00A343E9 /* status_bar_icon.png in Resources */,
 				E569054A18098AA100A343E9 /* error.png in Resources */,
+				E58DF401180FFC98004877BC /* MWPreferenceIncommingPaymentViewController.xib in Resources */,
 				E579C0AC1802CD7C00D8B61D /* sparkle_update_dsa_pub.pem in Resources */,
 				E5C359D417F1DFC200BA394E /* TrustedCheckmark@2x.png in Resources */,
 				E56905661809993100A343E9 /* status_bar_icon_inverted@2x.png in Resources */,
@@ -586,6 +599,7 @@
 				E5C61EE4180C58F900857193 /* MWSendCoinsViewController.m in Sources */,
 				E50310DC17E9986500C2F226 /* main.m in Sources */,
 				E548C6FF1802BFFB00976CD7 /* MWTransactionDetailsWindowController.m in Sources */,
+				E58DF400180FFC98004877BC /* MWPreferenceIncommingPaymentViewController.m in Sources */,
 				E50153CA18044CB800CFFA69 /* PFMoveApplication.m in Sources */,
 				E564523B180894EE008ADC99 /* NSWindow+canBecomeKeyWindow.m in Sources */,
 				E531C1FF18088CE7009E1B16 /* DuxScrollViewAnimation.m in Sources */,
@@ -603,6 +617,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				E50310D917E9986500C2F226 /* en */,
+				E58DF403181020A0004877BC /* de */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -611,6 +626,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				E50310DF17E9986600C2F226 /* en */,
+				E58DF404181020A0004877BC /* de */,
 			);
 			name = Credits.rtf;
 			sourceTree = "<group>";
@@ -627,6 +643,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				E508D65917FB26A700CC3CF9 /* en */,
+				E58DF405181020A0004877BC /* de */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

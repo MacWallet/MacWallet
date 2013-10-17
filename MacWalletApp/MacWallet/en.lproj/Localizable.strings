@@ -1,20 +1,22 @@
-/* 
-  Localizable.strings
-  MacWallet
-
-  Created by Jonas Schnelli on 01.10.13.
-  Copyright (c) 2013 Jonas Schnelli. All rights reserved.
-*/
+/*
+ Localizable.strings
+ MacWallet
+ 
+ Created by Jonas Schnelli on 01.10.13.
+ Copyright (c) 2013 Jonas Schnelli. All rights reserved.
+ */
 about = "About MacWallet...";
 quit = "Quit";
-sendCoins = "Send Coins...";
-myAddresses = "My Addresses";
-myTransactions = "Last Transaction";
-syncing = "Syncing: ";
-"Network: synced" = "Network: synced";
-blocksMenuItem = "Blocks: ";
-connectedPeersMenuItem = "Connected Peers: ";
-lastBlockAge = "Last Block age: ";
+sendCoins = "Send coins...";
+myAddresses = "My adresses";
+myTransactions = "Last transaction";
+syncing = "Syncing:";
+"Network: synced" = "Network synchronized";
+"Network: Testnet" = "Network: Testnet";
+"Network: Bitcoin" = "Network: Bitcoin";
+blocksMenuItem = "Blocks:";
+connectedPeersMenuItem = "Connected peers";
+lastBlockAge = "Last block age: ";
 
 OK = "OK";
 Cancel = "Cancel";
@@ -22,18 +24,18 @@ Cancel = "Cancel";
 switchToTestnet = "Would you like to switch to Testnet?";
 
 sendCoinsWindowTitle = "Send Coins";
-receiverAddressLabel = "Receiver Address";
+receiverAddressLabel = "Bitcoin address";
 amoutLabel = "Amount";
-feeLabel = "Required Fee";
-totalAmountLabel = "Total Amount";
+feeLabel = "Required fee";
+totalAmountLabel = "Total amount";
 transactionIdLabel = "Transaction ID";
 
-prepareTx = "Prepare Transaction";
-commitTx = "Send Coins!";
+prepareTx = "Prepare transaction";
+commitTx = "Send coins!";
 closeButton = "Close";
 
 moreTx = "%d more...";
-showAllTransaction = "Show All Transactions";
+showAllTransaction = "Show all transactions";
 noTransactionsFound = "No transactions found";
 transactionsWindowTitle = "Transactions";
 status = "Status";
@@ -42,22 +44,22 @@ date = "Date";
 getTxInfo = "Get Info";
 
 preferences = "Settings...";
-autostartPrefsLabel = "Automatically launch MacWallet at startup";
+autostartPrefsLabel = "Launch MacWallet at startup";
 checkForUpdatesAtStartupLabel = "Check for updates at startup";
 tickerLabel = "Ticker";
-whatToShowLabel = "Main Menu Item";
+whatToShowLabel = "Main Menu";
 showBothButton = "Show Ticker and Balance";
 showTickerButton = "Show Ticker";
 showBalanceButtonLabel = "Show Balance";
-secondLineBalanceLabel = "Balance: ";
+secondLineBalanceLabel = "Balance:";
 secondLineTickerLabel = "@$1: ";
 
-timeAgoFormat = " (%@ ago)";
-timeAgoLabel = "Show \"time ago\" in transaction list";
-restartAppText = "You need to restart MacWallet after chaning the network";
+timeAgoFormat = "(%@ ago)";
+timeAgoLabel = "Show \"how long ago\" in transaction list";
+restartAppText = "You need to restart MacWallet after changing your network";
 addAddress = "Add Address";
 
-launchAtStartupQuestion = "Would you like to start MacWallet when your Computer starts?";
+launchAtStartupQuestion = "Would you like to start MacWallet on startup?";
 
 passwordInacceptable = "to short";
 passwordWeak = "weak";
@@ -66,16 +68,16 @@ passwordStrong = "strong";
 
 insufficientFunds = "Insufficient Funds!";
 unknownSendCoinsError = "Invalid Transaction!";
-passwordWrong = "Password was wrong!";
+passwordWrong = "Wrong Password!";
 
-newFundsOnTheWayTitle = "Incomming Transaction";
+newFundsOnTheWayTitle = "Incoming Transaction";
 newFundsOnTheWayText = "New funds of %@ are on the way";
 
 dumpWallet = "Export to file...";
 recommendedFilenameForWalletDump = "wallet.txt";
 
 successDumpWallet = "Your wallet was successfully written to the selected file";
-errorDumpWallet = "There was a error while writing your wallet to the selected file";
+errorDumpWallet = "There was an error while saving your wallet to the selected file";
 removePassword = "Remove password";
 setPassword = "Protect with password";
 
@@ -88,7 +90,7 @@ setPasswordAbortButton1Text = "« Back";
 setPasswordOkButton0Text = "Continue";
 setPasswordOkButton1Text = "Ok";
 setPasswordOkButton2Text = "Ok";
-setPasswordFinishMessage = "Your Wallet is now Protected";
+setPasswordFinishMessage = "Your Wallet is now protected";
 
 setPasswordPassword0PlaceholderText = "Enter password";
 setPasswordPassword1PlaceholderText = "Repeat password";
@@ -98,6 +100,13 @@ enterPasswordBackButton0Text = "Cancel";
 enterPasswordBackButton1Text = "« Back";
 enterPasswordOkButton0Text = "Ok";
 enterPasswordOkButton1Text = "Ok";
-enterPasswordLastMessage = "Your Wallet is no longer protected with a password";
+enterPasswordLastMessage = "Your Wallet is no longer password protected";
 successDecryptingWallet = "Your wallet is now unprotected";
 errorDecryptingWallet = "There was a error decrypting your wallet";
+
+walletMenuItem = "Wallet";
+transactionSuccessText = "Transaction is successfully commited.";
+resyncBlockchain = "Resync Blockchain";
+
+preferencesGeneral = "General";
+preferencesIncommingPayment = "Incomming Payment";

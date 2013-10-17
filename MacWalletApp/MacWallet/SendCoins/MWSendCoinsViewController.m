@@ -13,7 +13,7 @@
 
 #define kBA_COINS_WINDOW_HEIGHT_NORMAL 128.0
 #define kBA_COINS_WINDOW_HEIGHT_SEND 215.0
-#define kBA_COINS_WINDOW_HEIGHT_COMMITTED 320.0
+#define kBA_COINS_WINDOW_HEIGHT_COMMITTED 330.0
 
 @interface MWSendCoinsViewController ()
 @property (assign) IBOutlet NSScrollView *scrollView;
@@ -32,7 +32,8 @@
 
 @property (assign) IBOutlet NSButton *prepareButton;
 @property (assign) IBOutlet NSButton *commitButton;
-@property (assign) IBOutlet NSButton *closeButton;
+@property (assign) IBOutlet NSButton *closeButton0;
+@property (assign) IBOutlet NSButton *closeButton1;
 
 @property (assign) IBOutlet NSTextField *invalidTransactionTextField;
 @property (assign) IBOutlet NSTextField *successAfterCommitTextField;
@@ -79,9 +80,12 @@
     self.transactionIdLabel.stringValue     = NSLocalizedString(@"transactionIdLabel", @"transactionIdLabel");
     
     self.prepareButton.title                = NSLocalizedString(@"prepareTx", @"prepareTx");
-    self.commitButton.title                 = NSLocalizedString(@"commitTx", @"prepareTx");
-    self.closeButton.title                  = NSLocalizedString(@"closeButton", @"prepareTx");
+    self.commitButton.title                 = NSLocalizedString(@"commitTx", @"commitTx");
+    self.closeButton0.title                 = NSLocalizedString(@"closeButton", @"close button text");
+    self.closeButton1.title                 = NSLocalizedString(@"closeButton", @"close button text");
 
+    self.successAfterCommitTextField.stringValue  = NSLocalizedString(@"transactionSuccessText", @"transactionSuccessText");
+    
     [self.passwordPromt setReleasedWhenClosed:NO];
 }
 

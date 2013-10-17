@@ -10,8 +10,8 @@
                 <outlet property="autostartSystem" destination="564" id="614"/>
                 <outlet property="checkUpdatesAtStartup" destination="560" id="615"/>
                 <outlet property="radioButtonGroup" destination="19u-bn-uaG" id="oiZ-ne-geW"/>
-                <outlet property="showBalanceButton" destination="u9K-sa-etb" id="L5u-jI-f7b"/>
-                <outlet property="showBothButton" destination="gyd-Ee-C3q" id="oxC-MH-Pou"/>
+                <outlet property="showBalanceButton" destination="gyd-Ee-C3q" id="VYl-lL-JFk"/>
+                <outlet property="showBothButton" destination="u9K-sa-etb" id="R2g-Ve-rHF"/>
                 <outlet property="showTickerButton" destination="H1d-JT-rCZ" id="1VJ-kd-Mvs"/>
                 <outlet property="showTimeAgoButton" destination="DYW-uf-b3X" id="K4h-gq-2Rg"/>
                 <outlet property="tickerLabel" destination="609" id="58c-FR-wuf"/>
@@ -24,11 +24,11 @@
         <customObject id="-3" userLabel="Application"/>
         <customObject id="679" customClass="SUUpdater"/>
         <customView id="1">
-            <rect key="frame" x="0.0" y="0.0" width="430" height="236"/>
+            <rect key="frame" x="0.0" y="0.0" width="430" height="254"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="560">
-                    <rect key="frame" x="18" y="200" width="203" height="18"/>
+                    <rect key="frame" x="18" y="218" width="203" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Check for updates at startup" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="561">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -39,7 +39,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="564">
-                    <rect key="frame" x="18" y="177" width="263" height="18"/>
+                    <rect key="frame" x="18" y="195" width="263" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Automatically launch BTCEE at startup" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="565">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -74,7 +74,7 @@
                     </textFieldCell>
                 </textField>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="DYW-uf-b3X">
-                    <rect key="frame" x="18" y="154" width="232" height="18"/>
+                    <rect key="frame" x="18" y="172" width="232" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Show time-ago in transaction list" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="wkr-dy-8wf">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -85,10 +85,10 @@
                     </connections>
                 </button>
                 <matrix verticalHuggingPriority="750" fixedFrame="YES" allowsEmptySelection="NO" autorecalculatesCellSize="YES" translatesAutoresizingMaskIntoConstraints="NO" id="19u-bn-uaG">
-                    <rect key="frame" x="51" y="51" width="390" height="58"/>
+                    <rect key="frame" x="51" y="69" width="390" height="58"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    <size key="cellSize" width="149" height="18"/>
+                    <size key="cellSize" width="220" height="18"/>
                     <size key="intercellSpacing" width="4" height="2"/>
                     <buttonCell key="prototype" type="radio" title="Radio" imagePosition="left" alignment="left" inset="2" id="QPn-p8-uTs">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -96,15 +96,15 @@
                     </buttonCell>
                     <cells>
                         <column>
-                            <buttonCell type="radio" title="Show Wallet Balance" imagePosition="left" alignment="left" state="on" inset="2" id="u9K-sa-etb">
+                            <buttonCell type="radio" title="Show Wallet Balance and Ticker" imagePosition="left" alignment="left" state="on" inset="2" id="u9K-sa-etb">
                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
-                            <buttonCell type="radio" title="Show Ticker" imagePosition="left" alignment="left" tag="1" inset="2" id="H1d-JT-rCZ">
+                            <buttonCell type="radio" title="Show Ticker only" imagePosition="left" alignment="left" tag="1" inset="2" id="H1d-JT-rCZ">
                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
-                            <buttonCell type="radio" title="Show Both" imagePosition="left" alignment="left" tag="2" inset="2" id="gyd-Ee-C3q">
+                            <buttonCell type="radio" title="Show Wallet Balance only" imagePosition="left" alignment="left" tag="2" inset="2" id="gyd-Ee-C3q">
                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
@@ -116,7 +116,7 @@
                     </connections>
                 </matrix>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="40H-Cb-fNc">
-                    <rect key="frame" x="17" y="117" width="396" height="17"/>
+                    <rect key="frame" x="17" y="135" width="396" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Status Menu Item" id="Tq6-Td-7ZR">
                         <font key="font" metaFont="system"/>
@@ -124,17 +124,20 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="78p-M0-vS7">
-                    <rect key="frame" x="283" y="192" width="133" height="32"/>
+                <box autoresizesSubviews="NO" verticalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Lof-bf-Xy8">
+                    <rect key="frame" x="20" y="158" width="390" height="5"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="push" title="Check for updates" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="c1a-6v-vwp">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" size="11" name="LucidaGrande"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="checkForUpdates:" target="679" id="l36-KN-tL2"/>
-                    </connections>
-                </button>
+                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <font key="titleFont" metaFont="system"/>
+                </box>
+                <box autoresizesSubviews="NO" verticalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Brx-VW-yca">
+                    <rect key="frame" x="20" y="53" width="390" height="5"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <font key="titleFont" metaFont="system"/>
+                </box>
             </subviews>
             <constraints>
                 <constraint firstItem="560" firstAttribute="top" secondItem="1" secondAttribute="top" constant="20" symbolic="YES" id="562"/>

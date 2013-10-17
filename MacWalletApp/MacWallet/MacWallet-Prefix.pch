@@ -19,9 +19,9 @@
 #define kHAS_ENCRYPTED_WALLET_KEY @"hasEncryptedWalletKey"
 
 typedef enum MWStatusItemStyle {
-    MWStatusItemStyleBalance = 0,
+    MWStatusItemStyleBoth = 0,
     MWStatusItemStyleTicker = 1,
-    MWStatusItemStyleBoth = 2
+    MWStatusItemStyleBalance = 2
 } MWStatusItemStyle;
 
 #define kDEFAULT_MAX_TRANSACTION_COUNT_MENU 10

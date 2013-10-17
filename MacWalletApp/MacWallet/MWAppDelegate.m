@@ -45,6 +45,7 @@
 @property (assign) IBOutlet NSMenuItem *networkStatusBlockHeight;
 @property (assign) IBOutlet NSMenuItem *networkStatusLastBlockTime;
 @property (assign) IBOutlet NSMenuItem *networkStatusNetSwitch;
+@property (assign) IBOutlet NSMenuItem *networkResyncChainMenuItem;
 @property (assign) IBOutlet NSMenuItem *balanceUnconfirmedMenuItem;
 @property (assign) IBOutlet NSMenuItem *secondRowItem;
 @property (assign) IBOutlet NSMenuItem *walletMenuItem;
@@ -92,6 +93,7 @@
     self.preferencesMenuItem.title  = NSLocalizedString(@"preferences", @"Preferences Menu Item");
     self.aboutMenuItem.title        = NSLocalizedString(@"about", @"About Menu Item");
     self.quitMenuItem.title         = NSLocalizedString(@"quit", @"Quit Menu Item");
+    self.walletMenuItem.title       = NSLocalizedString(@"walletMenuItem", @"Wallet Menu Item");
     
     self.walletSetPasswordMenuItem.title = NSLocalizedString(@"setPassword", @"Set Password Menu Item");
     self.walletRemovePasswordMenuItem.title         = NSLocalizedString(@"removePassword", @"Remove Password Menu Item");
@@ -99,6 +101,9 @@
     self.checkForUpdatesMenuItem.title    = NSLocalizedString(@"checkForUpdatesMenuItem", @"Check For Updates Menu Item");
     
     self.networkStatusLastBlockTime.title =[NSString stringWithFormat:@"%@ ?", NSLocalizedString(@"lastBlockAge", @"Last Block Age Menu Item")];
+    self.networkResyncChainMenuItem.title = NSLocalizedString(@"resyncBlockchain", @"Resync the Block Chain Menu Item");
+    
+    
     
     // make a global menu (extra menu) item
     self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
@@ -546,8 +551,11 @@
     NSWindow *appWin = [self.statusItem valueForKey:@"window"];
     NSRect frame = appWin.frame;
     NSView *view = appWin.contentView;
-    
+
     [self.choosePasswordPopover showRelativeToRect:CGRectMake(0,0,frame.size.width,frame.size.height) ofView:view preferredEdge:NSMinYEdge];
+    
+    
+    [appWin selectNextKeyView:self];
 }
 
 - (IBAction)removeWalletEncryption:(id)sender {
