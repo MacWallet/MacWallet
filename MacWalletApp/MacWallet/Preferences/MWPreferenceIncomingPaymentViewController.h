@@ -1,5 +1,5 @@
 //
-//  MWPreferenceIncommingPaymentViewController.h
+//  MWPreferenceIncomingPaymentViewController.h
 //  MacWallet
 //
 //  Created by Jonas Schnelli on 17.10.13.
@@ -8,6 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface MWPreferenceIncommingPaymentViewController : NSViewController
+@interface MWPreferenceIncomingPaymentViewController : NSViewController
 
 @end

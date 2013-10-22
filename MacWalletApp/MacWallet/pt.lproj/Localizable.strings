@@ -109,4 +109,4 @@ transactionSuccessText = "A transação foi concretizada com sucesso.";
 resyncBlockchain = "Resincronizar blockchain";
 
 preferencesGeneral = "Geral";
-preferencesIncommingPayment = "Recebendo pagamento";
+preferencesIncomingPayment = "Recebendo pagamento";

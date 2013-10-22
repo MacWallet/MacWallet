@@ -87,6 +87,8 @@
     self.successAfterCommitTextField.stringValue  = NSLocalizedString(@"transactionSuccessText", @"transactionSuccessText");
     
     [self.passwordPromt setReleasedWhenClosed:NO];
+    
+    [self.btcAddressTextField performSelector:@selector(becomeFirstResponder) withObject:nil afterDelay:0.2];
 }
 
 - (IBAction)prepareClicked:(id)sender
@@ -112,12 +114,13 @@
     {
         self.currentState = MWSendCoinsWindowControllerWaitingCommit;
 
-        [self.popover setContentSize:NSMakeSize(self.view.frame.size.width, kBA_COINS_WINDOW_HEIGHT_SEND)];
-        
         self.txFeeTextField.stringValue = [[HIBitcoinManager defaultManager] formatNanobtc:fee];
         self.txTotalAmountTextField.stringValue = [[HIBitcoinManager defaultManager] formatNanobtc:[self.amountTextField doubleValue]*100000000+fee];
         
         [self.invalidTransactionTextField setHidden:YES];
+        
+        [self.popover setContentSize:NSMakeSize(self.view.frame.size.width, kBA_COINS_WINDOW_HEIGHT_SEND)];
+        
     }
     else
     {
@@ -221,16 +224,6 @@
         [self prepareTransactionWithWalletPassword:self.passwordTextField.stringValue];
         self.passwordTextField.stringValue = @"";
     }
-}
-
-- (void)sheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
-{
-    
-}
-
-- (void)popoverWillShow:(NSNotification *)notification
-{
-    
 }
 
 @end

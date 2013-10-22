@@ -10,6 +10,7 @@
 #import "MWAppDelegate.h"
 #import <CoreGraphics/CoreGraphics.h>
 #import "RHPreferencesWindowController.h"
+#import <BitcoinJKit/BitcoinJKit.h>
 
 #define APPD ((MWAppDelegate *)[NSApp delegate])
 #define _tt(x) [self typeText:(x)]
@@ -21,17 +22,25 @@
 #define _mm(x,y) [self moveMouse:CGPointMake(x,y)]
 #define _slp(x) [NSThread sleepForTimeInterval:x]
 #define _enter [self sendEnter]
+#define _tab [self sendTab]
 
 @interface MWTestRunTests ()
 @property (assign) CGPoint leftTop;
 @property (assign) CGPoint menuOffset;
 @property (assign) CGFloat menuWith;
+@property (strong) NSString *firstAddress;
+@property (strong) NSMutableString *screenshotMarkdown;
 @end
 
 @implementation MWTestRunTests
 
 - (void)runTests
 {
+    self.screenshotMarkdown = [[NSMutableString alloc] init];
+    
+    
+    NSArray *langs = [[NSUserDefaults standardUserDefaults] objectForKey:@"AppleLanguages"];
+    [self.screenshotMarkdown appendFormat:@"**Language: %@, time: %@\n", [langs objectAtIndex:0] ,[NSDate date]];
     
     [NSThread sleepForTimeInterval:2.0f];
     
@@ -44,10 +53,34 @@
     }
     CFRelease(windowList);
     
+
+    [self setOffsetAndSizes];
+    [self showQRCode];
+
+    [self setOffsetAndSizes];
+    [self runPreferences];
+
+    [self setOffsetAndSizes];
+    [self runShowMenu];
+    
+    [self setOffsetAndSizes];
+    [self runEncryptWallet];
+    
+    [self setOffsetAndSizes];
+    [self runDecryptWallet];
+    
+    [self setOffsetAndSizes];
+    [self runSendCoins];
+    
+    NSLog(@"%@", self.screenshotMarkdown);
+}
+
+- (void)setOffsetAndSizes
+{
     NSStatusItem *statusItem = [APPD performSelector:@selector(statusItem)];
     NSWindow *appWin = [statusItem valueForKey:@"window"];
     NSRect frame = appWin.frame;
-
+    
     self.leftTop = CGPointMake(frame.origin.x+10,1);
     self.menuOffset = CGPointMake(0, 0);
     self.screenshotSize = CGRectMake(self.leftTop.x-300, 0, 800,600);
@@ -59,71 +92,49 @@
     }
     
     self.menuWith = 250.0;
-
-    
-    [self showQRCode];
-    exit(1);
-    
-    [self runPreferences];
-    [self runShowMenu];
-    
-//    // get menu width
-//    NSMenuItem *item = [APPD performSelector:@selector(networkStatusMenuItem)];
-//
-//    NSStatusItem *statusItem2 = [APPD performSelector:@selector(statusItem)];
-//    NSWindow *appWin2 = [statusItem2 valueForKey:@"window"];
-//    NSView *view = appWin.contentView;
-//    NSRect frame2 = appWin2.frame;
-    
-
-    [self runEncryptWallet];
-    [self runDecryptWallet];
-    
-    [self runSendCoins];
 }
 
 - (void)runSendCoins
 {
-    _leftDUP(self.leftTop);
-    _slp(.5f);
-    _ss;
-    
-    _leftD(self.leftTop.x+self.menuOffset.x,self.leftTop.y+95+self.menuOffset.y);
-    _slp(.1f);
-    _leftU(self.leftTop.x+self.menuOffset.x,self.leftTop.y+95+self.menuOffset.y);
+    [APPD performSelector:@selector(openSendCoins:) withObject:self];
     _slp(1.0f);
     _ss;
 
-    _slp(.3f);
-    _leftDU(self.leftTop.x+self.menuOffset.x,self.leftTop.y+65);
-    _slp(.3f);
-    
     // enter address
     _tt(@"mk9tTCzAYZpas3gXatV52tnA63DEgngoq4");
     _slp(.1f);
 
     // enter amount
-    _leftDU(self.leftTop.x+self.menuOffset.x,self.leftTop.y+92);
+    _tab;
     _tt(@"0.123456");
     _slp(.1f);
     _ss;
-
+    
     // press prepare
-    _leftDU(self.leftTop.x+80+self.menuOffset.x,self.leftTop.y+135);
-    _slp(.3f);
+    MWSendCoinsViewController *sendCoins = (MWSendCoinsViewController *)[APPD performSelector:@selector(sendCoinsWindowController)];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [sendCoins performSelector:@selector(prepareClicked:) withObject:self];
+    });
+    _slp(.5f);
     _ss;
+    _slp(.1f);
     
     // press commit
-    _leftDU(self.leftTop.x+80+self.menuOffset.x,self.leftTop.y+210);
-    _slp(.3f);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [sendCoins performSelector:@selector(commitClicked:) withObject:self];
+    });
+    _slp(.5f);
     _ss;
+    _slp(.1f);
     
     // press close
-    _leftDU(self.leftTop.x+140+self.menuOffset.x,self.leftTop.y+335);
-    _slp(.3f);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [sendCoins performSelector:@selector(closeClicked:) withObject:self];
+    });
+    _slp(.5f);
     _ss;
-    
-    
+    _slp(.1f);
 }
 
 - (void)runShowMenu
@@ -242,6 +253,12 @@
     _slp(.5f);
     
     RHPreferencesWindowController *winC = [APPD performSelector:@selector(preferencesWindowController)];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        winC.selectedIndex = 0;
+    });
+    _slp(.5f);
+    
     NSWindow *win = winC.window;
     CGRect frame = win.frame;
     
@@ -254,6 +271,11 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         winC.selectedIndex = 1;
     });
+    _slp(1.0f);
+
+    frame = win.frame;
+    frame.origin.y = screenFrame.size.height-frame.origin.y-frame.size.height;
+    self.screenshotSize = frame;
 
     _slp(1.0f);
     _ss;
@@ -261,28 +283,27 @@
 
 - (void)showQRCode
 {
-    _leftDUP(self.leftTop);
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.firstAddress = [[HIBitcoinManager defaultManager].allWalletAddresses objectAtIndex:0];
+        [APPD performSelector:@selector(showDetailsForAddress:) withObject:self.firstAddress];
+    });
     _slp(.5f);
-    
-    // show addresses
-    _mm(self.leftTop.x+self.menuOffset.x,self.leftTop.y+40+self.menuOffset.y);
-    _slp(.5f);
-    
-    // select address
-    _mm(self.leftTop.x+self.menuOffset.x+self.menuWith,self.leftTop.y+40+self.menuOffset.y);
-    _slp(0.5);
-    
-    // select address
-    _leftDU(self.leftTop.x+self.menuOffset.x+self.menuWith,self.leftTop.y+40+self.menuOffset.y);
-    _slp(1.5f);
     _ss;
-    _slp(0.2f);
-    
-    _leftDU(self.leftTop.x+self.menuOffset.x,self.leftTop.y+325);
+
+    _leftDU(self.leftTop.x+self.menuOffset.x,self.leftTop.y+345);
     _slp(0.5f);
-    _leftDU(self.leftTop.x+self.menuOffset.x+90.0,self.leftTop.y+325);
+    
+    _leftDU(self.leftTop.x+self.menuOffset.x,self.leftTop.y+370);
+    _slp(0.5f);
+    
+    _leftDU(self.leftTop.x+self.menuOffset.x+100.0,self.leftTop.y+370);
 }
 
-
+- (void)takeScreenshot:(NSInteger)num
+{
+    [self.screenshotMarkdown appendFormat:@"![Screenshot %ld](http://macwallet.github.io/screenshots/auto/de/%ld.png)\n", self.currentScreenshotNum, self.currentScreenshotNum];
+    [super takeScreenshot:num];
+}
 
 @end

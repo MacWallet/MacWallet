@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4510"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="MWPreferenceIncommingPaymentViewController">
+        <customObject id="-2" userLabel="File's Owner" customClass="MWPreferenceIncomingPaymentViewController">
             <connections>
                 <outlet property="playSoundCheckbox" destination="McE-Xo-z8Q" id="YQP-MA-5bt"/>
                 <outlet property="playSoundPath" destination="uSR-4E-wrs" id="Dbt-Ew-W71"/>
@@ -23,7 +23,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ukD-II-ntu">
-                    <rect key="frame" x="18" y="172" width="308" height="18"/>
+                    <rect key="frame" x="18" y="172" width="444" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Show User Notification (OSX 10.8 and higher)" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="0SL-95-hdK">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -34,7 +34,7 @@
                     </connections>
                 </button>
                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g80-w5-DVP">
-                    <rect key="frame" x="18" y="122" width="91" height="18"/>
+                    <rect key="frame" x="18" y="122" width="444" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Play Sound" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="McE-Xo-z8Q">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -57,7 +57,7 @@
                     </connections>
                 </textField>
                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ux9-3z-fmZ">
-                    <rect key="frame" x="18" y="147" width="99" height="18"/>
+                    <rect key="frame" x="18" y="147" width="444" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Show Popup" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="4T4-Py-4YJ">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>

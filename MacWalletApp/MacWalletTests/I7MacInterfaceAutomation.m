@@ -248,6 +248,14 @@ int keyCodeForKeyString(char * keyString)
     CFRelease(event1);
 }
 
+- (void)sendTab
+{
+    CGEventRef event1;
+    event1 = CGEventCreateKeyboardEvent (NULL, 48, true);
+    CGEventPost(kCGSessionEventTap, event1);
+    CFRelease(event1);
+}
+
 - (void)takeScreenshot:(NSInteger)num
 {
     CGImageRef capturedImage = CGDisplayCreateImage(kCGDirectMainDisplay);

@@ -8,11 +8,13 @@
 about = "Über MacWallet...";
 quit = "Schließen";
 sendCoins = "Bitcoins senden";
-myAddresses = "Meine Adresse";
-myTransactions = "Letzte Transaktion";
+myAddresses = "Meine Adressen";
+myTransactions = "Letzte Transaktionen";
 syncing = "Synchronisierung:";
 "Network: synced" = "Netzwerk: synchronisiert";
-blocksMenuItem = "Blöcke:";
+"Network: Testnet" = "Netzwerk: Testnet";
+"Network: Bitcoin" = "Netzwerk: Bitcoin";
+blocksMenuItem = "Blöcke: ";
 connectedPeersMenuItem = "Verbundene Peers:";
 lastBlockAge = "Letzter Block vor:";
 
@@ -22,7 +24,7 @@ Cancel = "Abbrechen";
 switchToTestnet = "Zum Testnet wechseln?";
 
 sendCoinsWindowTitle = "Bitcoins senden";
-receiverAddressLabel = "Empfänger";
+receiverAddressLabel = "Bitcoin adresse";
 amoutLabel = "Betrag";
 feeLabel = "Gebühren";
 totalAmountLabel = "Gesamtbetrag";
@@ -42,10 +44,10 @@ date = "Datum";
 getTxInfo = "Infos";
 
 preferences = "Einstellungen...";
-autostartPrefsLabel = "Macwallet automatisch beim Systemstart öffnen";
+autostartPrefsLabel = "MacWallet automatisch beim Starten öffnen";
 checkForUpdatesAtStartupLabel = "Beim Starten auf Updates prüfen";
 tickerLabel = "Ticker";
-whatToShowLabel = "Hauptmenü";
+whatToShowLabel = "Hauptmenü Anzeige";
 showBothButton = "Ticker und Kontostand anzeigen";
 showTickerButton = "Ticker anzeigen";
 showBalanceButtonLabel = "Kontostand anzeigen";
@@ -74,8 +76,8 @@ newFundsOnTheWayText = "Neue Einzahlung von %@ werden gerade gebucht";
 dumpWallet = "In Datei speichern...";
 recommendedFilenameForWalletDump = "wallet.txt";
 
-successDumpWallet = "Ihre Brieftasche wurde erfolgreich gespeichert";
-errorDumpWallet = "Fehler beim speichern in der ausgewählten Datei";
+successDumpWallet = "Ihre Wallet wurde erfolgreich gespeichert";
+errorDumpWallet = "Fehler beim Speichern in der ausgewählten Datei";
 removePassword = "Passwort entfernen";
 setPassword = "Mit Passwort schützen";
 
@@ -88,7 +90,7 @@ setPasswordAbortButton1Text = "« Zurück";
 setPasswordOkButton0Text = "Weiter";
 setPasswordOkButton1Text = "Ok";
 setPasswordOkButton2Text = "Ok";
-setPasswordFinishMessage = "Ihre Brieftasche ist jetzt verschlüsselt";
+setPasswordFinishMessage = "Ihre Wallet ist jetzt verschlüsselt";
 
 setPasswordPassword0PlaceholderText = "Passwort eingeben";
 setPasswordPassword1PlaceholderText = "Passwort wiederholen";
@@ -98,8 +100,17 @@ enterPasswordBackButton0Text = "Abbrechen";
 enterPasswordBackButton1Text = "« Zurück";
 enterPasswordOkButton0Text = "Ok";
 enterPasswordOkButton1Text = "Ok";
-enterPasswordLastMessage = "Ihre Brieftasche ist jetzt nicht mehr mit einem Passwort geschützt";
-successDecryptingWallet = "Ihre Brieftasche ist jetzt unverschlüsselt";
-errorDecryptingWallet = "Fehler beim entschlüsseln ihrer Brieftasche";
+enterPasswordLastMessage = "Ihre Wallet ist jetzt verschlüsselt";
+successDecryptingWallet = "Ihre Wallet ist jetzt unverschlüsselt";
+errorDecryptingWallet = "Fehler beim Entschlüsseln ihrer Wallet";
 
-walletMenuItem = "Brieftasche";
+walletMenuItem = "Wallet";
+transactionSuccessText = "Transaktion wurde erfolgreich übermittelt.";
+resyncBlockchain = "Blockkette neu laden";
+
+preferencesGeneral = "Allgemein";
+preferencesIncomingPayment = "EIngehende Zahlungen";
+
+copyAddressButton = "Adresse kopieren";
+copyImageButton = "QR-Code Kopieren";
+loadingTickerShort = "lädt...";

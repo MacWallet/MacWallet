@@ -16,6 +16,7 @@ int keyCodeForKeyString(char * keyString);
 - (void)moveMouse:(CGPoint)click;
 - (void)leftClickDown:(CGPoint)click;
 - (void)sendEnter;
+- (void)sendTab;
 - (void)typeText:(NSString *)text;
 - (void)takeScreenshot:(NSInteger)num;
 @property (assign) CGRect screenshotSize;

@@ -1,14 +1,14 @@
 //
-//  MWPreferenceIncommingPaymentViewController.m
+//  MWPreferenceIncomingPaymentViewController.m
 //  MacWallet
 //
 //  Created by Jonas Schnelli on 17.10.13.
 //  Copyright (c) 2013 include7 AG. All rights reserved.
 //
 
-#import "MWPreferenceIncommingPaymentViewController.h"
+#import "MWPreferenceIncomingPaymentViewController.h"
 
-@interface MWPreferenceIncommingPaymentViewController ()
+@interface MWPreferenceIncomingPaymentViewController ()
 @property (assign) IBOutlet NSButtonCell *showNotificationCheckbox;
 @property (assign) IBOutlet NSButtonCell *showPopupCheckbox;
 @property (assign) IBOutlet NSButtonCell *runScriptCheckbox;
@@ -17,7 +17,7 @@
 @property (assign) IBOutlet NSTextField *playSoundPath;
 @end
 
-@implementation MWPreferenceIncommingPaymentViewController
+@implementation MWPreferenceIncomingPaymentViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,13 +31,13 @@
 
 - (void)awakeFromNib
 {
-    NSString *soundPath = [[NSUserDefaults standardUserDefaults] objectForKey:kPLAY_SOUND_PATH_INCOMMING_FUNDS];
+    NSString *soundPath = [[NSUserDefaults standardUserDefaults] objectForKey:kPLAY_SOUND_PATH_INCOMING_FUNDS];
     if(soundPath && [soundPath isKindOfClass:[NSString class]] && soundPath.length > 0)
     {
         self.playSoundPath.stringValue = soundPath;
     }
 
-    NSString *scriptPath = [[NSUserDefaults standardUserDefaults] objectForKey:kRUN_SCRIPT_PATH_INCOMMING_FUNDS];
+    NSString *scriptPath = [[NSUserDefaults standardUserDefaults] objectForKey:kRUN_SCRIPT_PATH_INCOMING_FUNDS];
     if(scriptPath && [scriptPath isKindOfClass:[NSString class]] && scriptPath.length > 0)
     {
         self.runScriptPath.stringValue = scriptPath;
@@ -52,39 +52,47 @@
     {
         [self.runScriptPath setEnabled:NO];
     }
+    
+    // i18n
+    
+    self.showNotificationCheckbox.title = NSLocalizedString(@"incomingPaymentShowUserNotification", @"Show User Notification Preference Label");
+    self.showPopupCheckbox.title        = NSLocalizedString(@"incomingPaymentShowPopup", @"Show Popup Notification Preference Label");
+    self.playSoundCheckbox.title        = NSLocalizedString(@"incomingPaymentPlaySound", @"Play Sound Preference Label");
+    self.runScriptCheckbox.title        = NSLocalizedString(@"incomingPaymentRunScript", @"Run Script Preference Label");
+
 }
 
 #pragma mark UserDefaults Bindings
 - (BOOL)showNotification
 {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:kSHOW_NOTIFICATION_INCOMMING_FUNDS];
+    return [[NSUserDefaults standardUserDefaults] boolForKey:kSHOW_NOTIFICATION_INCOMING_FUNDS];
 }
 
 - (void)setShowNotification:(BOOL)aState
 {
-    [[NSUserDefaults standardUserDefaults] setBool:aState forKey:kSHOW_NOTIFICATION_INCOMMING_FUNDS];
+    [[NSUserDefaults standardUserDefaults] setBool:aState forKey:kSHOW_NOTIFICATION_INCOMING_FUNDS];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (BOOL)showPopup
 {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:kSHOW_POPUP_INCOMMING_FUNDS];
+    return [[NSUserDefaults standardUserDefaults] boolForKey:kSHOW_POPUP_INCOMING_FUNDS];
 }
 
 - (void)setShowPopup:(BOOL)aState
 {
-    [[NSUserDefaults standardUserDefaults] setBool:aState forKey:kSHOW_POPUP_INCOMMING_FUNDS];
+    [[NSUserDefaults standardUserDefaults] setBool:aState forKey:kSHOW_POPUP_INCOMING_FUNDS];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (BOOL)runScript
 {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:kRUN_SCRIPT_INCOMMING_FUNDS];
+    return [[NSUserDefaults standardUserDefaults] boolForKey:kRUN_SCRIPT_INCOMING_FUNDS];
 }
 
 - (void)setRunScript:(BOOL)aState
 {
-    [[NSUserDefaults standardUserDefaults] setBool:aState forKey:kRUN_SCRIPT_INCOMMING_FUNDS];
+    [[NSUserDefaults standardUserDefaults] setBool:aState forKey:kRUN_SCRIPT_INCOMING_FUNDS];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     if(!aState)
@@ -99,12 +107,12 @@
 
 - (BOOL)playSound
 {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:kPLAY_SOUND_INCOMMING_FUNDS];
+    return [[NSUserDefaults standardUserDefaults] boolForKey:kPLAY_SOUND_INCOMING_FUNDS];
 }
 
 - (void)setPlaySound:(BOOL)aState
 {
-    [[NSUserDefaults standardUserDefaults] setBool:aState forKey:kPLAY_SOUND_INCOMMING_FUNDS];
+    [[NSUserDefaults standardUserDefaults] setBool:aState forKey:kPLAY_SOUND_INCOMING_FUNDS];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     if(!aState)
@@ -159,12 +167,12 @@
 {
     if([notification object] == self.playSoundPath)
     {
-        [[NSUserDefaults standardUserDefaults] setObject:self.playSoundPath.stringValue forKey:kPLAY_SOUND_PATH_INCOMMING_FUNDS];
+        [[NSUserDefaults standardUserDefaults] setObject:self.playSoundPath.stringValue forKey:kPLAY_SOUND_PATH_INCOMING_FUNDS];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
     else if([notification object] == self.runScriptPath)
     {
-        [[NSUserDefaults standardUserDefaults] setObject:self.runScriptPath.stringValue forKey:kRUN_SCRIPT_PATH_INCOMMING_FUNDS];
+        [[NSUserDefaults standardUserDefaults] setObject:self.runScriptPath.stringValue forKey:kRUN_SCRIPT_PATH_INCOMING_FUNDS];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
 }
@@ -177,11 +185,11 @@
 }
 -(NSImage*)toolbarItemImage
 {
-    return [NSImage imageNamed:@"incomming_payment"];
+    return [NSImage imageNamed:@"incoming_payment"];
 }
 -(NSString*)toolbarItemLabel
 {
-    return NSLocalizedString(@"Arriving Funds", @"Arriving Funds Preference Label");
+    return NSLocalizedString(@"preferencesIncomingPayment", @"Arriving Funds Preference Label");
 }
 
 -(NSView*)initialKeyView

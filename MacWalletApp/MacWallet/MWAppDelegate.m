@@ -15,7 +15,7 @@
 #include "LaunchAtLoginController.h"
 #include "RHPreferencesWindowController.h"
 #include "MWPreferenceGeneralViewController.h"
-#include "MWPreferenceIncommingPaymentViewController.h"
+#include "MWPreferenceIncomingPaymentViewController.h"
 #include "MWTickerController.h"
 #include "MWTransactionDetailsWindowController.h"
 #include "MWTransactionMenuItem.h"
@@ -164,7 +164,48 @@
     
     
     // if first start, check if user likes that the app will run after login
+    [self checkRunAtStartup];
     
+    // check for migration / basic value setting
+    [self checkMigrationAndDefaults];
+    
+    // copy the app if required to applications folder
+    PFMoveToApplicationsFolderIfNecessary();
+    
+    
+    // update wallet icon (encrypted sign)
+    [self updateWalletMenuItem];
+    
+    // register for some notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateAfterSettingsChanges)
+                                                 name:kSHOULD_UPDATE_AFTER_PREFS_CHANGE_NOTIFICATION
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showTransactionDetailWindow:)
+                                                 name:kSHOULD_SHOW_TRANSACTION_DETAILS_FOR_ID
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coinsReceived:)
+                                                 name:kHIBitcoinManagerCoinsReceivedNotification
+                                               object:nil];
+    
+#ifdef MWUNITTEST
+    MWTestRunTests *test = [[MWTestRunTests alloc] init];
+    NSThread *thr = [[NSThread alloc] initWithTarget:test selector:@selector(runTests) object:nil];
+    [thr start];
+#endif
+    
+}
+
+- (void)applicationWillTerminate:(NSNotification *)notification
+{
+    [[HIBitcoinManager defaultManager] saveWallet];
+}
+
+#pragma mark - Migration / Version / first Start
+
+- (void)checkRunAtStartup
+{
     // Get current version ("Bundle Version") from the default Info.plist file
     NSString *currentVersion = (NSString*)[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
     NSArray *prevStartupVersions = [[NSUserDefaults standardUserDefaults] arrayForKey:kPREV_VERSIONS_STARTED_KEY];
@@ -202,38 +243,22 @@
     }
     
     [[NSUserDefaults standardUserDefaults] synchronize];
-    
-    // copy the app if required to applications folder
-    PFMoveToApplicationsFolderIfNecessary();
-    
-    
-    // update wallet icon (encrypted sign)
-    [self updateWalletMenuItem];
-    
-    // register for some notifications
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateAfterSettingsChanges)
-                                                 name:kSHOULD_UPDATE_AFTER_PREFS_CHANGE_NOTIFICATION
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showTransactionDetailWindow:)
-                                                 name:kSHOULD_SHOW_TRANSACTION_DETAILS_FOR_ID
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coinsReceived:)
-                                                 name:kHIBitcoinManagerCoinsReceivedNotification
-                                               object:nil];
-    
-#ifdef MWUNITTEST
-    MWTestRunTests *test = [[MWTestRunTests alloc] init];
-    NSThread *thr = [[NSThread alloc] initWithTarget:test selector:@selector(runTests) object:nil];
-    [thr start];
-#endif
-    
 }
 
-- (void)applicationWillTerminate:(NSNotification *)notification
+- (void)checkMigrationAndDefaults
 {
-    [[HIBitcoinManager defaultManager] saveWallet];
+    NSString *bundleVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey];
+    NSString *appFirstStartOfVersionKey = [NSString stringWithFormat:@"first_start_%@", bundleVersion];
+    
+    NSNumber *alreadyStartedOnVersion = [[NSUserDefaults standardUserDefaults] objectForKey:appFirstStartOfVersionKey];
+    if(!alreadyStartedOnVersion || [alreadyStartedOnVersion boolValue] == NO) {
+        
+        // this version never started
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kSHOW_NOTIFICATION_INCOMING_FUNDS];
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:appFirstStartOfVersionKey];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 #pragma mark - NSMenuDelegate
@@ -578,13 +603,13 @@
 
 - (void)doReceivedCoinsAction:(NSString *)text amount:(NSString *)amout txID:(NSString *)txId
 {
-    BOOL showNotification = [[NSUserDefaults standardUserDefaults] boolForKey:kSHOW_NOTIFICATION_INCOMMING_FUNDS];
-    BOOL showPopup = [[NSUserDefaults standardUserDefaults] boolForKey:kSHOW_POPUP_INCOMMING_FUNDS];
-    BOOL playSound = [[NSUserDefaults standardUserDefaults] boolForKey:kPLAY_SOUND_INCOMMING_FUNDS];
-    NSString *playSoundPath = [[NSUserDefaults standardUserDefaults] objectForKey:kPLAY_SOUND_PATH_INCOMMING_FUNDS];
+    BOOL showNotification = [[NSUserDefaults standardUserDefaults] boolForKey:kSHOW_NOTIFICATION_INCOMING_FUNDS];
+    BOOL showPopup = [[NSUserDefaults standardUserDefaults] boolForKey:kSHOW_POPUP_INCOMING_FUNDS];
+    BOOL playSound = [[NSUserDefaults standardUserDefaults] boolForKey:kPLAY_SOUND_INCOMING_FUNDS];
+    NSString *playSoundPath = [[NSUserDefaults standardUserDefaults] objectForKey:kPLAY_SOUND_PATH_INCOMING_FUNDS];
     
-    BOOL runScript = [[NSUserDefaults standardUserDefaults] boolForKey:kRUN_SCRIPT_INCOMMING_FUNDS];
-    NSString *runScriptPath = [[NSUserDefaults standardUserDefaults] objectForKey:kRUN_SCRIPT_PATH_INCOMMING_FUNDS];
+    BOOL runScript = [[NSUserDefaults standardUserDefaults] boolForKey:kRUN_SCRIPT_INCOMING_FUNDS];
+    NSString *runScriptPath = [[NSUserDefaults standardUserDefaults] objectForKey:kRUN_SCRIPT_PATH_INCOMING_FUNDS];
     
     if([NSUserNotification class] && [NSUserNotificationCenter class] && showNotification)
     {
@@ -923,10 +948,10 @@
     NSView *view = appWin.contentView;
     
     NSPopover *popover = [[NSPopover alloc] init];
-    MWSendCoinsViewController *vc = [[MWSendCoinsViewController alloc] initWithNibName:@"SendCoinsWindow" bundle:nil];
-    vc.delegate = self;
-    vc.popover = popover;
-    popover.contentViewController = vc;
+    self.sendCoinsWindowController = [[MWSendCoinsViewController alloc] initWithNibName:@"SendCoinsWindow" bundle:nil];
+    self.sendCoinsWindowController.delegate = self;
+    self.sendCoinsWindowController.popover = popover;
+    popover.contentViewController = self.sendCoinsWindowController;
     
     [popover showRelativeToRect:CGRectMake(0,0,frame.size.width,frame.size.height) ofView:view preferredEdge:NSMinYEdge];
     
@@ -946,7 +971,7 @@
 - (IBAction)showPreferences:(id)sender
 {
     MWPreferenceGeneralViewController *generalPrefs = [[MWPreferenceGeneralViewController alloc] initWithNibName:@"MWPreferenceGeneralViewController" bundle:nil];
-    MWPreferenceIncommingPaymentViewController *walletPrefs = [[MWPreferenceIncommingPaymentViewController alloc] initWithNibName:@"MWPreferenceIncommingPaymentViewController" bundle:nil];
+    MWPreferenceIncomingPaymentViewController *walletPrefs = [[MWPreferenceIncomingPaymentViewController alloc] initWithNibName:@"MWPreferenceIncomingPaymentViewController" bundle:nil];
     
     NSArray *controllers = [NSArray arrayWithObjects:generalPrefs,walletPrefs,
                             nil];
