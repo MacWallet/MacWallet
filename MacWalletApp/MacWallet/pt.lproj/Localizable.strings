@@ -1,0 +1,112 @@
+/*
+ Localizable.strings
+ MacWallet
+ 
+ Created by Jonas Schnelli on 01.10.13.
+ Copyright (c) 2013 Jonas Schnelli. All rights reserved.
+ */
+about = "Sobre o MacWallet...";
+quit = "Sair";
+sendCoins = "Enviar moedas...";
+myAddresses = "Meus endereços";
+myTransactions = "Última transação";
+syncing = "Sincronizando:";
+"Network: synced" = "Rede: sincronizada";
+"Network: Testnet" = "Rede: Testnet";
+"Network: Bitcoin" = "Rede: Bitcoin";
+blocksMenuItem = "Blocos:";
+connectedPeersMenuItem = "Pontos conectados:";
+lastBlockAge = "Idade do último bloco:";
+
+OK = "OK";
+Cancel = "Cancelar";
+
+switchToTestnet = "Você gostaria de alternar para a Testnet?";
+
+sendCoinsWindowTitle = "Enviar moedas";
+receiverAddressLabel = "Endereço do Bitcoin";
+amoutLabel = "Quantidade";
+feeLabel = "Taxa requerida";
+totalAmountLabel = "Quantidade total";
+transactionIdLabel = "ID da transação";
+
+prepareTx = "Preparar transação";
+commitTx = "Enviar moedas!";
+closeButton = "Fechar";
+
+moreTx = "mais %d...";
+showAllTransaction = "Mostrar todas transações";
+noTransactionsFound = "Nenhuma transação encontrada";
+transactionsWindowTitle = "Transações";
+status = "Estado";
+amount = "Quantidade";
+date = "Data";
+getTxInfo = "Obter informações";
+
+preferences = "Configurações...";
+autostartPrefsLabel = "Iniciar o MacWallet automaticamente";
+checkForUpdatesAtStartupLabel = "Verificar atualizações ao iniciar";
+tickerLabel = "Ticker";
+whatToShowLabel = "Menu principal";
+showBothButton = "Exibir ticker e saldo";
+showTickerButton = "Exibir ticker";
+showBalanceButtonLabel = "Exibir saldo";
+secondLineBalanceLabel = "Saldo:";
+secondLineTickerLabel = "@$1: ";
+
+timeAgoFormat = " (%@ atrás)";
+timeAgoLabel = "Exibir \"tempo atrás\" na lista de transações";
+restartAppText = "Você precisa reiniciar o MacWallet após alterar a rede";
+addAddress = "Adicionar endereço";
+
+launchAtStartupQuestion = "Você gostaria de iniciar o MacWallet quando o seu computador inicializar?";
+
+passwordInacceptable = "encurtar";
+passwordWeak = "fraca";
+passwordModerate = "média";
+passwordStrong = "forte";
+
+insufficientFunds = "Saldo insuficiente!";
+unknownSendCoinsError = "Transação inválida!";
+passwordWrong = "Senha incorreta!";
+
+newFundsOnTheWayTitle = "Recebendo transação";
+newFundsOnTheWayText = "Novos fundos de %@ estão a caminho";
+
+dumpWallet = "Exportar para arquivo...";
+recommendedFilenameForWalletDump = "carteira.txt";
+
+successDumpWallet = "A sua carteira foi gravada com sucesso no arquivo selecionado";
+errorDumpWallet = "Ocorreu um erro ao salvar a sua carteira no arquivo selecionado";
+removePassword = "Remover senha";
+setPassword = "Proteger com senha";
+
+checkForUpdatesMenuItem = "Verificar atualizações...";
+
+setPasswordPassword0Label = "Digite uma senha";
+setPasswordPassword1Label = "Repita a senha";
+setPasswordAbortButton0Text = "Cancelar";
+setPasswordAbortButton1Text = "OK";
+setPasswordOkButton0Text = "Continuar";
+setPasswordOkButton1Text = "Ok";
+setPasswordOkButton2Text = "Ok";
+setPasswordFinishMessage = "A sua carteira agora está protegida";
+
+setPasswordPassword0PlaceholderText = "Digite a senha";
+setPasswordPassword1PlaceholderText = "Repita a senha";
+
+enterPasswordPassword0PlaceholderText = "Digite a senha";
+enterPasswordBackButton0Text = "Cancelar";
+enterPasswordBackButton1Text = "« Voltar";
+enterPasswordOkButton0Text = "Ok";
+enterPasswordOkButton1Text = "Ok";
+enterPasswordLastMessage = "A sua carteira não está mais protegida com uma senha";
+successDecryptingWallet = "A sua carteira agora está desprotegida";
+errorDecryptingWallet = "Ocorreu um erro ao descriptografar a sua carteira";
+
+walletMenuItem = "Carteira";
+transactionSuccessText = "A transação foi concretizada com sucesso.";
+resyncBlockchain = "Resincronizar blockchain";
+
+preferencesGeneral = "Geral";
+preferencesIncommingPayment = "Recebendo pagamento";

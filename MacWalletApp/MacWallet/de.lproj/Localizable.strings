@@ -76,7 +76,7 @@ recommendedFilenameForWalletDump = "wallet.txt";
 
 successDumpWallet = "Ihre Brieftasche wurde erfolgreich gespeichert";
 errorDumpWallet = "Fehler beim speichern in der ausgewählten Datei";
-removePassword = "Passwort löschen";
+removePassword = "Passwort entfernen";
 setPassword = "Mit Passwort schützen";
 
 checkForUpdatesMenuItem = "Auf Updates prüfen...";

@@ -33,14 +33,26 @@
     // do some i18n
     
     
-    self.backButton0.title                 = NSLocalizedString(@"enterPasswordBackButton0Text", @"");
-    self.backButton1.title                 = NSLocalizedString(@"enterPasswordBackButton1Text", @"");
+    self.backButton0.title                  = NSLocalizedString(@"enterPasswordBackButton0Text", @"");
+    self.backButton1.title                  = NSLocalizedString(@"enterPasswordBackButton1Text", @"");
     self.okButton0.title                    = NSLocalizedString(@"enterPasswordOkButton0Text", @"");
     self.okButton1.title                    = NSLocalizedString(@"enterPasswordOkButton1Text", @"");
-    self.lastMassageLabel.stringValue          = NSLocalizedString(@"enterPasswordLastMessage", @"");
-    
+    self.lastMassageLabel.stringValue       = NSLocalizedString(@"enterPasswordLastMessage", @"");
+    self.enterPasswordLabel.stringValue     = NSLocalizedString(@"enterPasswordPassword0PlaceholderText", @"");
     [(NSTextFieldCell *)self.passwordTextField.cell setPlaceholderString:NSLocalizedString(@"enterPasswordPassword0PlaceholderText", @"")];
 
+}
+
+- (BOOL)control:(NSControl *)control textView:(NSTextView *)fieldEditor doCommandBySelector:(SEL)commandSelector
+{
+    BOOL retval = NO;
+    if (commandSelector == @selector(insertNewline:))
+    {
+        retval = YES; // causes Apple to NOT fire the default enter action
+        [self okPressed:self];
+    }
+    
+    return retval;
 }
 
 - (IBAction)backButtonPresses:(id)sender

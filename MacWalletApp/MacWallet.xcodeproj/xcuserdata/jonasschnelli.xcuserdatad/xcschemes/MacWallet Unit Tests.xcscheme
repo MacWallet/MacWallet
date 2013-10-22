@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E50310CB17E9986500C2F226"
-               BuildableName = "MacWallet.app"
-               BlueprintName = "MacWallet"
+               BlueprintIdentifier = "E5A4C7BB18111DFF0014877C"
+               BuildableName = "MacWallet copy.app"
+               BlueprintName = "MacWallet Tests"
                ReferencedContainer = "container:MacWallet.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,23 +28,13 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E5C1FFB518107A3D00220E06"
-               BuildableName = "MWTesterTests.xctest"
-               BlueprintName = "MWTesterTests"
-               ReferencedContainer = "container:MacWallet.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E50310CB17E9986500C2F226"
-            BuildableName = "MacWallet.app"
-            BlueprintName = "MacWallet"
+            BlueprintIdentifier = "E5A4C7BB18111DFF0014877C"
+            BuildableName = "MacWallet copy.app"
+            BlueprintName = "MacWallet Tests"
             ReferencedContainer = "container:MacWallet.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -61,15 +51,15 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E50310CB17E9986500C2F226"
-            BuildableName = "MacWallet.app"
-            BlueprintName = "MacWallet"
+            BlueprintIdentifier = "E5A4C7BB18111DFF0014877C"
+            BuildableName = "MacWallet copy.app"
+            BlueprintName = "MacWallet Tests"
             ReferencedContainer = "container:MacWallet.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "-1AppleLanguages &quot;(Portuguese)&quot;"
+            argument = "-AppleLanguages &quot;(Portuguese)&quot;"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
@@ -85,9 +75,9 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E50310CB17E9986500C2F226"
-            BuildableName = "MacWallet.app"
-            BlueprintName = "MacWallet"
+            BlueprintIdentifier = "E5A4C7BB18111DFF0014877C"
+            BuildableName = "MacWallet copy.app"
+            BlueprintName = "MacWallet Tests"
             ReferencedContainer = "container:MacWallet.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

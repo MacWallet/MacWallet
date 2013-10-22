@@ -23,6 +23,22 @@
 		E504D80017FDA0A300F94081 /* wallet.png in Resources */ = {isa = PBXBuildFile; fileRef = E504D7FF17FDA0A300F94081 /* wallet.png */; };
 		E504D80217FDA4B500F94081 /* tickers.plist in Resources */ = {isa = PBXBuildFile; fileRef = E504D80117FDA4B500F94081 /* tickers.plist */; };
 		E508D65817FB26A700CC3CF9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E508D65A17FB26A700CC3CF9 /* Localizable.strings */; };
+		E50D19EC18168F3300AD4F66 /* incomming_payment.png in Resources */ = {isa = PBXBuildFile; fileRef = E50D19EA18168F3300AD4F66 /* incomming_payment.png */; };
+		E50D19ED18168F3300AD4F66 /* incomming_payment.png in Resources */ = {isa = PBXBuildFile; fileRef = E50D19EA18168F3300AD4F66 /* incomming_payment.png */; };
+		E50D19EE18168F3300AD4F66 /* incomming_payment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E50D19EB18168F3300AD4F66 /* incomming_payment@2x.png */; };
+		E50D19EF18168F3300AD4F66 /* incomming_payment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E50D19EB18168F3300AD4F66 /* incomming_payment@2x.png */; };
+		E517D5F0181535DB00C0E1AE /* MWFundsReceivedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E517D5EE181535DB00C0E1AE /* MWFundsReceivedViewController.m */; };
+		E517D5F1181535DB00C0E1AE /* MWFundsReceivedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E517D5EF181535DB00C0E1AE /* MWFundsReceivedViewController.xib */; };
+		E51CC1F61814F4D90070BCF9 /* DataMatrix.mm in Sources */ = {isa = PBXBuildFile; fileRef = E51CC1EF1814F4D90070BCF9 /* DataMatrix.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E51CC1F71814F4D90070BCF9 /* DataMatrix.mm in Sources */ = {isa = PBXBuildFile; fileRef = E51CC1EF1814F4D90070BCF9 /* DataMatrix.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E51CC1F81814F4D90070BCF9 /* QR_Encode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E51CC1F01814F4D90070BCF9 /* QR_Encode.cpp */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E51CC1F91814F4D90070BCF9 /* QR_Encode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E51CC1F01814F4D90070BCF9 /* QR_Encode.cpp */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E51CC1FA1814F4D90070BCF9 /* QREncoder.mm in Sources */ = {isa = PBXBuildFile; fileRef = E51CC1F51814F4D90070BCF9 /* QREncoder.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E51CC1FB1814F4D90070BCF9 /* QREncoder.mm in Sources */ = {isa = PBXBuildFile; fileRef = E51CC1F51814F4D90070BCF9 /* QREncoder.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E51CC2001814FAB10070BCF9 /* MWAddressDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E51CC1FE1814FAB10070BCF9 /* MWAddressDetailViewController.m */; };
+		E51CC2011814FAB10070BCF9 /* MWAddressDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E51CC1FE1814FAB10070BCF9 /* MWAddressDetailViewController.m */; };
+		E51CC2021814FAB10070BCF9 /* MWAddressDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E51CC1FF1814FAB10070BCF9 /* MWAddressDetailViewController.xib */; };
+		E51CC2031814FAB10070BCF9 /* MWAddressDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E51CC1FF1814FAB10070BCF9 /* MWAddressDetailViewController.xib */; };
 		E528E91017FAB7B800BF4BAD /* Questionmark.png in Resources */ = {isa = PBXBuildFile; fileRef = E528E90E17FAB7B800BF4BAD /* Questionmark.png */; };
 		E528E91117FAB7B800BF4BAD /* Questionmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E528E90F17FAB7B800BF4BAD /* Questionmark@2x.png */; };
 		E531C1F0180876D0009E1B16 /* AXStatusItemPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = E531C1EF180876D0009E1B16 /* AXStatusItemPopup.m */; };
@@ -66,6 +82,84 @@
 		E579C0AC1802CD7C00D8B61D /* sparkle_update_dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = E579C0AB1802CD7C00D8B61D /* sparkle_update_dsa_pub.pem */; };
 		E58DF400180FFC98004877BC /* MWPreferenceIncommingPaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E58DF3FE180FFC98004877BC /* MWPreferenceIncommingPaymentViewController.m */; };
 		E58DF401180FFC98004877BC /* MWPreferenceIncommingPaymentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E58DF3FF180FFC98004877BC /* MWPreferenceIncommingPaymentViewController.xib */; };
+		E5A4C7BD18111DFF0014877C /* MWTransactionsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = E548C6FD1802BFFB00976CD7 /* MWTransactionsWindowController.m */; };
+		E5A4C7BE18111DFF0014877C /* MWPreferenceGeneralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5E2CCBF17FC98B3003EBA11 /* MWPreferenceGeneralViewController.m */; };
+		E5A4C7BF18111DFF0014877C /* MWStatusItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E56905611809956D00A343E9 /* MWStatusItem.m */; };
+		E5A4C7C018111DFF0014877C /* MWPreferenceWalletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E504D7F417FD843100F94081 /* MWPreferenceWalletViewController.m */; };
+		E5A4C7C118111DFF0014877C /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5E2CCCC17FC9A7D003EBA11 /* LaunchAtLoginController.m */; };
+		E5A4C7C218111DFF0014877C /* MWTickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E548C6ED1802BFB400976CD7 /* MWTickerController.m */; };
+		E5A4C7C318111DFF0014877C /* MWSetPasswordPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = E5ED01D0180C2461003C7E63 /* MWSetPasswordPopover.m */; };
+		E5A4C7C418111DFF0014877C /* MWTestRunTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E5C1FF9618106FBA00220E06 /* MWTestRunTests.m */; };
+		E5A4C7C518111DFF0014877C /* RHKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B8390017F9FEED004FBBB5 /* RHKeychain.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E5A4C7C618111DFF0014877C /* NSString+NSStringRandomPasswordAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E53B97261806913700E8117B /* NSString+NSStringRandomPasswordAdditions.m */; };
+		E5A4C7C718111DFF0014877C /* MWTransactionMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E548C6FB1802BFFB00976CD7 /* MWTransactionMenuItem.m */; };
+		E5A4C7C818111DFF0014877C /* NSString+SymlinksAndAliases.m in Sources */ = {isa = PBXBuildFile; fileRef = E50153C618044CB800CFFA69 /* NSString+SymlinksAndAliases.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E5A4C7C918111DFF0014877C /* MWEnterPasswordPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = E5ED01CE180C2461003C7E63 /* MWEnterPasswordPopover.m */; };
+		E5A4C7CA18111DFF0014877C /* MWBasePopover.m in Sources */ = {isa = PBXBuildFile; fileRef = E5ED01CC180C2461003C7E63 /* MWBasePopover.m */; };
+		E5A4C7CB18111DFF0014877C /* PasswordChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = E5645236180891EB008ADC99 /* PasswordChecker.m */; };
+		E5A4C7CC18111DFF0014877C /* MWSendCoinsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5C61EE3180C58F900857193 /* MWSendCoinsViewController.m */; };
+		E5A4C7CD18111DFF0014877C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E50310DB17E9986500C2F226 /* main.m */; };
+		E5A4C7CE18111DFF0014877C /* MWTransactionDetailsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = E548C6F81802BFFB00976CD7 /* MWTransactionDetailsWindowController.m */; };
+		E5A4C7CF18111DFF0014877C /* MWPreferenceIncommingPaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E58DF3FE180FFC98004877BC /* MWPreferenceIncommingPaymentViewController.m */; };
+		E5A4C7D018111DFF0014877C /* PFMoveApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = E50153C818044CB800CFFA69 /* PFMoveApplication.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E5A4C7D118111DFF0014877C /* NSWindow+canBecomeKeyWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = E5645239180894EE008ADC99 /* NSWindow+canBecomeKeyWindow.m */; };
+		E5A4C7D218111DFF0014877C /* DuxScrollViewAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = E531C1FE18088CE7009E1B16 /* DuxScrollViewAnimation.m */; };
+		E5A4C7D318111DFF0014877C /* RHPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5E2CCC417FC98B3003EBA11 /* RHPreferencesWindowController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E5A4C7D418111DFF0014877C /* AXStatusItemPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = E531C1EF180876D0009E1B16 /* AXStatusItemPopup.m */; };
+		E5A4C7D518111DFF0014877C /* MWBaseScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5438C9F180C6B8A007EDFDC /* MWBaseScrollView.m */; };
+		E5A4C7D618111DFF0014877C /* MWAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E50310E217E9986600C2F226 /* MWAppDelegate.m */; };
+		E5A4C7D818111DFF0014877C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E531C1FB18088445009E1B16 /* QuartzCore.framework */; };
+		E5A4C7D918111DFF0014877C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5FBD34217F9FFB400E678FE /* Security.framework */; };
+		E5A4C7DA18111DFF0014877C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E50310CF17E9986500C2F226 /* Cocoa.framework */; };
+		E5A4C7DB18111DFF0014877C /* BitcoinJKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5D2F47817F447DB00A214F4 /* BitcoinJKit.framework */; };
+		E5A4C7DC18111DFF0014877C /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5CDA95F17FC9F2A0037A01E /* Sparkle.framework */; };
+		E5A4C7DE18111DFF0014877C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E50310D817E9986500C2F226 /* InfoPlist.strings */; };
+		E5A4C7DF18111DFF0014877C /* ok_small.png in Resources */ = {isa = PBXBuildFile; fileRef = E564524818089A6C008ADC99 /* ok_small.png */; };
+		E5A4C7E018111DFF0014877C /* secure.png in Resources */ = {isa = PBXBuildFile; fileRef = E569054F18098D9400A343E9 /* secure.png */; };
+		E5A4C7E118111DFF0014877C /* warning_small.png in Resources */ = {isa = PBXBuildFile; fileRef = E564524C18089A6C008ADC99 /* warning_small.png */; };
+		E5A4C7E218111DFF0014877C /* warning@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E564523F18089816008ADC99 /* warning@2x.png */; };
+		E5A4C7E318111DFF0014877C /* ok@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E56452451808989F008ADC99 /* ok@2x.png */; };
+		E5A4C7E418111DFF0014877C /* status_bar_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E569055C1809950F00A343E9 /* status_bar_icon.png */; };
+		E5A4C7E518111DFF0014877C /* error.png in Resources */ = {isa = PBXBuildFile; fileRef = E569054818098AA100A343E9 /* error.png */; };
+		E5A4C7E618111DFF0014877C /* MWPreferenceIncommingPaymentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E58DF3FF180FFC98004877BC /* MWPreferenceIncommingPaymentViewController.xib */; };
+		E5A4C7E718111DFF0014877C /* sparkle_update_dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = E579C0AB1802CD7C00D8B61D /* sparkle_update_dsa_pub.pem */; };
+		E5A4C7E818111DFF0014877C /* TrustedCheckmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C359D217F1DFC200BA394E /* TrustedCheckmark@2x.png */; };
+		E5A4C7E918111DFF0014877C /* status_bar_icon_inverted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E56905641809993100A343E9 /* status_bar_icon_inverted@2x.png */; };
+		E5A4C7EA18111DFF0014877C /* SendCoinsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = E548C6F31802BFE600976CD7 /* SendCoinsWindow.xib */; };
+		E5A4C7EB18111DFF0014877C /* warning_red_small.png in Resources */ = {isa = PBXBuildFile; fileRef = E564524A18089A6C008ADC99 /* warning_red_small.png */; };
+		E5A4C7EC18111DFF0014877C /* closebox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E558210C180DCEFB0062777E /* closebox@2x.png */; };
+		E5A4C7ED18111DFF0014877C /* status_bar_icon_inverted.png in Resources */ = {isa = PBXBuildFile; fileRef = E56905631809993100A343E9 /* status_bar_icon_inverted.png */; };
+		E5A4C7EE18111DFF0014877C /* warning.png in Resources */ = {isa = PBXBuildFile; fileRef = E564523E18089816008ADC99 /* warning.png */; };
+		E5A4C7EF18111DFF0014877C /* error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E569054918098AA100A343E9 /* error@2x.png */; };
+		E5A4C7F018111DFF0014877C /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E50310DE17E9986600C2F226 /* Credits.rtf */; };
+		E5A4C7F118111DFF0014877C /* wallet.png in Resources */ = {isa = PBXBuildFile; fileRef = E504D7FF17FDA0A300F94081 /* wallet.png */; };
+		E5A4C7F218111DFF0014877C /* MWTransactionDetailsWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E548C6F91802BFFB00976CD7 /* MWTransactionDetailsWindowController.xib */; };
+		E5A4C7F318111DFF0014877C /* MWPreferenceWalletViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E504D7F517FD843100F94081 /* MWPreferenceWalletViewController.xib */; };
+		E5A4C7F418111DFF0014877C /* checkpoints in Resources */ = {isa = PBXBuildFile; fileRef = E50153C2180447AA00CFFA69 /* checkpoints */; };
+		E5A4C7F518111DFF0014877C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E508D65A17FB26A700CC3CF9 /* Localizable.strings */; };
+		E5A4C7F618111DFF0014877C /* ok_small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E564524918089A6C008ADC99 /* ok_small@2x.png */; };
+		E5A4C7F718111DFF0014877C /* TrustedCheckmark.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C359D517F1DFDE00BA394E /* TrustedCheckmark.png */; };
+		E5A4C7F818111DFF0014877C /* Questionmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E528E90F17FAB7B800BF4BAD /* Questionmark@2x.png */; };
+		E5A4C7F918111DFF0014877C /* RHPreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5E2CCC517FC98B3003EBA11 /* RHPreferencesWindow.xib */; };
+		E5A4C7FA18111DFF0014877C /* Questionmark.png in Resources */ = {isa = PBXBuildFile; fileRef = E528E90E17FAB7B800BF4BAD /* Questionmark.png */; };
+		E5A4C7FB18111DFF0014877C /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = E50153C01804440600CFFA69 /* icon.icns */; };
+		E5A4C7FC18111DFF0014877C /* secure@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E569055018098D9400A343E9 /* secure@2x.png */; };
+		E5A4C7FD18111DFF0014877C /* warning_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E564523D18089816008ADC99 /* warning_red@2x.png */; };
+		E5A4C7FE18111DFF0014877C /* tickers.plist in Resources */ = {isa = PBXBuildFile; fileRef = E504D80117FDA4B500F94081 /* tickers.plist */; };
+		E5A4C7FF18111DFF0014877C /* not-secure.png in Resources */ = {isa = PBXBuildFile; fileRef = E569054D18098D9400A343E9 /* not-secure.png */; };
+		E5A4C80018111DFF0014877C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = E50310E417E9986600C2F226 /* MainMenu.xib */; };
+		E5A4C80118111DFF0014877C /* ok.png in Resources */ = {isa = PBXBuildFile; fileRef = E56452441808989F008ADC99 /* ok.png */; };
+		E5A4C80218111DFF0014877C /* MWTransactionsWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E548C6FE1802BFFB00976CD7 /* MWTransactionsWindowController.xib */; };
+		E5A4C80318111DFF0014877C /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = E504D7FD17FDA09D00F94081 /* settings.png */; };
+		E5A4C80418111DFF0014877C /* not-secure@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E569054E18098D9400A343E9 /* not-secure@2x.png */; };
+		E5A4C80518111DFF0014877C /* status_bar_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E569055D1809950F00A343E9 /* status_bar_icon@2x.png */; };
+		E5A4C80618111DFF0014877C /* MWPreferenceGeneralViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5E2CCC017FC98B3003EBA11 /* MWPreferenceGeneralViewController.xib */; };
+		E5A4C80718111DFF0014877C /* warning_red.png in Resources */ = {isa = PBXBuildFile; fileRef = E564523C18089816008ADC99 /* warning_red.png */; };
+		E5A4C80818111DFF0014877C /* warning_red_small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E564524B18089A6C008ADC99 /* warning_red_small@2x.png */; };
+		E5A4C80918111DFF0014877C /* warning_small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E564524D18089A6C008ADC99 /* warning_small@2x.png */; };
+		E5A4C80B18111DFF0014877C /* BitcoinJKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E5D2F47817F447DB00A214F4 /* BitcoinJKit.framework */; };
+		E5A4C80C18111DFF0014877C /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E5CDA95F17FC9F2A0037A01E /* Sparkle.framework */; };
+		E5A4C815181129130014877C /* I7MacInterfaceAutomation.m in Sources */ = {isa = PBXBuildFile; fileRef = E5A4C813181127EC0014877C /* I7MacInterfaceAutomation.m */; };
 		E5B8390117F9FEED004FBBB5 /* RHKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B8390017F9FEED004FBBB5 /* RHKeychain.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E5C359D417F1DFC200BA394E /* TrustedCheckmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C359D217F1DFC200BA394E /* TrustedCheckmark@2x.png */; };
 		E5C359D617F1DFDE00BA394E /* TrustedCheckmark.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C359D517F1DFDE00BA394E /* TrustedCheckmark.png */; };
@@ -107,6 +201,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E5A4C80A18111DFF0014877C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E5A4C80B18111DFF0014877C /* BitcoinJKit.framework in CopyFiles */,
+				E5A4C80C18111DFF0014877C /* Sparkle.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -136,6 +241,20 @@
 		E504D7FF17FDA0A300F94081 /* wallet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wallet.png; sourceTree = "<group>"; };
 		E504D80117FDA4B500F94081 /* tickers.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = tickers.plist; sourceTree = "<group>"; };
 		E508D65917FB26A700CC3CF9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E50D19EA18168F3300AD4F66 /* incomming_payment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = incomming_payment.png; sourceTree = "<group>"; };
+		E50D19EB18168F3300AD4F66 /* incomming_payment@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "incomming_payment@2x.png"; sourceTree = "<group>"; };
+		E517D5ED181535DB00C0E1AE /* MWFundsReceivedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWFundsReceivedViewController.h; sourceTree = "<group>"; };
+		E517D5EE181535DB00C0E1AE /* MWFundsReceivedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWFundsReceivedViewController.m; sourceTree = "<group>"; };
+		E517D5EF181535DB00C0E1AE /* MWFundsReceivedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MWFundsReceivedViewController.xib; sourceTree = "<group>"; };
+		E51CC1EE1814F4D90070BCF9 /* DataMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataMatrix.h; path = "../vendor/QR-Code-Encoder-for-Objective-C/QRCodeEncoderObjectiveCAtGithub/DataMatrix.h"; sourceTree = "<group>"; };
+		E51CC1EF1814F4D90070BCF9 /* DataMatrix.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = DataMatrix.mm; path = "../vendor/QR-Code-Encoder-for-Objective-C/QRCodeEncoderObjectiveCAtGithub/DataMatrix.mm"; sourceTree = "<group>"; };
+		E51CC1F01814F4D90070BCF9 /* QR_Encode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = QR_Encode.cpp; path = "../vendor/QR-Code-Encoder-for-Objective-C/QRCodeEncoderObjectiveCAtGithub/QR_Encode.cpp"; sourceTree = "<group>"; };
+		E51CC1F11814F4D90070BCF9 /* QR_Encode.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = QR_Encode.hpp; path = "../vendor/QR-Code-Encoder-for-Objective-C/QRCodeEncoderObjectiveCAtGithub/QR_Encode.hpp"; sourceTree = "<group>"; };
+		E51CC1F41814F4D90070BCF9 /* QREncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QREncoder.h; path = "../vendor/QR-Code-Encoder-for-Objective-C/QRCodeEncoderObjectiveCAtGithub/QREncoder.h"; sourceTree = "<group>"; };
+		E51CC1F51814F4D90070BCF9 /* QREncoder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = QREncoder.mm; path = "../vendor/QR-Code-Encoder-for-Objective-C/QRCodeEncoderObjectiveCAtGithub/QREncoder.mm"; sourceTree = "<group>"; };
+		E51CC1FD1814FAB10070BCF9 /* MWAddressDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWAddressDetailViewController.h; sourceTree = "<group>"; };
+		E51CC1FE1814FAB10070BCF9 /* MWAddressDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWAddressDetailViewController.m; sourceTree = "<group>"; };
+		E51CC1FF1814FAB10070BCF9 /* MWAddressDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MWAddressDetailViewController.xib; sourceTree = "<group>"; };
 		E528E90E17FAB7B800BF4BAD /* Questionmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Questionmark.png; sourceTree = "<group>"; };
 		E528E90F17FAB7B800BF4BAD /* Questionmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Questionmark@2x.png"; sourceTree = "<group>"; };
 		E531C1EE180876D0009E1B16 /* AXStatusItemPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AXStatusItemPopup.h; path = ../vendor/AXStatusItemPopup/AXStatusItemPopup/AXStatusItemPopup.h; sourceTree = "<group>"; };
@@ -195,8 +314,18 @@
 		E58DF403181020A0004877BC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E58DF404181020A0004877BC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = de; path = de.lproj/Credits.rtf; sourceTree = "<group>"; };
 		E58DF405181020A0004877BC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E5A4C81018111DFF0014877C /* MacWallet copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MacWallet copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5A4C81118111E000014877C /* MacWallet copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "MacWallet copy-Info.plist"; path = "/Users/jonasschnelli/Documents/bitcoin/MacWalletApp/MacWalletApp/MacWallet copy-Info.plist"; sourceTree = "<absolute>"; };
+		E5A4C812181127EC0014877C /* I7MacInterfaceAutomation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = I7MacInterfaceAutomation.h; sourceTree = "<group>"; };
+		E5A4C813181127EC0014877C /* I7MacInterfaceAutomation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = I7MacInterfaceAutomation.m; sourceTree = "<group>"; };
 		E5B838FF17F9FEED004FBBB5 /* RHKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RHKeychain.h; path = ../vendor/RHKeychain/RHKeychain/RHKeychain.h; sourceTree = "<group>"; };
 		E5B8390017F9FEED004FBBB5 /* RHKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RHKeychain.m; path = ../vendor/RHKeychain/RHKeychain/RHKeychain.m; sourceTree = "<group>"; };
+		E5C1FF3B18106B9200220E06 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E5C1FF3C18106B9200220E06 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = pt; path = pt.lproj/Credits.rtf; sourceTree = "<group>"; };
+		E5C1FF3D18106B9200220E06 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E5C1FF9518106FBA00220E06 /* MWTestRunTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWTestRunTests.h; sourceTree = "<group>"; };
+		E5C1FF9618106FBA00220E06 /* MWTestRunTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWTestRunTests.m; sourceTree = "<group>"; };
+		E5C1FFB718107A3D00220E06 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		E5C359D217F1DFC200BA394E /* TrustedCheckmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TrustedCheckmark@2x.png"; sourceTree = "<group>"; };
 		E5C359D517F1DFDE00BA394E /* TrustedCheckmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrustedCheckmark.png; sourceTree = "<group>"; };
 		E5C61EE2180C58F900857193 /* MWSendCoinsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWSendCoinsViewController.h; sourceTree = "<group>"; };
@@ -234,6 +363,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E5A4C7D718111DFF0014877C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5A4C7D818111DFF0014877C /* QuartzCore.framework in Frameworks */,
+				E5A4C7D918111DFF0014877C /* Security.framework in Frameworks */,
+				E5A4C7DA18111DFF0014877C /* Cocoa.framework in Frameworks */,
+				E5A4C7DB18111DFF0014877C /* BitcoinJKit.framework in Frameworks */,
+				E5A4C7DC18111DFF0014877C /* Sparkle.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -243,8 +384,10 @@
 				E50153C01804440600CFFA69 /* icon.icns */,
 				E5B838FE17F9FEE5004FBBB5 /* vendor */,
 				E50310D517E9986500C2F226 /* MacWallet */,
+				E5C1FF9418106FA600220E06 /* MacWalletTests */,
 				E50310CE17E9986500C2F226 /* Frameworks */,
 				E50310CD17E9986500C2F226 /* Products */,
+				E5A4C81118111E000014877C /* MacWallet copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -252,6 +395,7 @@
 			isa = PBXGroup;
 			children = (
 				E50310CC17E9986500C2F226 /* MacWallet.app */,
+				E5A4C81018111DFF0014877C /* MacWallet copy.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -264,6 +408,7 @@
 				E5FBD34217F9FFB400E678FE /* Security.framework */,
 				E5D2F47317F447DB00A214F4 /* BitcoinJKit.xcodeproj */,
 				E50310CF17E9986500C2F226 /* Cocoa.framework */,
+				E5C1FFB718107A3D00220E06 /* XCTest.framework */,
 				E50310D117E9986500C2F226 /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -282,6 +427,7 @@
 		E50310D517E9986500C2F226 /* MacWallet */ = {
 			isa = PBXGroup;
 			children = (
+				E51CC1FC1814FA9B0070BCF9 /* QRCode */,
 				E548C6F61802BFFB00976CD7 /* Transaction */,
 				E548C6EF1802BFE600976CD7 /* SendCoins */,
 				E548C6EB1802BF9F00976CD7 /* Ticker */,
@@ -314,6 +460,29 @@
 				E504D80117FDA4B500F94081 /* tickers.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E51CC1EC1814F4BA0070BCF9 /* QR-Code */ = {
+			isa = PBXGroup;
+			children = (
+				E51CC1EE1814F4D90070BCF9 /* DataMatrix.h */,
+				E51CC1EF1814F4D90070BCF9 /* DataMatrix.mm */,
+				E51CC1F01814F4D90070BCF9 /* QR_Encode.cpp */,
+				E51CC1F11814F4D90070BCF9 /* QR_Encode.hpp */,
+				E51CC1F41814F4D90070BCF9 /* QREncoder.h */,
+				E51CC1F51814F4D90070BCF9 /* QREncoder.mm */,
+			);
+			name = "QR-Code";
+			sourceTree = "<group>";
+		};
+		E51CC1FC1814FA9B0070BCF9 /* QRCode */ = {
+			isa = PBXGroup;
+			children = (
+				E51CC1FD1814FAB10070BCF9 /* MWAddressDetailViewController.h */,
+				E51CC1FE1814FAB10070BCF9 /* MWAddressDetailViewController.m */,
+				E51CC1FF1814FAB10070BCF9 /* MWAddressDetailViewController.xib */,
+			);
+			path = QRCode;
 			sourceTree = "<group>";
 		};
 		E548C6EB1802BF9F00976CD7 /* Ticker */ = {
@@ -356,6 +525,7 @@
 		E5B838FE17F9FEE5004FBBB5 /* vendor */ = {
 			isa = PBXGroup;
 			children = (
+				E51CC1EC1814F4BA0070BCF9 /* QR-Code */,
 				E5645239180894EE008ADC99 /* NSWindow+canBecomeKeyWindow.m */,
 				E564523A180894EE008ADC99 /* NSWindow+canBecomeKeyWindow.h */,
 				E5645236180891EB008ADC99 /* PasswordChecker.m */,
@@ -376,9 +546,22 @@
 			name = vendor;
 			sourceTree = "<group>";
 		};
+		E5C1FF9418106FA600220E06 /* MacWalletTests */ = {
+			isa = PBXGroup;
+			children = (
+				E5C1FF9518106FBA00220E06 /* MWTestRunTests.h */,
+				E5C1FF9618106FBA00220E06 /* MWTestRunTests.m */,
+				E5A4C812181127EC0014877C /* I7MacInterfaceAutomation.h */,
+				E5A4C813181127EC0014877C /* I7MacInterfaceAutomation.m */,
+			);
+			path = MacWalletTests;
+			sourceTree = "<group>";
+		};
 		E5C359D017F1DFC200BA394E /* res */ = {
 			isa = PBXGroup;
 			children = (
+				E50D19EA18168F3300AD4F66 /* incomming_payment.png */,
+				E50D19EB18168F3300AD4F66 /* incomming_payment@2x.png */,
 				E558210C180DCEFB0062777E /* closebox@2x.png */,
 				E56905631809993100A343E9 /* status_bar_icon_inverted.png */,
 				E56905641809993100A343E9 /* status_bar_icon_inverted@2x.png */,
@@ -449,6 +632,9 @@
 				E5ED01CE180C2461003C7E63 /* MWEnterPasswordPopover.m */,
 				E5ED01CF180C2461003C7E63 /* MWSetPasswordPopover.h */,
 				E5ED01D0180C2461003C7E63 /* MWSetPasswordPopover.m */,
+				E517D5ED181535DB00C0E1AE /* MWFundsReceivedViewController.h */,
+				E517D5EE181535DB00C0E1AE /* MWFundsReceivedViewController.m */,
+				E517D5EF181535DB00C0E1AE /* MWFundsReceivedViewController.xib */,
 			);
 			path = Popovers;
 			sourceTree = "<group>";
@@ -474,6 +660,24 @@
 			productReference = E50310CC17E9986500C2F226 /* MacWallet.app */;
 			productType = "com.apple.product-type.application";
 		};
+		E5A4C7BB18111DFF0014877C /* MacWallet Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E5A4C80D18111DFF0014877C /* Build configuration list for PBXNativeTarget "MacWallet Tests" */;
+			buildPhases = (
+				E5A4C7BC18111DFF0014877C /* Sources */,
+				E5A4C7D718111DFF0014877C /* Frameworks */,
+				E5A4C7DD18111DFF0014877C /* Resources */,
+				E5A4C80A18111DFF0014877C /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MacWallet Tests";
+			productName = MacWallet;
+			productReference = E5A4C81018111DFF0014877C /* MacWallet copy.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -496,6 +700,8 @@
 			knownRegions = (
 				en,
 				de,
+				pt,
+				Base,
 			);
 			mainGroup = E50310C317E9986500C2F226;
 			productRefGroup = E50310CD17E9986500C2F226 /* Products */;
@@ -509,6 +715,7 @@
 			projectRoot = "";
 			targets = (
 				E50310CB17E9986500C2F226 /* MacWallet */,
+				E5A4C7BB18111DFF0014877C /* MacWallet Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -531,9 +738,12 @@
 				E50310DA17E9986500C2F226 /* InfoPlist.strings in Resources */,
 				E564524E18089A6C008ADC99 /* ok_small.png in Resources */,
 				E569055318098D9400A343E9 /* secure.png in Resources */,
+				E50D19EE18168F3300AD4F66 /* incomming_payment@2x.png in Resources */,
 				E564525218089A6C008ADC99 /* warning_small.png in Resources */,
+				E50D19EC18168F3300AD4F66 /* incomming_payment.png in Resources */,
 				E564524318089816008ADC99 /* warning@2x.png in Resources */,
 				E56452471808989F008ADC99 /* ok@2x.png in Resources */,
+				E517D5F1181535DB00C0E1AE /* MWFundsReceivedViewController.xib in Resources */,
 				E569055E1809950F00A343E9 /* status_bar_icon.png in Resources */,
 				E569054A18098AA100A343E9 /* error.png in Resources */,
 				E58DF401180FFC98004877BC /* MWPreferenceIncommingPaymentViewController.xib in Resources */,
@@ -561,6 +771,7 @@
 				E569055418098D9400A343E9 /* secure@2x.png in Resources */,
 				E564524118089816008ADC99 /* warning_red@2x.png in Resources */,
 				E504D80217FDA4B500F94081 /* tickers.plist in Resources */,
+				E51CC2021814FAB10070BCF9 /* MWAddressDetailViewController.xib in Resources */,
 				E569055118098D9400A343E9 /* not-secure.png in Resources */,
 				E50310E617E9986600C2F226 /* MainMenu.xib in Resources */,
 				E56452461808989F008ADC99 /* ok.png in Resources */,
@@ -572,6 +783,60 @@
 				E564524018089816008ADC99 /* warning_red.png in Resources */,
 				E564525118089A6C008ADC99 /* warning_red_small@2x.png in Resources */,
 				E564525318089A6C008ADC99 /* warning_small@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E5A4C7DD18111DFF0014877C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5A4C7DE18111DFF0014877C /* InfoPlist.strings in Resources */,
+				E5A4C7DF18111DFF0014877C /* ok_small.png in Resources */,
+				E5A4C7E018111DFF0014877C /* secure.png in Resources */,
+				E5A4C7E118111DFF0014877C /* warning_small.png in Resources */,
+				E5A4C7E218111DFF0014877C /* warning@2x.png in Resources */,
+				E5A4C7E318111DFF0014877C /* ok@2x.png in Resources */,
+				E5A4C7E418111DFF0014877C /* status_bar_icon.png in Resources */,
+				E5A4C7E518111DFF0014877C /* error.png in Resources */,
+				E50D19ED18168F3300AD4F66 /* incomming_payment.png in Resources */,
+				E5A4C7E618111DFF0014877C /* MWPreferenceIncommingPaymentViewController.xib in Resources */,
+				E5A4C7E718111DFF0014877C /* sparkle_update_dsa_pub.pem in Resources */,
+				E5A4C7E818111DFF0014877C /* TrustedCheckmark@2x.png in Resources */,
+				E5A4C7E918111DFF0014877C /* status_bar_icon_inverted@2x.png in Resources */,
+				E5A4C7EA18111DFF0014877C /* SendCoinsWindow.xib in Resources */,
+				E5A4C7EB18111DFF0014877C /* warning_red_small.png in Resources */,
+				E5A4C7EC18111DFF0014877C /* closebox@2x.png in Resources */,
+				E5A4C7ED18111DFF0014877C /* status_bar_icon_inverted.png in Resources */,
+				E5A4C7EE18111DFF0014877C /* warning.png in Resources */,
+				E5A4C7EF18111DFF0014877C /* error@2x.png in Resources */,
+				E5A4C7F018111DFF0014877C /* Credits.rtf in Resources */,
+				E5A4C7F118111DFF0014877C /* wallet.png in Resources */,
+				E5A4C7F218111DFF0014877C /* MWTransactionDetailsWindowController.xib in Resources */,
+				E5A4C7F318111DFF0014877C /* MWPreferenceWalletViewController.xib in Resources */,
+				E5A4C7F418111DFF0014877C /* checkpoints in Resources */,
+				E5A4C7F518111DFF0014877C /* Localizable.strings in Resources */,
+				E5A4C7F618111DFF0014877C /* ok_small@2x.png in Resources */,
+				E5A4C7F718111DFF0014877C /* TrustedCheckmark.png in Resources */,
+				E50D19EF18168F3300AD4F66 /* incomming_payment@2x.png in Resources */,
+				E5A4C7F818111DFF0014877C /* Questionmark@2x.png in Resources */,
+				E5A4C7F918111DFF0014877C /* RHPreferencesWindow.xib in Resources */,
+				E5A4C7FA18111DFF0014877C /* Questionmark.png in Resources */,
+				E5A4C7FB18111DFF0014877C /* icon.icns in Resources */,
+				E5A4C7FC18111DFF0014877C /* secure@2x.png in Resources */,
+				E5A4C7FD18111DFF0014877C /* warning_red@2x.png in Resources */,
+				E5A4C7FE18111DFF0014877C /* tickers.plist in Resources */,
+				E51CC2031814FAB10070BCF9 /* MWAddressDetailViewController.xib in Resources */,
+				E5A4C7FF18111DFF0014877C /* not-secure.png in Resources */,
+				E5A4C80018111DFF0014877C /* MainMenu.xib in Resources */,
+				E5A4C80118111DFF0014877C /* ok.png in Resources */,
+				E5A4C80218111DFF0014877C /* MWTransactionsWindowController.xib in Resources */,
+				E5A4C80318111DFF0014877C /* settings.png in Resources */,
+				E5A4C80418111DFF0014877C /* not-secure@2x.png in Resources */,
+				E5A4C80518111DFF0014877C /* status_bar_icon@2x.png in Resources */,
+				E5A4C80618111DFF0014877C /* MWPreferenceGeneralViewController.xib in Resources */,
+				E5A4C80718111DFF0014877C /* warning_red.png in Resources */,
+				E5A4C80818111DFF0014877C /* warning_red_small@2x.png in Resources */,
+				E5A4C80918111DFF0014877C /* warning_small@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -588,13 +853,17 @@
 				E504D7F617FD843100F94081 /* MWPreferenceWalletViewController.m in Sources */,
 				E5E2CCCD17FC9A7D003EBA11 /* LaunchAtLoginController.m in Sources */,
 				E548C6EE1802BFB400976CD7 /* MWTickerController.m in Sources */,
+				E51CC1F61814F4D90070BCF9 /* DataMatrix.mm in Sources */,
 				E5ED01D3180C2461003C7E63 /* MWSetPasswordPopover.m in Sources */,
+				E51CC2001814FAB10070BCF9 /* MWAddressDetailViewController.m in Sources */,
 				E5B8390117F9FEED004FBBB5 /* RHKeychain.m in Sources */,
 				E53B97271806913700E8117B /* NSString+NSStringRandomPasswordAdditions.m in Sources */,
 				E548C7011802BFFB00976CD7 /* MWTransactionMenuItem.m in Sources */,
 				E50153C918044CB800CFFA69 /* NSString+SymlinksAndAliases.m in Sources */,
 				E5ED01D2180C2461003C7E63 /* MWEnterPasswordPopover.m in Sources */,
+				E51CC1F81814F4D90070BCF9 /* QR_Encode.cpp in Sources */,
 				E5ED01D1180C2461003C7E63 /* MWBasePopover.m in Sources */,
+				E517D5F0181535DB00C0E1AE /* MWFundsReceivedViewController.m in Sources */,
 				E5645237180891EB008ADC99 /* PasswordChecker.m in Sources */,
 				E5C61EE4180C58F900857193 /* MWSendCoinsViewController.m in Sources */,
 				E50310DC17E9986500C2F226 /* main.m in Sources */,
@@ -603,10 +872,49 @@
 				E50153CA18044CB800CFFA69 /* PFMoveApplication.m in Sources */,
 				E564523B180894EE008ADC99 /* NSWindow+canBecomeKeyWindow.m in Sources */,
 				E531C1FF18088CE7009E1B16 /* DuxScrollViewAnimation.m in Sources */,
+				E51CC1FA1814F4D90070BCF9 /* QREncoder.mm in Sources */,
 				E5E2CCC917FC98B3003EBA11 /* RHPreferencesWindowController.m in Sources */,
 				E531C1F0180876D0009E1B16 /* AXStatusItemPopup.m in Sources */,
 				E5438CA0180C6B8A007EDFDC /* MWBaseScrollView.m in Sources */,
 				E50310E317E9986600C2F226 /* MWAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E5A4C7BC18111DFF0014877C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5A4C7BD18111DFF0014877C /* MWTransactionsWindowController.m in Sources */,
+				E5A4C7BE18111DFF0014877C /* MWPreferenceGeneralViewController.m in Sources */,
+				E5A4C7BF18111DFF0014877C /* MWStatusItem.m in Sources */,
+				E5A4C7C018111DFF0014877C /* MWPreferenceWalletViewController.m in Sources */,
+				E5A4C7C118111DFF0014877C /* LaunchAtLoginController.m in Sources */,
+				E51CC1F91814F4D90070BCF9 /* QR_Encode.cpp in Sources */,
+				E5A4C7C218111DFF0014877C /* MWTickerController.m in Sources */,
+				E51CC1FB1814F4D90070BCF9 /* QREncoder.mm in Sources */,
+				E5A4C7C318111DFF0014877C /* MWSetPasswordPopover.m in Sources */,
+				E5A4C7C418111DFF0014877C /* MWTestRunTests.m in Sources */,
+				E5A4C7C518111DFF0014877C /* RHKeychain.m in Sources */,
+				E5A4C7C618111DFF0014877C /* NSString+NSStringRandomPasswordAdditions.m in Sources */,
+				E5A4C7C718111DFF0014877C /* MWTransactionMenuItem.m in Sources */,
+				E5A4C7C818111DFF0014877C /* NSString+SymlinksAndAliases.m in Sources */,
+				E5A4C7C918111DFF0014877C /* MWEnterPasswordPopover.m in Sources */,
+				E5A4C7CA18111DFF0014877C /* MWBasePopover.m in Sources */,
+				E5A4C7CB18111DFF0014877C /* PasswordChecker.m in Sources */,
+				E5A4C7CC18111DFF0014877C /* MWSendCoinsViewController.m in Sources */,
+				E5A4C7CD18111DFF0014877C /* main.m in Sources */,
+				E5A4C7CE18111DFF0014877C /* MWTransactionDetailsWindowController.m in Sources */,
+				E5A4C7CF18111DFF0014877C /* MWPreferenceIncommingPaymentViewController.m in Sources */,
+				E5A4C7D018111DFF0014877C /* PFMoveApplication.m in Sources */,
+				E51CC2011814FAB10070BCF9 /* MWAddressDetailViewController.m in Sources */,
+				E51CC1F71814F4D90070BCF9 /* DataMatrix.mm in Sources */,
+				E5A4C7D118111DFF0014877C /* NSWindow+canBecomeKeyWindow.m in Sources */,
+				E5A4C7D218111DFF0014877C /* DuxScrollViewAnimation.m in Sources */,
+				E5A4C7D318111DFF0014877C /* RHPreferencesWindowController.m in Sources */,
+				E5A4C7D418111DFF0014877C /* AXStatusItemPopup.m in Sources */,
+				E5A4C7D518111DFF0014877C /* MWBaseScrollView.m in Sources */,
+				E5A4C815181129130014877C /* I7MacInterfaceAutomation.m in Sources */,
+				E5A4C7D618111DFF0014877C /* MWAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -618,6 +926,7 @@
 			children = (
 				E50310D917E9986500C2F226 /* en */,
 				E58DF403181020A0004877BC /* de */,
+				E5C1FF3B18106B9200220E06 /* pt */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -627,6 +936,7 @@
 			children = (
 				E50310DF17E9986600C2F226 /* en */,
 				E58DF404181020A0004877BC /* de */,
+				E5C1FF3C18106B9200220E06 /* pt */,
 			);
 			name = Credits.rtf;
 			sourceTree = "<group>";
@@ -644,6 +954,7 @@
 			children = (
 				E508D65917FB26A700CC3CF9 /* en */,
 				E58DF405181020A0004877BC /* de */,
+				E5C1FF3D18106B9200220E06 /* pt */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -748,6 +1059,51 @@
 			};
 			name = Release;
 		};
+		E5A4C80E18111DFF0014877C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/jonasschnelli/Documents/bitcoin/MacWalletApp/vendor,
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MacWallet/MacWallet-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					"MWUNITTEST=1",
+				);
+				INFOPLIST_FILE = "MacWallet copy-Info.plist";
+				PRODUCT_NAME = "MacWallet copy";
+				PROVISIONING_PROFILE = "";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E5A4C80F18111DFF0014877C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/jonasschnelli/Documents/bitcoin/MacWalletApp/vendor,
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MacWallet/MacWallet-Prefix.pch";
+				INFOPLIST_FILE = "MacWallet copy-Info.plist";
+				PRODUCT_NAME = "MacWallet copy";
+				PROVISIONING_PROFILE = "";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -765,6 +1121,15 @@
 			buildConfigurations = (
 				E50310EA17E9986600C2F226 /* Debug */,
 				E50310EB17E9986600C2F226 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E5A4C80D18111DFF0014877C /* Build configuration list for PBXNativeTarget "MacWallet Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E5A4C80E18111DFF0014877C /* Debug */,
+				E5A4C80F18111DFF0014877C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

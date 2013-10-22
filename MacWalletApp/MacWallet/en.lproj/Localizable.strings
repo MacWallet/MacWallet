@@ -110,3 +110,6 @@ resyncBlockchain = "Resync Blockchain";
 
 preferencesGeneral = "General";
 preferencesIncommingPayment = "Incomming Payment";
+
+copyAddressButton = "Copy";
+loadingTickerShort = "loading"; // must be short!

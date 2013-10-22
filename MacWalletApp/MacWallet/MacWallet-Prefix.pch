@@ -15,8 +15,14 @@
 #define kSHOW_TIME_AGO_KEY @"showTimeAgoKey"
 #define kPREV_VERSIONS_STARTED_KEY @"prevStartupVersions"
 #define kRUN_SCRIPT_INCOMMING_FUNDS @"runScriptOnIncommingFunds"
-
+#define kRUN_SCRIPT_PATH_INCOMMING_FUNDS @"runScriptPathOnIncommingFunds"
+#define kSHOW_NOTIFICATION_INCOMMING_FUNDS @"showNotificationOnIncommingFunds"
+#define kSHOW_POPUP_INCOMMING_FUNDS @"showPopupOnIncommingFunds"
+#define kPLAY_SOUND_INCOMMING_FUNDS @"playSoundOnIncommingFunds"
+#define kPLAY_SOUND_PATH_INCOMMING_FUNDS @"playSoundPathOnIncommingFunds"
 #define kHAS_ENCRYPTED_WALLET_KEY @"hasEncryptedWalletKey"
+
+#define kSHOULD_CLOSE_OPEN_POPUPS_NOTIFICATION @"shouldCloseOpenPupups"
 
 typedef enum MWStatusItemStyle {
     MWStatusItemStyleBoth = 0,
@@ -31,5 +37,5 @@ typedef enum MWStatusItemStyle {
 //#define kSAVE_WALLET_TO_KEYCHAIN 1
 
 #define kSHOULD_UPDATE_AFTER_PREFS_CHANGE_NOTIFICATION @"shouldUpdateAfterPrefsChangeNotification"
-#define kTICKET_UPDATE_INTERVAL_IN_SECONDS 50
+#define kTICKET_UPDATE_INTERVAL_IN_SECONDS 30
 #define kSHOULD_SHOW_TRANSACTION_DETAILS_FOR_ID @"shouldShowTransactionDetailsForId"

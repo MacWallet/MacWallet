@@ -15,7 +15,7 @@
 #include "LaunchAtLoginController.h"
 #include "RHPreferencesWindowController.h"
 #include "MWPreferenceGeneralViewController.h"
-#include "MWPreferenceWalletViewController.h"
+#include "MWPreferenceIncommingPaymentViewController.h"
 #include "MWTickerController.h"
 #include "MWTransactionDetailsWindowController.h"
 #include "MWTransactionMenuItem.h"
@@ -25,8 +25,15 @@
 #import "DuxScrollViewAnimation.h"
 #import "MWSetPasswordPopover.h"
 #import "MWEnterPasswordPopover.h"
-
 #import "MWSendCoinsViewController.h"
+#import "MWAddressDetailViewController.h"
+#import "MWFundsReceivedViewController.h"
+
+
+// this is required for embedding the unit/UI tests into the appdelegate start hook
+#ifdef    MWUNITTEST
+#import "MWTestRunTests.h"
+#endif
 
 @interface MWAppDelegate ()
 
@@ -77,6 +84,7 @@
 @implementation MWAppDelegate
 
 
+#pragma mark - Application Delegate Hooks
 // main entry point
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -215,8 +223,11 @@
                                                  name:kHIBitcoinManagerCoinsReceivedNotification
                                                object:nil];
     
-    
-    
+#ifdef MWUNITTEST
+    MWTestRunTests *test = [[MWTestRunTests alloc] init];
+    NSThread *thr = [[NSThread alloc] initWithTarget:test selector:@selector(runTests) object:nil];
+    [thr start];
+#endif
     
 }
 
@@ -250,7 +261,7 @@
     self.statusItem.attributedTitle = titleString;
 }
 
-#pragma mark - HI Observers
+#pragma mark - HIBitcoinJKit Observers
 
 // observe the bitcoin framework
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -365,7 +376,7 @@
         NSString *tickerValue = self.ticketValue;
         if(!tickerValue)
         {
-            tickerValue = @"loading";
+            tickerValue = NSLocalizedString(@"loadingTickerShort", @"loaing text when in status menu when ticker is not ready");
         }
         NSMutableParagraphStyle *paragraphStyle=[[NSMutableParagraphStyle alloc] init];
         [paragraphStyle setAlignment:NSRightTextAlignment];
@@ -538,49 +549,14 @@
 {
     [[NSPasteboard generalPasteboard] declareTypes:[NSArray arrayWithObject:NSStringPboardType] owner:nil];
     [[NSPasteboard generalPasteboard] setString:sender.title forType:NSStringPboardType];
+    
+    [self showDetailsForAddress:sender.title];
 }
 
 - (void)addWalletAddress:(id)sender
 {
     [[HIBitcoinManager defaultManager] addKey];
     [self updateMyAddresses:[HIBitcoinManager defaultManager].allWalletAddresses];
-}
-
-- (IBAction)encryptWallet:(id)sender
-{
-    NSWindow *appWin = [self.statusItem valueForKey:@"window"];
-    NSRect frame = appWin.frame;
-    NSView *view = appWin.contentView;
-
-    [self.choosePasswordPopover showRelativeToRect:CGRectMake(0,0,frame.size.width,frame.size.height) ofView:view preferredEdge:NSMinYEdge];
-    
-    
-    [appWin selectNextKeyView:self];
-}
-
-- (IBAction)removeWalletEncryption:(id)sender {
-    NSWindow *appWin = [self.statusItem valueForKey:@"window"];
-    NSRect frame = appWin.frame;
-    NSView *view = appWin.contentView;
-    
-    [self.enterPasswordPopover showRelativeToRect:CGRectMake(0,0,frame.size.width,frame.size.height) ofView:view preferredEdge:NSMinYEdge];
-}
-
-- (BOOL)shouldPerformRemoveEncryption:(NSString *)passphrase
-{
-    BOOL success = [[HIBitcoinManager defaultManager] removeEncryption:passphrase];
-    if(success)
-    {
-        [self updateWalletMenuItem];
-        return YES;
-    }
-    return NO;
-}
-
-- (void)shouldPerformEncryption:(NSString *)passphrase
-{
-    [[HIBitcoinManager defaultManager] encryptWalletWith:passphrase];
-    [self updateWalletMenuItem];
 }
 
 - (IBAction)resyncBlockchain:(id)sender
@@ -591,31 +567,75 @@
 - (void)coinsReceived:(NSNotification *)notification
 {
     NSString *tx = notification.object;
-    NSLog(@"%@", tx);
+    NSDictionary *transactionDict = [[HIBitcoinManager defaultManager] transactionForHash:tx];
+    long long amount = [[transactionDict objectForKey:@"amount"] longLongValue];
+    NSString *funds = [[HIBitcoinManager defaultManager] formatNanobtc:amount];
     
-    if([NSUserNotification class] && [NSUserNotificationCenter class])
+    NSString *text = [NSString stringWithFormat:NSLocalizedString(@"newFundsOnTheWayText", @"new funds on the way user notification text"), funds];
+    
+    [self doReceivedCoinsAction:text amount:funds txID:tx];
+}
+
+- (void)doReceivedCoinsAction:(NSString *)text amount:(NSString *)amout txID:(NSString *)txId
+{
+    BOOL showNotification = [[NSUserDefaults standardUserDefaults] boolForKey:kSHOW_NOTIFICATION_INCOMMING_FUNDS];
+    BOOL showPopup = [[NSUserDefaults standardUserDefaults] boolForKey:kSHOW_POPUP_INCOMMING_FUNDS];
+    BOOL playSound = [[NSUserDefaults standardUserDefaults] boolForKey:kPLAY_SOUND_INCOMMING_FUNDS];
+    NSString *playSoundPath = [[NSUserDefaults standardUserDefaults] objectForKey:kPLAY_SOUND_PATH_INCOMMING_FUNDS];
+    
+    BOOL runScript = [[NSUserDefaults standardUserDefaults] boolForKey:kRUN_SCRIPT_INCOMMING_FUNDS];
+    NSString *runScriptPath = [[NSUserDefaults standardUserDefaults] objectForKey:kRUN_SCRIPT_PATH_INCOMMING_FUNDS];
+    
+    if([NSUserNotification class] && [NSUserNotificationCenter class] && showNotification)
     {
-        NSDictionary *transactionDict = [[HIBitcoinManager defaultManager] transactionForHash:tx];
-        long long amount = [[transactionDict objectForKey:@"amount"] longLongValue];
-        NSString *funds = [[HIBitcoinManager defaultManager] formatNanobtc:amount];
-        
         NSUserNotification *userNotification = [[NSUserNotification alloc] init];
         [userNotification setTitle:NSLocalizedString(@"newFundsOnTheWayTitle", @"new funds on the way user notification title")];
-        [userNotification setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"newFundsOnTheWayText", @"new funds on the way user notification text"), funds]];
+        [userNotification setInformativeText:text];
         
         [userNotification setDeliveryDate:[NSDate dateWithTimeInterval:0 sinceDate:[NSDate date]]];
         [userNotification setSoundName:NSUserNotificationDefaultSoundName];
         NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
         [center scheduleNotification:userNotification];
     }
-    
-//    NSTask *task = [[NSTask alloc] init];
-//    [task setLaunchPath:@"/path/to/script/sh"];
-//    [task setArguments:[NSArray arrayWithObjects:@"yourScript.sh", nil]];
-//    [task setStandardOutput:[NSPipe pipe]];
-//    [task setStandardInput:[NSPipe pipe]];
-//    
-//    [task launch];
+    if(showPopup)
+    {
+        
+        NSWindow *appWin = [self.statusItem valueForKey:@"window"];
+        NSRect frame = appWin.frame;
+        NSView *view = appWin.contentView;
+        
+        NSPopover *popover = [[NSPopover alloc] init];
+        MWFundsReceivedViewController *vc = [[MWFundsReceivedViewController alloc] initWithNibName:@"MWFundsReceivedViewController" bundle:nil];
+        vc.popover = popover;
+        vc.textToShow = text;
+        popover.contentViewController = vc;
+        
+        [popover showRelativeToRect:CGRectMake(0,0,frame.size.width,frame.size.height) ofView:view preferredEdge:NSMinYEdge];
+    }
+    if(playSound)
+    {
+        NSSound *sound = [[NSSound alloc] initWithContentsOfFile:playSoundPath byReference:YES];
+        if(sound)
+        {
+            [sound play];
+        }
+        else
+        {
+            sound = [NSSound soundNamed:@"Glass"];
+        }
+        
+        [sound play];
+    }
+    if(runScript)
+    {
+        NSTask *task = [[NSTask alloc] init];
+        [task setLaunchPath:runScriptPath];
+        [task setArguments:[NSArray arrayWithObjects:txId, nil]];
+        [task setStandardOutput:[NSPipe pipe]];
+        [task setStandardInput:[NSPipe pipe]];
+        
+        [task launch];
+    }
 }
 
 - (IBAction)dumpWallet:(id)sender
@@ -641,12 +661,14 @@
 
 - (void)dumpWalletWithPassphrase:(NSString *)passphrase
 {
-    
+    // remove the delegate so it's save to remove object from memory
     self.enterPasswordPopover.okaySelector = nil;
     self.enterPasswordPopover.okayTarget = nil;
     
+    // close the popup
     [self.enterPasswordPopover performClose:self];
     
+    // ask where to dump the wallet
     NSInteger result;
     NSSavePanel *sPanel = [NSSavePanel savePanel];
     sPanel.title = NSLocalizedString(@"dumpWalletToTitle", @"Dump Wallet Title for Save Panel");
@@ -657,9 +679,12 @@
     
     result = [sPanel runModal];
     if (result == NSOKButton) {
+        
+        // dump now
         BOOL success = [[HIBitcoinManager defaultManager] exportWalletWithPassphase:passphrase To:sPanel.URL];
         
-        if(!success) {
+        if(!success)
+        {
             NSAlert *alert = [[NSAlert alloc] init];
             [alert addButtonWithTitle:@"OK"];
             [alert setMessageText:NSLocalizedString(@"errorDumpWallet",@"Alert Message When Dump Was NOK")];
@@ -677,6 +702,91 @@
     }
 }
 
+// market for deletion
+//////////////////////
+//
+///*
+// * saves a passphrase to the osx keychain
+// *
+// */
+//- (void)setWalletBasicEncryptionPassphrase:(NSString *)baseKey
+//{
+//    BOOL testnet = [[NSUserDefaults standardUserDefaults] boolForKey:kTESTNET_SWITCH_KEY];
+//    NSString *keychainServiceName = (testnet) ? kKEYCHAIN_SERVICE_NAME_TESTNET : kKEYCHAIN_SERVICE_NAME;
+//    
+//    if(!baseKey || baseKey.length == 0)
+//    {
+//        return;
+//    }
+//    
+//    if(!RHKeychainDoesGenericEntryExist(NULL, keychainServiceName))
+//    {
+//        RHKeychainAddGenericEntry(NULL, keychainServiceName);
+//        RHKeychainSetGenericComment(NULL, keychainServiceName, @"MacWallet wallet encryption passphrase");
+//    }
+//    
+//    RHKeychainSetGenericPassword(NULL, keychainServiceName, baseKey);
+//}
+//
+//- (NSString *)walletBasicEncryptionPassphrase
+//{
+//    BOOL testnet = [[NSUserDefaults standardUserDefaults] boolForKey:kTESTNET_SWITCH_KEY];
+//    NSString *keychainServiceName = (testnet) ? kKEYCHAIN_SERVICE_NAME_TESTNET : kKEYCHAIN_SERVICE_NAME;
+//    
+//    if(RHKeychainDoesGenericEntryExist(NULL, keychainServiceName))
+//    {
+//        return RHKeychainGetGenericPassword(NULL, keychainServiceName);
+//    }
+//    else
+//    {
+//        return nil;
+//    }
+//}
+
+#pragma mark - wallet encryption stack
+
+// opens the encrypt wallet view
+- (IBAction)encryptWallet:(id)sender
+{
+    NSWindow *appWin = [self.statusItem valueForKey:@"window"];
+    NSRect frame = appWin.frame;
+    NSView *view = appWin.contentView;
+    
+    [self.choosePasswordPopover showRelativeToRect:CGRectMake(0,0,frame.size.width,frame.size.height) ofView:view preferredEdge:NSMinYEdge];
+    
+    
+    [appWin selectNextKeyView:self];
+}
+
+// opens the remove wallet encryption view
+- (IBAction)removeWalletEncryption:(id)sender {
+    NSWindow *appWin = [self.statusItem valueForKey:@"window"];
+    NSRect frame = appWin.frame;
+    NSView *view = appWin.contentView;
+    
+    [self.enterPasswordPopover showRelativeToRect:CGRectMake(0,0,frame.size.width,frame.size.height) ofView:view preferredEdge:NSMinYEdge];
+}
+
+// decrypts the wallet with a passphrase
+- (BOOL)shouldPerformRemoveEncryption:(NSString *)passphrase
+{
+    BOOL success = [[HIBitcoinManager defaultManager] removeEncryption:passphrase];
+    if(success)
+    {
+        [self updateWalletMenuItem];
+        return YES;
+    }
+    return NO;
+}
+
+// encrypts the wallet with a passphrase
+- (void)shouldPerformEncryption:(NSString *)passphrase
+{
+    [[HIBitcoinManager defaultManager] encryptWalletWith:passphrase];
+    [self updateWalletMenuItem];
+}
+
+
 #pragma mark - transactions stack
 
 - (void)rebuildTransactionsMenu
@@ -687,7 +797,6 @@
     
     // remove all menu items and recreate the transaction menu
     // TODO: make kDEFAULT_MAX_TRANSACTION_COUNT_MENU configurable throught settings
-    
     [self.transactionsMenu removeAllItems];
     NSArray *displayTransactions =  [[HIBitcoinManager defaultManager] allTransactions:kDEFAULT_MAX_TRANSACTION_COUNT_MENU];
     NSLog(@"%@", displayTransactions);
@@ -766,7 +875,6 @@
     
 - (void)transactionClicked:(id)sender
 {
-    
     MWTransactionMenuItem *txMenuItem = (MWTransactionMenuItem *)sender;
     NSString *txHash = txMenuItem.txId;
     NSDictionary *dict = [[HIBitcoinManager defaultManager] transactionForHash:txHash];
@@ -810,7 +918,6 @@
 #pragma mark - send coins stack
 - (IBAction)openSendCoins:(id)sender
 {
-    
     NSWindow *appWin = [self.statusItem valueForKey:@"window"];
     NSRect frame = appWin.frame;
     NSView *view = appWin.contentView;
@@ -824,79 +931,22 @@
     [popover showRelativeToRect:CGRectMake(0,0,frame.size.width,frame.size.height) ofView:view preferredEdge:NSMinYEdge];
     
     return;
-//    
-//    // keep window when user only moved the window to the backgroubd
-//    if(!self.sendCoinsWindowController)
-//    {
-//        self.sendCoinsWindowController = [[MWSendCoinsWindowController alloc] initWithWindowNibName:@"SendCoinsWindow"];
-//    }
-//    self.sendCoinsWindowController.delegate = self;
-//    
-//    // activate the app so that the window popps to front
-//    [NSApp activateIgnoringOtherApps:YES];
-//    
-//    [self.sendCoinsWindowController showWindow:nil];
-//    [self.sendCoinsWindowController.window orderFrontRegardless];
 }
 
-#pragma BASendCoinsWindowController Delegate
+#pragma MWSendCoinsViewController Delegate
 - (NSInteger)prepareSendCoinsFromWindowController:(MWSendCoinsViewController *)windowController receiver:(NSString *)btcAddress amount:(NSInteger)amountInSatoshis txfee:(NSInteger)txFeeInSatoshis password:(NSString *)password
 {
     NSInteger fee = [[HIBitcoinManager defaultManager] prepareSendCoins:amountInSatoshis toReceipent:btcAddress comment:@"" password:password];
     
     return fee;
 }
-- (void)sendCoinsWindowControllerWillClose:(MWSendCoinsViewController *)windowController
-{
-    // remove send coins window when user presses close button
-    self.sendCoinsWindowController = nil;
-}
 
-#pragma mark - wallet stack
-
-/*
- * saves a passphrase to the osx keychain
- *
- */
-- (void)setWalletBasicEncryptionPassphrase:(NSString *)baseKey
-{
-    BOOL testnet = [[NSUserDefaults standardUserDefaults] boolForKey:kTESTNET_SWITCH_KEY];
-    NSString *keychainServiceName = (testnet) ? kKEYCHAIN_SERVICE_NAME_TESTNET : kKEYCHAIN_SERVICE_NAME;
-    
-    if(!baseKey || baseKey.length == 0)
-    {
-        return;
-    }
-    
-    if(!RHKeychainDoesGenericEntryExist(NULL, keychainServiceName))
-    {
-        RHKeychainAddGenericEntry(NULL, keychainServiceName);
-        RHKeychainSetGenericComment(NULL, keychainServiceName, @"MacWallet wallet encryption passphrase");
-    }
-    
-    RHKeychainSetGenericPassword(NULL, keychainServiceName, baseKey);
-}
-
-- (NSString *)walletBasicEncryptionPassphrase
-{
-    BOOL testnet = [[NSUserDefaults standardUserDefaults] boolForKey:kTESTNET_SWITCH_KEY];
-    NSString *keychainServiceName = (testnet) ? kKEYCHAIN_SERVICE_NAME_TESTNET : kKEYCHAIN_SERVICE_NAME;
-    
-    if(RHKeychainDoesGenericEntryExist(NULL, keychainServiceName))
-    {
-        return RHKeychainGetGenericPassword(NULL, keychainServiceName);
-    }
-    else
-    {
-        return nil;
-    }
-}
 
 #pragma mark - Preferences stack
-
-- (IBAction)showPreferences:(id)sender {
+- (IBAction)showPreferences:(id)sender
+{
     MWPreferenceGeneralViewController *generalPrefs = [[MWPreferenceGeneralViewController alloc] initWithNibName:@"MWPreferenceGeneralViewController" bundle:nil];
-    MWPreferenceWalletViewController *walletPrefs = [[MWPreferenceWalletViewController alloc] initWithNibName:@"MWPreferenceWalletViewController" bundle:nil];
+    MWPreferenceIncommingPaymentViewController *walletPrefs = [[MWPreferenceIncommingPaymentViewController alloc] initWithNibName:@"MWPreferenceIncommingPaymentViewController" bundle:nil];
     
     NSArray *controllers = [NSArray arrayWithObjects:generalPrefs,walletPrefs,
                             nil];
@@ -909,14 +959,16 @@
 
 #pragma mark - auto launch controlling stack
 
-- (BOOL)launchAtStartup {
+- (BOOL)launchAtStartup
+{
     LaunchAtLoginController *launchController = [[LaunchAtLoginController alloc] init];
     BOOL state = [launchController launchAtLogin];
     launchController = nil;
     return state;
 }
 
-- (void)setLaunchAtStartup:(BOOL)aState {
+- (void)setLaunchAtStartup:(BOOL)aState
+{
     LaunchAtLoginController *launchController = [[LaunchAtLoginController alloc] init];
     [launchController setLaunchAtLogin:aState];
     launchController = nil;
@@ -937,6 +989,27 @@
             [self updateStatusMenu:YES];
         });
     }];
+}
+
+#pragma mark - QRCode Stack
+- (void)showDetailsForAddress:(NSString *)address
+{
+    // send notification to close already open popups
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSHOULD_CLOSE_OPEN_POPUPS_NOTIFICATION object:self];
+    
+    NSWindow *appWin = [self.statusItem valueForKey:@"window"];
+    NSRect frame = appWin.frame;
+    NSView *view = appWin.contentView;
+    
+    NSPopover *popover = [[NSPopover alloc] init];
+    MWAddressDetailViewController *vc = [[MWAddressDetailViewController alloc] initWithNibName:@"MWAddressDetailViewController" bundle:nil];
+    vc.popover = popover;
+    vc.addressToShow = address;
+    popover.contentViewController = vc;
+    
+    [popover showRelativeToRect:CGRectMake(0,0,frame.size.width,frame.size.height) ofView:view preferredEdge:NSMinYEdge];
+    
+    return;
 }
 
 @end
