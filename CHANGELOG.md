@@ -1,12 +1,14 @@
 Release 0.12
 -------
-- removed keychain store option (currently to dangerous)
-+ encryption options
-+ QRCode
++ wallet encryption
++ QRCode for incoming addresses
 + German and Portuguese translations
-+ better UI with popovers
++ improved UI
++ show Bitcoin icon in status bar
 + incoming payment notifications
 + fixed BTC formating error
++ 10.9 Maverick compatible
+- removed keychain store option (currently to dangerous)
 
 Release 0.1
 -------
