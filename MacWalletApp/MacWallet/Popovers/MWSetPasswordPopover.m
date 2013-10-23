@@ -60,14 +60,17 @@
 - (BOOL)control:(NSControl *)control textView:(NSTextView *)fieldEditor doCommandBySelector:(SEL)commandSelector
 {
     BOOL retval = NO;
-    if (commandSelector == @selector(insertNewline:))
+    if (commandSelector == @selector(insertNewline:) && control == self.password0)
     {
         retval = YES; // causes Apple to NOT fire the default enter action
         [self showPageWithNumber:1];
         [self.password1 becomeFirstResponder];
     }
-    
-    NSLog(@"Selector = %@", NSStringFromSelector( commandSelector ) );
+    else if (commandSelector == @selector(insertNewline:) && control == self.password1)
+    {
+        retval = YES; // causes Apple to NOT fire the default enter action
+        [self continuePage1:control];
+    }
     
     return retval;  
 }
@@ -180,6 +183,9 @@
     [self.password0 becomeFirstResponder];
     
     [self.scrollView setDocumentView:self.containerView];
+    
+    // reset the size, osx 10.7 issue
+    self.scrollView.frame = CGRectMake(self.scrollView.frame.origin.x,self.scrollView.frame.origin.y,230,109);
     
     [self showPageWithNumber:0];
 }

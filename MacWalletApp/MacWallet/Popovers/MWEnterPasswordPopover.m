@@ -115,6 +115,10 @@
     [self.scrollView setDocumentView:self.containerView];
     
     [self showPageWithNumber:0];
+    
+    // reset the size, osx 10.7 issue
+    self.scrollView.frame = CGRectMake(self.scrollView.frame.origin.x,self.scrollView.frame.origin.y,230,109);
 }
+
 
 @end

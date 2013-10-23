@@ -12,6 +12,7 @@
 #import "RHPreferencesWindowController.h"
 #import <BitcoinJKit/BitcoinJKit.h>
 
+
 #define APPD ((MWAppDelegate *)[NSApp delegate])
 #define _tt(x) [self typeText:(x)]
 #define _ss [self takeScreenshot:-1]
@@ -23,6 +24,7 @@
 #define _slp(x) [NSThread sleepForTimeInterval:x]
 #define _enter [self sendEnter]
 #define _tab [self sendTab]
+#define _bspace [self sendBackspace]
 
 @interface MWTestRunTests ()
 @property (assign) CGPoint leftTop;
@@ -40,6 +42,7 @@
     
     
     NSArray *langs = [[NSUserDefaults standardUserDefaults] objectForKey:@"AppleLanguages"];
+    self.language =[langs objectAtIndex:0];
     [self.screenshotMarkdown appendFormat:@"**Language: %@, time: %@\n", [langs objectAtIndex:0] ,[NSDate date]];
     
     [NSThread sleepForTimeInterval:2.0f];
@@ -54,6 +57,7 @@
     CFRelease(windowList);
     
 
+
     [self setOffsetAndSizes];
     [self showQRCode];
 
@@ -63,14 +67,19 @@
     [self setOffsetAndSizes];
     [self runShowMenu];
     
+    _slp(0.3f);
+    
     [self setOffsetAndSizes];
     [self runEncryptWallet];
     
     [self setOffsetAndSizes];
     [self runDecryptWallet];
-    
+
     [self setOffsetAndSizes];
     [self runSendCoins];
+    
+    [self setOffsetAndSizes];
+    [self showCoinsReceived];
     
     NSLog(@"%@", self.screenshotMarkdown);
 }
@@ -98,15 +107,17 @@
 {
     [APPD performSelector:@selector(openSendCoins:) withObject:self];
     _slp(1.0f);
+    _leftDU(self.leftTop.x,self.leftTop.y+50);
+    _slp(.5f);
     _ss;
-
+    
     // enter address
     _tt(@"mk9tTCzAYZpas3gXatV52tnA63DEgngoq4");
     _slp(.1f);
 
     // enter amount
     _tab;
-    _tt(@"0.123456");
+    _tt(@"100000");
     _slp(.1f);
     _ss;
     
@@ -117,6 +128,23 @@
         [sendCoins performSelector:@selector(prepareClicked:) withObject:self];
     });
     _slp(.5f);
+    _ss;
+    _slp(.1f);
+    
+    _bspace;
+    _bspace;
+    _bspace;
+    _bspace;
+    _bspace;
+    _bspace;
+    _slp(.5f);
+    _tt(@"0.123456");
+    _slp(.5f);
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [sendCoins performSelector:@selector(prepareClicked:) withObject:self];
+    });
+    _slp(0.5f);
     _ss;
     _slp(.1f);
     
@@ -175,54 +203,44 @@
 
 - (void)runDecryptWallet
 {
-    // open menu
-    _leftDUP(self.leftTop);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [APPD performSelector:@selector(removeWalletEncryption:) withObject:self];
+    });
+    
+    NSObject *popover = [APPD performSelector:@selector(enterPasswordPopover)];
+    _slp(1.0f);
+    _leftDU(self.leftTop.x,self.leftTop.y+50);
     _slp(.5f);
-    
-    // show wallet menu
-    _mm(self.leftTop.x+self.menuOffset.x,self.leftTop.y+75+self.menuOffset.y);
-    _slp(0.5f);
     _ss;
+    _slp(0.1f);
     
-    
-    
-    // select decrypt
-    _mm(self.leftTop.x+self.menuOffset.x+self.menuWith,self.leftTop.y+92+self.menuOffset.y);
-    _slp(0.5f);
-    _ss;
-    
-    _slp(0.5f);
-    _leftDU(self.leftTop.x+self.menuOffset.x+self.menuWith,self.leftTop.y+92+self.menuOffset.y);
-    _slp(1.5f);
     _tt(@"test");
     _slp(0.5f);
     _ss;
     _enter;
+    _slp(1.0f);
+    _ss;
     
-    _slp(1.5f);
-    _leftDU(self.leftTop.x+100,self.leftTop.y+122);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [popover performSelector:@selector(performClose:) withObject:self];
+    });
+    
+    _slp(1.0f);
 }
 
 - (void)runEncryptWallet
 {
-    // open menu
-    _leftDUP(self.leftTop);
-    _slp(0.5f);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [APPD performSelector:@selector(encryptWallet:) withObject:self];
+    });
     
-    // show wallet menu
-    _mm(self.leftTop.x+self.menuOffset.x,self.leftTop.y+75+self.menuOffset.y);
-    _slp(0.5f);
-    _ss;
+    NSObject *popover = [APPD performSelector:@selector(choosePasswordPopover)];
     
-    // select encrypt
-    _mm(self.leftTop.x+self.menuOffset.x+self.menuWith,self.leftTop.y+76+self.menuOffset.y);
-    _slp(0.5);
+    _slp(1.0f);
+    _leftDU(self.leftTop.x,self.leftTop.y+50);
+    _slp(.5f);
     _ss;
-    
-    // select encrypt
-    _leftDU(self.leftTop.x+self.menuOffset.x+self.menuWith,self.leftTop.y+76+self.menuOffset.y);
-    _slp(1.5f);
-    _ss;
+    _slp(0.1f);
     
     // enter first password
     _tt(@"test");
@@ -239,25 +257,26 @@
     _enter;
     _slp(0.5f);
     _ss;
-
-    _leftDU(self.leftTop.x+85,self.leftTop.y+122);
     _slp(0.5f);
-    _ss;
-    _slp(0.5f);
-    _leftDU(self.leftTop.x+85,self.leftTop.y+122);
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [popover performSelector:@selector(closeSuccessful:) withObject:self];
+    });
+    
+    _slp(1.0f);
 }
 
 - (void)runPreferences
 {
     [APPD performSelectorOnMainThread:@selector(showPreferences:) withObject:self waitUntilDone:YES];
-    _slp(.5f);
+    _slp(.3f);
     
     RHPreferencesWindowController *winC = [APPD performSelector:@selector(preferencesWindowController)];
     
     dispatch_async(dispatch_get_main_queue(), ^{
         winC.selectedIndex = 0;
     });
-    _slp(.5f);
+    _slp(.3f);
     
     NSWindow *win = winC.window;
     CGRect frame = win.frame;
@@ -271,14 +290,18 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         winC.selectedIndex = 1;
     });
-    _slp(1.0f);
+    _slp(0.3f);
 
     frame = win.frame;
     frame.origin.y = screenFrame.size.height-frame.origin.y-frame.size.height;
     self.screenshotSize = frame;
 
-    _slp(1.0f);
+    _slp(0.3f);
     _ss;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [winC.window close];
+    });
+    _slp(0.3f);
 }
 
 - (void)showQRCode
@@ -300,9 +323,27 @@
     _leftDU(self.leftTop.x+self.menuOffset.x+100.0,self.leftTop.y+370);
 }
 
+- (void)showCoinsReceived
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        BOOL showPopup = [[NSUserDefaults standardUserDefaults] boolForKey:kSHOW_POPUP_INCOMING_FUNDS];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kSHOW_POPUP_INCOMING_FUNDS];
+        _slp(0.5f);
+        
+        [APPD performSelector:@selector(demoCoinsAction)];
+        _slp(1.0f);
+        [[NSUserDefaults standardUserDefaults] setBool:showPopup forKey:kSHOW_POPUP_INCOMING_FUNDS];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        _slp(0.5f);
+    });
+    _slp(1.0f);
+    _ss;
+    _slp(0.5f);
+}
+
 - (void)takeScreenshot:(NSInteger)num
 {
-    [self.screenshotMarkdown appendFormat:@"![Screenshot %ld](http://macwallet.github.io/screenshots/auto/de/%ld.png)\n", self.currentScreenshotNum, self.currentScreenshotNum];
+    [self.screenshotMarkdown appendFormat:@"![Screenshot %ld](http://macwallet.github.io/screenshots/auto/%@/%ld.png)\n", self.currentScreenshotNum, self.language, self.currentScreenshotNum];
     [super takeScreenshot:num];
 }
 

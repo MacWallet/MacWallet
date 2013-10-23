@@ -114,3 +114,9 @@ preferencesIncomingPayment = "Incoming Payments";
 copyAddressButton = "Copy Address";
 copyImageButton = "Copy QR-Code";
 loadingTickerShort = "loading";
+"Funds on the way:\n%@" = "Funds on the way:\n%@";
+
+incomingPaymentShowUserNotification = "Show User Notification (OSX 10.8 and higher)";
+incomingPaymentShowPopup = "Show Popup";
+incomingPaymentPlaySound = "Play Sound";
+incomingPaymentRunScript = "Run Script";

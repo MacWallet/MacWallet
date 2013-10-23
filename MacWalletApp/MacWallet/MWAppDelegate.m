@@ -31,9 +31,7 @@
 
 
 // this is required for embedding the unit/UI tests into the appdelegate start hook
-#ifdef    MWUNITTEST
 #import "MWTestRunTests.h"
-#endif
 
 @interface MWAppDelegate ()
 
@@ -189,11 +187,16 @@
                                                  name:kHIBitcoinManagerCoinsReceivedNotification
                                                object:nil];
     
-#ifdef MWUNITTEST
-    MWTestRunTests *test = [[MWTestRunTests alloc] init];
-    NSThread *thr = [[NSThread alloc] initWithTarget:test selector:@selector(runTests) object:nil];
-    [thr start];
-#endif
+    NSArray *arguments = [[NSProcessInfo processInfo] arguments];
+    for(NSString *element in arguments)
+    {
+        if([[element lowercaseString] isEqualToString:@"-uitest"])
+        {
+            MWTestRunTests *test = [[MWTestRunTests alloc] init];
+            NSThread *thr = [[NSThread alloc] initWithTarget:test selector:@selector(runTests) object:nil];
+            [thr start];
+        }
+    }
     
 }
 
@@ -599,6 +602,14 @@
     NSString *text = [NSString stringWithFormat:NSLocalizedString(@"newFundsOnTheWayText", @"new funds on the way user notification text"), funds];
     
     [self doReceivedCoinsAction:text amount:funds txID:tx];
+}
+
+- (void)demoCoinsAction
+{
+    NSString *amount = [[HIBitcoinManager defaultManager] formatNanobtc:1000002345];
+    NSString *aText = [NSString stringWithFormat:NSLocalizedString(@"newFundsOnTheWayText", @"new funds on the way user notification text"), amount];
+    
+    [self doReceivedCoinsAction:aText amount:amount txID:@"9152e20b1b0b0a2939936287f3a814e1befc3a34c1be5415f52b1df372d262f6"];
 }
 
 - (void)doReceivedCoinsAction:(NSString *)text amount:(NSString *)amout txID:(NSString *)txId

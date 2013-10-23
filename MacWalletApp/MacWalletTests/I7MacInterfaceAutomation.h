@@ -17,8 +17,10 @@ int keyCodeForKeyString(char * keyString);
 - (void)leftClickDown:(CGPoint)click;
 - (void)sendEnter;
 - (void)sendTab;
+- (void)sendBackspace;
 - (void)typeText:(NSString *)text;
 - (void)takeScreenshot:(NSInteger)num;
 @property (assign) CGRect screenshotSize;
 @property (assign) NSInteger currentScreenshotNum;
+@property (strong) NSString *language;
 @end

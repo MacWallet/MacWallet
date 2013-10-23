@@ -29,6 +29,8 @@
     // i18n
     self.textLabel.stringValue = self.textToShow;
     self.closeButton.title = NSLocalizedString(@"closeButton", @"");
+    
+    self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, 311, 144);
 }
 
 - (IBAction)closePressed:(id)sender

@@ -44,6 +44,8 @@
 		E531C1F0180876D0009E1B16 /* AXStatusItemPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = E531C1EF180876D0009E1B16 /* AXStatusItemPopup.m */; };
 		E531C1FC18088445009E1B16 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E531C1FB18088445009E1B16 /* QuartzCore.framework */; };
 		E531C1FF18088CE7009E1B16 /* DuxScrollViewAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = E531C1FE18088CE7009E1B16 /* DuxScrollViewAnimation.m */; };
+		E53A51481817AC5400FCC154 /* MWTestRunTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E5C1FF9618106FBA00220E06 /* MWTestRunTests.m */; };
+		E53A514A1817AC5700FCC154 /* I7MacInterfaceAutomation.m in Sources */ = {isa = PBXBuildFile; fileRef = E5A4C813181127EC0014877C /* I7MacInterfaceAutomation.m */; };
 		E53B97271806913700E8117B /* NSString+NSStringRandomPasswordAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E53B97261806913700E8117B /* NSString+NSStringRandomPasswordAdditions.m */; };
 		E5438CA0180C6B8A007EDFDC /* MWBaseScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5438C9F180C6B8A007EDFDC /* MWBaseScrollView.m */; };
 		E548C6EE1802BFB400976CD7 /* MWTickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E548C6ED1802BFB400976CD7 /* MWTickerController.m */; };
@@ -91,7 +93,6 @@
 		E5A4C7C118111DFF0014877C /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5E2CCCC17FC9A7D003EBA11 /* LaunchAtLoginController.m */; };
 		E5A4C7C218111DFF0014877C /* MWTickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E548C6ED1802BFB400976CD7 /* MWTickerController.m */; };
 		E5A4C7C318111DFF0014877C /* MWSetPasswordPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = E5ED01D0180C2461003C7E63 /* MWSetPasswordPopover.m */; };
-		E5A4C7C418111DFF0014877C /* MWTestRunTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E5C1FF9618106FBA00220E06 /* MWTestRunTests.m */; };
 		E5A4C7C518111DFF0014877C /* RHKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B8390017F9FEED004FBBB5 /* RHKeychain.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E5A4C7C618111DFF0014877C /* NSString+NSStringRandomPasswordAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E53B97261806913700E8117B /* NSString+NSStringRandomPasswordAdditions.m */; };
 		E5A4C7C718111DFF0014877C /* MWTransactionMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E548C6FB1802BFFB00976CD7 /* MWTransactionMenuItem.m */; };
@@ -161,7 +162,6 @@
 		E5A4C80918111DFF0014877C /* warning_small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E564524D18089A6C008ADC99 /* warning_small@2x.png */; };
 		E5A4C80B18111DFF0014877C /* BitcoinJKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E5D2F47817F447DB00A214F4 /* BitcoinJKit.framework */; };
 		E5A4C80C18111DFF0014877C /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E5CDA95F17FC9F2A0037A01E /* Sparkle.framework */; };
-		E5A4C815181129130014877C /* I7MacInterfaceAutomation.m in Sources */ = {isa = PBXBuildFile; fileRef = E5A4C813181127EC0014877C /* I7MacInterfaceAutomation.m */; };
 		E5B8390117F9FEED004FBBB5 /* RHKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B8390017F9FEED004FBBB5 /* RHKeychain.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E5C359D417F1DFC200BA394E /* TrustedCheckmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C359D217F1DFC200BA394E /* TrustedCheckmark@2x.png */; };
 		E5C359D617F1DFDE00BA394E /* TrustedCheckmark.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C359D517F1DFDE00BA394E /* TrustedCheckmark.png */; };
@@ -867,6 +867,7 @@
 				E50153C918044CB800CFFA69 /* NSString+SymlinksAndAliases.m in Sources */,
 				E5ED01D2180C2461003C7E63 /* MWEnterPasswordPopover.m in Sources */,
 				E51CC1F81814F4D90070BCF9 /* QR_Encode.cpp in Sources */,
+				E53A51481817AC5400FCC154 /* MWTestRunTests.m in Sources */,
 				E5ED01D1180C2461003C7E63 /* MWBasePopover.m in Sources */,
 				E517D5F0181535DB00C0E1AE /* MWFundsReceivedViewController.m in Sources */,
 				E5645237180891EB008ADC99 /* PasswordChecker.m in Sources */,
@@ -875,6 +876,7 @@
 				E548C6FF1802BFFB00976CD7 /* MWTransactionDetailsWindowController.m in Sources */,
 				E58DF400180FFC98004877BC /* MWPreferenceIncomingPaymentViewController.m in Sources */,
 				E50153CA18044CB800CFFA69 /* PFMoveApplication.m in Sources */,
+				E53A514A1817AC5700FCC154 /* I7MacInterfaceAutomation.m in Sources */,
 				E564523B180894EE008ADC99 /* NSWindow+canBecomeKeyWindow.m in Sources */,
 				E531C1FF18088CE7009E1B16 /* DuxScrollViewAnimation.m in Sources */,
 				E51CC1FA1814F4D90070BCF9 /* QREncoder.mm in Sources */,
@@ -899,7 +901,6 @@
 				E5A4C7C218111DFF0014877C /* MWTickerController.m in Sources */,
 				E51CC1FB1814F4D90070BCF9 /* QREncoder.mm in Sources */,
 				E5A4C7C318111DFF0014877C /* MWSetPasswordPopover.m in Sources */,
-				E5A4C7C418111DFF0014877C /* MWTestRunTests.m in Sources */,
 				E5A4C7C518111DFF0014877C /* RHKeychain.m in Sources */,
 				E5A4C7C618111DFF0014877C /* NSString+NSStringRandomPasswordAdditions.m in Sources */,
 				E5A4C7C718111DFF0014877C /* MWTransactionMenuItem.m in Sources */,
@@ -919,7 +920,6 @@
 				E5A4C7D318111DFF0014877C /* RHPreferencesWindowController.m in Sources */,
 				E5A4C7D418111DFF0014877C /* AXStatusItemPopup.m in Sources */,
 				E5A4C7D518111DFF0014877C /* MWBaseScrollView.m in Sources */,
-				E5A4C815181129130014877C /* I7MacInterfaceAutomation.m in Sources */,
 				E5A4C7D618111DFF0014877C /* MWAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

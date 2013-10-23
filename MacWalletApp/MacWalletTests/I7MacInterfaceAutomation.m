@@ -256,14 +256,34 @@ int keyCodeForKeyString(char * keyString)
     CFRelease(event1);
 }
 
+- (void)sendBackspace
+{
+    CGEventRef event1;
+    event1 = CGEventCreateKeyboardEvent (NULL, 51, true);
+    CGEventPost(kCGSessionEventTap, event1);
+    CFRelease(event1);
+}
+
 - (void)takeScreenshot:(NSInteger)num
 {
+    NSArray * paths = NSSearchPathForDirectoriesInDomains (NSDesktopDirectory, NSUserDomainMask, YES);
+    NSString * desktopPath = [paths objectAtIndex:0];
+    
+    if(!self.language)
+    {
+        self.language = @"unknown";
+    }
+    
     CGImageRef capturedImage = CGDisplayCreateImage(kCGDirectMainDisplay);
     capturedImage = CGImageCreateWithImageInRect(capturedImage, self.screenshotSize);
     
     NSBitmapImageRep *bitmapRep = [[NSBitmapImageRep alloc] initWithCGImage:capturedImage];
     NSData *data = [bitmapRep representationUsingType:NSPNGFileType properties: nil];
-    [data writeToFile:[NSString stringWithFormat:@"/Users/jonasschnelli/Desktop/screens/%ld.png", self.currentScreenshotNum] atomically:YES];
+    desktopPath = [desktopPath stringByAppendingPathComponent:@"screens"];
+    desktopPath = [desktopPath stringByAppendingPathComponent:self.language];
+    [[NSFileManager defaultManager] createDirectoryAtPath:desktopPath withIntermediateDirectories:YES attributes:nil error:nil];
+    
+    [data writeToFile:[NSString stringWithFormat:@"%@/%ld.png", desktopPath, self.currentScreenshotNum] atomically:YES];
     
     self.currentScreenshotNum++;
 }
