@@ -257,6 +257,7 @@
     if(!alreadyStartedOnVersion || [alreadyStartedOnVersion boolValue] == NO) {
         
         // this version never started
+        [[NSUserDefaults standardUserDefaults] setInteger:MWStatusItemStyleBoth forKey:kSTATUS_ITEM_STYLE_KEY];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kSHOW_NOTIFICATION_INCOMING_FUNDS];
         [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:appFirstStartOfVersionKey];
     }

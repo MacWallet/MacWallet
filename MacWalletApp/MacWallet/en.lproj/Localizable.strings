@@ -120,3 +120,4 @@ incomingPaymentShowUserNotification = "Show User Notification (OSX 10.8 and high
 incomingPaymentShowPopup = "Show Popup";
 incomingPaymentPlaySound = "Play Sound";
 incomingPaymentRunScript = "Run Script";
+No = "No";
