@@ -2,6 +2,72 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>BITPAY GBP</key>
+	<dict>
+		<key>jsonPath</key>
+		<string>code[&apos;GBP&apos;]-&gt;rate</string>
+		<key>type</key>
+		<string>json</string>
+		<key>url</key>
+		<string>https://bitpay.com/api/rates</string>
+		<key>format</key>
+		<string>%@ £</string>
+	</dict>
+	<key>BITPAY EUR</key>
+	<dict>
+		<key>jsonPath</key>
+		<string>code[&apos;EUR&apos;]-&gt;rate</string>
+		<key>type</key>
+		<string>json</string>
+		<key>url</key>
+		<string>https://bitpay.com/api/rates</string>
+		<key>format</key>
+		<string>%@ €</string>
+	</dict>
+	<key>BITPAY USD</key>
+	<dict>
+		<key>jsonPath</key>
+		<string>code[&apos;USD&apos;]-&gt;rate</string>
+		<key>type</key>
+		<string>json</string>
+		<key>url</key>
+		<string>https://bitpay.com/api/rates</string>
+		<key>format</key>
+		<string>%@ $</string>
+	</dict>
+	<key>BITCOINAVERAGE EUR</key>
+	<dict>
+		<key>jsonPath</key>
+		<string>last</string>
+		<key>type</key>
+		<string>json</string>
+		<key>url</key>
+		<string>https://api.bitcoinaverage.com/ticker/EUR</string>
+		<key>format</key>
+		<string>%@ €</string>
+	</dict>
+	<key>BITCOINAVERAGE USD</key>
+	<dict>
+		<key>jsonPath</key>
+		<string>last</string>
+		<key>type</key>
+		<string>json</string>
+		<key>url</key>
+		<string>https://api.bitcoinaverage.com/ticker/USD</string>
+		<key>format</key>
+		<string>%@ $</string>
+	</dict>
+	<key>BITCOINAVERAGE GBP</key>
+	<dict>
+		<key>jsonPath</key>
+		<string>last</string>
+		<key>type</key>
+		<string>json</string>
+		<key>url</key>
+		<string>https://api.bitcoinaverage.com/ticker/GBP</string>
+		<key>format</key>
+		<string>%@ £</string>
+	</dict>
 	<key>MTGOX USD</key>
 	<dict>
 		<key>jsonPath</key>
@@ -20,7 +86,7 @@
 		<key>url</key>
 		<string>https://www.bitstamp.net/api/ticker/</string>
 		<key>format</key>
-		<string>%@$</string>
+		<string>%@ $</string>
 	</dict>
 	<key>MTGOX GBP</key>
 	<dict>
