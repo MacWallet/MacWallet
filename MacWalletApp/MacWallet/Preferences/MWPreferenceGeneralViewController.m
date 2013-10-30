@@ -79,6 +79,8 @@
         [tickerLabels addObject:tickerLabel];
     }
     
+    [tickerLabels sortUsingSelector:@selector(compare:)];
+    
     [self.tickerSelector addItemsWithObjectValues:tickerLabels];
     [self.tickerSelector selectItemAtIndex:0];
     NSString *selectedTicker = [[NSUserDefaults standardUserDefaults] objectForKey:kTICKER_NAME_KEY];
