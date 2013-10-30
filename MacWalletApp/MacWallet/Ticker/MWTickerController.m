@@ -59,15 +59,45 @@ static MWTickerController *sharedInstance;
     [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if(error == nil && data)
         {
-            NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
-            NSString *pathToValue = [tickerObject objectForKey:@"jsonPath"];
-            NSArray *comps = [pathToValue componentsSeparatedByString:@"."];
-            NSDictionary *currentDict = jsonObject;
-            for(NSString *comp in comps)
-            {
-                currentDict = [currentDict objectForKey:comp];
+            @try {
+                NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+                NSString *pathToValue = [tickerObject objectForKey:@"jsonPath"];
+                NSArray *comps = [pathToValue componentsSeparatedByString:@"."];
+                NSDictionary *currentDict = jsonObject;
+                for(NSString *comp in comps)
+                {
+                    if ([comp rangeOfString:@"['"].location != NSNotFound) {
+                        NSArray *parts = [comp componentsSeparatedByString:@"['"];
+                        NSString *firstElement  = [parts objectAtIndex:0];
+                        NSString *searchAfter   = [parts objectAtIndex:1];
+                        NSArray *partsAgain = [searchAfter componentsSeparatedByString:@"']->"];
+                        searchAfter = [partsAgain objectAtIndex:0];
+                        NSString *goalVal = [partsAgain objectAtIndex:1];
+                        for (NSDictionary *objDict in currentDict) {
+                            if([[objDict objectForKey:firstElement] isEqualToString:searchAfter])
+                            {
+                                currentDict = [objDict objectForKey:goalVal];
+                                break;
+                            }
+                        }
+                    }
+                    else {
+                        NSDictionary *newDict = [currentDict objectForKey:comp];
+                        if(newDict)
+                        {
+                            currentDict = newDict;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                }
+                handler([NSString stringWithFormat:[tickerObject objectForKey:@"format"],(NSString *)currentDict], nil);
             }
-            handler([NSString stringWithFormat:[tickerObject objectForKey:@"format"],(NSString *)currentDict], nil);
+            @catch (NSException *exception) {
+                handler(@"error", nil);
+            }
         }
         else {
             handler(nil, error);
