@@ -197,7 +197,6 @@
             [thr start];
         }
     }
-    
 }
 
 - (void)applicationWillTerminate:(NSNotification *)notification
@@ -332,6 +331,7 @@
                 
                 [self minuteUpdater];
                 [self updateStatusMenu];
+                [self rebuildTransactionsMenu];
             }
 
             // always update the block info
@@ -351,7 +351,15 @@
     NSDate *date = [HIBitcoinManager defaultManager].lastBlockCreationTime;
     if(date)
     {
-        self.networkStatusLastBlockTime.title =[NSString stringWithFormat:@"%@%.1f min", NSLocalizedString(@"lastBlockAge", @"Last Block Age Menu Item"), -[date timeIntervalSinceNow]/60];
+        NSTimeInterval lastAge = -[date timeIntervalSinceNow]/60;
+        if(lastAge >= 100)
+        {
+            self.networkStatusLastBlockTime.title =[NSString stringWithFormat:@"%@%.1f h", NSLocalizedString(@"lastBlockAge", @"Last Block Age Menu Item"), -[date timeIntervalSinceNow]/3600];
+        }
+        else {
+            self.networkStatusLastBlockTime.title =[NSString stringWithFormat:@"%@%.1f min", NSLocalizedString(@"lastBlockAge", @"Last Block Age Menu Item"), -[date timeIntervalSinceNow]/60];
+        }
+        
     }
     [self rebuildTransactionsMenu];
 }
@@ -836,7 +844,6 @@
     // TODO: make kDEFAULT_MAX_TRANSACTION_COUNT_MENU configurable throught settings
     [self.transactionsMenu removeAllItems];
     NSArray *displayTransactions =  [[HIBitcoinManager defaultManager] allTransactions:kDEFAULT_MAX_TRANSACTION_COUNT_MENU];
-    NSLog(@"%@", displayTransactions);
     
     // set font for transaction label
     NSFont *font = [NSFont systemFontOfSize:14];
