@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MWSendCoinsViewController">
@@ -15,6 +15,7 @@
                 <outlet property="commitButton" destination="esR-vo-dpA" id="vgz-IS-F28"/>
                 <outlet property="commitedTxHash" destination="kBc-i3-ali" id="Yrs-JL-Smt"/>
                 <outlet property="containerView" destination="A9c-UC-oqK" id="W4M-UX-5ls"/>
+                <outlet property="continuePasswortPromtButton" destination="bge-Zr-AbH" id="QlU-eh-mz3"/>
                 <outlet property="feeLabel" destination="ynG-4q-nat" id="NLA-r9-cam"/>
                 <outlet property="invalidTransactionTextField" destination="O84-bd-fw7" id="lQf-m8-85N"/>
                 <outlet property="passwordPromt" destination="oqJ-8U-vMF" id="di1-uY-fZb"/>
@@ -60,7 +61,7 @@
                             </allowedInputSourceLocales>
                         </secureTextFieldCell>
                         <connections>
-                            <action selector="closePasswordPrompt:" target="-2" id="D3W-4r-P0V"/>
+                            <outlet property="delegate" destination="-2" id="xdD-zz-J0i"/>
                         </connections>
                     </secureTextField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FeE-qF-8Jc">
@@ -121,11 +122,11 @@ Gw
                     </view>
                 </subviews>
             </clipView>
-            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" id="dH3-pU-6fP">
+            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="dH3-pU-6fP">
                 <rect key="frame" x="-100" y="-100" width="504" height="15"/>
                 <autoresizingMask key="autoresizingMask"/>
             </scroller>
-            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" id="i4T-uq-WNJ">
+            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="i4T-uq-WNJ">
                 <rect key="frame" x="-100" y="-100" width="15" height="137"/>
                 <autoresizingMask key="autoresizingMask"/>
             </scroller>
@@ -164,7 +165,7 @@ Gw
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jrg-bk-McK">
+                <textField verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" tag="5" translatesAutoresizingMaskIntoConstraints="NO" id="jrg-bk-McK">
                     <rect key="frame" x="153" y="284" width="101" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <constraints>

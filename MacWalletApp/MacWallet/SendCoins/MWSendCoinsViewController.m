@@ -34,7 +34,8 @@
 @property (assign) IBOutlet NSButton *commitButton;
 @property (assign) IBOutlet NSButton *closeButton0;
 @property (assign) IBOutlet NSButton *closeButton1;
-
+@property (assign) IBOutlet NSButton *continuePasswortPromtButton;
+    
 @property (assign) IBOutlet NSTextField *invalidTransactionTextField;
 @property (assign) IBOutlet NSTextField *successAfterCommitTextField;
 
@@ -91,6 +92,40 @@
     [self.btcAddressTextField performSelector:@selector(becomeFirstResponder) withObject:nil afterDelay:0.2];
 }
 
+- (BOOL)control:(NSControl *)control textView:(NSTextView *)fieldEditor doCommandBySelector:(SEL)commandSelector
+{
+    BOOL retval = NO;
+    
+    if(control == self.passwordTextField)
+    {
+        //BOOL retval = NO;
+        if (commandSelector == @selector(insertNewline:))
+        {
+            retval = YES; // causes Apple to NOT fire the default enter action
+            @try {
+                [self closePasswordPrompt:self.continuePasswortPromtButton];
+            }
+            @catch (NSException *exception) {
+                [self closePasswordPrompt:self.continuePasswortPromtButton];
+            }
+            @finally {
+                
+            }
+        }
+    }
+    else if(control == self.amountTextField)
+    {
+        //BOOL retval = NO;
+        if (commandSelector == @selector(insertNewline:))
+        {
+            retval = YES; // causes Apple to NOT fire the default enter action
+            [self prepareClicked:self.prepareButton];
+        }
+    }
+    
+    return retval;
+}
+    
 - (IBAction)prepareClicked:(id)sender
 {
     BOOL hasEncryptedWallet = [[HIBitcoinManager defaultManager] isWalletEncrypted];
@@ -108,14 +143,20 @@
 
 - (void)prepareTransactionWithWalletPassword:(NSString *)password
 {
-    NSInteger fee = [self.delegate prepareSendCoinsFromWindowController:self receiver:[self.btcAddressTextField stringValue] amount:[self.amountTextField doubleValue]*100000000 txfee:0 password:password];
+    
+    NSString *valueEnteredByUser = self.amountTextField.stringValue;
+
+    // allow "," insted of "." as dec. seperator
+    valueEnteredByUser = [valueEnteredByUser stringByReplacingOccurrencesOfString:@"," withString:@"."];
+    
+    NSInteger fee = [self.delegate prepareSendCoinsFromWindowController:self receiver:[self.btcAddressTextField stringValue] amount:[valueEnteredByUser doubleValue]*100000000 txfee:0 password:password];
     
     if(fee >= 0)
     {
         self.currentState = MWSendCoinsWindowControllerWaitingCommit;
 
         self.txFeeTextField.stringValue = [[HIBitcoinManager defaultManager] formatNanobtc:fee];
-        self.txTotalAmountTextField.stringValue = [[HIBitcoinManager defaultManager] formatNanobtc:[self.amountTextField doubleValue]*100000000+fee];
+        self.txTotalAmountTextField.stringValue = [[HIBitcoinManager defaultManager] formatNanobtc:[valueEnteredByUser doubleValue]*100000000+fee];
         
         [self.invalidTransactionTextField setHidden:YES];
         
@@ -140,7 +181,7 @@
             
             double calcFee = 0.0001;
             double balance = [HIBitcoinManager defaultManager].balance;
-            double txVal =([self.amountTextField doubleValue] + calcFee);
+            double txVal =([valueEnteredByUser doubleValue] + calcFee);
             if(txVal > balance/100000000)
             {
                 // not enought money problem
