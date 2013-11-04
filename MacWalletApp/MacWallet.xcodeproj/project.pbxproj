@@ -335,6 +335,7 @@
 		E5C61EE3180C58F900857193 /* MWSendCoinsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWSendCoinsViewController.m; sourceTree = "<group>"; };
 		E5CDA95F17FC9F2A0037A01E /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = ../vendor/Sparkle.framework; sourceTree = "<group>"; };
 		E5D2F47317F447DB00A214F4 /* BitcoinJKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BitcoinJKit.xcodeproj; path = ../BitcoinJKit/BitcoinJKit.xcodeproj; sourceTree = "<group>"; };
+		E5D7E3CD1823DDCE00861E23 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E5E2CCBE17FC98B3003EBA11 /* MWPreferenceGeneralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWPreferenceGeneralViewController.h; sourceTree = "<group>"; };
 		E5E2CCBF17FC98B3003EBA11 /* MWPreferenceGeneralViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWPreferenceGeneralViewController.m; sourceTree = "<group>"; };
 		E5E2CCC017FC98B3003EBA11 /* MWPreferenceGeneralViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MWPreferenceGeneralViewController.xib; sourceTree = "<group>"; };
@@ -706,6 +707,7 @@
 				pt,
 				Base,
 				"en-GU",
+				fr,
 			);
 			mainGroup = E50310C317E9986500C2F226;
 			productRefGroup = E50310CD17E9986500C2F226 /* Products */;
@@ -962,6 +964,7 @@
 				E58DF405181020A0004877BC /* de */,
 				E5C1FF3D18106B9200220E06 /* pt */,
 				E58B366F181695A800BEDB97 /* en-GU */,
+				E5D7E3CD1823DDCE00861E23 /* fr */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

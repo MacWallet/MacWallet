@@ -116,8 +116,8 @@ copyImageButton = "Copy Image";
 loadingTickerShort = "loading"; // must be short!
 "Funds on the way:\n%@" = "Funds on the way:\n%@";
 
-incomingPaymentShowUserNotification = "Show User Notification (OSX 10.8 and higher)";
-incomingPaymentShowPopup = "Show Popup";
-incomingPaymentPlaySound = "Play Sound";
-incomingPaymentRunScript = "Run Script";
+incomingPaymentShowUserNotification = "Show user notification (OSX 10.8 and higher)";
+incomingPaymentShowPopup = "Show popup";
+incomingPaymentPlaySound = "Play sound";
+incomingPaymentRunScript = "Run script";
 No = "No";

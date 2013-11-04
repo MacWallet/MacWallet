@@ -111,9 +111,9 @@ resyncBlockchain = "Resincronizar blockchain";
 preferencesGeneral = "Geral";
 preferencesIncomingPayment = "Recebendo pagamento";
 
-"Funds on the way:\n%@" = "Funds on the way:\n%@";
+"Funds on the way:\n%@" = "Fundos a caminho:\n%@";
 
-incomingPaymentShowUserNotification = "Show User Notification (OSX 10.8 and higher)";
-incomingPaymentShowPopup = "Show Popup";
-incomingPaymentPlaySound = "Play Sound";
-incomingPaymentRunScript = "Run Script";
+incomingPaymentShowUserNotification = "Mostrar notificações (OSX 10.8 em diante)";
+incomingPaymentShowPopup = "Mostrar popup";
+incomingPaymentPlaySound = "Tocar aviso sonoro";
+incomingPaymentRunScript = "Executar script";

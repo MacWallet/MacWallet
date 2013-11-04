@@ -1,0 +1,122 @@
+/*
+ Localizable.strings
+ MacWallet
+ 
+ Created by Jonas Schnelli on 01.10.13.
+ Copyright (c) 2013 Jonas Schnelli. All rights reserved.
+ */
+about = "A propos de MacWallet";
+quit = "Quitter";
+sendCoins = "Envoyer des pièces...";
+myAddresses = "Mes adresses";
+myTransactions = "Dernière transaction";
+syncing = "Synchro :";
+"Network: synced" = "Réseau synchronisé";
+"Network: Testnet" = "Réseau : Testnet";
+"Network: Bitcoin" = "Réseau : Bitcoin";
+blocksMenuItem = "Blocs :";
+connectedPeersMenuItem = "Pairs conenctés";
+lastBlockAge = "Age du dernier bloc :";
+
+OK = "OK";
+Cancel = "Annuler";
+
+switchToTestnet = "Voulez-vous passer à Testnet ?";
+
+sendCoinsWindowTitle = "Envoyer des Pièces";
+receiverAddressLabel = "adresse Bitcoin";
+amoutLabel = "Montant";
+feeLabel = "Taxe nécessaire";
+totalAmountLabel = "Montant total";
+transactionIdLabel = "ID Transaction";
+
+prepareTx = "Préparer la transaction";
+commitTx = "Envoyer les pièces !";
+closeButton = "Fermer";
+
+moreTx = "%d en plus...";
+showAllTransaction = "Afficher toutes les transactions";
+noTransactionsFound = "Aucune transaction trouvée";
+transactionsWindowTitle = "Transactions";
+status = "Statut";
+amount = "Montant";
+date = "Date";
+getTxInfo = "Obtenir des infos";
+
+preferences = "Réglages...";
+autostartPrefsLabel = "Lancer MacWallet au démarrage";
+checkForUpdatesAtStartupLabel = "Vérifier les Mises à Jour au démarrage";
+tickerLabel = "Ticker";
+whatToShowLabel = "Menu Principal";
+showBothButton = "Afficher le Ticker et le Solde";
+showTickerButton = "Afficher le Ticker";
+showBalanceButtonLabel = "Afficher le Solde";
+secondLineBalanceLabel = "Solde :";
+secondLineTickerLabel = "@$1:";
+
+timeAgoFormat = "(il y a %@)";
+timeAgoLabel = "Afficher \"combien de temps il y a\" dans la liste des transactions";
+restartAppText = "Vous devez redémarrer MacWallet après avoir changé votre réseau";
+addAddress = "Ajouter une adresse";
+
+launchAtStartupQuestion = "Voulez-vous démarrer MacWallet au démarrage ?";
+
+passwordInacceptable = "trop petit";
+passwordWeak = "pauvre";
+passwordModerate = "moyen";
+passwordStrong = "fort";
+
+insufficientFunds = "Fonds Inssufisants !";
+unknownSendCoinsError = "Transaction Invalide !";
+passwordWrong = "Mauvais mot de passe !";
+
+newFundsOnTheWayTitle = "Transaction Entrante";
+newFundsOnTheWayText = "Les nouveaux fond de %@ sont en route";
+
+dumpWallet = "Exporter dans un fichier...";
+recommendedFilenameForWalletDump = "portefeuille.txt";
+
+successDumpWallet = "Votre portefeuille a bien été enregistré dans le fichier sélectionné !";
+errorDumpWallet = "Il y a eu une erreur durant l'enregistrement de votre portefeuille";
+removePassword = "Supprimer Mot de Passe";
+setPassword = "Protéger avec Mot de Passe";
+
+checkForUpdatesMenuItem = "Vérifier les mises à jour...";
+
+setPasswordPassword0Label = "Entrez un mot de passe";
+setPasswordPassword1Label = "Répétez le mot de passe";
+setPasswordAbortButton0Text = "Annuler";
+setPasswordAbortButton1Text = "« Retour";
+setPasswordOkButton0Text = "Continuer";
+setPasswordOkButton1Text = "OK";
+setPasswordOkButton2Text = "OK";
+setPasswordFinishMessage = "Votre Portefeuille est maintenant protégé";
+
+setPasswordPassword0PlaceholderText = "Entrez un mot de passe";
+setPasswordPassword1PlaceholderText = "Répétez le mot de passe";
+
+enterPasswordPassword0PlaceholderText = "Entrez un mot de passe";
+enterPasswordBackButton0Text = "Annuler";
+enterPasswordBackButton1Text = "« Retour";
+enterPasswordOkButton0Text = "OK";
+enterPasswordOkButton1Text = "OK";
+enterPasswordLastMessage = "Votre Portefeuille n'est plus protégé par un mot de passe";
+successDecryptingWallet = "Votre portefeuille n'est désormais plus protégé";
+errorDecryptingWallet = "Il y a eu une erreur lors de la désencryption de votre portefeuille";
+
+walletMenuItem = "Portefeuille";
+transactionSuccessText = "La transaction a bien été envoyée";
+resyncBlockchain = "Resyncho Blockchain";
+
+preferencesGeneral = "Général";
+preferencesIncomingPayment = "Paiements Entrants";
+
+copyAddressButton = "Copier l'adresse";
+copyImageButton = "Copier le QR Code";
+loadingTickerShort = "chargement";
+"Funds on the way:\n%@" = "Fonds en route:\n%@";
+
+incomingPaymentShowUserNotification = "Afficher les Notifications (OS X 10.8 et supérieur)";
+incomingPaymentShowPopup = "Afficher une popup";
+incomingPaymentPlaySound = "Jouer un son";
+incomingPaymentRunScript = "Executer un script";
