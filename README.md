@@ -1,5 +1,7 @@
 What is MacWallet
 -------
+![Icon](https://raw.github.com/MacWallet/MacWallet/master/MacWalletApp/res/Icon/128.png)
+
 
 MacWallet is a very easy to use and integrated Bitcoin wallet for Mac OSX.
 [Bitcoinj](https://code.google.com/p/bitcoinj/) is used as underlaying bitcoin library.
@@ -9,11 +11,11 @@ Features
 -------
 
 * stable Bitcoin library (bitcoinj). Also used in Multibit and Bitcoin Wallet (Android).
-* native and fluid user interface
+* native and intuitive user interface
 * fast catchup with the blockchain (just some seconds/minutes)
-* low memory and 
+* low memory and cpu footprint
 * wallet encryption / decyrption
-* QRCode generation for incoming addresses
+* QRCode generation for receiving addresses
 * run script or play sound on incoming payments
 * show user notification on incoming payments
 
@@ -31,7 +33,8 @@ Download
 
 Binary releases can be downloaded here:
 
-* http://macwallet.github.io
+* http://www.macwallet.org
+* https://github.com/MacWallet/MacWallet/releases
 
 Translations
 -------
@@ -39,6 +42,7 @@ Translations
 * English: Michèle / Jonas Schnelli
 * German: Michèle
 * Portuguese: Filipe M. Oliveira
+* French: Marty Lamoureux
 
 If you like to translate MacWallet or fix typos, have a look at the [wiki page](https://github.com/MacWallet/MacWallet/wiki/How-to-create-a-translation-or-update-change-language-strings)
 
@@ -60,4 +64,5 @@ Thanks to
 
 - Mike Hearn (Father of bitcoinj) for support
 - Hive Developers for creating BitcoinJFramework
-- Michèle, Filipe M. Oliveira for translations
+- Michèle, Filipe M. Oliveira and Marty Lamoureux for translations
+- Kevin Eichhorn for the Icon

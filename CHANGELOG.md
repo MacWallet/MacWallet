@@ -1,3 +1,10 @@
+Release 0.12.1
+-------
++ bitcoin amount can now also be entered with "," as dec. separator
++ wallet balance is now more accurate after sending coins
++ new Icon thanks to Kevin Eichhorn
++ added french translation
+
 Release 0.12
 -------
 + wallet encryption

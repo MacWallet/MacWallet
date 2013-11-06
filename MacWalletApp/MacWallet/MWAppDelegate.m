@@ -251,14 +251,21 @@
 {
     NSString *bundleVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey];
     NSString *appFirstStartOfVersionKey = [NSString stringWithFormat:@"first_start_%@", bundleVersion];
+    NSString *appFirstStartOfVersionKeyV2 = @"first_start_2"; // version 2
     
     NSNumber *alreadyStartedOnVersion = [[NSUserDefaults standardUserDefaults] objectForKey:appFirstStartOfVersionKey];
-    if(!alreadyStartedOnVersion || [alreadyStartedOnVersion boolValue] == NO) {
+    NSNumber *alreadyStartedOnVersionV2 = [[NSUserDefaults standardUserDefaults] objectForKey:appFirstStartOfVersionKeyV2];
+    
+    if(!alreadyStartedOnVersionV2 || [alreadyStartedOnVersionV2 boolValue] == NO) {
         
-        // this version never started
+        // version 2 never started
         [[NSUserDefaults standardUserDefaults] setInteger:MWStatusItemStyleBoth forKey:kSTATUS_ITEM_STYLE_KEY];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kSHOW_NOTIFICATION_INCOMING_FUNDS];
         [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:appFirstStartOfVersionKey];
+    }
+    if(!alreadyStartedOnVersion || [alreadyStartedOnVersion boolValue] == NO) {
+        
+        // current version never started
     }
     
     [[NSUserDefaults standardUserDefaults] synchronize];
