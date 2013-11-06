@@ -5,6 +5,7 @@ Release 0.12.1
 + new Icon thanks to Kevin Eichhorn
 + added french translation
 + switched update appcast url to macwallet.org domain
++ more tickers available
 
 Release 0.12
 -------
