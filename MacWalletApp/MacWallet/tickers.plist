@@ -68,6 +68,17 @@
 		<key>format</key>
 		<string>%@ £</string>
 	</dict>
+	<key>BITCOINAVERAGE SEK</key>
+	<dict>
+		<key>jsonPath</key>
+		<string>last</string>
+		<key>type</key>
+		<string>json</string>
+		<key>url</key>
+		<string>https://api.bitcoinaverage.com/ticker/SEK</string>
+		<key>format</key>
+		<string>%@ kr</string>
+	</dict>
 	<key>MTGOX USD</key>
 	<dict>
 		<key>jsonPath</key>
@@ -107,6 +118,17 @@
 		<string>json</string>
 		<key>url</key>
 		<string>http://data.mtgox.com/api/2/BTCEUR/money/ticker_fast</string>
+		<key>format</key>
+		<string>%@</string>
+	</dict>
+	<key>MTGOX SEK</key>
+	<dict>
+		<key>jsonPath</key>
+		<string>data.last.display_short</string>
+		<key>type</key>
+		<string>json</string>
+		<key>url</key>
+		<string>http://data.mtgox.com/api/2/BTCSEK/money/ticker_fast</string>
 		<key>format</key>
 		<string>%@</string>
 	</dict>
