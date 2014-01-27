@@ -8,7 +8,7 @@
 about = "About MacWallet...";
 quit = "Quit";
 sendCoins = "Send coins...";
-myAddresses = "My adresses";
+myAddresses = "My addresses";
 myTransactions = "Last transaction";
 syncing = "Syncing:";
 "Network: synced" = "Network synchronized";

@@ -348,7 +348,7 @@
         else if ([keyPath compare:@"peerCount"] == NSOrderedSame)
         {
             // peer connected/disconnected
-            self.networkStatusPeersMenuItem.title = [NSString stringWithFormat:@"%@%lu", NSLocalizedString(@"connectedPeersMenuItem", @"connectedPeersMenuItem"), (unsigned long)[HIBitcoinManager defaultManager].peerCount];
+            self.networkStatusPeersMenuItem.title = [NSString stringWithFormat:@"%@ %lu", NSLocalizedString(@"connectedPeersMenuItem", @"connectedPeersMenuItem"), (unsigned long)[HIBitcoinManager defaultManager].peerCount];
         }
     }
 }
