@@ -1000,7 +1000,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx10.8;
+				SDKROOT = macosx10.9;
 			};
 			name = Debug;
 		};
@@ -1025,7 +1025,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				SDKROOT = macosx10.8;
+				SDKROOT = macosx10.9;
 			};
 			name = Release;
 		};
@@ -1043,6 +1043,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MacWallet/MacWallet-Prefix.pch";
 				INFOPLIST_FILE = "MacWallet/MacWallet-Info.plist";
+				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_NAME = MacWallet;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -1063,6 +1064,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MacWallet/MacWallet-Prefix.pch";
 				INFOPLIST_FILE = "MacWallet/MacWallet-Info.plist";
+				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_NAME = MacWallet;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
