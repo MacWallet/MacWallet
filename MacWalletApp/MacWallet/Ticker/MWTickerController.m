@@ -9,6 +9,7 @@
 #import "MWTickerController.h"
 
 static MWTickerController *sharedInstance;
+static NSDecimalNumberHandler *_s_handler;
 
 @interface MWTickerController ()
 @property (strong) NSDictionary *tickerDictionary;
@@ -93,7 +94,30 @@ static MWTickerController *sharedInstance;
                         }
                     }
                 }
-                handler([NSString stringWithFormat:[tickerObject objectForKey:@"format"],(NSString *)currentDict], nil);
+                
+                if(!_s_handler)
+                {
+                    _s_handler = [NSDecimalNumberHandler decimalNumberHandlerWithRoundingMode:NSRoundPlain
+                                                                                                         scale:2
+                                                                                              raiseOnExactness:NO
+                                                                                               raiseOnOverflow:NO
+                                                                                              raiseOnUnderflow:NO
+                                                                                           raiseOnDivideByZero:NO];
+                }
+                
+                NSDecimalNumber *decimalNumber = nil;
+                if([currentDict isKindOfClass:[NSString class]])
+                {
+                    decimalNumber = [NSDecimalNumber decimalNumberWithString:(NSString *)currentDict];
+                }
+                if([currentDict isKindOfClass:[NSNumber class]])
+                {
+                    decimalNumber = [NSDecimalNumber decimalNumberWithDecimal:[(NSNumber *)currentDict decimalValue]];
+                }
+                
+                decimalNumber = [decimalNumber decimalNumberByRoundingAccordingToBehavior:_s_handler];
+                
+                handler([NSString stringWithFormat:[tickerObject objectForKey:@"format"],(NSString *)[decimalNumber stringValue]], nil);
             }
             @catch (NSException *exception) {
                 handler(@"error", nil);

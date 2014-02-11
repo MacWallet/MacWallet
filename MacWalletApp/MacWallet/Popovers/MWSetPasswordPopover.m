@@ -9,6 +9,8 @@
 #import "MWSetPasswordPopover.h"
 #import "DuxScrollViewAnimation.h"
 #import "passwordChecker.h"
+#import "HIPasswordHolder.h"
+#import "NSPopover+NSPopover_MWPopoverAddOn.h"
 
 @interface MWSetPasswordPopover ()
 @property (strong) IBOutlet NSView  *containerView;
@@ -142,11 +144,41 @@
     
     if([self.password0.stringValue isEqualToString:self.password1.stringValue])
     {
+        PasswordStrengthType type = [PasswordChecker checkPasswordStrength:self.password0.stringValue];
+        
+        if(![self.password0.stringValue isEqualToString:self.password1.stringValue])
+        {
+            [self showError:NSLocalizedString(@"passwordDontMatch", @"error text when password does not match") continueOption:NO];
+            return;
+        }
+        else if(type == PasswordStrengthTypeInacceptable)
+        {
+            [self showError:NSLocalizedString(@"passwordIsInacceptable", @"passwordIsInacceptable") continueOption:NO cancelButton:NSLocalizedString(@"Ok", @"Okay Button")];
+            return;
+        }
+        else if(type != PasswordStrengthTypeModerate && type != PasswordStrengthTypeStrong)
+        {
+            NSInteger retVal = [self showError:NSLocalizedString(@"passwordIsWeak", @"passwordIsWeak") continueOption:YES];
+            if(retVal != NSAlertFirstButtonReturn)
+            {
+                // cancel pressed
+                return;
+            }
+        }
+        
+        NSInteger retVal = [self showError:NSLocalizedString(@"warnForPasswordLost", @"Warning text to reminde user to not forget the wallet password") continueOption:NO cancelButton:NSLocalizedString(@"Ok", @"Okay Button")];
+        
+        HIPasswordHolder *passwordHolder = nil;
+        passwordHolder = [[HIPasswordHolder alloc] initWithString:self.password0.stringValue];
+        
+        [self.delegate performSelector:@selector(shouldPerformEncryption:) withObject:passwordHolder];
+        
+        [passwordHolder clear];
+        
         // okay, set encryption
         [self.noMatchImageView setHidden:YES];
         [self showPageWithNumber:2];
         
-        [self.delegate performSelector:@selector(shouldPerformEncryption:) withObject:self.password0.stringValue];
         self.processFinished = YES;
     }
     else{

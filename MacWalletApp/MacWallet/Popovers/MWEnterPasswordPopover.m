@@ -7,6 +7,8 @@
 //
 
 #import "MWEnterPasswordPopover.h"
+#import "HIPasswordHolder.h"
+#import "NSPopover+NSPopover_MWPopoverAddOn.h"
 
 @interface MWEnterPasswordPopover ()
 @property (strong) IBOutlet NSScrollView  *scrollView;
@@ -80,10 +82,23 @@
     
     if(self.passwordTextField.stringValue)
     {
+        
+        NSInteger retVal = [self showError:NSLocalizedString(@"confirmQuestionPermanentlyDecryptWallet", @"A confirm question when user likes to permanently decrypt his wallet") continueOption:YES];
+        
+        if(retVal != NSAlertFirstButtonReturn)
+        {
+            // cancel pressed
+            return;
+        }
+        
         // okay, set encryption
         [self showPageWithNumber:1];
         
-        BOOL success = (BOOL)[self.delegate performSelector:@selector(shouldPerformRemoveEncryption:) withObject:self.passwordTextField.stringValue];
+        HIPasswordHolder *passwordHolder = [[HIPasswordHolder alloc] initWithString:self.passwordTextField.stringValue];
+        
+        BOOL success = (BOOL)[self.delegate performSelector:@selector(shouldPerformRemoveEncryption:) withObject:passwordHolder];
+        [passwordHolder clear];
+        
         if(!success)
         {
             [self.backButton1 setHidden:NO];

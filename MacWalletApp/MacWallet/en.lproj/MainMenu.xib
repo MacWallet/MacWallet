@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13C48" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -653,7 +653,9 @@
                 <outlet property="balanceUnconfirmedMenuItem" destination="N22-f7-qb5" id="ZRz-oe-2yV"/>
                 <outlet property="checkForUpdatesMenuItem" destination="4Ww-8C-lEj" id="OLR-Q2-v16"/>
                 <outlet property="choosePasswordPopover" destination="mlX-MK-QJD" id="WGJ-e1-beu"/>
+                <outlet property="createWalletMenuItem" destination="dnf-hp-YES" id="rj4-JX-f2P"/>
                 <outlet property="enterPasswordPopover" destination="2MC-th-ugy" id="Wul-cC-NVd"/>
+                <outlet property="errorMenuItem" destination="kVL-Nj-iVx" id="r2u-fD-qra"/>
                 <outlet property="networkStatusBlockHeight" destination="OkV-tT-Eh2" id="n7t-hb-h8t"/>
                 <outlet property="networkStatusLastBlockTime" destination="ZXM-No-7ma" id="kof-ht-NZw"/>
                 <outlet property="networkStatusMenuItem" destination="l8g-ak-bBL" id="GYW-kZ-jJg"/>
@@ -678,25 +680,25 @@
                 <menuItem title="Balance" id="N22-f7-qb5">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
-                <menuItem title="My Addresses1" id="537">
+                <menuItem title="Error" hidden="YES" id="kVL-Nj-iVx">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="My Addresses1" id="g0r-yI-eav">
-                        <items>
-                            <menuItem title="Item 1" id="1Ik-vf-uk4">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                            </menuItem>
-                            <menuItem title="Item 2" id="DP5-7I-oOQ">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                            </menuItem>
-                            <menuItem title="Item 3" id="SMm-TD-K14">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                            </menuItem>
-                        </items>
-                    </menu>
+                    <connections>
+                        <action selector="errorMenuItemWasPressed:" target="494" id="OB3-rm-Xe6"/>
+                    </connections>
                 </menuItem>
-                <menuItem title="Transactions" id="1Eh-U2-Eka">
+                <menuItem title="CreateWallet" hidden="YES" id="dnf-hp-YES">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="My Addresses" id="Em6-Yl-mUX">
+                    <connections>
+                        <action selector="createWalletMenuItemWasPressed:" target="494" id="ThO-nK-4lI"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="_My Addresses" id="537">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="_My Addresses" id="g0r-yI-eav"/>
+                </menuItem>
+                <menuItem title="_Transactions" id="1Eh-U2-Eka">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="_Transactions" id="Em6-Yl-mUX">
                         <items>
                             <menuItem title="Item 1" image="NSStatusNone" id="MFL-kh-RdE">
                                 <modifierMask key="keyEquivalentModifierMask"/>
@@ -710,9 +712,9 @@
                         </items>
                     </menu>
                 </menuItem>
-                <menuItem title="Wallet" id="Zvc-n6-PIh">
+                <menuItem title="_Wallet" id="Zvc-n6-PIh">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="Wallet" autoenablesItems="NO" id="HMj-0I-xke">
+                    <menu key="submenu" title="_Wallet" autoenablesItems="NO" id="HMj-0I-xke">
                         <items>
                             <menuItem title="Set Password" id="FZf-Be-eng">
                                 <modifierMask key="keyEquivalentModifierMask"/>
@@ -801,7 +803,7 @@
                 </menuItem>
             </items>
         </menu>
-        <viewController id="4nW-Cw-V6M" userLabel="Popover View Controller">
+        <viewController id="4nW-Cw-V6M" userLabel="Set Password Popover View Controller">
             <connections>
                 <outlet property="view" destination="xHw-ob-dfJ" id="ace-kf-SRI"/>
             </connections>
@@ -827,7 +829,7 @@
                 <outlet property="scrollView" destination="xHw-ob-dfJ" id="elA-EU-oXY"/>
             </connections>
         </popover>
-        <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" id="xHw-ob-dfJ" customClass="MWBaseScrollView">
+        <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" id="xHw-ob-dfJ" userLabel="SetPasswordScrollView" customClass="MWBaseScrollView">
             <rect key="frame" x="0.0" y="0.0" width="230" height="109"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="glI-zF-E3f">
@@ -841,16 +843,17 @@
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             </clipView>
-            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" id="Nao-Mo-ASJ">
+            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="Nao-Mo-ASJ">
                 <rect key="frame" x="-100" y="-100" width="231" height="15"/>
                 <autoresizingMask key="autoresizingMask"/>
             </scroller>
-            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" id="9Wh-ws-TgH">
+            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="9Wh-ws-TgH">
                 <rect key="frame" x="-100" y="-100" width="15" height="94"/>
                 <autoresizingMask key="autoresizingMask"/>
             </scroller>
+            <accessibility description="SetPasswordScrollView"/>
         </scrollView>
-        <customView id="oIR-57-mYc">
+        <customView id="oIR-57-mYc" userLabel="EncryptScollView">
             <rect key="frame" x="0.0" y="0.0" width="690" height="102"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
@@ -997,7 +1000,7 @@
                 <outlet property="view" destination="ZOD-Ja-bf1" id="Q2W-hj-kQ3"/>
             </connections>
         </viewController>
-        <popover id="2MC-th-ugy" customClass="MWEnterPasswordPopover">
+        <popover id="2MC-th-ugy" userLabel="Enter Password Popover View Controller" customClass="MWEnterPasswordPopover">
             <connections>
                 <outlet property="backButton0" destination="A7R-pH-Gph" id="Hy4-0R-fQW"/>
                 <outlet property="backButton1" destination="p2D-em-W9c" id="nPj-hJ-Jtw"/>
@@ -1014,7 +1017,7 @@
                 <outlet property="scrollView" destination="ZOD-Ja-bf1" id="rm9-uq-tc9"/>
             </connections>
         </popover>
-        <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" id="ZOD-Ja-bf1" customClass="MWBaseScrollView">
+        <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" id="ZOD-Ja-bf1" userLabel="EnterPasswordScrollView" customClass="MWBaseScrollView">
             <rect key="frame" x="0.0" y="0.0" width="230" height="109"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="GJA-z3-3aZ">
@@ -1028,16 +1031,16 @@
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             </clipView>
-            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" id="4rT-Yi-FVo">
+            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="4rT-Yi-FVo">
                 <rect key="frame" x="-100" y="-100" width="231" height="15"/>
                 <autoresizingMask key="autoresizingMask"/>
             </scroller>
-            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" id="RiM-Ud-rD2">
+            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="RiM-Ud-rD2">
                 <rect key="frame" x="-100" y="-100" width="15" height="94"/>
                 <autoresizingMask key="autoresizingMask"/>
             </scroller>
         </scrollView>
-        <customView id="5pz-Ru-TYA">
+        <customView id="5pz-Ru-TYA" userLabel="DecryptScrollView">
             <rect key="frame" x="0.0" y="0.0" width="460" height="102"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
@@ -1125,6 +1128,12 @@
                 </button>
             </subviews>
         </customView>
+        <viewController id="IEu-2g-S7z" userLabel="Popover View Controller"/>
+        <popover id="f5U-Mg-L0K">
+            <connections>
+                <outlet property="contentViewController" destination="IEu-2g-S7z" id="90V-zf-NmY"/>
+            </connections>
+        </popover>
     </objects>
     <resources>
         <image name="NSStatusNone" width="16" height="16"/>

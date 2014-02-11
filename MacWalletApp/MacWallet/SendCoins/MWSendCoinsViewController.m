@@ -10,6 +10,7 @@
 #import <BitcoinJKit/BitcoinJKit.h>
 #import "MWAppDelegate.h"
 #import "DuxScrollViewAnimation.h"
+#import "NSPopover+NSPopover_MWPopoverAddOn.h"
 
 #define kBA_COINS_WINDOW_HEIGHT_NORMAL 128.0
 #define kBA_COINS_WINDOW_HEIGHT_SEND 215.0
@@ -45,6 +46,8 @@
 @property (assign) IBOutlet NSTextField *passwordTextField;
 
 @property (strong) IBOutlet NSView  *containerView;
+
+@property (strong) IBOutlet NSTextField  *btcDesignatorTextField;
 
 
 @end
@@ -90,6 +93,8 @@
     [self.passwordPromt setReleasedWhenClosed:NO];
     
     [self.btcAddressTextField performSelector:@selector(becomeFirstResponder) withObject:nil afterDelay:0.2];
+    
+    self.btcDesignatorTextField.stringValue = [HIBitcoinManager defaultManager].preferredFormat;
 }
 
 - (BOOL)control:(NSControl *)control textView:(NSTextView *)fieldEditor doCommandBySelector:(SEL)commandSelector
@@ -144,62 +149,108 @@
 - (void)prepareTransactionWithWalletPassword:(NSString *)password
 {
     
+    if(![[HIBitcoinManager defaultManager] isAddressValid:self.btcAddressTextField.stringValue])
+    {
+        // address is invalid
+        [self.popover showError:NSLocalizedString(@"addressIsInvalidError", @"Your entered bitcoin Address is invalid") continueOption:NO];
+        
+        return;
+    }
+    
     NSString *valueEnteredByUser = self.amountTextField.stringValue;
 
-    // allow "," insted of "." as dec. seperator
-    valueEnteredByUser = [valueEnteredByUser stringByReplacingOccurrencesOfString:@"," withString:@"."];
+    nanobtc_t btcValue =  [[HIBitcoinManager defaultManager] nanoBtcFromString:valueEnteredByUser format:[HIBitcoinManager defaultManager].preferredFormat];
     
-    NSInteger fee = [self.delegate prepareSendCoinsFromWindowController:self receiver:[self.btcAddressTextField stringValue] amount:[valueEnteredByUser doubleValue]*100000000 txfee:0 password:password];
+    HIPasswordHolder *passwordHolder = nil;
+    NSData *passwordDataPointer = nil;
     
-    if(fee >= 0)
+    if(password)
     {
-        self.currentState = MWSendCoinsWindowControllerWaitingCommit;
+        passwordHolder = [[HIPasswordHolder alloc] initWithString:password];
+        passwordDataPointer = passwordHolder.data;
+    }
 
-        self.txFeeTextField.stringValue = [[HIBitcoinManager defaultManager] formatNanobtc:fee];
-        self.txTotalAmountTextField.stringValue = [[HIBitcoinManager defaultManager] formatNanobtc:[valueEnteredByUser doubleValue]*100000000+fee];
-        
-        [self.invalidTransactionTextField setHidden:YES];
-        
-        [self.popover setContentSize:NSMakeSize(self.view.frame.size.width, kBA_COINS_WINDOW_HEIGHT_SEND)];
+    NSError *error = nil;
+    nanobtc_t fee = 0;
+    @try {
+        fee = [self.delegate prepareSendCoinsFromWindowController:self receiver:[self.btcAddressTextField stringValue] amount:btcValue txfee:0 password:passwordDataPointer error:&error];
         
     }
-    else
+    @catch (NSException *exception) {
+        
+    }
+    @finally {
+        [passwordHolder clear];
+    }
+    
+    if(error)
     {
-        if(fee == -1)
-        {
-            // encryption problem
-            self.invalidTransactionTextField.stringValue = NSLocalizedString(@"passwordWrong", @"send coins wrong password text");
-        }
-        else if(fee == -2)
+        if(error.code == kHIBitcoinManagerInsufficientMoney)
         {
             // not enought money problem
             self.invalidTransactionTextField.stringValue = NSLocalizedString(@"insufficientFunds", @"send coins insufficient funds text");
         }
         else
         {
-            // hack for detecting insufficient funds while bitcoinj don't report this at the moment
+            // not enought money problem
+            self.invalidTransactionTextField.stringValue = [NSString stringWithFormat:NSLocalizedString(@"unknownError", @"error text if you don't have enough funds in your wallet"), error.description];
+        }
+        
+        [self.invalidTransactionTextField setHidden:NO];
+    }
+    else
+    {
+        if(fee >= 0)
+        {
+            self.currentState = MWSendCoinsWindowControllerWaitingCommit;
+
+            self.txFeeTextField.stringValue = [[HIBitcoinManager defaultManager] formatNanobtc:fee withDesignator:YES];
+            self.txTotalAmountTextField.stringValue = [[HIBitcoinManager defaultManager] formatNanobtc:btcValue+fee withDesignator:YES];
             
-            double calcFee = 0.0001;
-            double balance = [HIBitcoinManager defaultManager].balance;
-            double txVal =([valueEnteredByUser doubleValue] + calcFee);
-            if(txVal > balance/100000000)
+            [self.invalidTransactionTextField setHidden:YES];
+            
+            [self.popover setContentSize:NSMakeSize(self.view.frame.size.width, kBA_COINS_WINDOW_HEIGHT_SEND)];
+            [self.commitButton setEnabled:YES];
+        }
+        else
+        {
+            if(fee == -1)
+            {
+                // encryption problem
+                self.invalidTransactionTextField.stringValue = NSLocalizedString(@"passwordWrong", @"send coins wrong password text");
+            }
+            else if(fee == -2)
             {
                 // not enought money problem
                 self.invalidTransactionTextField.stringValue = NSLocalizedString(@"insufficientFunds", @"send coins insufficient funds text");
             }
             else
             {
-                // not enought money problem
-                self.invalidTransactionTextField.stringValue = NSLocalizedString(@"unknownSendCoinsError", @"send coins unknown error text");
+                // hack for detecting insufficient funds while bitcoinj don't report this at the moment
+                
+                double calcFee = 0.0001;
+                double balance = [HIBitcoinManager defaultManager].balance;
+                double txVal =(btcValue + calcFee);
+                if(txVal > balance/100000000)
+                {
+                    // not enought money problem
+                    self.invalidTransactionTextField.stringValue = NSLocalizedString(@"insufficientFunds", @"send coins insufficient funds text");
+                }
+                else
+                {
+                    // not enought money problem
+                    self.invalidTransactionTextField.stringValue = NSLocalizedString(@"unknownSendCoinsError", @"send coins unknown error text");
+                }
             }
+            [self.invalidTransactionTextField setHidden:NO];
         }
-        [self.invalidTransactionTextField setHidden:NO];
     }
 }
 
 - (IBAction)commitClicked:(id)sender
 {
-    NSString *txHash = [[HIBitcoinManager defaultManager] commitPreparedTransaction];
+    NSError *error = nil;
+    NSString *txHash = [[HIBitcoinManager defaultManager] commitPreparedTransaction:&error];
     
     if(txHash)
     {
@@ -240,24 +291,47 @@
 
         self.txFeeTextField.stringValue             = @"";
         self.txTotalAmountTextField.stringValue     = @"";
+        [self.commitButton setEnabled:NO];
+        
+        NSError *error = nil;
+        [[HIBitcoinManager defaultManager] clearSendRequest:&error];
     }
 }
 
 -(IBAction)showPasswordPrompt:(id)sender
 {
-    [[NSApplication sharedApplication] beginSheet:self.passwordPromt
-                                   modalForWindow:self.view.window
-                                    modalDelegate:self
-                                   didEndSelector:@selector(sheetDidEnd:returnCode:contextInfo:)
-                                      contextInfo:nil];
     
+    if([self.view.window respondsToSelector:@selector(beginSheet:completionHandler:)])
+    {
+        // 10.9
+        [self.view.window beginSheet:self.passwordPromt completionHandler:^(NSModalResponse returnCode){
+            
+        }];
+    }
+    else
+    {
+        [[NSApplication sharedApplication] beginSheet:self.passwordPromt
+                                       modalForWindow:self.view.window
+                                        modalDelegate:self
+                                       didEndSelector:@selector(sheetDidEnd:returnCode:contextInfo:)
+                                          contextInfo:nil];
+    }
 }
 
 - (IBAction)closePasswordPrompt:(id)sender
 {
     NSButton *clickedButton = (NSButton *)sender;
     
-    [NSApp endSheet:self.passwordPromt returnCode:NSOKButton];
+    if([self.view.window respondsToSelector:@selector(endSheet:)])
+    {
+        // 10.9
+        [self.view.window endSheet:self.passwordPromt];
+    }
+    else
+    {
+        [NSApp endSheet:self.passwordPromt returnCode:NSOKButton];
+    }
+    
     [self.passwordPromt orderOut:sender];
     
     if(clickedButton.tag == 1 || clickedButton.tag == 2)

@@ -9,8 +9,9 @@
 #import <Cocoa/Cocoa.h>
 #import "MWSendCoinsViewController.h"
 #import "MWTransactionsWindowController.h"
+#import "MWCreateWalletControllerDelegate.h"
 
-@interface MWAppDelegate : NSObject <NSApplicationDelegate, MWSendCoinsWindowControllerDelegate, NSPopoverDelegate, NSMenuDelegate>
+@interface MWAppDelegate : NSObject <NSApplicationDelegate, MWSendCoinsWindowControllerDelegate, NSPopoverDelegate, NSMenuDelegate, MWCreateWalletControllerDelegate>
 
 @property (assign) BOOL launchAtStartup;
 @property (readonly) NSString* walletBasicEncryptionPassphrase;

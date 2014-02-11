@@ -29,8 +29,8 @@
 - (void)awakeFromNib
 {
     self.transactionIdTextField.stringValue = [self.txDict objectForKey:@"txid"];
-    NSInteger amount = [[self.txDict objectForKey:@"amount"] integerValue];
-    self.amountTextField.stringValue = [[HIBitcoinManager defaultManager] formatNanobtc:amount];
+    nanobtc_t amount = [[self.txDict objectForKey:@"amount"] longLongValue];
+    self.amountTextField.stringValue = [[HIBitcoinManager defaultManager] formatNanobtc:amount withDesignator:YES];
     self.receiverAddressTextField.stringValue = [[[self.txDict objectForKey:@"details"] objectAtIndex:0] objectForKey:@"address"];
 }
 

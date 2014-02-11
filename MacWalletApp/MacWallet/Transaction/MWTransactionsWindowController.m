@@ -102,7 +102,7 @@
 {
     NSDictionary *txDist = [self.cachedTransactions objectAtIndex:rowIndex];
     if([aTableColumn.identifier isEqualToString:@"amount"]) {
-        return [[HIBitcoinManager defaultManager] formatNanobtc:[[txDist objectForKey:@"amount"] longValue]];
+        return [[HIBitcoinManager defaultManager] formatNanobtc:[[txDist objectForKey:@"amount"] longValue] withDesignator:YES];
     }
     else if([aTableColumn.identifier isEqualToString:@"date"]) {
         NSDate *date = [txDist objectForKey:@"time"];

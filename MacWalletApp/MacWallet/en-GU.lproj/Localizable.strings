@@ -121,3 +121,4 @@ incomingPaymentShowPopup = "Show Popup";
 incomingPaymentPlaySound = "Play Sound";
 incomingPaymentRunScript = "Run Script";
 No = "No";
+syncingIsOff = "Not Syncing";
