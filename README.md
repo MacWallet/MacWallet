@@ -27,6 +27,10 @@ Screenshots
 
 [More Screenshots](https://github.com/MacWallet/MacWallet/blob/master/SCREENSHOTS.md)
 
+WARNING
+-------
+
+This software is in earyl development. Don't use it for high value wallets.
 
 Download
 -------
