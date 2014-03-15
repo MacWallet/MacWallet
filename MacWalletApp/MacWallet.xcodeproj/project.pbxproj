@@ -259,6 +259,7 @@
 		E504D7FF17FDA0A300F94081 /* wallet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wallet.png; sourceTree = "<group>"; };
 		E504D80117FDA4B500F94081 /* tickers.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = tickers.plist; sourceTree = "<group>"; };
 		E508D65917FB26A700CC3CF9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E50B2F9318D4D32900CB8B4C /* MacWallet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = MacWallet.entitlements; sourceTree = "<group>"; };
 		E50D19EA18168F3300AD4F66 /* incoming_payment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = incoming_payment.png; sourceTree = "<group>"; };
 		E50D19EB18168F3300AD4F66 /* incoming_payment@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "incoming_payment@2x.png"; sourceTree = "<group>"; };
 		E517D5ED181535DB00C0E1AE /* MWFundsReceivedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWFundsReceivedViewController.h; sourceTree = "<group>"; };
@@ -462,6 +463,7 @@
 		E50310D517E9986500C2F226 /* MacWallet */ = {
 			isa = PBXGroup;
 			children = (
+				E50B2F9318D4D32900CB8B4C /* MacWallet.entitlements */,
 				E58A296E18A288A3004877BB /* Helpers */,
 				E51CC1FC1814FA9B0070BCF9 /* QRCode */,
 				E548C6F61802BFFB00976CD7 /* Transaction */,
@@ -757,6 +759,11 @@
 				TargetAttributes = {
 					E50310CB17E9986500C2F226 = {
 						DevelopmentTeam = 5XAKXZTWN4;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -1112,6 +1119,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
+				CODE_SIGN_ENTITLEMENTS = MacWallet/MacWallet.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1133,6 +1141,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
+				CODE_SIGN_ENTITLEMENTS = MacWallet/MacWallet.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
