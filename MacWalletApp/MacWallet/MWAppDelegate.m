@@ -657,6 +657,7 @@
     NSError *error = nil;
     @try {
         [[HIBitcoinManager defaultManager] createWalletWithPassword:passwordHolder.data error:&error];
+        [self makeWalletBackup];
     }
     @finally {
         [passwordHolder clear];
@@ -751,6 +752,8 @@
 {
     [[HIBitcoinManager defaultManager] addKey];
     [self updateMyAddresses:[HIBitcoinManager defaultManager].allWalletAddresses];
+    
+    [self makeWalletBackup];
 }
 
 - (IBAction)resyncBlockchain:(id)sender
