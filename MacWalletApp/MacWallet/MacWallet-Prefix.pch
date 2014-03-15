@@ -21,6 +21,10 @@
 #define kPLAY_SOUND_INCOMING_FUNDS @"playSoundOnIncomingFunds"
 #define kPLAY_SOUND_PATH_INCOMING_FUNDS @"playSoundPathOnIncomingFunds"
 #define kHAS_ENCRYPTED_WALLET_KEY @"hasEncryptedWalletKey"
+#define kLAST_BACKUP_KEY @"lastBackupKey"
+#define kWANTS_ICLOUD_BACKUPS_KEY @"wantsICloudBackupsKey"
+#define kWANTS_ICLOUD_BACKUPS_KEY_ENABLE_VALUE @"YES"
+#define kWANTS_ICLOUD_BACKUPS_KEY_DISABLE_VALUE @"NO"
 
 #define kSHOULD_CLOSE_OPEN_POPUPS_NOTIFICATION @"shouldCloseOpenPupups"
 

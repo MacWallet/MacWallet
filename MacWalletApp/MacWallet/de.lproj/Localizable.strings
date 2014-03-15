@@ -121,3 +121,14 @@ incomingPaymentShowPopup = "Popup anzeigen";
 incomingPaymentPlaySound = "Ton abspielen";
 incomingPaymentRunScript = "Skript/Programm starten";
 No = "Nein";
+syncingIsOff = "Not Syncing";
+addressIsInvalidError = "Invalid Address";
+NoWalletPresent = "Wallet is missing!";
+Yes = "Yes";
+
+NoWalletPresent = "Wallet is missing!";
+passwordIsInacceptable = "Password strength is inaccaptable";
+passwordIsWeak = "Your password is short and weak";
+warnForPasswordLost = "REMIND: If you loose your password all your bitcoins are lost!";
+confirmQuestionPermanentlyDecryptWallet = "Are you sure to permanently unencrypt your wallet?";
+wantiCloudBackup = "Would you like to enable iCloud backups (works only for encrpted wallets)?";

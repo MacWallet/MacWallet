@@ -171,6 +171,16 @@
         }
     }
     
+    if(self.enableiCloudBackups.isEnabled)
+    {
+        [[NSUserDefaults standardUserDefaults] setObject:kWANTS_ICLOUD_BACKUPS_KEY_ENABLE_VALUE forKey:kWANTS_ICLOUD_BACKUPS_KEY];
+    }
+    else
+    {
+        [[NSUserDefaults standardUserDefaults] setObject:kWANTS_ICLOUD_BACKUPS_KEY_DISABLE_VALUE forKey:kWANTS_ICLOUD_BACKUPS_KEY];
+    }
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
     NSInteger retVal = [self.popover showError:NSLocalizedString(@"warnForPasswordLost", @"Warning text to reminde user to not forget the wallet password") continueOption:NO cancelButton:NSLocalizedString(@"Ok", @"Okay Button")];
     
     HIPasswordHolder *passwordHolder = nil;

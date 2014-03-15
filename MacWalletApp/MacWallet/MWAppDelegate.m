@@ -84,6 +84,9 @@
 @property (strong) NSColor *currentMenuColor;
 
 @property (assign) NSInteger activeWallets;
+
+@property (strong) NSURL *ubiquitousURL;
+
 @end
 
 @implementation MWAppDelegate
@@ -230,6 +233,42 @@
             [thr start];
         }
     }
+    
+    
+    NSDate *lastBackup = [[NSUserDefaults standardUserDefaults] objectForKey:kLAST_BACKUP_KEY];
+    
+    //check for backup
+    NSString *wantsiCloudBackups = [[NSUserDefaults standardUserDefaults] objectForKey:kWANTS_ICLOUD_BACKUPS_KEY];
+    if(!wantsiCloudBackups)
+    {
+        // Save changes to disk
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:NSLocalizedString(@"Yes", @"YES Button")];
+        [alert addButtonWithTitle:NSLocalizedString(@"No", @"No Button")];
+        [alert setMessageText:NSLocalizedString(@"wantiCloudBackup", @"Question for the user if he likes iCloud backups")];
+        [alert setInformativeText:@""];
+        [alert setAlertStyle:NSWarningAlertStyle];
+        NSInteger alertResult = [alert runModal];
+        if(alertResult == NSAlertFirstButtonReturn) {
+            [[NSUserDefaults standardUserDefaults] setObject:kWANTS_ICLOUD_BACKUPS_KEY_ENABLE_VALUE forKey:kWANTS_ICLOUD_BACKUPS_KEY];
+        }
+        else {
+            [[NSUserDefaults standardUserDefaults] setObject:kWANTS_ICLOUD_BACKUPS_KEY_ENABLE_VALUE forKey:kWANTS_ICLOUD_BACKUPS_KEY];
+        }
+        
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        [self makeWalletBackup];
+    }
+    int backup_delta_time = 60*60*24*10; // 10 days
+    if(!lastBackup || ([lastBackup isKindOfClass:[NSDate class]] && [lastBackup timeIntervalSince1970]+backup_delta_time < [[NSDate date] timeIntervalSince1970]))
+    {
+        [self makeWalletBackup];
+        [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kLAST_BACKUP_KEY];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)notification
@@ -1212,6 +1251,72 @@
     [popover showRelativeToRect:CGRectMake(0,0,frame.size.width,frame.size.height) ofView:view preferredEdge:NSMinYEdge];
     
     return;
+}
+
+#pragma mark - iCoud Backup Stack
+//TODO: more flexible architecture required, example: adapter pattern, allow multiple backup types
+- (void)makeWalletBackup
+{
+    @try {
+        if(![[HIBitcoinManager defaultManager] isWalletEncrypted])
+        {
+            return;
+        }
+        
+        NSDate *now = [NSDate date];
+        NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.dateFormat = @"yyyy-MM-dd_HH_mm_ss";
+        NSString* nowString = [dateFormatter stringFromDate:now];
+        dateFormatter = nil;
+        
+        NSString *walletFileLocation = [[HIBitcoinManager defaultManager] walletFilename];
+        NSString *walletFileLocationCopy = [walletFileLocation stringByAppendingFormat:@"_%@", nowString];
+        NSError *copyError = nil;
+        [[NSFileManager defaultManager] copyItemAtPath:walletFileLocation toPath:walletFileLocationCopy error:&copyError];
+        
+        if(copyError)
+        {
+            //TODO: error handling
+            return;
+        }
+        
+        
+        NSString *possibleBackup = [[NSUserDefaults standardUserDefaults] objectForKey:kWANTS_ICLOUD_BACKUPS_KEY];
+        if(possibleBackup && [possibleBackup isEqualToString:kWANTS_ICLOUD_BACKUPS_KEY_ENABLE_VALUE])
+        {
+            if(!self.ubiquitousURL)
+            {
+                self.ubiquitousURL = [[NSFileManager defaultManager] URLForUbiquityContainerIdentifier:nil];
+                if(!self.ubiquitousURL)
+                {
+                    //TODO, show somwhow a error if we can't store in the icloud
+                    return;
+                }
+            }
+            
+            NSURL *destinationURL = [self.ubiquitousURL URLByAppendingPathComponent:[NSString stringWithFormat:@"Documents/wallet_backup_%@.dat", nowString]];
+            NSURL *sourceURL = [NSURL fileURLWithPath:walletFileLocationCopy];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSError *error = nil;
+                
+                [[NSFileManager defaultManager] setUbiquitous:YES
+                                                    itemAtURL:sourceURL
+                                               destinationURL:destinationURL
+                                                        error:&error];
+                if(error)
+                {
+                    //TODO, backup error handling
+                }
+            });
+        }
+    }
+    @catch (NSException *exception) {
+        
+    }
+    @finally {
+        
+    }
 }
 
 @end
